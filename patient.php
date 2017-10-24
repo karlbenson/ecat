@@ -20,7 +20,6 @@
 <?php
 $organization = "Luke Foundation (photo)";
 $page = array("Page1", "Page2", "Page3", "Eye Cataract Program");
-$doctor = array("Physicians", "Surgeons");
 $i = 0;
 ?>
 
@@ -60,107 +59,57 @@ $i = 0;
 
 <!-- HEAD AND NAVIGATION END -->
 
-<!-- DOCTORS -->
+<!-- PATIENTS -->
 
 	<div class="container-fluid" id="basic" >
 		<div id="inner" data-target="list" data-spy="scroll" data-offset="15" >
 			
 		<div class="container-fluid" >
-  			<h4>Eye Doctors</h4>
+  			<h4>Eye Cataract Patients</h4>
   			<br>
 		</div>
 
-		<div class="container-fluid" >
-		  	<div class="row" >
-    			<div class="col-sm-3">
+		<div class="container-fluid">
 
-          <div class="row">
-            <nav class="navbar navbar-default">
-      				<ul class="nav nav-pills nav-stacked">
-        				<li><a href="#profile1"> <?php echo $doctor[0]; ?> </a></li>
-        				<li><a href="#profile2"> <?php echo $doctor[1]; ?> </a></li>
-      				</ul>
-            </nav>
-          </div>
-
-
-          <div class="row" >
-            <div id="box" style="text-align: center; background-color: rgba(20, 82, 20, 0.5) ; color: #f1f1f1; min-height:50px;">
-              <h5>Place Holder 1</h5>
-            </div>
-            <div id="box" style="text-align: center; background-color: rgba(255, 204, 0, 0.5) ; color: rgba(20, 82, 20, 0.6); min-height:50px;">
-              <h5>Place Holder 2</h5>
-            </div>
-          </div>
-
-    		</div>
-    			<div class="col-sm-9">
-
-    			<!-- PHYSICIAN -->
+    			<!-- PROFILES -->
     			
-      				<div id="profile1">
-
-      					<?php for($i = 0; $i < 2; $i++){	?>
-
+      				<div>
+      					<?php for($i = 0; $i < 3; $i++){	?>
       					<div style="margin-bottom: 20px;">
-        				<div class="row" id="box">
-        					<div class="col-sm-3" style="padding:0px;">
+        				<div class="row" id="box" style="background-color: rgba(255, 204, 0, 0.3); ;">
+        					<div class="col-sm-2" style="padding:0px;">
         						<img class="container-fluid" id="picture" src="id.jpg">
         					</div>
-        					<div class="col-sm-9" id="profile">
-        						<?php 	echo "First Name"." & "."Surname"."<br>"; ?>
+        					<div class="col-sm-10" id="profile">
+        						<?php 	echo "Patient ID ".($i+1)."<br>"; ?>
         						<hr style=" border: solid 1px #004d4d;  width:100%; padding: 0px;">
         						<?php
-        							echo "Physician License Number: "."<br>";
-        							echo "Home Address: "."<br>";
+        							echo "Examined by: "."Physician License #"."<br>";
+        							echo "Screened by: "."Staff License #"."<br>";
         						?>
         					</div>
         				</div>
-        				<div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 50px; padding: 20px;">
+                <div class="row" id="box" style="background-color: rgba(20, 82, 20, 0.5); min-height:0px; padding: 5px 20px; color: #ffffff;">
+                    <h4>Medical Eye Record</h4>
+                </div>
+        				<div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 100px; padding: 20px;">
         						<?php
-                      echo "Other Details..."."<br>";
+                    $eye = array("Visual Acuity of Left and Right Eye with Spectacles","Visual Acuity of Left and Right Eye without Spectacles","Visual Disability","Cause of Visual Disability","Affected part of the Left and/or Right Eye");
+
+                    for($e=0; $e < 5; $e++){
+                      echo $eye[$e]."<br>";
+                    }
                      ?>
         				</div>
         				</div>    
         				<?php } ?>
 
       				</div>
-      			
-      			<!-- SURGEON -->
-
-      			<div id="profile2"> 
-        				
-      					<?php for($i = 0; $i < 2; $i++){	?>
-
-      				<div style="margin-bottom: 20px;">
-        				<div class="row" id="box">
-        					<div class="col-sm-3" style="padding:0px;">
-        						<img class="container-fluid" id="picture" src="id.jpg">
-        					</div>
-        					<div class="col-sm-9" id="profile">
-        						<?php 	echo "First Name"." & "."Surname"."<br>"; ?>
-        						<hr style=" border: solid 1px #004d4d;  width:100%; padding: 0px;">
-        						<?php
-        							echo "Surgeon License Number: "."<br>";
-        							echo "Working Address: "."<br>";
-        						?>
-        					</div>
-        				</div>
-        				<div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 50px; padding: 20px;">
-        						<?php echo "Other Details..."."<br>"; ?>
-        				</div>
-        			</div>    
-
-        				<?php } ?>
-
-      			</div> 
-  			  </div>
-  			</div>
+    
 	   	</div>
+
 	 </div>
   </div>
 
-
 </body>
-
 </html>

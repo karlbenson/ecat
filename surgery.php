@@ -19,13 +19,13 @@
 <?php
 $organization = "Luke Foundation (photo)";
 $page = array("Page1", "Page2", "Page3", "Eye Cataract Program");
-
-$table = array("");
 $i = 0;
 ?>
 
 <!--  -->
 <div class="container-fluid" id="outer">
+
+<!-- HEAD AND NAVIGATION -->
 
 	<div>
 		<nav class="navbar navbar-default">
@@ -44,8 +44,9 @@ $i = 0;
         				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $page[3]; ?>
         				<span class="caret"></span></a>
         				<ul class="dropdown-menu">
-          					<li><a href=doctors.php>Doctors</a></li>
-          					<li><a href="surgery.php">Surgeries</a></li>
+        					<li><a href=doctors.php>Doctors</a></li>
+                    		<li><a href="patient.php">Patient</a></li>
+                    		<li><a href="surgery.php">Surgeries</a></li>
         				</ul>
       				</li>
 	    		</ul>
@@ -53,6 +54,10 @@ $i = 0;
   		</div>
 		</nav>
 	</div>
+
+<!-- HEAD AND NAVIGATION END -->
+
+<!-- SURGERIES -->
 
 	<div class="container-fluid" id="basic" >
 		<div id="inner" data-target="list" data-spy="scroll" data-offset="15" >
@@ -68,6 +73,7 @@ $i = 0;
 			$scase_num = 0;
 			$sdate = 0;
 			$s = 0;
+			$surgtable = array("Date", "Case#", "Surgeon", "Patient", "Visual_Imparity", "Med_History", "Diagnosis", "Location", "Remarks");
 		?>
 
 		<?php for ($i=0; $i <3 ; $i++) { ?>
@@ -81,10 +87,9 @@ $i = 0;
 					<table class="table">
     					<thead>
       					<tr>
-        					<th>Date</th>
-        					<th>Case no.</th>
-        					<th>Surgeon</th>
-        					<th>Patient</th>
+      					<?php for ($j=0; $j < 9; $j++) { 
+      						echo "<th>".$surgtable[$j]."</th>";
+        				 } ?>
       					</tr>
     					</thead>
     				<tbody>
@@ -94,8 +99,13 @@ $i = 0;
       					<tr>
         					<td><?php echo $i."/".$sdate; ?> </td>
         					<td><?php echo "00".$s; ?></td>
-	        				<td>Surgeon<?php echo $s ?></td>
-        					<td>Patient<?php echo $s ?></td>
+	        				<td><?php echo "Surg_License#"?></td>
+        					<td><?php echo "Patient_ID#"?></td>
+        					<td><?php echo "Eye_Prob.".($s+1) ?></td>
+        					<td><?php echo "Med_Hist."?></td>
+        					<td><?php echo "Diag_".($s+1) ?></td>
+        					<td><?php echo "Surg_Addr.".($s+1) ?></td>
+        					<td><?php echo "Surg_Remarks"?></td>
       					</tr>
 
       				<?php }?>

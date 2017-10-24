@@ -4,21 +4,17 @@
 			position: relative;
 			padding: 50px;
 		}
-		div{
-			font-size: 11pt;
+		div, li{
+			font-size: 12pt;
 		}
+
 		.navbar-default{
 			background-color: #ffd11a;
 			border-color: #ffdb4d;
 			border-radius: 3px;
 		}
-
-    	#bar a:hover, #bar > li > a:focus {
-    		background-color: rgba(153, 0, 0, 0.5);
-    		color: #4d3d00
-		}
 		.navbar-default .navbar-nav > li > a{
-			border-radius: 0px;
+			border-radius: 5px;
 		}
 		.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > li > a:active {
     		background-color: #ff9900;
@@ -30,12 +26,16 @@
 			font-size: 16;
 			color: #ffffff;
 		}
+		#free{
+			position: relative;
+		}
 		#outer{
 			background-color: #004d00;
 			margin: auto;
 			padding: 20px 10px 30px 10px;
 			border-radius: 5px;
 			max-width: 1500px;
+			min-width: 800px;
 			box-shadow:  0px 0px 10px 5px rgba(255, 255, 255, 0.2);
 		}
 		#basic{
@@ -60,10 +60,8 @@
 			margin: 0px 10px 10px 10px;
 			min-height: 150px;
 			border-radius: 5px;
-			
 		}
 		#profile{
-
 			padding: 20px;
 			align-content: left;
 		}
@@ -80,11 +78,9 @@
 			color: #f2f2f2;
 			border-radius: 5px;
 		}
-
 		.record{
 			padding: 0px;
 		}
-
 		.record > .month{
 			text-align: center;
 			background-color: #004d00;
