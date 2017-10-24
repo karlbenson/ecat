@@ -120,7 +120,7 @@ $ADDR_MAX = 50;
           <!-- LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number</label>
-              <div class="col-md-2" style="width: 120px; float: left;">
+              <div class="col-md-2" style="width: 115px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
               </div>
             </div>
@@ -129,7 +129,7 @@ $ADDR_MAX = 50;
           <!-- ADDRESS -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="ADDRESS" style="float:left; width:170px;">Address</label>
-              <div class="col-md-6" style="width: 550px; float: left;">
+              <div class="col-md-6" style="width: 500px; float: left;">
                 <input type="text" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS">
               </div>
             </div>

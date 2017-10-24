@@ -169,7 +169,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     <div class="form-group row">
                       <label class="control-label col-md-3" for="CLEAR" style="float:left; width:200px;">Clearance Number </label>
                       <div class="col-md-2" style="width: 170px; float: left;">
-                        <input type="" class="form-control" id="CLEAR" placeholder="Enter No." maxlength="<?php echo $CLEAR_LENG; ?>" name="CLEAR" required>
+                        <input type="text" class="form-control" id="CLEAR" placeholder="Enter No." maxlength="<?php echo $CLEAR_LENG; ?>" name="CLEAR" required>
                       </div>
                     </div>
                   <!-- CLEARANCE END -->
