@@ -4,7 +4,7 @@
 
 	<title>Prototype</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta iewport" content="width=device-width, initial-scale=1">
 	<!-- <link rel="stylesheet" href="bootstrap.min.css">  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!--  <script src="jquery.min.js"></script> -->
@@ -26,7 +26,6 @@
   $page = array("Doctors", "Patient", "Surgery");
   $link = array("doctors.php", "patient.php", "surgery.php");
   $doctor = array("Physicians", "Surgeons");
-  $i = 0;
 ?>
 <div>
   <nav class="navbar navbar-default">
@@ -50,14 +49,31 @@
   </div>
 <!-- TITLE -->
 
-<?php
+<!-- PAGE DESCRIPTION -->
+<!--
+  - SUBMISSION: form information will be sent to page "submit.php"
+  - PROGRESS: to be checked for further revision
+  - COMPLETED? not yet but very close
+  - REMARKS:-check on form field limitations/ resizability / field morphing when screen changes... etc.
+            -watch out for form wrapping when screen changes/ adjust max width and min width
+            -stability (to be improved)
+ -->
+<!-- PAGE DESCRIPTION END -->
 
+<?php  //CODE SECTION START
 
+//DOCTOR INFORMATION FIELDS MAX CHAR VALUES
+$FN_MAX = 15;
+$LN_MAX = 20;
+$LIC_LENG = 7;
+$ADDR_MAX = 50;
+//DOCTOR INFORMATION END
 
+ //CODE SECTION END
 ?>
 
 <!-- DOCTORS FORM -->
-<div class="container-fluid" id="basic" style="padding-top: 10px;"">
+<div class="container-fluid" id="basic" style="padding-top: 10px;">
 
   <div id="inner">
   <!-- CONTENT -->
@@ -68,7 +84,7 @@
           <h3>Doctor Information</h3>
           <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
               
-          <form action="#">
+          <form method="post" action="submit.php" >
 
           <!-- NAME -->
             <div class="form-group row">
@@ -76,15 +92,15 @@
 
             <!-- FIRST NAME -->
               <div class="col-md-2">
-                <label class="sr-only" for="">First Name</label>
-                <input type="" class="form-control" id="" placeholder="First Name" name="">
+                <label class="sr-only" for="F_NAME" required >First Name</label>
+                <input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" required>
               </div>
             <!-- FIRST NAME END -->
 
             <!-- LAST NAME -->
               <div class="col-md-2">
-                <label class="sr-only" for="">Last Name</label>
-                <input type="" class="form-control" id="" placeholder="Last Name" name="">
+                <label class="sr-only" for="L_NAME">Last Name</label>
+                <input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
               </div>
             <!-- LAST NAME END -->
             
@@ -93,18 +109,18 @@
 
           <!-- LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="" style="float:left;">License Number</label>
-              <div class="col-md-4">
-                <input type="" class="form-control" id="" placeholder="Enter License Number" name="">
+              <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left;">License Number</label>
+              <div class="col-md-2">
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="License No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
               </div>
             </div>
           <!-- LICENSE NUMBER END -->
 
           <!-- ADDRESS -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="address" style="float:left;">Address</label>
+              <label class="control-label col-md-2" for="ADDRESS" style="float:left;">Address</label>
               <div class="col-md-6">
-                <textarea type="address" class="form-control" id="" placeholder="Enter Home or Work Address" name="address" rows="3"></textarea>
+                <textarea type="text" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" rows="1" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS"></textarea>
               </div>
             </div>
           <!-- ADDRESS END -->
@@ -125,6 +141,12 @@
   </div>
 </div>
 <!-- DOCTORS FORM END -->
+
+<?php
+//ERROR CHECKING
+
+//...code
+?>
 
 </div>
 <!-- MAIN END -->

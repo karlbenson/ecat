@@ -26,7 +26,6 @@
   $page = array("Doctors", "Patient", "Surgery");
   $link = array("doctors.php", "patient.php", "surgery.php");
   $doctor = array("Physicians", "Surgeons");
-  $i = 0;
 ?>
 <div>
   <nav class="navbar navbar-default">
@@ -81,16 +80,14 @@
 
           </div>
         </div>
-      <!-- LEFT COLUMN -->
+      <!-- LEFT COLUMN END -->
 
       <!-- RIGHT COLUMN -->
         <div class="col-sm-10">	
           <div>
 
-          <!-- MODIFIABLE CODE STARTS HERE -->
-
-
-            <!-- MODIFIABLE CODE ENDS HERE -->
+          <!-- CENTER SPACE: WHAT TO DO? -->
+          <!-- TO BE CONSTRUCTED -->
 
             </div>
           </div>
