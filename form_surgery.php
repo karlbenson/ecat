@@ -75,7 +75,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           <!-- SURGEON LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Conducted by: </label>
-              <div class="col-md-7">
+              <div class="col-md-7" style="float:left;">
               <div style="width: 120px; float: left; margin-right:10px;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" required>
               </div>
@@ -95,7 +95,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                   <!-- PATIENT ID -->
                     <div class="form-group row">
                       <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient ID </label>
-                      <div class="col-md-7">
+                      <div class="col-md-7"  style="float:left;">
                       <div style="float:left; width:170px; margin-right:10px;">
                         <input  class="form-control" id="PAT_ID" placeholder="Enter Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
                       </div>
@@ -156,10 +156,10 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                   <!-- DATE -->
                     <div class="form-group row">
                       <label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
-                    <div class="col-md-7">
+                    <div class="col-md-7"  style="float:left; min-width:400px;">
                       <div>
                           <label class="sr-only" for="MM">Month</label>
-                          <select class="form-control"  name="MM" style="width: 120px; float: left; margin-right:10px;" required>
+                          <select class="form-control" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
                             <?php for ($j=0; $j < count($MONTH_choice); $j++) { 
                               echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
                              } ?>
@@ -168,12 +168,12 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                       <div style="width: 80px; float: left; margin-right:10px;">
                           <label class="sr-only" for="DD">Day</label>
-                          <input pattern="\d||[0-2]\d|3[0-1]|" title="" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" required>
+                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" required>
                       </div>
 
                       <div  style="width: 100px; float: left; margin-right:10px;">
                           <label class="sr-only" for="YY">Year</label>
-                          <input pattern="[1-2]\d\d\d" title="" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" required>
+                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" required>
                       </div>
                     </div>
 

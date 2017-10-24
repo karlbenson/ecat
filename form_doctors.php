@@ -57,23 +57,23 @@ $ADDR_MAX = 50;
 
           <!-- NAME -->
             <div class="form-group row">
-              <label class="col-md-2" style="float:left; width:170px;">Name</label>
+              <label class="control-label col-md-2" style="float:left; width:170px;">Name</label>
 
-            <div class="col-md-7">
-            <!-- FIRST NAME -->
-              <div style="width: 175px; float: left; margin-right:10px;">
-                <label class="sr-only" for="F_NAME" required >First Name</label>
-                <input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" style="float: left;" required >
-              </div>
-            <!-- FIRST NAME END -->
+              <div class="col-md-7" style="float: left">
+              <!-- FIRST NAME -->
+                <div style="width: 175px; float: left; margin-right:10px;">
+                  <label class="sr-only" for="F_NAME" required >First Name</label>
+                  <input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" style="float: left;" required >
+                </div>
+              <!-- FIRST NAME END -->
 
-            <!-- LAST NAME -->
-              <div style="width: 175px; float: left; margin-right:10px;">
-                <label class="sr-only" for="L_NAME">Last Name</label>
-                <input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
+              <!-- LAST NAME -->
+                <div style="width: 175px; float: left; margin-right:10px;">
+                  <label class="sr-only" for="L_NAME">Last Name</label>
+                  <input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
+                </div>
+              <!-- LAST NAME END -->
               </div>
-            <!-- LAST NAME END -->
-            </div>
 
             </div>
           <!-- NAME END -->

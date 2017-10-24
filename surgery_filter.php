@@ -26,7 +26,7 @@ echo '</div>';
 echo '<div class="container-fluid" style="margin-bottom: 0px;" id="search_record">';
 
 echo '<div class="panel panel-default collapse" style="padding: 0px;" id="upper1">
-<div class="panel-body" style="padding:10px;">';
+<div class="panel-body">';
 
 echo '<form class="navbar-form navbar-center" role="search" style="text-align:center;">
     <div class="container-fluid" style="width:350px;">
@@ -51,7 +51,7 @@ echo '</div>';
  * * * * * * * * * * */
 
 // FILTER 
-echo '<div class="container-fluid" style="margin-bottom: 0px;" id="filter">
+echo '<div class="container-fluid" style="margin-bottom: 10px;" id="filter">
 <form method="post" action="surgery.php">';
 
 echo '<div class="panel panel-default collapse" style="padding: 0px;" id="upper">
@@ -143,7 +143,7 @@ echo '<div class="panel panel-default collapse" style="padding: 0px;" id="upper"
     </div>';
   // SURGEON POP-UP FINDER END
 
-    $v = 5;
+  $v = 5;
   //SCRIPT
   echo '<script>
     function pick_doc(x){

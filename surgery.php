@@ -23,23 +23,9 @@
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
 
-<!--
-TABLE INFORMATION
-	-	Date
-	-	Case_number
-	-	Surgeon
-	-	Patient
-	-	Visual_imparity
-	-	Medical_history
-	- Diagnosis
-	-	Location
-	-	Remarks
--->
-
 <?php //CODE SECTION STARTS HERE
 
 //ESTABLISHING MYSQL LINK (1)
-
 include("dbconnect.php");
 //ESTABLISHING MYSQL LINK END (1)
 
@@ -105,7 +91,6 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           if ($mydatabase->query($S_update) === TRUE) {
             //echo "Record updated successfully";
           } else {
-            // echo '<script> window.location = "surgery.php?profilepage='.$_POST['surgery_update'].'"; </script>';
             echo '
             <div class="alert alert-danger alert-dismissable">
               <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -196,9 +181,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
       //MYSQL SECTION
       $S_query = "SELECT * FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM $filter $search order by s.SURG_DATE desc limit $begin, ".$limit;
+      $output = $mydatabase->query($S_query);
       //MYSQL SECTION END
-
-      $output = $mydatabase->query($S_query);      
         
       if($DEFAULT==0){
 
@@ -206,7 +190,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
         include("surgery_filter.php");
         //FILTER END
 
-        if ($output->num_rows > 0) {
+        if ($output->num_rows>0) {
 
         //MAIN PAGE
 
@@ -215,7 +199,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           echo '<div class="container-fluid row">';
           echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
           echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
-          echo '<div style="width:230px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
+          echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
           echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Clearance No.'.'</b></div>';
           echo '</div>';
           echo '</li>';
@@ -228,40 +212,36 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             echo '<div class="row">';
 
                 echo '<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
-                $s_primary = $dataline["CASE_NUM"];
+                  $s_primary = $dataline["CASE_NUM"];
                 echo '<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>';
-                echo '<div style="width:230px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
+                echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
                 echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["CLEARANCE_NUM"].'</div>';
-                echo '<div style="width:150px; float:right; margin-left:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
+                echo '<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
               
-            echo '<div>';
+            echo '</div>';
             echo '</li>';
 
           }//CONTENT END
+        echo '</ul>';
       
       //PAGER
       echo '<div style="text-align:center;">';
-      echo '<ul class="pagination" style="margin:auto;">';
-      echo '<br>';
+      echo '<ul class="pagination" style="margin:auto;"><br>';
           
-          $check = "SELECT CASE_NUM FROM SURGERY";
-          $check2 = $mydatabase->query($check);
-          $item_no = $check2->num_rows;
-          $page_no = ceil($item_no/$limit);
-          
-          if($page_no>1){
-            for ($p_no=0; $p_no < $page_no; $p_no++) { 
-              echo '<li><a style="color:#337ab7;" href="'.'surgery.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
-            }
-          } 
+      $check = "SELECT CASE_NUM FROM SURGERY";
+      $check2 = $mydatabase->query($check);
+      $item_no = $check2->num_rows;
+      $page_no = ceil($item_no/$limit);
+      
+      if($page_no>1){
+        for ($p_no=0; $p_no < $page_no; $p_no++) { 
+          echo '<li><a style="color:#337ab7;" href="'.'surgery.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
+        }
+      } 
 
       echo '</ul>';
       echo '</div>';
       //PAGER END
-
-      //BUTTON FUNCTIONS
-      
-      //BUTTON FUNCTIONS END
 
       } else { echo "No Records."; }
 
@@ -470,17 +450,17 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
     }else if($DEFAULT==2){
 
-      //DELETE
-      $del = "DELETE FROM SURGERY WHERE CASE_NUM = '$delete_p' ";
+      //DELETE PAGE
 
       //MYSQL SECTION
+      $del = "DELETE FROM SURGERY WHERE CASE_NUM = '$delete_p' ";
       if ($mydatabase->query($del) === TRUE) {
         echo "Record deleted.";
         echo '<div style="text-align:right;"><a href="'.'surgery.php'.'">Back</a></div>';
       } else { echo "Error deleting record: " . $mydatabase->error; }
       //MYSQL SECTION
 
-      //DELETE END
+      //DELETE PAGE END
 
     }
 

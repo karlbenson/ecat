@@ -33,6 +33,11 @@
 	margin: 10px 0px;
 }
 
+#headlogo:hover{
+	transition: 0.3s;
+	box-shadow: 0px 0px 10px 5px rgba(255,255,255, 0.6);
+}
+
 #headlogo button{
 	margin-top: 5px;
 	background-color: rgba(255, 255, 255, 0.7);
@@ -61,7 +66,12 @@ body{
 	border-radius: 5px;
 	max-width: 1200px;
 	min-width: 900px;
-	box-shadow:  0px 0px 10px 5px rgba(255,255,255, 0.7);
+	box-shadow:  0px 0px 10px 4px rgba(255,255,255, 0.6);
+}
+
+#outer:hover{
+	transition: 0.3s;
+	box-shadow: 0px 0px 20px 5px rgba(255,255,255, 0.95);
 }
 
 hr{
@@ -216,10 +226,28 @@ div, li{
 	background-color: none;
 }
 
-@media print {
-	a, button, #go, #link_buttons, #criteria_buttons, #sider, #headlogo{ display: none; }
-
-    
+.panel-body .col-md-3{
+	float: left;
+	min-width: 170px;
 }
+.panel-body .col-md-9{
+	float: left;
+}
+
+/*PRINT SETTINGS*/
+@media print {
+	body, #body{
+		margin: 0px !important;
+		padding: 0px !important;
+	}
+
+	a, button, #go, #link_buttons, #criteria_buttons, #sider, #headlogo{
+		display: none;
+	}
+
+	input::placeholder, textarea::placeholder{
+  		color: transparent !important;
+	}
+} /*PRINT SETTING END*/
 
 /*THEME END*/

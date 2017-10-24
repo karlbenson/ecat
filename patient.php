@@ -23,16 +23,6 @@
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
 
-<!-- PATIENTS -->
-<div class="container-fluid" id="basic" >
-  <div id="inner">
-
-  <!-- TITLE -->
-    <div class="container-fluid" >
-        <h4 style="color:#337ab7;">Eye Cataract Patients</h4>
-    </div>
-  <!-- TITLE -->
-
 <?php //CODE SECTION STARTS HERE
 
 //ESTABLISHING MYSQL LINK (1)
@@ -55,6 +45,16 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
 //CODE SECTION ENDS HERE
 ?>
 
+<!-- PATIENTS -->
+<div class="container-fluid" id="basic" >
+  <div id="inner">
+
+  <!-- TITLE -->
+    <div class="container-fluid" >
+      <h4 style="color:#337ab7;">Eye Cataract Patients</h4>
+    </div>
+  <!-- TITLE -->
+
 <!-- CONTENT -->
     <div class="container-fluid" >
       <div>
@@ -68,7 +68,7 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       <?php //CODE SECTION STARTS HERE
 
       $DEFAULT = 0;
-      if (isset($_GET["currentpage"])) { $current_p  = $_GET["currentpage"]; } else { $current_p=1; };
+      if (isset($_GET["currentpage"])) { $current_p = $_GET["currentpage"]; } else { $current_p = 1; };
       if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1;
 
         //RECEIVE UPDATE
@@ -94,7 +94,6 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
           if ($mydatabase->query($P_update) === TRUE) {
             //echo "Record updated successfully";
           } else {
-            // echo '<script> window.location = "patient.php?profilepage='.$_POST['patients_update'].'"; </script>';
             echo '
             <div class="alert alert-danger alert-dismissable">
               <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -158,15 +157,15 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
 
         if ($output->num_rows>0) {
 
-      //MAIN PAGE
+        //MAIN PAGE
 
           //HEADER
           echo '<li class="list-group-item" id="tophead">';
           echo '<div class="container-fluid row">';
-          echo '<div class="col-md-2" style="width:175px; float:left;"><b>'.'Last Name'.'</b></div>';
-          echo '<div class="col-md-2" style="width:175px; float:left;"><b>'.'First Name'.'</b></div>';
-          echo '<div class="col-md-3" style="width:200px; float:left;"><b>'.'Patient ID'.'</b></div>';
-          echo '<div class="col-md-2" style="width:175px; float:left;"><b>'.'Screened by'.'</b></div>';
+          echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'Last Name'.'</b></div>';
+          echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'First Name'.'</b></div>';
+          echo '<div style="width:200px; float:left; margin-left:20px;"><b>'.'Patient ID'.'</b></div>';
+          echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'Screened by'.'</b></div>';
           echo '</div>';
           echo '</li>';
           //HEADER END
@@ -177,17 +176,17 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
             echo '<li class="list-group-item">';
             echo '<div class="row">';
 
-                echo '<div class="col-md-2" style="width:175px; float:left;">'.$dataline["PAT_LNAME"].'</div>';
-                echo '<div class="col-md-2" style="width:175px; float:left;">'.$dataline["PAT_FNAME"].'</div>';
-                echo '<div class="col-md-3" style="width:200px; float:left;">'.$dataline["PAT_ID_NUM"].'</div>';
-                echo '<div class="col-md-2" style="width:175px; float:left;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>';
-                echo '<div class="col-md-2" style=" float:right;">'.'<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'see full details'.'</a>'.'</div>';
+                echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["PAT_LNAME"].'</div>';
+                echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["PAT_FNAME"].'</div>';
+                echo '<div style="width:200px; float:left; margin-left:20px;">'.$dataline["PAT_ID_NUM"].'</div>';
+                echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>';
+                echo '<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'see full details'.'</a>'.'</div>';
               
-            echo '<div>';
+            echo '</div>';
             echo '</li>';
             
           }//CONTENT END
-      
+        echo '</ul>';
 
       //PAGER
       echo '<div style="text-align:center;">';
@@ -333,11 +332,12 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
           </div>
           <div class="modal-body">';
 
-          $leftmargin = 260;
+        $leftmargin = 260;
 
         //EDIT FORM
         echo '<div class="container-fluid">
           <form method="post" id="updating" action="#">
+
           <div class="container-fluid" style="margin-bottom: 10px;">
             <label for="PAT_ID" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
             <input type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$P_ID.'" style="width: 150px; float: left;" required >
