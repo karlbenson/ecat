@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<!--	<script src="bootstrap.min.js"></script>	-->
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="theme.css">
+	<link rel="stylesheet" type="text/css" href="theme2.css">
 
 </head>
 
@@ -28,7 +28,7 @@ $i = 0;
 <div class="container-fluid" id="outer">
 
 	<div>
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-default">
 		<div class="container-fluid" style="padding: 0px;">
 			<div id="banner" style="background-image: url(p_holder.jpg);">
     			<?php echo $organization; ?>

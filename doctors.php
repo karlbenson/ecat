@@ -10,7 +10,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--  <script src="bootstrap.min.js"></script>  -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="theme.css">
+	<link rel="stylesheet" type="text/css" href="theme2.css">
+  
 </head>
 
 <body style="justify-content: center;">
@@ -26,8 +27,8 @@ $i = 0;
 <!--  -->
 <div class="container-fluid" id="outer">
 
-	<div>
-    <nav class="navbar navbar-inverse">
+<div>
+    <nav class="navbar navbar-default">
     <div class="container-fluid" style="padding: 0px;">
       <div id="banner" style="background-image: url(p_holder.jpg);">
           <?php echo $organization; ?>
@@ -64,7 +65,7 @@ $i = 0;
 		<div class="container-fluid">
 		  	<div class="row">
     			<div class="col-sm-3">
-            <nav class="navbar navbar-inverse">
+            <nav class="navbar navbar-default">
       				<ul class="nav nav-pills nav-stacked">
         				<li><a href="#profile1"> <?php echo $doctor[0]; ?> </a></li>
         				<li><a href="#profile2"> <?php echo $doctor[1]; ?> </a></li>
@@ -85,7 +86,7 @@ $i = 0;
         					</div>
         					<div class="col-sm-9" id="profile">
         						<?php 	echo "First Name"." & "."Surname"."<br>"; ?>
-        						<hr style=" border: solid 1px #003333;  width:100%; padding: 0px;">
+        						<hr style=" border: solid 1px #004d4d;  width:100%; padding: 0px;">
         						<?php
         							echo "Contact Information: "."<br>";
         							echo "Address: "."<br>";
@@ -114,7 +115,7 @@ $i = 0;
         					</div>
         					<div class="col-sm-9" id="profile">
         						<?php 	echo "First Name"." & "."Surname"."<br>"; ?>
-        						<hr style=" border: solid 1px #003333;  width:100%; padding: 0px;">
+        						<hr style=" border: solid 1px #004d4d;  width:100%; padding: 0px;">
         						<?php
         							echo "Contact Information: "."<br>";
         							echo "Address: "."<br>";
