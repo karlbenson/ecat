@@ -3,7 +3,7 @@
 $leftmargin1 = 200;
 
 // BUTTION
-echo '<div class="row">';
+echo '<div class="row" id="criteria_buttons">';
 
 //REVERT
 $where = "'patient.php'";

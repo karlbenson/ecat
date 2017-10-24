@@ -15,12 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-<?php include("header.php"); ?>
-<!-- HEAD AND NAVIGATION END -->
 
 <!--
 TABLE INFORMATION
@@ -212,10 +213,10 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           //HEADER
           echo '<li class="list-group-item" id="tophead">';
           echo '<div class="container-fluid row">';
-          echo '<div class="col-md-2" style="width:150px; float:left;"><b>'.'Date (y-m-d)'.'</b></div>';
-          echo '<div class="col-md-2" style="width:180px; float:left;"><b>'.'Case No.'.'</b></div>';
-          echo '<div class="col-md-3" style="width:230px; float:left;"><b>'.'Conducted by'.'</b></div>';
-          echo '<div class="col-md-3" style="width:200px; float:left;"><b>'.'Clearance No.'.'</b></div>';
+          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
+          echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
+          echo '<div style="width:230px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
+          echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Clearance No.'.'</b></div>';
           echo '</div>';
           echo '</li>';
           //HEADER END
@@ -226,12 +227,12 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             echo '<li class="list-group-item">';
             echo '<div class="row">';
 
-                echo '<div class="col-md-2" style="width:150px; float:left;">'.$dataline["SURG_DATE"].'</div>';
+                echo '<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
                 $s_primary = $dataline["CASE_NUM"];
-                echo '<div class="col-md-2" style="width:180px; float:left;">'.$s_primary.'</div>';
-                echo '<div class="col-md-3" style="width:230px; float:left;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
-                echo '<div class="col-md-3" style="width:200px; float:left;">'.$dataline["CLEARANCE_NUM"].'</div>';
-                echo '<div class="col-md-2" style="width:150px; float:right;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
+                echo '<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>';
+                echo '<div style="width:230px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
+                echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["CLEARANCE_NUM"].'</div>';
+                echo '<div style="width:150px; float:right; margin-left:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
               
             echo '<div>';
             echo '</li>';
@@ -257,6 +258,10 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
       echo '</ul>';
       echo '</div>';
       //PAGER END
+
+      //BUTTON FUNCTIONS
+      
+      //BUTTON FUNCTIONS END
 
       } else { echo "No Records."; }
 
@@ -295,15 +300,15 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <div class="panel-heading" id="tophead1">Surgery Details</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Clearance Number'.'</div>
-              <div class="col-md-9">'.$S_CLR.'</div>
+              <div class="col-md-6">'.$S_CLR.'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Surgery Address'.'</div>
-              <div class="col-md-9">'.$S_A.'</div>
+              <div class="col-md-6">'.$S_A.'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Surgery Date'.'</div>
-              <div class="col-md-9">';
+              <div class="col-md-6">';
             echo $MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0];
             echo'</div>
             </div>
@@ -312,37 +317,37 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <div class="panel-heading" style="border: 0px; font-weight:bold;">Conducting Surgeon</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Name'.'</div>
-              <div class="col-md-9">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
+              <div class="col-md-6">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'License No.'.'</div>
-              <div class="col-md-9">'.$S_LN.'</div>
+              <div class="col-md-6">'.$S_LN.'</div>
             </div>
           </div>
           <div class="panel panel-default" style="padding-bottom:10px;">
             <div class="panel-heading" style="border: 0px; font-weight:bold;">Patient Information</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Patient ID'.'</div>
-              <div class="col-md-9">'.$S_ID.'</div>
+              <div class="col-md-5">'.$S_ID.'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Visual Imparity'.'</div>
-              <div class="col-md-9">'.$S_VI.'</div>
+              <div class="col-md-5">'.$S_VI.'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Medical History'.'</div>
-              <div class="col-md-9">'.$S_MH.'</div>
+              <div class="col-md-5">'.$S_MH.'</div>
             </div>
           </div>
           <div class="panel panel-default" style="padding-bottom:10px;">
             <div class="panel-heading" style="border: 0px; font-weight:bold;">Surgeon Remarks</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Diagnosis'.'</div>
-              <div class="col-md-9">'.$S_D.'</div>
+              <div class="col-md-5">'.$S_D.'</div>
             </div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Remarks'.'</div>
-              <div class="col-md-9">'.$S_R.'</div>
+              <div class="col-md-5">'.$S_R.'</div>
             </div>
           </div>
         </div>
@@ -350,9 +355,11 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
       //CONTENT END
 
       //BUTTONS AND LINKS
+      echo '<div id="link_buttons">';
       echo '<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
       echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
       echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
+      echo '</div>';
       //BUTTONS AND LINKS END
 
       // POP-UP ALERT
@@ -492,6 +499,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
   </div>
 </div>
 <!-- SURGERIES END -->
+</div>
 
 </body>
 </html>

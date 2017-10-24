@@ -15,12 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-<?php include("header.php"); ?>
-<!-- HEAD AND NAVIGATION END -->
 
 <!-- TITLE -->
   <div class="container-fluid" style="color: #ffffff;">
@@ -120,6 +121,7 @@ $ADDR_MAX = 50;
 
 </div>
 <!-- MAIN END -->
+</div>
 
 </body>
 </html>

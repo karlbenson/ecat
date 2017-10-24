@@ -15,12 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-<?php include("header.php"); ?>
-<!-- HEAD AND NAVIGATION END -->
 
 <!-- PATIENTS -->
 <div class="container-fluid" id="basic" >
@@ -313,9 +314,11 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       //CONTENT END
 
       //BUTTONS AND LINKS
+      echo '<div id="link_buttons">';
       echo '<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
       echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
       echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
+      echo '</div>';
       //BUTTONS AND LINKS END
 
       // POP-UP ALERT
@@ -510,6 +513,7 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
   </div>
 </div>
 <!-- PATIENTS END -->
+</div>
 
 </body>
 </html>

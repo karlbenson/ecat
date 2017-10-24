@@ -15,13 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-
-<!-- HEAD AND NAVIGATION END -->
-<?php include("header.php"); ?>
 
 <!--
 DOCTOR BASIC INFORMATION:
@@ -199,9 +199,11 @@ $ADDR_MAX = 50;
       //CONTENT END
 
       //BUTTONS AND LINKS
+      echo '<div id="link_buttons">';
       echo '<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
       echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
       echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
+      echo '</div>';
       //BUTTONS AND LINKS END
 
       // POP-UP ALERT
@@ -298,6 +300,7 @@ $ADDR_MAX = 50;
 
 </div>
 <!-- MAIN END -->
+</div>
 
 </body>
 </html>

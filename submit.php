@@ -15,12 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-<?php include("header.php"); ?>
-<!-- HEAD AND NAVIGATION END -->
 
 <!-- TITLE -->
   <div class="container-fluid" style="color: #ffffff;">
@@ -142,6 +143,7 @@ function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIS
 
 </div>
 <!-- MAIN END -->
+</div>
 
 </body>
 </html>
