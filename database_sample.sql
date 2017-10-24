@@ -3,7 +3,7 @@
 create table DOCTOR(
 DOC_LICENSE_NUM  CHAR(7) NOT NULL UNIQUE,
 LAST_NAME VARCHAR(20) NOT NULL,
-FIRST_NAME VARCHAR(15)  NOT NULL,
+FIRST_NAME VARCHAR(20)  NOT NULL,
 ADDRESS VARCHAR(50),
 PRIMARY KEY (DOC_LICENSE_NUM)
 );
@@ -24,10 +24,28 @@ INSERT INTO DOCTOR VALUES
 ('0000012','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.'),
 ('0000013','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.')
 ;
+
+INSERT INTO DOCTOR VALUES
+('0000021','Smith','John','West Virginia. 26 Santos Street.'),
+('0000022','South','Johan','West Virginia. 15 Santos Street.'),
+('0000023','Reefs','James','West Virginia. 106 Santos Street.'),
+('0000014','Reefs','Jessie','West Virginia. 106 Santos Street.'),
+('0000015','Nedd','Milah','Florida, Border Street Avenue, Block 56.'),
+('0000016','Colonel','Sanders','Kentucky, Fried Chicken.'),
+('0000017','Ricardo','Heart','09 Silver Road, Beckham Park.'),
+('0000018','Ketchup','Ash','Pallet Town, West Kanto Region.'),
+('0000019','Viva','Giovanni','Soul Silver Street, Viridian City, West Kanto Region.'),
+('0000020','Crystal','Grey','City of Evergreen, Central Johto Region.'),
+('0000031','Light','Lilian',''),
+('0000032','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.'),
+('0000033','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.')
+;
 /*SAMPLE DATA END*/
 
-create table PATIENT(
+create table EYEPATIENT(
 PAT_ID_NUM VARCHAR(15) NOT NULL UNIQUE,
+PAT_FNAME VARCHAR(20) NOT NULL,
+PAT_LNAME VARCHAR(20) NOT NULL,
 PHY_LICENSE_NUM CHAR(7) NOT NULL,
 STAFF_LICENSE_NUM CHAR(7) NOT NULL,
 VA_WITH_SPECT_RIGHT VARCHAR(7) NOT NULL,
@@ -55,5 +73,5 @@ SURG_DATE DATE NOT NULL,
 REMARKS VARCHAR(100),
 PRIMARY KEY (CASE_NUM),
 FOREIGN KEY (SURG_LICENSE_NUM) REFERENCES DOCTOR(DOC_LICENSE_NUM) on update cascade,
-FOREIGN KEY (PAT_ID_NUM) REFERENCES PATIENT(PAT_ID_NUM) on update cascade
+FOREIGN KEY (PAT_ID_NUM) REFERENCES EYEPATIENT(PAT_ID_NUM) on update cascade
 );
