@@ -40,7 +40,7 @@
               <span class="icon-bar"></span>
             <?php } ?>
           </button>
-          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;"> <span class="glyphicon glyphicon-home"></span> Home </a>
         </div>
       <div class="collapse navbar-collapse" id="navi">
         <ul class="nav navbar-nav" >
@@ -75,7 +75,7 @@
           <div class="row" id="menu">
           <div class="panel-group" style="margin: 0px;">
               <div class="panel panel-default" style="border:0px; border-radius:5px;">
-                <div class="panel-heading" id="panelh" style="color:#f2f2f2; background-color:#4a6a15; margin:0px; padding:10px; border-bottom:3px solid #d5b62a;">FORMS</div>
+                <div class="panel-heading" id="panelh" style="color:#f2f2f2; background-color:#4a6a15; margin:0px; padding:10px; border-bottom:3px solid #d5b62a;"> <span class="glyphicon glyphicon-pencil"> </span> FORMS</div>
                 <div class="panel-body" style="padding:0px;">
 
             <!-- ITEM-->
@@ -122,9 +122,17 @@
           <!-- CENTER SPACE: WHAT TO DO? -->
           <!-- TO BE CONSTRUCTED -->
 
-          <div id="box" style="min-height:0px;  margin:0px; background-color:#ffffff; float:left; width:100%;">
-            <h4>#ITEM BODY</h4>
-            
+          <div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%; ">
+            <h4>Links to Other Databases</h4>
+          <?php 
+          $external_databases = array('Database 01', 'Database 02', 'Database 03', 'Database 04', 'Database 05');
+
+          echo '<ul>';
+          for ($i=0; $i < sizeof($external_databases); $i++) { 
+            echo '<li><a href="#">'.$external_databases[$i].'</a></li>';
+          }
+          echo '</ul>';
+          ?>
           </div>
 
         <div>

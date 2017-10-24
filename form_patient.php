@@ -40,7 +40,7 @@
               <span class="icon-bar"></span>
             <?php } ?>
           </button>
-          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;"> <span class="glyphicon glyphicon-home"></span> Home </a>
         </div>
       <div class="collapse navbar-collapse" id="navi">
         <ul class="nav navbar-nav" >

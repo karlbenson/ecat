@@ -41,7 +41,7 @@
               <span class="icon-bar"></span>
             <?php } ?>
           </button>
-          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;"> <span class="glyphicon glyphicon-home"></span> Home </a>
         </div>
       <div class="collapse navbar-collapse" id="navi">
         <ul class="nav navbar-nav" >
@@ -119,11 +119,11 @@ if (!$mydatabase) {
       <?php //CODE SECTION STARTS HERE
       $DEFAULT = 0;
       if (isset($_GET["currentpage"])) { $current_p  = $_GET["currentpage"]; } else { $current_p=1; };
-      if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1; } else { };
+      if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1; } else {};
+      if (isset($_GET["delete"])) { $delete_p =$_GET["delete"]; $DEFAULT=2; } else {};
         $limit = 20;
         $begin = ($current_p-1)*$limit;
-        $P_query_list = array("SELECT * FROM PATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM order by PAT_ID_NUM asc limit $begin, ");
-        $P_query = $P_query_list[0].$limit;
+        $P_query = "SELECT * FROM PATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM order by PAT_ID_NUM asc limit $begin, ".$limit;
         $output = $mydatabase->query($P_query);
 
       if($DEFAULT==0){
@@ -190,8 +190,8 @@ if (!$mydatabase) {
       echo '<div>
         <div class="container-fluid">
           <h3>Patient ID No.: '.$dataline["PAT_ID_NUM"].'</h3>
-          <div class="panel panel-default">
-            <div class="panel-heading" style="background-color:#2d4309; color:#ffffff;">Patient Record</div style="padding-bottom:10px;">
+          <div class="panel panel-default"  style="padding-bottom:10px;">
+            <div class="panel-heading" style="background-color:#2d4309; color:#ffffff;">Patient Record</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Examined by: '.'</div>
               <div class="col-md-9">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
@@ -220,7 +220,7 @@ if (!$mydatabase) {
             echo '</div>';
           echo '</div>';
 
-          if((sizeof($dataline["VISUAL_DISABILITY"])>0)&&(sizeof($dataline["DISABILITY_CAUSE"])>4)){
+          if((sizeof($dataline["VISUAL_DISABILITY"])>0)){
              echo '
           <div class="panel panel-default" style="padding-bottom:10px;">
             <div class="panel-heading" style="border: 0px; font-weight:bold;">Visual Problem</div>
@@ -233,9 +233,9 @@ if (!$mydatabase) {
               <div class="col-md-9">'.$dataline["DISABILITY_CAUSE"].'</div>
             </div>
           </div>
-          <div class="panel panel-default" style="padding-bottom:10px;">
+          <div class="panel panel-default" style="padding-bottom:x;">
             <div class="panel-heading" style="border: 0px; font-weight:bold;">Affected Area of Eye</div>
-            <div class="panel-body" style="margin:0px; padding:5px 10px;">
+            <div class="panel-body" style="margin:0px 50px; padding:0px;">
                <table class="table table-condensed">
                 <thead>
                   <tr> <th>Eye</th> <th>Affected Part</th> </tr>
@@ -253,15 +253,28 @@ if (!$mydatabase) {
               </table>
             </div>
 
-
           </div>';
           }
 
-      echo'</div>
-      </div>';
-      echo '<div style="text-align:right;"><a href="'.'patient.php'.'" onclick="back()">Back</a></div>';
+      echo'</div> </div>';
+      echo '<div style="text-align:right;"><a href="'.'patient.php'.'">Back</a></div>';
+      echo '<a role="button" class="btn btn-default"'.'href="'.'patient.php'.'?delete='.$profile_p.'"> <span class="glyphicon glyphicon-trash"></span> Delete </a>';
 
       function back(){ window.history.back(); }
+
+    }else if($DEFAULT==2){
+
+      //DELETE
+      $del = "DELETE FROM PATIENT WHERE PAT_ID_NUM = '$delete_p' ";
+
+
+      if ($mydatabase->query($del) === TRUE) {
+        echo "Record deleted.";
+        echo '<div style="text-align:right;"><a href="'.'patient.php'.'">Back</a></div>';
+
+      } else {
+        echo "Error deleting record: " . $mydatabase->error;
+      } //DELETE END
 
     }
 

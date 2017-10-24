@@ -40,7 +40,7 @@
               <span class="icon-bar"></span>
             <?php } ?>
           </button>
-          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;"> <span class="glyphicon glyphicon-home"></span> Home </a>
         </div>
       <div class="collapse navbar-collapse" id="navi">
         <ul class="nav navbar-nav" >
@@ -126,10 +126,10 @@ $ADDRESS = $_POST["ADDRESS"];
 $PAT_ID_NUM1 = $_POST["PAT_ID"];       
 $PHY_LICENSE_NUM = $_POST["PHYS_LIC"];
 $STAFF_LICENSE_NUM = $_POST["STAFF_LIC"];  
-$VA_WITH_SPECT_RIGHT = $_POST["VASR"];     
-$VA_WITH_SPECT_LEFT = $_POST["VASL"];     
-$VA_NO_SPECT_RIGHT = $_POST["VAR"];
-$VA_NO_SPECT_LEFT = $_POST["VAL"];
+$VA_WITH_SPECT_RIGHT = '20/'.$_POST["VASR"];     
+$VA_WITH_SPECT_LEFT = '20/'.$_POST["VASL"];     
+$VA_NO_SPECT_RIGHT = '20/'.$_POST["VAR"];
+$VA_NO_SPECT_LEFT = '20/'.$_POST["VAL"];
 $VISUAL_DISABILITY = $_POST["VD"];         
 $DISABILITY_CAUSE = $_POST["DC"];          
 $RIGHT_EYE_AFFECTED = $_POST["REA"];       
@@ -172,7 +172,7 @@ $REMARKS = $_POST["REM"];
           SUBMIT_SURGERY($CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $CLEARANCE_NUM, $SURG_ADDRESS, $SURG_DATE, $REMARKS);
         }
         $mydatabase->close();
-
+        echo '<br>';
         echo '<div ><a href="'.'Home.php'.'" >Back-to-Home</a></div>';
 
      ?>

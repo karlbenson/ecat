@@ -40,7 +40,7 @@
               <span class="icon-bar"></span>
             <?php } ?>
           </button>
-          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;"> <span class="glyphicon glyphicon-home"></span> Home </a>
         </div>
       <div class="collapse navbar-collapse" id="navi">
         <ul class="nav navbar-nav" >
@@ -115,7 +115,8 @@ if (!$mydatabase) {
       <?php
       $DEFAULT = 0;
       if (isset($_GET["currentpage"])) { $current_p = $_GET["currentpage"]; } else { $current_p = 1; };
-      if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1; } else { };
+      if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1; } else {};
+      if (isset($_GET["delete"])) { $delete_p =$_GET["delete"]; $DEFAULT=2; } else {};
 
       $limit = 20;
       $begin = ($current_p-1)*$limit;
@@ -186,8 +187,8 @@ if (!$mydatabase) {
       echo '<div>
         <div class="container-fluid">
           <h3>Case No.: '.$dataline["CASE_NUM"].'</h3>
-          <div class="panel panel-default">
-            <div class="panel-heading" style="background-color:#2d4309; color:#ffffff;">Surgery Details</div style="padding-bottom:10px;">
+          <div class="panel panel-default" style="padding-bottom:10px;">
+            <div class="panel-heading" style="background-color:#2d4309; color:#ffffff;">Surgery Details</div>
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Clearance Number'.'</div>
               <div class="col-md-9">'.$dataline["CLEARANCE_NUM"].'</div>
@@ -236,9 +237,22 @@ if (!$mydatabase) {
           </div>
         </div>
       </div>';
-      echo '<div style="text-align:right;"><a href="'.'surgery.php'.'" onclick="back()">Back</a></div>';
+      echo '<div style="text-align:right;"><a href="'.'surgery.php'.'">Back</a></div>';
+      echo '<a role="button" class="btn btn-default"'.'href="'.'surgery.php'.'?delete='.$profile_p.'"> <span class="glyphicon glyphicon-trash"></span> Delete </a>';
 
-      function back(){ window.history.back(); }
+    }else if($DEFAULT==2){
+
+      //DELETE
+      $del = "DELETE FROM SURGERY WHERE CASE_NUM = '$delete_p' ";
+
+
+      if ($mydatabase->query($del) === TRUE) {
+        echo "Record deleted.";
+        echo '<div style="text-align:right;"><a href="'.'surgery.php'.'">Back</a></div>';
+
+      } else {
+        echo "Error deleting record: " . $mydatabase->error;
+      } //DELETE END
 
     }
 
