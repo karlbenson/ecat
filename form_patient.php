@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>Prototype</title>
+	<title>Prototype</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="references/bootstrap.min.css">
@@ -15,12 +15,13 @@
 
 <body style="justify-content: center;">
 
+<!-- HEAD AND NAVIGATION -->
+<?php include("nav.php"); ?>
+<!-- HEAD AND NAVIGATION END -->
+
+<div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
-<!-- HEAD AND NAVIGATION -->
-<?php include("header.php"); ?>
-<!-- HEAD AND NAVIGATION END -->
 
 <!-- TITLE -->
   <div class="container-fluid" style="color: #ffffff;">
@@ -34,8 +35,6 @@
 $ID_LENG = 15;
 $PHYL_LENG = 7;
 $MAX_NAME = 40;
-$FN_MAX = 20;
-$LN_MAX = 20;
 $STAFFL_LENG = 7;
 $VD_MAX = 15;
 $DC_MAX = 30;
@@ -57,76 +56,48 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       <!-- FORMS -->
         <div class="container-fluid">
           <h3>Patient Information</h3>
-          <hr>
+          <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
               
           <form method="post" action="submit.php">
 
-          <!-- PATIENT NAME -->
-            <div class="form-group row">
-              <label class="col-md-2" style="float:left; width:170px;">Name</label>
-
-            <div class="col-md-7">
-            <!-- FIRST NAME -->
-              <div style="width: 175px; float: left; margin-right:10px;">
-                <label class="sr-only" for="PF_NAME" required >First Name</label>
-                <input type="text" class="form-control" id="PF_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="PF_NAME" required>
-              </div>
-            <!-- FIRST NAME END -->
-
-            <!-- LAST NAME -->
-              <div style="width: 175px; float: left; margin-right:10px;">
-                <label class="sr-only" for="PL_NAME">Last Name</label>
-                <input type="text" class="form-control" id="PL_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="PL_NAME" required>
-              </div>
-            <!-- LAST NAME END -->
-            </div>
-
-            </div>
-          <!-- PATIENT NAME END -->
-
-          <!-- INSERT OTHERS -->
-
           <!-- PATIENT ID -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">ID Number </label>
-            <div class="col-md-7">
-			       <div style="width: 150px; float: left; margin-right:10px;">
+              <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient </label>
+			  <div class="col-md-3" style="width: 180px; float: left;">
                 <input type="text" class="form-control" id="PAT_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
               </div>
+
+              <!--<div class="col-md-3" style="width: 180px; float: left;">
+                <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
+              </div> -->
             </div>
-            </div>
+
           <!-- PATIENT ID END -->
 
-          <div class="well" style="padding-bottom:5px;">
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="PHYS_LIC" style="float:left; width:170px;">Examined by: </label>
-              <div class="col-md-7">
-              <div style="width: 120px; float: left; margin-right:10px;">
+              <div class="col-md-2" style="width: 120px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="PHYS_LIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="PHYS_LIC" required>
               </div>
 
-			        <div style="width: 200px; float: left; margin-right:10px;">
-                <input class="form-control" id="PHYS_NAME" placeholder="Physician Name" maxlength="<?php echo $MAX_NAME; ?>" name="PHYS_NAME">
-              </div>
-              </div>
+			  <!--<div class="col-md-2" style="width: 180px; float: left;">
+                <input pattern="\d{7}" title="Physician Name" class="form-control" id="PHYS_LIC" placeholder="Physician Name" maxlength="<?php echo $MAX_NAME; ?>" name="PHYS_LIC" required>
+              </div>-->
             </div>
           <!-- PHYSICIAN LICENSE NUMBER END -->
 
           <!-- STAFF LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="STAFF_LIC" style="float:left; width:170px;">Screened by: </label>
-              <div class="col-md-7">
-              <div style="width: 120px; float: left; margin-right:10px;">
+              <div class="col-md-2" style="width: 120px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="STAFF_LIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="STAFF_LIC" required>
               </div>
-			        <div style="width: 200px; float: left; margin-right:10px;">
-                <input class="form-control" id="STAFF_NAME" placeholder="Staff Name" maxlength="<?php echo $MAX_NAME; ?>" name="STAFF_NAME">
-              </div>
-              </div>
+			  <!--<div class="col-md-2" style="width: 180px; float: left;">
+                <input pattern="\d{7}" title="Staff Name" class="form-control" id="STAFF_LIC" placeholder="Staff Name" maxlength="<?php echo $MAX_NAME; ?>" name="STAFF_NAME" required>
+              </div>-->
             </div>
           <!-- STAFF LICENSE NUMBER END -->
-          </div>
 
           <!-- VISUAL ACUITY -->
             <div class="panel-group" style="margin-top:25px;">
@@ -285,10 +256,15 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
 
   </div>
 </div>
-<!-- PATIENT'S FORM END -->
+<?php
+//ERROR CHECKING
+
+//...code
+?>
 
 </div>
 <!-- MAIN END -->
+</div>
 
 </body>
 </html>
