@@ -17,99 +17,121 @@
 
 <body style="justify-content: center;">
 
-<?php
-$organization = "Luke Foundation (photo)";
-$page = array("Page1", "Page2", "Page3", "Eye Cataract Program");
-$i = 0;
-?>
-
-<!--  -->
-
+<!-- MAIN -->
 <div class="container-fluid" id="outer">
 
 <!-- HEAD AND NAVIGATION -->
-
+<?php
+  $placeholder = "Luke foundation (placeholder)";
+  $page = array("Doctors", "Patient", "Surgery");
+  $link = array("doctors.php", "patient.php", "surgery.php");
+  $doctor = array("Physicians", "Surgeons");
+  $i = 0;
+?>
 <div>
-    <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default">
     <div class="container-fluid" style="padding: 0px;">
       <div id="banner" style="background-image: url(p_holder.jpg);">
-          <?php echo $organization; ?>
+        <?php echo $placeholder; ?> </div> </div>
+    <div class="container-fluid">
+      <div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
         </div>
-    </div>
-      <div class="container-fluid">
-        <div>
-          <ul class="nav navbar-nav">
-              <li><a href="#"> <?php echo $page[0]; ?> </a></li>
-              <li><a href="#"> <?php echo $page[1]; ?> </a></li>
-              <li><a href="#"> <?php echo $page[2]; ?> </a></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $page[3]; ?>
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href=doctors.php>Doctors</a></li>
-                    <li><a href="patient.php">Patient</a></li>
-                    <li><a href="surgery.php">Surgeries</a></li>
-                </ul>
-              </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-
+      <ul class="nav navbar-nav">
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+  </nav>
+</div>
 <!-- HEAD AND NAVIGATION END -->
 
+<!--
+
+PATIENT INFORMATION:
+  - PATIENT ID
+  - STAFF ID
+  - PHYSICIAN LICENSE NUMBER
+
+SECONDARY INFORMATION
+  - Visual Acuity of Left Eye with Spectacles
+  - Visual Acuity of Right Eye with Spectacles
+  - Visual Acuity of Left Eye without Spectacles
+  - Visual Acuity of Right Eye without Spectacles
+  - Visual Disability
+  - Cause of Visual Disability
+  - Affected part of the Left Eye
+  - Affected part of the Right Eye
+
+-->
+
 <!-- PATIENTS -->
+<div class="container-fluid" id="basic" >
+  <div id="inner">
 
-	<div class="container-fluid" id="basic" >
-		<div id="inner" data-target="list" data-spy="scroll" data-offset="15" >
-			
-		<div class="container-fluid" >
-  			<h4>Eye Cataract Patients</h4>
-  			<br>
-		</div>
+  <!-- TITLE -->
+    <div class="container-fluid" >
+        <h4>Eye Cataract Patients</h4> <br>
+    </div>
+  <!-- TITLE -->
 
-		<div class="container-fluid">
+  <!-- CONTENT -->
+    <div class="container-fluid">
+      <div>
 
-    			<!-- PROFILES -->
-    			
-      				<div>
-      					<?php for($i = 0; $i < 3; $i++){	?>
-      					<div style="margin-bottom: 20px;">
-        				<div class="row" id="box" style="background-color: rgba(255, 204, 0, 0.3); ;">
-        					<div class="col-sm-2" style="padding:0px;">
-        						<img class="container-fluid" id="picture" src="id.jpg">
-        					</div>
-        					<div class="col-sm-10" id="profile">
-        						<?php 	echo "Patient ID ".($i+1)."<br>"; ?>
-        						<hr style=" border: solid 1px #004d4d;  width:100%; padding: 0px;">
-        						<?php
-        							echo "Examined by: "."Physician License #"."<br>";
-        							echo "Screened by: "."Staff License #"."<br>";
-        						?>
-        					</div>
-        				</div>
-                <div class="row" id="box" style="background-color: rgba(20, 82, 20, 0.5); min-height:0px; padding: 5px 20px; color: #ffffff;">
-                    <h4>Medical Eye Record</h4>
-                </div>
-        				<div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 100px; padding: 20px;">
-        						<?php
-                    $eye = array("Visual Acuity of Left and Right Eye with Spectacles","Visual Acuity of Left and Right Eye without Spectacles","Visual Disability","Cause of Visual Disability","Affected part of the Left and/or Right Eye");
+      <!-- PROFILES -->
+      <?php for($i = 0; $i < 3; $i++){	?>
+        <div style="margin-bottom: 20px;">
 
-                    for($e=0; $e < 5; $e++){
-                      echo $eye[$e]."<br>";
-                    }
-                     ?>
-        				</div>
-        				</div>    
-        				<?php } ?>
+        <!-- PRIMARY -->
+          <div class="row" id="box" style="background-color: rgba(255, 204, 0, 0.3); ;">
 
-      				</div>
-    
-	   	</div>
+          <!-- PHOTO (HIDE FOR NOW) -->
+            <div class="col-sm-0" style="padding:0px;">
+        			<!--		<img class="container-fluid" id="picture" src="id.jpg"> -->
+            </div>
+          <!-- PHOTO END -->
 
-	 </div>
+          <!-- PATIENT INFORMATION -->
+            <div class="col-sm-12" id="profile">
+              <?php 	echo "Patient ID ".($i+1)."<br>"; ?>
+              <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
+              <?php
+                echo "Examined by: "."Physician License #"."<br>";
+                echo "Screened by: "."Staff License #"."<br>";
+              ?>
+            </div>
+          <!-- PATIENT INFORMATION END -->
+
+          </div>
+        <!-- PRIMARY END -->
+
+        <!-- SECONDARY TITLE -->
+          <div class="row" id="box" style="background-color: rgba(20, 82, 20, 0.5); min-height:0px; padding: 5px 20px; color: #ffffff;">
+            <h4>Medical Eye Record</h4>
+          </div>
+        <!-- SECONDARY TITLE END -->
+
+        <!-- SECONDARY INFORMATION -->
+          <div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 100px; padding: 20px;">
+          <?php
+            $eye = array("Visual Acuity of Left and Right Eye with Spectacles","Visual Acuity of Left and Right Eye without Spectacles","Visual Disability","Cause of Visual Disability","Affected part of the Left and/or Right Eye");
+
+            for($e=0; $e < 5; $e++){
+              echo $eye[$e]."<br>";
+           } ?>
+          </div>
+        <!-- SECONDARY INFORMATION END -->
+
+        </div>    
+      <?php } ?>
+      <!-- PROFILES END -->
+
+      </div>
+    </div>
+  <!-- CONTENT END -->
+
   </div>
+</div>
+<!-- PATIENTS END -->
 
 </body>
 </html>

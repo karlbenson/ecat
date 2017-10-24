@@ -44,82 +44,57 @@
 </div>
 <!-- HEAD AND NAVIGATION END -->
 
-<!--
+<!-- TITLE -->
+  <div class="container-fluid" style="color: #ffffff;">
+    <h4>Eye Cataract Program</h4> <br>
+  </div>
+<!-- TITLE -->
 
-DOCTOR BASIC INFORMATION:
-  - FIRST NAME
-  - LAST NAME
-  - LICENSE NUMBER
-  - ADRESS
 
-DOCTOR SECONDARY INFORMATION
-  - ...
+<!-- HOME -->
+<div class="container-fluid" id="basic" style="padding-top: 10px;"">
 
--->
-
-<?php
-  $d_fname= array();
-  $d_lname= array();
-  $d_license = array();
-  $d_address = array();
-?>
-
-<!-- DOCTORS -->
-<div class="container-fluid" id="basic" >
-  <div id="inner" >
-
-  <!-- TITLE -->
-		<div class="container-fluid" >
-  			<h4>Eye Doctors</h4> <br>
-		</div>
-  <!-- TITLE -->
-
+  <div id="inner">
   <!-- CONTENT -->
 		<div class="container-fluid" >
-      <div>
+      <div class="row" >
 
-      <!-- MODIFIABLE CODE STARTS HERE -->
+      <!-- LEFT COLUMN -->
+        <div class="col-sm-2">
+          <div class="row" id="menu">
+          <div id="box" style="min-height:0px; color:#d9d9d9; text-align: center; padding: 10px 0px; background-color:#2d4309;">
+            <h4>Forms</h4>
+          </div>
+        <!-- ITEM-->
+        <?php
+          $add = array("Doctor","Patient","Surgery");
+          $add_link = array("form_doctors.php","form_patient.php","form_surgery.php");
 
-      <!-- PROFILES -->
-      <?php for($i = 0; $i < 2; $i++){	?>
-        <div style="margin-bottom: 20px;">
-
-        <!-- PRIMARY -->
-          <div class="media" id="box">
-
-          <!--PHOTO-->
-            <div class="media-left media-top" style="padding:0px;">
-              <img class="media-object" id="picture" src="id.jpg">
-            </div>
-          <!--PHOTO END-->
-
-          <!-- BASIC INFORMATION -->
-            <div class="media-body" id="profile">
-              <?php 	echo '<p class="media-heading">'.'First Name'.' & '.'Surname'.'<br>'; ?>
-              <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
-              <?php
-                echo "License Number: "."<br>";
-                echo "Address: "."<br>";
-               ?>
-            </div>
-          <!-- BASIC INFORMATION END -->
-
-           </div>
-        <!-- PRIMARY END -->
-
-        <!-- SECONDARY -->
-          <div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 50px; adding: 20px;">
-          <?php
-            echo "Other Details..."."<br>";
+          for($i=0;$i < count($add);$i++){ 
+            echo '<a id="link" href="'.$add_link[$i].'">';
           ?>
-  				</div>
-        <!-- SECONDARY END -->
+          <div class="hover-forms" id="boxl">
+          <?php echo "<h5>".$add[$i]."</h5>"; ?>
+          </div></a>
+        <?php } ?>
+        <!-- ITEM END -->
 
-        </div>    
-      <?php } ?>
-      <!-- PROFILES END -->
+          </div>
+        </div>
+      <!-- LEFT COLUMN -->
 
-      <!-- MODIFIABLE CODE ENDS HERE -->
+      <!-- RIGHT COLUMN -->
+        <div class="col-sm-10">	
+          <div>
+
+          <!-- MODIFIABLE CODE STARTS HERE -->
+
+
+            <!-- MODIFIABLE CODE ENDS HERE -->
+
+            </div>
+          </div>
+        <!-- RIGHT COLUMN END -->
 
       </div>
     </div>
@@ -127,7 +102,7 @@ DOCTOR SECONDARY INFORMATION
 
   </div>
 </div>
-<!-- DOCTORS -->
+<!-- HOME -->
 
 </div>
 <!-- MAIN END -->

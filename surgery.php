@@ -16,110 +16,127 @@
 
 <body style="justify-content: center;">
 
-<?php
-$organization = "Luke Foundation (photo)";
-$page = array("Page1", "Page2", "Page3", "Eye Cataract Program");
-$i = 0;
-?>
-
-<!--  -->
+<!-- MAIN -->
 <div class="container-fluid" id="outer">
 
 <!-- HEAD AND NAVIGATION -->
-
-	<div>
-		<nav class="navbar navbar-default">
-		<div class="container-fluid" style="padding: 0px;">
-			<div id="banner" style="background-image: url(p_holder.jpg);">
-    			<?php echo $organization; ?>
-    		</div>
-		</div>
-  		<div class="container-fluid">
-    		<div>
-		    	<ul class="nav navbar-nav">
-      				<li><a href="#"> <?php echo $page[0]; ?> </a></li>
-      				<li><a href="#"> <?php echo $page[1]; ?> </a></li>
-      				<li><a href="#"> <?php echo $page[2]; ?> </a></li>
-      				<li class="dropdown">
-        				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $page[3]; ?>
-        				<span class="caret"></span></a>
-        				<ul class="dropdown-menu">
-        					<li><a href=doctors.php>Doctors</a></li>
-                    		<li><a href="patient.php">Patient</a></li>
-                    		<li><a href="surgery.php">Surgeries</a></li>
-        				</ul>
-      				</li>
-	    		</ul>
-	    	</div>
-  		</div>
-		</nav>
-	</div>
-
+<?php
+  $placeholder = "Luke foundation (placeholder)";
+  $page = array("Doctors", "Patient", "Surgery");
+  $link = array("doctors.php", "patient.php", "surgery.php");
+  $doctor = array("Physicians", "Surgeons");
+  $i = 0;
+?>
+<div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid" style="padding: 0px;">
+      <div id="banner" style="background-image: url(p_holder.jpg);">
+        <?php echo $placeholder; ?> </div> </div>
+    <div class="container-fluid">
+    <div>
+			<div class="navbar-header">
+				<a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+    	</div>
+      <ul class="nav navbar-nav">
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+  </nav>
+</div>
 <!-- HEAD AND NAVIGATION END -->
 
+<!--
+
+TABLE INFORMATION
+	-	Date
+	-	Case_number
+	-	Surgeon
+	-	Patient
+	-	Visual_imparity
+	-	Medical_history
+	- Diagnosis
+	-	Location
+	-	Remarks
+
+-->
+
+<?php
+	$scase_num = 0;
+	$sdate = 0;
+	$s = 0;
+	$surgtable = array("Date", "Case#", "Surgeon", "Patient", "Visual_Imparity", "Med_History", "Diagnosis", "Location", "Remarks");
+?>
+
 <!-- SURGERIES -->
-
-	<div class="container-fluid" id="basic" >
-		<div id="inner" data-target="list" data-spy="scroll" data-offset="15" >
-			
+<div class="container-fluid" id="basic" >
+	<div id="inner">
+		
+	<!-- TITLE -->
 		<div class="container-fluid" >
-  			<h4>Eye Cataract Surgeries</h4>
-  			<br>
+			<h4>Eye Cataract Surgeries</h4>
+			<br>
 		</div>
+	<!-- TITLE -->
 
+  <!-- CONTENT -->
 		<div class="container-fluid">
-
-		<?php
-			$scase_num = 0;
-			$sdate = 0;
-			$s = 0;
-			$surgtable = array("Date", "Case#", "Surgeon", "Patient", "Visual_Imparity", "Med_History", "Diagnosis", "Location", "Remarks");
-		?>
-
 		<?php for ($i=0; $i <3 ; $i++) { ?>
-			
 			<div class="record">
-				<div class="month">
-				<h4><?php echo "Month ".$i;	?></h4>
-				</div>
-				<div>
 				
-					<table class="table">
-    					<thead>
-      					<tr>
-      					<?php for ($j=0; $j < 9; $j++) { 
-      						echo "<th>".$surgtable[$j]."</th>";
-        				 } ?>
-      					</tr>
-    					</thead>
-    				<tbody>
-    				<?php for ($s=0; $s <5 ; $s++) {
-    					$sdate = $sdate + 2;
-    				?>
-      					<tr>
-        					<td><?php echo $i."/".$sdate; ?> </td>
-        					<td><?php echo "00".$s; ?></td>
-	        				<td><?php echo "Surg_License#"?></td>
-        					<td><?php echo "Patient_ID#"?></td>
-        					<td><?php echo "Eye_Prob.".($s+1) ?></td>
-        					<td><?php echo "Med_Hist."?></td>
-        					<td><?php echo "Diag_".($s+1) ?></td>
-        					<td><?php echo "Surg_Addr.".($s+1) ?></td>
-        					<td><?php echo "Surg_Remarks"?></td>
-      					</tr>
-
-      				<?php }?>
-    				</tbody>
-  					</table>
+			<!-- SUMMARY -->
+				<div class="month">
+					<h4><?php echo "Month ".$i;	?></h4>
 				</div>
+			<!-- SUMMARY END -->
+
+			<!-- TABLE -->
+				<div class="container-fluid">
+					<table class="table">
+
+					<!-- TABLE HEADING -->
+						<thead>
+							<tr>
+							<?php for ($j=0; $j < 9; $j++) { 
+								echo "<th>".$surgtable[$j]."</th>";
+							} ?>
+							</tr>
+						</thead>
+					<!-- TABLE HEADING END -->
+
+					<!-- TABLE BODY -->
+						<tbody>
+
+						<!-- ROW -->
+						<?php for ($s=0; $s <5 ; $s++) {
+								$sdate = $sdate + 2;
+    				?>
+						<tr>
+							<td><?php echo $i."/".$sdate; ?> </td>
+							<td><?php echo "00".$s; ?></td>
+							<td><?php echo "Surg_License#"?></td>
+        			<td><?php echo "Patient_ID#"?></td>
+        			<td><?php echo "Eye_Prob.".($s+1) ?></td>
+        			<td><?php echo "Med_Hist."?></td>
+        			<td><?php echo "Diag_".($s+1) ?></td>
+        			<td><?php echo "Surg_Addr.".($s+1) ?></td>
+        			<td><?php echo "Surg_Remarks"?></td>
+      			</tr>
+      			<?php }?>
+      			<!-- ROW END -->
+
+    				</tbody>
+    			<!-- TABLE BODY END -->
+
+  				</table>
+				</div>
+				<!-- TABLE END -->
+
 			</div>
 		<?php } ?>
-
 		</div>
-	</div>
+	<!-- CONTENT END -->
 
+	</div>
 </div>
+<!-- SURGERIES END -->
 
 </body>
-
 </html>
