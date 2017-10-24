@@ -35,10 +35,20 @@
     <div class="container-fluid">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi" style="border-color:rgba(255, 255, 255,0.5); background-color:rgba(255, 255, 255,0.7);">
+            <?php for($i=0; $i<count($page);$i++){ ?>
+              <span class="icon-bar"></span>
+            <?php } ?>
+          </button>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
         </div>
-        <ul class="nav navbar-nav">
-          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+      <div class="collapse navbar-collapse" id="navi">
+        <ul class="nav navbar-nav" >
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'" id="navlink" style="color:#4a6a15;">'.$page[$i].'</a></li>'; } ?> </ul>
+      </div>
+
+      </div>
+    </div>
   </nav>
 </div>
 <!-- HEAD AND NAVIGATION END -->
@@ -71,7 +81,7 @@ $HIST_MAX = 100;
 $DIAG_MAX = 100;
 $CLEAR_LENG = 10;
 $SURGADD_MAX = 50;
-$SURG_DATE_YY = 4;
+$SURG_DATE_YY = 4; $SURG_DATE_DD = 2;
 $REM_MAX = 100;
 $MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 //SURGERY INFORMATION FIELDS END
@@ -95,8 +105,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
           <!-- CASE NUMBER-->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="CASE_NUM" style="float:left;">Case Number </label>
-              <div class="col-md-2">
+              <label class="control-label col-md-2" for="CASE_NUM" style="float:left; width:170px;">Case Number </label>
+              <div class="col-md-2" style="width: 150px; float: left;">
                 <input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." class="form-control" id="CASE_NUM" placeholder="20XX-XXXXX" maxlength="<?php echo $CASE_LENG; ?>" name="CASE_NUM" required>
               </div>
             </div>
@@ -104,9 +114,9 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
           <!-- SURGEON LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="SURG_LIC" style="float:left;">Conducted by: </label>
-              <div class="col-md-2">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="SURG_LIC" placeholder="Surg. License" maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" required>
+              <label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Conducted by: </label>
+              <div class="col-md-2" style="width: 120px; float: left;">
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" required>
               </div>
             </div>
           <!-- SURGEON LICENSE NUMBER END -->
@@ -119,17 +129,17 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- PATIENT ID -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="PAT_ID" style="float:left;">Patient ID </label>
-                      <div class="col-md-3">
-                        <input  class="form-control" id="PAT_ID" placeholder="Enter Patient ID Number" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
+                      <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient ID </label>
+                      <div class="col-md-3" style="float:left; width:170px;">
+                        <input  class="form-control" id="PAT_ID" placeholder="Enter Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
                       </div>
                     </div>
                   <!-- PATIENT ID END -->
 
                   <!-- VISUAL IMPARITY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="VI" style="float:left;">Visual Imparity </label>
-                      <div class="col-md-7">
+                      <label class="control-label col-md-2" for="VI" style="float:left; width:170px;">Visual Imparity </label>
+                      <div class="col-md-7" style="width: 600px; float: left;">
                         <textarea type="text" class="form-control" id="VI" placeholder="Description of visual imparity..." maxlength="<?php echo $VI_MAX; ?>" name="VI" rows="2" required></textarea>
                       </div>
                     </div>
@@ -137,8 +147,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     
                   <!-- MEDICAL HISTORY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="MED_HIST" style="float:left;">Medical History </label>
-                      <div class="col-md-7">
+                      <label class="control-label col-md-2" for="MED_HIST" style="float:left; width:170px;">Medical History </label>
+                      <div class="col-md-7" style="width: 600px; float: left;">
                         <textarea type="text" class="form-control" id="MED_HIST" placeholder="Patient medical history..." maxlength="<?php echo $HIST_MAX; ?>" name="MED_HIST" rows="2"></textarea>
                       </div>
                     </div>
@@ -157,8 +167,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- CLEARANCE -->
                     <div class="form-group row">
-                      <label class="control-label col-md-3" for="CLEAR" style="float:left;">Clearance Number </label>
-                      <div class="col-md-2">
+                      <label class="control-label col-md-3" for="CLEAR" style="float:left; width:200px;">Clearance Number </label>
+                      <div class="col-md-2" style="width: 170px; float: left;">
                         <input type="" class="form-control" id="CLEAR" placeholder="Enter No." maxlength="<?php echo $CLEAR_LENG; ?>" name="CLEAR" required>
                       </div>
                     </div>
@@ -166,32 +176,32 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- SURGERY ADDRESS -->
                     <div class="form-group row">
-                      <label class="control-label col-md-3" for="SURG_ADD" style="float:left;">Surgery Address</label>
-                      <div class="col-md-5">
-                        <textarea type="" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD" rows="2"></textarea>
+                      <label class="control-label col-md-3" for="SURG_ADD" style="float:left; width:200px;">Surgery Address</label>
+                      <div class="col-md-6" style="width: 550px; float: left;">
+                        <input type="" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD">
                       </div>
                     </div>
                   <!-- SURGERY ADDRESS END -->
 
                   <!-- DATE -->
                     <div class="form-group row">
-                      <label class="control-label col-md-3" style="float:left;">Date of Surgery </label>
+                      <label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
 
                       <div class="col-md-2">
                           <label class="sr-only" for="MM">Month</label>
-                          <select class="form-control"  name="MM" required>
+                          <select class="form-control"  name="MM" style="width: 120px; float: left;" required>
                             <?php for ($j=0; $j < count($MONTH_choice); $j++) { 
                               echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
                              } ?>
                           </select>
                       </div>
 
-                      <div class="col-md-1">
+                      <div class="col-md-1" style="width: 80px; float: left;">
                           <label class="sr-only" for="DD">Day</label>
                           <input pattern="\d||[0-2]\d|3[0-1]|" title="" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" required>
                       </div>
 
-                      <div class="col-md-2">
+                      <div class="col-md-2" style="width: 100px; float: left;">
                           <label class="sr-only" for="YY">Year</label>
                           <input pattern="[1-2]\d\d\d" title="" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" required>
                       </div>
@@ -212,8 +222,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- DIAGNOSIS-->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="DIAG" style="float:left;">Diagnosis </label>
-                      <div class="col-md-7">
+                      <label class="control-label col-md-2" for="DIAG" style="float:left; width:170px;">Diagnosis </label>
+                      <div class="col-md-7" style="width: 600px; float: left;">
                         <textarea type="text" class="form-control" id="DIAG" placeholder="Eye Surgery Diagnosis" maxlength="<?php echo $DIAG_MAX; ?>" name="DIAG"></textarea>
                       </div>
                     </div>
@@ -221,8 +231,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     
                   <!-- SURGERY REMARKS -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="REM" style="float:left;">Remarks</label>
-                      <div class="col-md-7">
+                      <label class="control-label col-md-2" for="REM" style="float:left; width:170px;">Remarks</label>
+                      <div class="col-md-7" style="width: 600px; float: left;">
                         <textarea type="text" class="form-control" id="REM" placeholder="Surgeon's Remarks" maxlength="<?php echo $REM_MAX; ?>" name="REM"></textarea>
                       </div>
                     </div>
@@ -236,7 +246,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
           <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
-            <button type="submit" class="btn" id="go">Submit</button>
+            <button type="submit" class="btn" id="go" name="surgery_info">Submit</button>
           </div>
           <!-- ENTER END -->
 

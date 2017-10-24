@@ -35,10 +35,20 @@
     <div class="container-fluid">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi" style="border-color:rgba(255, 255, 255,0.5); background-color:rgba(255, 255, 255,0.7);">
+            <?php for($i=0; $i<count($page);$i++){ ?>
+              <span class="icon-bar"></span>
+            <?php } ?>
+          </button>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
         </div>
-        <ul class="nav navbar-nav">
-          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+      <div class="collapse navbar-collapse" id="navi">
+        <ul class="nav navbar-nav" >
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'" id="navlink" style="color:#4a6a15;">'.$page[$i].'</a></li>'; } ?> </ul>
+      </div>
+
+      </div>
+    </div>
   </nav>
 </div>
 <!-- HEAD AND NAVIGATION END -->
@@ -88,46 +98,46 @@ $ADDR_MAX = 50;
 
           <!-- NAME -->
             <div class="form-group row">
-              <label class="col-md-2" style="float:left;">Name</label>
-
-            <!-- FIRST NAME -->
-              <div class="col-md-2">
-                <label class="sr-only" for="F_NAME" required >First Name</label>
-                <input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" required>
-              </div>
-            <!-- FIRST NAME END -->
+              <label class="col-md-2" style="float:left; width:170px;">Name</label>
 
             <!-- LAST NAME -->
-              <div class="col-md-2">
+              <div class="col-md-2" style="width: 175px; float: left;">
                 <label class="sr-only" for="L_NAME">Last Name</label>
                 <input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
               </div>
             <!-- LAST NAME END -->
+
+            <!-- FIRST NAME -->
+              <div class="col-md-2" style="width: 175px; float: left; ">
+                <label class="sr-only" for="F_NAME" required >First Name</label>
+                <input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" style="float: left;" required >
+              </div>
+            <!-- FIRST NAME END -->
             
             </div>
           <!-- NAME END -->
 
           <!-- LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left;">License Number</label>
-              <div class="col-md-2">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="License No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
+              <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number</label>
+              <div class="col-md-2" style="width: 120px; float: left;">
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
               </div>
             </div>
           <!-- LICENSE NUMBER END -->
 
           <!-- ADDRESS -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="ADDRESS" style="float:left;">Address</label>
-              <div class="col-md-6">
-                <textarea type="text" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" rows="1" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS"></textarea>
+              <label class="control-label col-md-2" for="ADDRESS" style="float:left; width:170px;">Address</label>
+              <div class="col-md-6" style="width: 550px; float: left;">
+                <input type="text" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS">
               </div>
             </div>
           <!-- ADDRESS END -->
 
           <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
-            <button type="submit" class="btn" id="go">Submit</button>
+            <button type="submit" class="btn" id="go" name="doctors_info">Submit</button>
           </div>
           <!-- ENTER END -->
 

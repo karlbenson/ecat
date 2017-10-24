@@ -36,10 +36,20 @@
     <div class="container-fluid">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi" style="border-color:rgba(255, 255, 255,0.5); background-color:rgba(255, 255, 255,0.7);">
+            <?php for($i=0; $i<count($page);$i++){ ?>
+              <span class="icon-bar"></span>
+            <?php } ?>
+          </button>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
         </div>
-        <ul class="nav navbar-nav">
-          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+      <div class="collapse navbar-collapse" id="navi">
+        <ul class="nav navbar-nav" >
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'" id="navlink" style="color:#4a6a15;">'.$page[$i].'</a></li>'; } ?> </ul>
+      </div>
+
+      </div>
+    </div>
   </nav>
 </div>
 <!-- HEAD AND NAVIGATION END -->
@@ -57,11 +67,27 @@ DOCTOR SECONDARY INFORMATION
 
 -->
 
-<?php
-  $d_fname= array();
-  $d_lname= array();
-  $d_license = array();
-  $d_address = array();
+<?php //CODE SECTION STARTS HERE
+
+//ESTABLISHING MYSQL LINK (1)
+
+  //INITIALIZE
+$server = "localhost";  //own database server name
+$username = "root"; //own database username
+$password = "...";  //own database password
+$database = "...";  //own database name
+
+  //CONNECT TO SERVER
+$mydatabase = new mysqli($localhost, $username, $password, $database);
+
+  //IF CONNECTION FAILED
+if (!$mydatabase) {
+  die( '<div style="color: #ffffff; font-size: 12pt; text-align:center;">'.'Error: Unable to connect to database.'.'</div');
+}//END
+
+//ESTABLISHING MYSQL LINK END (1)
+
+//CODE SECTION ENDS HERE
 ?>
 
 <!-- DOCTORS -->
@@ -70,7 +96,7 @@ DOCTOR SECONDARY INFORMATION
 
   <!-- TITLE -->
 		<div class="container-fluid" >
-  			<h4>Eye Doctors</h4> <br>
+  			<h4>Doctors</h4> <br>
 		</div>
   <!-- TITLE -->
 
@@ -81,42 +107,66 @@ DOCTOR SECONDARY INFORMATION
       <!-- MODIFIABLE CODE STARTS HERE -->
 
       <!-- PROFILES -->
-      <?php for($i = 0; $i < 2; $i++){	?>
-        <div style="margin-bottom: 20px;">
+        <div class="container-fluid">
+          <ul class="list-group">
 
-        <!-- PRIMARY -->
-          <div class="media" id="box">
+      <?php //CODE SECTION STARTS HERE
+      
+      if (isset($_GET["currentpage"])) { $current_p  = $_GET["currentpage"]; } else { $current_p=1; };
+        $limit = 20;
+        $begin = ($current_p-1)*$limit;
+        $D_query_list = array("SELECT * FROM DOCTOR order by LAST_NAME asc limit $begin, ");
+        $D_query = $D_query_list[0].$limit;
+        $output = $mydatabase->query($D_query);
 
-          <!--PHOTO-->
-            <div class="media-left media-top" style="padding:0px;">
-              <img class="media-object" id="picture" src="id.jpg">
-            </div>
-          <!--PHOTO END-->
+        if ($output->num_rows > 0) {
 
-          <!-- BASIC INFORMATION -->
-            <div class="media-body" id="profile">
-              <?php 	echo '<p class="media-heading">'.'First Name'.' & '.'Surname'.'<br>'; ?>
-              <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
-              <?php
-                echo "License Number: "."<br>";
-                echo "Address: "."<br>";
-               ?>
-            </div>
-          <!-- BASIC INFORMATION END -->
+          //HEADER
+          echo '<li class="list-group-item" id="tophead">';
+          echo '<div class="container-fluid row">';
+          echo '<div class="col-md-3" style="width:230px; float:left;"><b>'.'Name'.'</b></div>';
+          echo '<div class="col-md-2" style="width:150px; float:left;"><b>'.'License No.'.'</b></div>';
+          echo '<div class="col-md-7" style="float:left;"><b>'.'Address'.'</b></div>';
+          echo '</div>';
+          echo '</li>';
+          //HEADER END
 
-           </div>
-        <!-- PRIMARY END -->
+          //CONTENT
+          while($dataline = $output->fetch_assoc()) { 
 
-        <!-- SECONDARY -->
-          <div class="row" id="box" style="background-color: rgba(225, 225, 225, 0.5); min-height: 50px; adding: 20px;">
-          <?php
-            echo "Other Details..."."<br>";
-          ?>
-  				</div>
-        <!-- SECONDARY END -->
+            echo '<li class="list-group-item">';
+            echo '<div class="row">';
 
-        </div>    
-      <?php } ?>
+                echo '<div class="col-md-3" style="width:230px; float:left;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
+                echo '<div class="col-md-2" style="width:150px; float:left;">'.$dataline["DOC_LICENSE_NUM"].'</div>';
+                echo '<div class="col-md-7" style="float:left;">'.$dataline["ADDRESS"].'</div>';
+              
+            echo '<div>';
+            echo '</li>';
+            //CONTENT END
+          } 
+
+      echo '<div style="text-align:center;">';
+      echo '<ul class="pagination" style="margin:auto;"><br>';
+          
+          $check = "SELECT DOC_LICENSE_NUM FROM DOCTOR";
+          $check2 = $mydatabase->query($check);
+          $item_no = $check2->num_rows;
+          $page_no = ceil($item_no/$limit);
+          
+          if($page_no>1){
+          for ($p_no=0; $p_no < $page_no; $p_no++) { 
+            echo '<li><a style="color:#4a6a15;" href="'.'doctors.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
+          } } 
+
+      echo '</ul>';
+      echo '</div>';
+
+      //CODE SECTION ENDS HERE
+      } else { echo "No Records."; } ?>
+
+          </ul>
+        </div>
       <!-- PROFILES END -->
 
       <!-- MODIFIABLE CODE ENDS HERE -->
@@ -128,6 +178,10 @@ DOCTOR SECONDARY INFORMATION
   </div>
 </div>
 <!-- DOCTORS -->
+
+<?php
+  $mydatabase->close(); //END
+?>
 
 </div>
 <!-- MAIN END -->

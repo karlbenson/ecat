@@ -35,10 +35,20 @@
     <div class="container-fluid">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi" style="border-color:rgba(255, 255, 255,0.5); background-color:rgba(255, 255, 255,0.7);">
+            <?php for($i=0; $i<count($page);$i++){ ?>
+              <span class="icon-bar"></span>
+            <?php } ?>
+          </button>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
         </div>
-        <ul class="nav navbar-nav">
-          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+      <div class="collapse navbar-collapse" id="navi">
+        <ul class="nav navbar-nav" >
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'" id="navlink" style="color:#4a6a15;">'.$page[$i].'</a></li>'; } ?> </ul>
+      </div>
+
+      </div>
+    </div>
   </nav>
 </div>
 <!-- HEAD AND NAVIGATION END -->
@@ -70,7 +80,7 @@ $VD_MAX = 15;
 $DC_MAX = 30;
 $REA_MAX = 12;
 $LEA_MAX = 12;
-$VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
+$VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 //PATIENT INFORMATION FIELDS END
 
 //CODE SECTION END
@@ -79,7 +89,7 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 <!-- PATIENT'S FORM -->
 <div class="container-fluid" id="basic" style="padding-top: 10px;">
 
-  <div id="inner">
+  <div id="inner" style="background-color:;">
   <!-- CONTENT -->
 		<div class="container-fluid" >
       
@@ -92,8 +102,8 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
           <!-- PATIENT ID -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="PAT_ID" style="float:left;">Patient ID </label>
-              <div class="col-md-3">
+              <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient ID </label>
+              <div class="col-md-3" style="width: 180px; float: left;">
                 <input type="text" class="form-control" id="PAT_ID" placeholder="Enter Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
               </div>
             </div>
@@ -101,18 +111,18 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="PHYS_LIC" style="float:left;">Examined by: </label>
-              <div class="col-md-2">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="PHYS_LIC" placeholder="Phys. License" maxlength="<?php echo $PHYL_LENG; ?>" name="PHYS_LIC" required>
+              <label class="control-label col-md-2" for="PHYS_LIC" style="float:left; width:170px;">Examined by: </label>
+              <div class="col-md-2" style="width: 120px; float: left;">
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="PHYS_LIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="PHYS_LIC" required>
               </div>
             </div>
           <!-- PHYSICIAN LICENSE NUMBER END -->
 
           <!-- STAFF LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="STAFF_LIC" style="float:left;">Screened by: </label>
-              <div class="col-md-2">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="STAFF_LIC" placeholder="Staff License" maxlength="<?php echo $STAFFL_LENG; ?>" name="STAFF_LIC" required>
+              <label class="control-label col-md-2" for="STAFF_LIC" style="float:left; width:170px;">Screened by: </label>
+              <div class="col-md-2" style="width: 120px; float: left;">
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="STAFF_LIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="STAFF_LIC" required>
               </div>
             </div>
           <!-- STAFF LICENSE NUMBER END -->
@@ -125,12 +135,12 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
                   <!-- LEFT EYE W/ SPECT -->
                     <div class="form-group row">
-                      <label class="control-label col-md-4" for="VASL" style="float:left;">Left Eye with Spectacles</label>
+                      <label class="control-label col-md-4" for="VASL" style="float:left; width:260px;">Left Eye with Spectacles</label>
                       <div class="col-md-3">
                         <div class="input-group">
                           <span class="input-group-addon">20</span>
                           <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VASL"  name="VASL" required>
+                          <select class="form-control" id="VASL"  name="VASL" style="width: 80px;" required>
                           <?php for ($j=0; $j < count($VA_choice); $j++) { 
                             echo "<option>".$VA_choice[$j]."</option>";
                            } ?>
@@ -142,12 +152,12 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
                   
                   <!-- RIGHT EYE W/ SPECT -->
                     <div class="form-group row">
-                      <label class="control-label col-md-4" for="VASR" style="float:left;">Right Eye with Spectacles</label>
+                      <label class="control-label col-md-4" for="VASR" style="float:left; width:260px;">Right Eye with Spectacles</label>
                       <div class="col-md-3">
                         <div class="input-group">
                           <span class="input-group-addon">20</span>
                           <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VASR"  name="VASR" required>
+                          <select class="form-control" id="VASR"  name="VASR" style="width: 80px;" required>
                           <?php for ($j=0; $j < count($VA_choice); $j++) { 
                             echo "<option>".$VA_choice[$j]."</option>";
                            } ?>
@@ -159,12 +169,12 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
                   <!-- LEFT EYE W/O SPECT -->
                     <div class="form-group row">
-                      <label class="control-label col-md-4" for="VAL" style="float:left;">Left Eye without Spectacles</label>
+                      <label class="control-label col-md-4" for="VAL" style="float:left; width:260px;">Left Eye without Spectacles</label>
                       <div class="col-md-3">
                         <div class="input-group">
                           <span class="input-group-addon">20</span>
                           <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VAL"  name="VAL" required>
+                          <select class="form-control" id="VAL"  name="VAL" style="width: 80px;" required>
                           <?php for ($j=0; $j < count($VA_choice); $j++) { 
                             echo "<option>".$VA_choice[$j]."</option>";
                            } ?>
@@ -176,12 +186,12 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
                   <!-- RIGHT EYE W/O SPECT -->
                     <div class="form-group row">
-                      <label class="control-label col-md-4" for="VAR" style="float:left;">Right Eye without Spectacles</label>
+                      <label class="control-label col-md-4" for="VAR" style="float:left; width:260px;">Right Eye without Spectacles</label>
                       <div class="col-md-3">
                         <div class="input-group">
                           <span class="input-group-addon">20</span>
                           <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VAR"  name="VAR" required>
+                          <select class="form-control" id="VAR"  name="VAR" style="width: 80px;" required>
                           <?php for ($j=0; $j < count($VA_choice); $j++) { 
                             echo "<option>".$VA_choice[$j]."</option>";
                            } ?>
@@ -204,18 +214,18 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
                   <!-- VISUAL DISABILITY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="VD" style="float:left;">Visual Disability </label>
-                      <div class="col-md-4">
-                        <input type="" class="form-control" id="VD" placeholder="Disability of the patient's eyes..." maxlength="<?php echo $VD_MAX; ?>" name="VD">
+                      <label class="control-label col-md-2" for="VD" style="float:left; width:170px;">Visual Disability </label>
+                      <div class="col-md-4" style="width: 230px;">
+                        <input type="text" class="form-control" id="VD" placeholder="Patient's eye disability..." maxlength="<?php echo $VD_MAX; ?>" name="VD">
                       </div>
                     </div>
                   <!-- VISUAL DISABILITY -->
 
                   <!-- CAUSE OF DISABILITY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="DC" style="float:left;">Cause </label>
-                      <div class="col-md-4">
-                        <textarea type="" class="form-control" id="DC" placeholder="Enter the cause of the patient's visual disability..." maxlength="<?php echo $DC_MAX; ?>" name="DC" rows="2"></textarea>
+                      <label class="control-label col-md-2" for="DC" style="float:left; width:170px;">Cause </label>
+                      <div class="col-md-6" style="width: 400px;">
+                        <input type="text" class="form-control" id="DC" placeholder="Enter the cause of the patient's visual disability..." maxlength="<?php echo $DC_MAX; ?>" name="DC">
                       </div>
                     </div>
                   <!-- CAUSE OF DISABILITY END -->
@@ -233,18 +243,18 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
                   <!-- AFFECTED PART OF RIGHT EYE -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="REA" style="float:left;">Right Eye</label>
-                      <div class="col-md-4">
-                        <input type="" class="form-control" id="REA" placeholder="Affected Part of Right Eye" maxlength="<?php echo $REA_MAX; ?>" name="REA">
+                      <label class="control-label col-md-2" for="REA" style="float:left; width:170px;">Right Eye</label>
+                      <div class="col-md-4" style="width: 200px;">
+                        <input type="" class="form-control" id="REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="REA">
                       </div>
                     </div>
                   <!-- AFFECTED PART OF RIGHT EYE END -->
                     
                   <!-- AFFECTED PART OF LEFT EYE -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="LEA" style="float:left;">Left Eye</label>
-                      <div class="col-md-4">
-                        <input type="" class="form-control" id="LEA" placeholder="Affected Part of Left Eye" maxlength="<?php echo $LEA_MAX; ?>" name="LEA">
+                      <label class="control-label col-md-2" for="LEA" style="float:left; width:170px;">Left Eye</label>
+                      <div class="col-md-4" style="width: 200px;">
+                        <input type="" class="form-control" id="LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="LEA">
                       </div>
                     </div>
                   <!-- AFFECTED PART OF LEFT EYE END -->
@@ -261,7 +271,7 @@ $VA_choice = array(10, 12, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
 
           <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
-            <button type="submit" class="btn" id="go">Submit</button>
+            <button type="submit" class="btn" id="go" name="patients_info">Submit</button>
           </div>
           <!-- ENTER END -->
 

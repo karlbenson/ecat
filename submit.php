@@ -35,10 +35,20 @@
     <div class="container-fluid">
       <div>
         <div class="navbar-header">
-          <a class="navbar-brand" href="Home.php" style="font-size: 12pt;">Home</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navi" style="border-color:rgba(255, 255, 255,0.5); background-color:rgba(255, 255, 255,0.7);">
+            <?php for($i=0; $i<count($page);$i++){ ?>
+              <span class="icon-bar"></span>
+            <?php } ?>
+          </button>
+          <a class="navbar-brand" href="Home.php" id="navlink" style="font-size: 12pt; color:#2d4309;">Home</a>
         </div>
-        <ul class="nav navbar-nav">
-          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'">'.$page[$i].'</a></li>'; } ?> </ul> </div> </div>
+      <div class="collapse navbar-collapse" id="navi">
+        <ul class="nav navbar-nav" >
+          <?php for ($i=0; $i < count($page); $i++) { echo '<li><a href="'.$link[$i].'" id="navlink" style="color:#4a6a15;">'.$page[$i].'</a></li>'; } ?> </ul>
+      </div>
+
+      </div>
+    </div>
   </nav>
 </div>
 <!-- HEAD AND NAVIGATION END -->
@@ -65,7 +75,7 @@
 $server = "localhost";  //own database server name
 $username = "root"; //own database username
 $password = "...";  //own database password
-$database = "...";  //own database name
+$database = "database_sample";  //own database name
 
   //CONNECT TO SERVER
 $mydatabase = new mysqli($localhost, $username, $password, $database);
@@ -83,20 +93,20 @@ if (!$mydatabase) {
     //(SAMPLE 1) STILL TO BE REVISED/TESTED....
 function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR){
   $D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."')";
-  if ($GLOBALS['mydatabase']->query($D_query) === TRUE) { echo "New record created successfully"; }
-  else { echo "Error: " . $D_query . "<br>" . $GLOBALS['mydatabase']->error; }
+  if ($GLOBALS['mydatabase']->query($D_query) === TRUE) { echo "New doctor record successfully created."; }
+  else { echo "Error. " . $GLOBALS['mydatabase']->error; }
 }//END
     //(SAMPLE 2) STILL TO BE REVISED/TESTED....
 function SUBMIT_PATIENT($P_ID, $P_PHYLIC, $P_STAFFLIC, $P_VASR, $P_VASL, $P_VAR, $P_VAL, $P_VISUALDISAB, $P_DISABCAUSE, $P_REA, $P_LEA){
   $P_query = "INSERT INTO PATIENT VALUES ('".$P_ID."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASR."','".$P_VASL."','".$P_VAR."','".$P_VAL."','".$P_VISUALDISAB."','".$P_DISABCAUSE."','".$P_REA."','".$P_LEA."')";
-  if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { echo "New record created successfully"; }
-  else { echo "Error: " . $P_query . "<br>" . $GLOBALS['mydatabase']->error; }
+  if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { echo "New patient record successfully created."; }
+  else { echo "Error. " . $GLOBALS['mydatabase']->error; }
 }//END
     //(SAMPLE 3) STILL TO BE REVISED/TESTED....
 function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_DIAG, $S_CLEAR, $S_SURGADDR, $S_SURGDATE, $S_REMARK){
   $S_query = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_DIAG."','".$S_CLEAR."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."')";
-  if ($GLOBALS['mydatabase']->query($S_query) === TRUE) { echo "New record created successfully"; }
-  else { echo "Error: " . $S_query . "<br>" . $GLOBALS['mydatabase']->error; }
+  if ($GLOBALS['mydatabase']->query($S_query) === TRUE) { echo "New surgery record successfully created. "; }
+  else { echo "Error. " . $GLOBALS['mydatabase']->error; }
 }//END
 
 //FUNCTIONS END (2)
@@ -113,7 +123,7 @@ $ADDRESS = $_POST["ADDRESS"];
   //DOCTOR INFORMATION END
 
   //PATIENT INFORMATION FIELDS          
-$PAT_ID_NUM = $_POST["PAT_ID"];       
+$PAT_ID_NUM1 = $_POST["PAT_ID"];       
 $PHY_LICENSE_NUM = $_POST["PHYS_LIC"];
 $STAFF_LICENSE_NUM = $_POST["STAFF_LIC"];  
 $VA_WITH_SPECT_RIGHT = $_POST["VASR"];     
@@ -129,7 +139,7 @@ $LEFT_EYE_AFFECTED = $_POST["LEA"];
   //SURGERY INFORMATION FIELDS
 $CASE_NUM = $_POST["CASE_NUM"];       
 $SURG_LICENSE_NUM = $_POST["SURG_LIC"];  
-$PAT_ID_NUM = $_POST["PAT_ID"];          
+$PAT_ID_NUM2 = $_POST["PAT_ID"];          
 $VISUAL_IMPARITY = $_POST["VI"];         
 $MED_HISTORY = $_POST["MED_HIST"];       
 $DIAGNOSIS = $_POST["DIAG"];             
@@ -153,6 +163,19 @@ $REMARKS = $_POST["REM"];
      <div>
        
      <!-- CONTENT: TO BE CONSTRUCTED -->
+     <?php
+        if (isset($_POST['doctors_info'])) {
+          SUBMIT_DOCTOR($F_NAME, $L_NAME, $LICENSE_NUM, $ADDRESS);
+        }else if (isset($_POST['patients_info'])) {
+          SUBMIT_PATIENT($PAT_ID_NUM1, $PHY_LICENSE_NUM, $STAFF_LICENSE_NUM, $VA_WITH_SPECT_RIGHT, $VA_WITH_SPECT_LEFT, $VA_NO_SPECT_RIGHT, $VA_NO_SPECT_LEFT, $VISUAL_DISABILITY, $DISABILITY_CAUSE, $RIGHT_EYE_AFFECTED, $LEFT_EYE_AFFECTED);
+        }else if (isset($_POST['surgery_info'])) {
+          SUBMIT_SURGERY($CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $CLEARANCE_NUM, $SURG_ADDRESS, $SURG_DATE, $REMARKS);
+        }
+        $mydatabase->close();
+
+        echo '<div ><a href="'.'Home.php'.'" >Back-to-Home</a></div>';
+
+     ?>
 
      </div>
     </div>
