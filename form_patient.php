@@ -41,6 +41,12 @@ $DC_MAX = 30;
 $REA_MAX = 12;
 $LEA_MAX = 12;
 $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200);
+$VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/40', '20/50', '20/63', '20/80',
+					'20/100', '20/125', '20/160', '20/200',
+					'CF 20&#39;', 'CF 19&#39;', 'CF 18&#39;', 'CF 17&#39;', 'CF 16&#39;', 'CF 15&#39;',
+					'CF 14&#39;', 'CF 13&#39;', 'CF 12&#39;', 'CF 11&#39;', 'CF 10&#39;', 'CF 9&#39;',
+					'CF 8&#39;', 'CF 7&#39;', 'CF 6&#39;', 'CF 5&#39;', 'CF 4&#39;', 'CF 3&#39;',
+					'CF 2&#39;', 'CF 1&#39;', 'HM', '+LP', '-LP');
 //PATIENT INFORMATION FIELDS END
 
 //CODE SECTION END
@@ -59,7 +65,7 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
           <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
               
           <form method="post" action="submit.php">
-
+			
           <!-- PATIENT ID -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient </label>
@@ -104,74 +110,92 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
               <div class="panel panel-default" style="">
                 <div class="panel-heading" id="panelh">Visual Acuity</div>
                   <div class="panel-body">
-
-                  <!-- LEFT EYE W/ SPECT -->
-                    <div class="form-group row">
-                      <label class="control-label col-md-4" for="VASL" style="float:left; width:260px;">Left Eye with Spectacles</label>
-                      <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon">20</span>
-                          <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VASL"  name="VASL" style="width: 80px;" required>
-                          <?php for ($j=0; $j < count($VA_choice); $j++) { 
-                            echo "<option>".$VA_choice[$j]."</option>";
-                           } ?>
-                           </select>
-                        </div>
-                      </div>
-                    </div>
-                  <!-- END -->
-                  
-                  <!-- RIGHT EYE W/ SPECT -->
-                    <div class="form-group row">
-                      <label class="control-label col-md-4" for="VASR" style="float:left; width:260px;">Right Eye with Spectacles</label>
-                      <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon">20</span>
-                          <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VASR"  name="VASR" style="width: 80px;" required>
-                          <?php for ($j=0; $j < count($VA_choice); $j++) { 
-                            echo "<option>".$VA_choice[$j]."</option>";
-                           } ?>
-                           </select>
-                        </div>
-                      </div>
-                    </div>
-                  <!-- END -->
-
-                  <!-- LEFT EYE W/O SPECT -->
-                    <div class="form-group row">
-                      <label class="control-label col-md-4" for="VAL" style="float:left; width:260px;">Left Eye without Spectacles</label>
-                      <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon">20</span>
-                          <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VAL"  name="VAL" style="width: 80px;" required>
-                          <?php for ($j=0; $j < count($VA_choice); $j++) { 
-                            echo "<option>".$VA_choice[$j]."</option>";
-                           } ?>
-                           </select>
-                        </div>
-                      </div>
-                    </div>
-                  <!-- END -->
-
-                  <!-- RIGHT EYE W/O SPECT -->
-                    <div class="form-group row">
-                      <label class="control-label col-md-4" for="VAR" style="float:left; width:260px;">Right Eye without Spectacles</label>
-                      <div class="col-md-3">
-                        <div class="input-group">
-                          <span class="input-group-addon">20</span>
-                          <span class="input-group-addon">/</span>
-                          <select class="form-control" id="VAR"  name="VAR" style="width: 80px;" required>
-                          <?php for ($j=0; $j < count($VA_choice); $j++) { 
-                            echo "<option>".$VA_choice[$j]."</option>";
-                           } ?>
-                           </select>
-                        </div>
-                      </div>
-                    </div>
-                  <!-- END -->
+				  
+				  <table class="table">
+					<thead>
+						<th></th>
+						<th>Pre Surgery Visual Acuity</th>
+						<th>Post Surgery Visual Acuity</th>
+					</thead>
+					<tbody>
+						<!-- LEFT EYE W/ SPECT -->
+						<tr>
+							<td><strong>Left Eye with Spectacles</strong></td>
+							<td>
+								<select class="form-control" id="VASL1"  name="VASL1" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+							<td>
+								<select class="form-control" id="VASL2"  name="VASL2" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+						</tr>
+						<!-- END -->
+						<!-- RIGHT EYE W/ SPECT -->
+						<tr>
+							<td><strong>Right Eye with Spectacles</strong></td>
+							<td>
+								<select class="form-control" id="VASR1"  name="VASR1" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+							<td>
+								<select class="form-control" id="VASR2"  name="VASR2" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+						</tr>
+						<!-- END -->
+						<!-- LEFT EYE W/OUT SPECT -->
+						<tr>
+							<td><strong>Left Eye without Spectacles</strong></td>
+							<td>
+								<select class="form-control" id="VAL1"  name="VAL1" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+							<td>
+								<select class="form-control" id="VAL2"  name="VAL2" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+						</tr>
+						<!-- END -->
+						<!-- RIGHT EYE W/OUT SPECT -->
+						<tr>
+							<td><strong>Right Eye without Spectacles</strong></td>
+							<td>
+								<select class="form-control" id="VAR1"  name="VAR1" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+							<td>
+								<select class="form-control" id="VAR2"  name="VAR2" style="width: 200px;" required>
+								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+									echo "<option>".$VA_choice[$j]."</option>";
+								   } ?>
+							   </select>
+							</td>
+						</tr>
+						<!-- END -->
+					</tbody>
+				  </table>
 
                   </div>
                 </div>
