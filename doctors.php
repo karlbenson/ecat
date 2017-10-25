@@ -122,7 +122,9 @@ $ADDR_MAX = 50;
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'Last Name'.'</b></div>';
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'First Name'.'</b></div>';
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'License No.'.'</b></div>';
+		  echo '<div class="col-md-1" style="width:150px; float:left;"><b>'.'Specialization'.'</b></div>';
           echo '<div class="col-md-5" style="float:left;"><b>'.'Address'.'</b></div>';
+		  
           echo '</div>';
           echo '</li>';
           //HEADER END
@@ -134,6 +136,7 @@ $ADDR_MAX = 50;
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["LAST_NAME"].'</div>';
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["FIRST_NAME"].'</div>';
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["DOC_LICENSE_NUM"].'</div>';
+				echo '<div class="col-md-1" style="width:150px; float:left;">'.$dataline["SPECIALIZATION"].'</div>';
                 echo '<div class="col-md-5" style="float:left;">'.$dataline["ADDRESS"].'</div>';
                 echo '<div class="col-md-2" style="width:150px; float:right;"><a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'see more'.'</a></div>';
             echo '<div>';

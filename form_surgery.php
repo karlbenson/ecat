@@ -331,7 +331,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 </html>
 
 <?php
-  $conn = new mysqli('localhost', 'root', 'root', 'lukedb') 
+  $conn = new mysqli('localhost', 'root', '', 'lukedb') 
     or die ('Cannot connect to db');
 
     $surgeon = $conn->query("select DOC_LICENSE_NUM from DOCTOR");
