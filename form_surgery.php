@@ -38,11 +38,16 @@ $ID_LENG = 15;
 $VI_MAX = 100;
 $HIST_MAX = 100;
 $DIAG_MAX = 100;
-$CLEAR_LENG = 10;
+$TANES_MAX = 25;
 $SURGADD_MAX = 50;
-$SURG_DATE_YY = 4; $SURG_DATE_DD = 2;
+$SURG_DATE_YY = 4; 
+$SURG_DATE_DD = 2;
 $REM_MAX = 100;
 $MAX_NAME = 40;
+$INTER_MAX = 40;
+$ANEST_MAX = 40;
+$IOL_MAX = 20;
+$PC_MAX = 10;
 $MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 //SURGERY INFORMATION FIELDS END
 
@@ -85,8 +90,17 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
               </div>
             </div>
           <!-- SURGEON LICENSE NUMBER END -->
-
-          <!-- PATIENT INFORMATION -->
+							
+				<!-- INTERNIST NAME -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="INTER" style="float:left; width:170px;">Internist Name</label>
+                      <div class="col-md-6" style="width: 225px; float: left;">
+                        <input type="text" class="form-control" id="INTER" placeholder="Internist Name" maxlength="<?php echo $INTER_MAX; ?>" name="INTER">
+                      </div>
+                    </div>
+                <!-- INTERNIST NAME END -->
+         
+		 <!-- PATIENT INFORMATION -->
             <div class="panel-group" style="margin-top:25px;">
               <div class="panel panel-default" style="">
                 <div class="panel-heading" id="panelh">Patient Information</div>
@@ -108,9 +122,9 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- VISUAL IMPARITY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="VI" style="float:left; width:170px;">Visual Imparity </label>
+                      <label class="control-label col-md-2" for="VI" style="float:left; width:170px;">Visual Impairment </label>
                       <div class="col-md-7" style="width: 600px; float: left;">
-                        <textarea type="text" class="form-control" id="VI" placeholder="Description of visual imparity..." maxlength="<?php echo $VI_MAX; ?>" name="VI" rows="2" required></textarea>
+                        <textarea type="text" class="form-control" id="VI" placeholder="Description of visual impairment`..." maxlength="<?php echo $VI_MAX; ?>" name="VI" rows="2" required></textarea>
                       </div>
                     </div>
                   <!-- VISUAL IMPARITY END -->
@@ -134,25 +148,43 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                 <div class="panel panel-default" style="">
                   <div class="panel-heading" id="panelh">Surgery Details</div>
                     <div class="panel-body">
-
-                  <!-- CLEARANCE -->
+				
+				<!-- ANESTHESIOLOGIST -->
                     <div class="form-group row">
-                      <label class="control-label col-md-3" for="CLEAR" style="float:left; width:200px;">Clearance Number </label>
-                      <div class="col-md-2" style="width: 170px; float: left;">
-                        <input type="text" class="form-control" id="CLEAR" placeholder="Enter No." maxlength="<?php echo $CLEAR_LENG; ?>" name="CLEAR" required>
+                      <label class="control-label col-md-3" for="ANEST" style="float:left; width:200px;">Anesthesiologist</label>
+                      <div class="col-md-6" style="width: 250px; float: left;">
+                        <input type="text" class="form-control" id="ANEST" placeholder="Anesthesiologist" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST">
                       </div>
                     </div>
-                  <!-- CLEARANCE END -->
-
-                  <!-- SURGERY ADDRESS -->
+                <!-- TYPE OF ANESTHESIOLOGIST END -->
+				
+				<!-- IOL POWER -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="ANEST" style="float:left; width:200px;">IOL Power</label>
+                      <div class="col-md-6" style="width: 150px; float: left;">
+                        <input type="text" class="form-control" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL">
+                      </div>
+                    </div>
+                <!-- IOL POWER END -->
+			
+			<!-- TYPE OF ANESTHESIA -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="TANES" style="float:left; width:200px;">Type of Anesthesia</label>
+                      <div class="col-md-6" style="width: 220px; float: left;">
+                        <input type="text" class="form-control" id="TANES" placeholder="type of Anesthesia used..." maxlength="<?php echo $TANES_MAX; ?>" name="TANES">
+                      </div>
+                    </div>
+            <!-- TYPE OF ANESTHESIA END -->
+				
+				<!-- SURGERY ADDRESS -->
                     <div class="form-group row">
                       <label class="control-label col-md-3" for="SURG_ADD" style="float:left; width:200px;">Surgery Address</label>
                       <div class="col-md-6" style="width: 550px; float: left;">
-                        <input type="" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD">
+                        <input type="text" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD">
                       </div>
                     </div>
-                  <!-- SURGERY ADDRESS END -->
-
+                <!-- SURGERY ADDRESS END -->
+	
                   <!-- DATE -->
                     <div class="form-group row">
                       <label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
@@ -215,7 +247,64 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <!-- SURGERY REPORT END -->
 
 
-          <!-- ENTER -->
+            <!-- FINANCIAL INFORMATION -->
+              <div class="panel-group" style="margin-top:25px;">
+                <div class="panel panel-default" style="">
+                  <div class="panel-heading" id="panelh">Financial Information</div>
+                    <div class="panel-body">
+
+       
+			        <!-- PATIENT COUNTERPART -->
+					<div class="form-group row">
+					<label class="control-label col-md-3" style="float:left; width:200px;">Patient Counterpart </label>
+                    <div class="col-md-7"  style="float:left; min-width:400px;">
+                      <div style="width: 125px; float: left; margin-right:10px;">
+							<input type="text" class="form-control" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL">
+                      </div>
+                      <div style="width: 125px; float: left; margin-right:10px;">
+							<input type="text" class="form-control" id="PCLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="PCLAB">
+                      </div>
+
+                      <div style="width: 125px; float: left; margin-right:10px;">
+							<input type="text" class="form-control" id="PCPF" placeholder="PF(Other)" maxlength="<?php echo $PC_MAX; ?>" name="PCPF">
+                      </div>
+                      </div>
+					</div>
+			        <!-- PATIENT COUNTERPART END -->
+					
+			<!-- SPONSORED IOL -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="SPOIOL" style="float:left; width:200px;">SPONSORED</label>
+                      <div class="col-md-6" style="width: 200px; float: left;">
+                        <input type="text" class="form-control" id="SPOIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
+                      </div>
+                    </div>
+            <!-- SPONSORED IOL END -->
+	
+				<!-- CSF -->
+					<div class="form-group row">
+					<label class="control-label col-md-3" style="float:left; width:200px;"> CSF </label>
+                    <div class="col-md-7"  style="float:left; min-width:400px;">
+                      <div style="width: 125px; float: left; margin-right:10px;">
+							<input type="text" class="form-control" id="CSFHBILL" placeholder="H BILL" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL">
+                      </div>
+                      <div style="width: 125px; float: left; margin-right:10px;">
+							<input type="text" class="form-control" id="CSFSUP" placeholder="SUPPLIES" maxlength="<?php echo $PC_MAX; ?>" name="CSFSUP">
+                      </div>
+
+                      <div style="width: 125px; float: left; margin-right:10px;">
+						<input type="text" class="form-control" id="CSFLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="CSFLAB">
+                      </div>
+                      </div>
+					</div>
+			        <!-- CSF END -->
+				
+                  </div>
+
+              </div>
+            <!-- FINANCIAL INFORMATION END -->
+         
+		 <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
             <button type="submit" class="btn" id="go" name="surgery_info">Submit</button>
           </div>
