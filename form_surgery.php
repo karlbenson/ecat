@@ -83,11 +83,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <div class="form-group row">
               <label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Conducted by: </label>
               <div class="col-md-7" style="float:left;">
-              <div style="width: 120px; float: left; margin-right:10px;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="SURG_LIC" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" autocomplete="off" style="width: 150px;" required >
-              </div>
-              <div style="width: 200px; float: left; margin-left:30px;">
-                <input class="form-control" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40">
+              <div style="width: 200px; float: left; ">
+                <input class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40" name="SURG_NAME" type="textbox">
               </div>
               </div>
             </div>
@@ -97,7 +94,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     <div class="form-group row">
                       <label class="control-label col-md-3" for="INTER" style="float:left; width:170px;">Internist Name</label>
                       <div class="col-md-6" style="width: 225px; float: left;">
-                        <input type="text" class="form-control" id="INTER" placeholder="Internist Name" maxlength="<?php echo $INTER_MAX; ?>" name="INTER">
+                        <input type="text" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name" maxlength="<?php echo $INTER_MAX; ?>" name="INTER">
                       </div>
                     </div>
                 <!-- INTERNIST NAME END -->
@@ -110,13 +107,11 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- PATIENT ID -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient ID </label>
+                    
                       <div class="col-md-7"  style="float:left;">
-                      <div style="float:left; width:170px; margin-right:10px;">
-                        <input  class="form-control" id="PAT_ID" placeholder="Enter Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
-                      </div>
+					    <label class="control-label col-md-2" for="PAT_NAME" style="float:left; width:170px;">Patient Name </label>
                       <div style="width: 180px; float: left; margin-right:10px;">
-                        <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME">
+                        <input type="text" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME">
                      </div>
                      </div>
                     </div>
@@ -155,7 +150,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     <div class="form-group row">
                       <label class="control-label col-md-3" for="ANEST" style="float:left; width:200px;">Anesthesiologist</label>
                       <div class="col-md-6" style="width: 250px; float: left;">
-                        <input type="text" class="form-control" id="ANEST" placeholder="Anesthesiologist" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST">
+                        <input type="text" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST">
                       </div>
                     </div>
                 <!-- TYPE OF ANESTHESIOLOGIST END -->
@@ -193,7 +188,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                     <div class="col-md-7"  style="float:left; min-width:400px;">
                       <div>
                           <label class="sr-only" for="MM">Month</label>
-                          <select class="form-control" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
+                          <select class="form-control" id="MM" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
                             <?php for ($j=0; $j < count($MONTH_choice); $j++) { 
                               echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
                              } ?>
@@ -202,12 +197,12 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                       <div style="width: 80px; float: left; margin-right:10px;">
                           <label class="sr-only" for="DD">Day</label>
-                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" required>
+                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
                       </div>
 
                       <div  style="width: 100px; float: left; margin-right:10px;">
                           <label class="sr-only" for="YY">Year</label>
-                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" required>
+                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" id="YY" required>
                       </div>
                     </div>
 
@@ -331,19 +326,31 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 </html>
 
 <?php
-  $conn = new mysqli('localhost', 'root', '', 'lukedb') 
-    or die ('Cannot connect to db');
+	include("dbconnect.php");
 
-    $surgeon = $conn->query("select DOC_LICENSE_NUM from DOCTOR");
+    $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
                 $arr = array();
     
                 while ($row = $surgeon->fetch_assoc()) {
 
                         unset($id, $name1, $name2);
-                        $id = $row['DOC_LICENSE_NUM'];
+                        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
                         //$name1 = $row['FIRST_NAME'];
                         //$name2 = $row['LAST_NAME'];
                         array_push($arr, $id/*.", ".$name2." ".$name1*/);
+                       
+                }
+				
+	 $patient = $mydatabase->query("SELECT PAT_FNAME,PAT_LNAME,PAT_ID_NUM from EYEPATIENT");
+                $arr1 = array();
+    
+                while ($row = $patient->fetch_assoc()) {
+
+                        unset($id, $name1, $name2);
+                        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
+                        //$name1 = $row['FIRST_NAME'];
+                        //$name2 = $row['LAST_NAME'];
+                        array_push($arr1, $id/*.", ".$name2." ".$name1*/);
                        
                 }
 ?>
@@ -373,3 +380,30 @@ $(document).ready(function(){
     });
 });  
 </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var arrs= <?php echo json_encode($arr1);?>;
+    //var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var arrs = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arrs
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead1').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'arrs',
+        source: arrs
+    });
+});  
+</script>
+

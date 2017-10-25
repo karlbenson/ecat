@@ -113,9 +113,12 @@ function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIS
         }else if (isset($_POST['surgery_info'])) {
 			
 			  //SURGERY INFORMATION FIELDS
-				$CASE_NUM = $_POST["CASE_NUM"];       
-				$SURG_LICENSE_NUM = $_POST["SURG_LIC"];  
-				$PAT_ID_NUM2 = $_POST["PAT_ID"];          
+				$CASE_NUM = $_POST["CASE_NUM"];
+				$SURGEON = $_POST["SURG_NAME"];
+				$S_LIST = explode("-",$SURGEON);
+				$SURG_LICENSE_NUM = $S_LIST[1];
+				$P_LIST = explode("-",$_POST["PAT_NAME"]);
+				$PAT_ID_NUM2 = $P_LIST[1]; 
 				$VISUAL_IMPARITY = $_POST["VI"];         
 				$MED_HISTORY = $_POST["MED_HIST"];       
 				$DIAGNOSIS = $_POST["DIAG"];             
