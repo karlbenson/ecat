@@ -6,11 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="references/bootstrap.min.css">
+  <link rel="stylesheet" href="references/typeahead.css">
   <link rel="stylesheet" href="references/font-awesome.min.css">
   <script src="references/jquery.min.js"></script>
   <script src="references/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="theme2.css">
-
+  <script src="references/typeahead.bundle.js"></script>
+  
 </head>
 
 <body style="justify-content: center;">
@@ -77,11 +79,11 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
               <label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Conducted by: </label>
               <div class="col-md-7" style="float:left;">
               <div style="width: 120px; float: left; margin-right:10px;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" required>
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" spellcheck="false" name="SURG_LIC" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" autocomplete="off" style="width: 150px;" required >
               </div>
-              <div style="width: 200px; float: left; margin-right:10px;">
-      				  <input class="form-control" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40">
-      			  </div>
+              <div style="width: 200px; float: left; margin-left:30px;">
+                <input class="form-control" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40">
+              </div>
               </div>
             </div>
           <!-- SURGEON LICENSE NUMBER END -->
@@ -238,3 +240,49 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
 </body>
 </html>
+
+<?php
+  $conn = new mysqli('localhost', 'root', 'root', 'lukedb') 
+    or die ('Cannot connect to db');
+
+    $surgeon = $conn->query("select DOC_LICENSE_NUM from DOCTOR");
+                $arr = array();
+    
+                while ($row = $surgeon->fetch_assoc()) {
+
+                        unset($id, $name1, $name2);
+                        $id = $row['DOC_LICENSE_NUM'];
+                        //$name1 = $row['FIRST_NAME'];
+                        //$name2 = $row['LAST_NAME'];
+                        array_push($arr, $id/*.", ".$name2." ".$name1*/);
+                       
+                }
+
+                print_r($arr);
+?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var arrs= <?php echo json_encode($arr);?>;
+    //var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var arrs = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arrs
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'arrs',
+        source: arrs
+    });
+});  
+</script>
