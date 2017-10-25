@@ -1,7 +1,8 @@
-	drop database lukedb;
-	create database lukedb;
-	use lukedb;
 /*SQL TRIAL CODE*/
+
+drop database lukedb;
+create database lukedb;
+use lukedb;
 
 
 create table DOCTOR(
@@ -22,61 +23,33 @@ create table DOCTOR(
 
 INSERT INTO DOCTOR VALUES
 
-	('0000001','Smith','John','West Virginia. 26 Santos Street.'),
+	('0000001','Smith','John','West Virginia. 26 Santos Street.','Anesthesiologist'),
 
-	('0000002','South','Johan','West Virginia. 15 Santos Street.'),
+	('0000002','South','Johan','West Virginia. 15 Santos Street.','Internist'),
 
-	('0000003','Reefs','James','West Virginia. 106 Santos Street.'),
+	('0000003','Reefs','James','West Virginia. 106 Santos Street.','Anesthesiologist'),
 
-	('0000004','Reefs','Jessie','West Virginia. 106 Santos Street.'),
+	('0000004','Reefs','Jessie','West Virginia. 106 Santos Street.','Surgeon'),
 
-	('0000005','Nedd','Milah','Florida, Border Street Avenue, Block 56.'),
+	('0000005','Nedd','Milah','Florida, Border Street Avenue, Block 56.','Surgeon'),
 
-	('0000006','Colonel','Sanders','Kentucky, Fried Chicken.'),
+	('0000006','Colonel','Sanders','Kentucky, Fried Chicken.','Internist'),
 
-	('0000007','Ricardo','Heart','09 Silver Road, Beckham Park.'),
+	('0000007','Ricardo','Heart','09 Silver Road, Beckham Park.','Anesthesiologist'),
 
-	('0000008','Ketchup','Ash','Pallet Town, West Kanto Region.'),
+	('0000008','Ketchup','Ash','Pallet Town, West Kanto Region.','Internist'),
 
-	('0000009','Viva','Giovanni','Soul Silver Street, Viridian City, West Kanto Region.'),
+	('0000009','Viva','Giovanni','Soul Silver Street, Viridian City, West Kanto Region.','Surgeon'),
 
-	('0000010','Crystal','Grey','City of Evergreen, Central Johto Region.'),
+	('0000010','Crystal','Grey','City of Evergreen, Central Johto Region.','Internist'),
 
-	('0000011','Light','Lilian',''),
+	('0000011','Light','Lilian','','Surgeon'),
 
-	('0000012','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.'),
+	('0000012','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.','Internist'),
 
-	('0000013','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.')
+	('0000013','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.','Anesthesiologist')
 ;
 
-
-INSERT INTO DOCTOR VALUES
-
-	('0000021','Smith','John','West Virginia. 26 Santos Street.'),
-
-	('0000022','South','Johan','West Virginia. 15 Santos Street.'),
-
-	('0000023','Reefs','James','West Virginia. 106 Santos Street.'),
-
-	('0000014','Reefs','Jessie','West Virginia. 106 Santos Street.'),
-
-	('0000015','Nedd','Milah','Florida, Border Street Avenue, Block 56.'),
-
-	('0000016','Colonel','Sanders','Kentucky, Fried Chicken.'),
-
-	('0000017','Ricardo','Heart','09 Silver Road, Beckham Park.'),
-
-	('0000018','Ketchup','Ash','Pallet Town, West Kanto Region.'),
-
-	('0000019','Viva','Giovanni','Soul Silver Street, Viridian City, West Kanto Region.'),
-
-	('0000020','Crystal','Grey','City of Evergreen, Central Johto Region.'),
-
-	('0000031','Light','Lilian',''),
-('0000032','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.'),
-
-	('0000033','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.')
-;
 
 /*SAMPLE DATA END*/
 
@@ -92,6 +65,7 @@ create table EYEPATIENT(
 	PHY_LICENSE_NUM CHAR(7) NOT NULL,
 
 	STAFF_LICENSE_NUM CHAR(7) NOT NULL,
+
 	PRE_VA_WITH_SPECT_RIGHT VARCHAR(7) NOT NULL,
 	PRE_VA_WITH_SPECT_LEFT VARCHAR(7) NOT NULL,
 	PRE_VA_NO_SPECT_RIGHT VARCHAR(7) NOT NULL,
@@ -101,16 +75,16 @@ create table EYEPATIENT(
 	POST_VA_NO_SPECT_RIGHT VARCHAR(7) NOT NULL,
 	POST_VA_NO_SPECT_LEFT VARCHAR(7) NOT NULL,
 
-
 	VISUAL_DISABILITY VARCHAR(15),
 
 	DISABILITY_CAUSE VARCHAR(30),
-	DIAGNOSIS VARCHAR(15),
-	PROCEDURE_TO_DO VARCHAR(15),
 
 	RIGHT_EYE_AFFECTED VARCHAR(12),
 
 	LEFT_EYE_AFFECTED VARCHAR(12),
+	
+	DIAGNOSIS VARCHAR(15),
+	PROCEDURE_TO_DO VARCHAR(15),
 
 	PRIMARY KEY (PAT_ID_NUM),
 
