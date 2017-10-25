@@ -66,18 +66,26 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
               
           <form method="post" action="submit.php">
 			
-          <!-- PATIENT ID -->
+          <!-- PATIENT -->
             <div class="form-group row">
-              <label class="control-label col-md-4 for="PAT_ID" style="float:left; width:170px;">Patient ID: </label>
-			  <div class="col-md-2" style="width: 180px; float: left;">
+              <label class="control-label col-md-3 for="PAT_ID" style="float:left; width:170px;">Patient: </label>
+			  <div class="col-md-3" style="width: 180px; float: left;">
                 <input type="text" class="form-control" id="PAT_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
+              </div>
+			  
+			  <div class="col-md-3" style="width: 250px; float: left;">
+                <input type="text" class="form-control" id="PAT_FNAME" placeholder="First Name" maxlength="20" name="PAT_FNAME" required>
+              </div>
+			  
+			  <div class="col-md-3" style="width: 250px; float: left;">
+                <input type="text" class="form-control" id="PAT_LNAME" placeholder="Last Name" maxlength="20" name="PAT_LNAME" required>
               </div>
 			
               <!--<div class="col-md-3" style="width: 180px; float: left;">
                 <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
               </div> -->
             </div>
-          <!-- PATIENT ID END -->
+          <!-- PATIENT ID END-->
 			
 			<!-- PATIENT AGE -->
 				<div class="form-group row">
