@@ -223,8 +223,9 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       //MYSQL SECTION END
 
       $VA_LABEL = array("Left Eye with Spectacles", "Right Eye with Spectacles", "Left Eye without Spectacles", "Right Eye without Spectacles");
-      $P_VA = array($dataline["VA_WITH_SPECT_LEFT"], $dataline["VA_WITH_SPECT_RIGHT"], $dataline["VA_NO_SPECT_LEFT"], $dataline["VA_NO_SPECT_RIGHT"]);
-      $P_VA1 = array( str_replace("20/","",$P_VA[0]),str_replace("20/","",$P_VA[1]),str_replace("20/","",$P_VA[2]),str_replace("20/","",$P_VA[3]));
+      $P_PREVA = array($dataline["PRE_VA_WITH_SPECT_LEFT"], $dataline["PRE_VA_WITH_SPECT_RIGHT"], $dataline["PRE_VA_NO_SPECT_LEFT"], $dataline["PRE_VA_NO_SPECT_RIGHT"]);
+      $P_POSTVA = array($dataline["POST_VA_WITH_SPECT_LEFT"], $dataline["POST_VA_WITH_SPECT_RIGHT"], $dataline["POST_VA_NO_SPECT_LEFT"], $dataline["POST_VA_NO_SPECT_RIGHT"]);
+	  //$P_VA1 = array( str_replace("20/","",$P_PREVA[0]),str_replace("20/","",$P_PREVA[1]),str_replace("20/","",$P_PREVA[2]),str_replace("20/","",$PRE_VA[3]));
 
       //VALUES
       $P_ID = $dataline["PAT_ID_NUM"];
@@ -264,13 +265,15 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
             <table class="table table-condensed">
               <thead> <tr>
                 <th>Condition</th>
-                <th>Scale</th>
+                <th>Pre Surgery</th>
+				<th>Post Surgery</th>
               </tr> </thead>
             <tbody>';
-            for ($t=0; $t < sizeof($P_VA); $t++) {
+            for ($t=0; $t < sizeof($VA_LABEL); $t++) {
               echo '<tr>
                 <td>'.$VA_LABEL[$t].'</td>
-                <td>'.$P_VA[$t].'</td>
+                <td>'.$P_PREVA[$t].'</td>
+                <td>'.$P_POSTVA[$t].'</td>
               </tr>'; }
             echo '</tbody></table>';
         echo '</div>';
@@ -315,172 +318,12 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       //BUTTONS AND LINKS
       echo '<div id="link_buttons">';
       echo '<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
-      echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+      //echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
       echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
       echo '</div>';
       //BUTTONS AND LINKS END
 
-      // POP-UP ALERT
-      echo '<div class="modal fade" id="EditBox" role="dialog" style="">
-        <div class="modal-dialog modal-lg">';
-    
-        //POP-UP CONTENT
-        echo '<div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Edit Record</h4>
-          </div>
-          <div class="modal-body">';
-
-        $leftmargin = 260;
-
-        //EDIT FORM
-        echo '<div class="container-fluid">
-          <form method="post" id="updating" action="#">
-
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="PAT_ID" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
-            <input type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$P_ID.'" style="width: 150px; float: left;" required >
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="PAT_PPFN" style="width: '.$leftmargin.'px; float: left; "> First Name </label>
-            <input type="text" class="form-control" id="PAT_PPFN" maxlength="'.$FN_LENG.'" name="PAT_PPFN" value="'.$P_PPFN.'" style="width: 150px; float: left;" required>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="PAT_PPLN" style="width: '.$leftmargin.'px; float: left; "> Last Name </label>
-            <input type="text" class="form-control" id="PAT_PPLN" maxlength="'.$LN_LENG.'" name="PAT_PPLN" value="'.$P_PPLN.'" style="width: 150px; float: left;" required>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="PHYS_LIC" style="float:left; width:'.$leftmargin.'px;">Physician License No. </label>
-            <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." type="text" class="form-control id="PHYS_LIC" maxlength="'.$PHYL_LENG.'" name="PHYS_LIC" value="'.$P_LN.'" style="width: 90px; float: left;" required>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="STAFF_LIC" style="float:left; width:'.$leftmargin.'px;">Staff License No. </label>
-            <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." type="text" class="form-control id="PHYS_LIC" maxlength="'.$STAFFL_LENG.'" name="STAFF_LIC" value="'.$P_SLN.'" style="width: 90px; float: left;" required>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 0px;">
-          <div class="form-group row">
-            <label class="col-md-4" for="VASL" style="float:left; width:'.$leftmargin.'px;">Left Eye with Spectacles</label>
-            <div class="col-md-3" style="float: left;">
-              <div class="input-group">
-                <span class="input-group-addon">20</span>
-                <span class="input-group-addon">/</span>
-                <select class="form-control" id="VASL"  name="VASL" style="width: 80px; "value="'.$P_VA1[0].'" required>';
-                  for ($j=0; $j < count($VA_choice); $j++) { 
-                    if($P_VA1[0]==$VA_choice[$j]){
-                      echo '<option selected>'.$VA_choice[$j].'</option>';
-                    }else{
-                      echo '<option>'.$VA_choice[$j].'</option>';
-                    }
-                  }
-                echo '</select>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 0px;">
-          <div class="form-group row">
-            <label class="col-md-4" for="VASR" style="float:left; width:'.$leftmargin.'px;">Right Eye with Spectacles</label>
-            <div class="col-md-3" style="float: left;">
-              <div class="input-group">
-                <span class="input-group-addon">20</span>
-                <span class="input-group-addon">/</span>
-                <select class="form-control" id="VASR"  name="VASR" style="width: 80px;" value="'.$P_VA1[1].'" required>';
-                  for ($j=0; $j < count($VA_choice); $j++) { 
-                    if($P_VA1[1]==$VA_choice[$j]){
-                      echo '<option selected>'.$VA_choice[$j].'</option>';
-                    }else{
-                      echo '<option>'.$VA_choice[$j].'</option>';
-                    }
-                  }
-                echo '</select>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 0px;">
-          <div class="form-group row" style="padding:0px;">
-            <label class="col-md-4" for="VAL" style="float:left; width:'.$leftmargin.'px;">Left Eye without Spectacles</label>
-            <div class="col-md-3" style="float: left;">
-              <div class="input-group">
-                <span class="input-group-addon">20</span>
-                <span class="input-group-addon">/</span>
-                <select class="form-control" id="VAL"  name="VAL" style="width: 80px;" value="'.$P_VA1[2].'" required>';
-                  for ($j=0; $j < count($VA_choice); $j++) { 
-                    if($P_VA1[2]==$VA_choice[$j]){
-                      echo '<option selected>'.$VA_choice[$j].'</option>';
-                    }else{
-                      echo '<option>'.$VA_choice[$j].'</option>';
-                    }
-                  }
-                echo '</select>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 0px;">
-          <div class="form-group row">
-            <label class="col-md-4" for="VAR" style="float:left; width:'.$leftmargin.'px;">Right Eye without Spectacles</label>
-            <div class="col-md-3" style="float: left;">
-              <div class="input-group">
-                <span class="input-group-addon">20</span>
-                <span class="input-group-addon">/</span>
-                <select class="form-control" id="VAR"  name="VAR" style="width: 80px;" value="'.$P_VA1[3].'" required>';
-                  for ($j=0; $j < count($VA_choice); $j++) { 
-                    if($P_VA1[3]==$VA_choice[$j]){
-                      echo '<option selected>'.$VA_choice[$j].'</option>';
-                    }else{
-                      echo '<option>'.$VA_choice[$j].'</option>';
-                    }
-                  }
-                echo '</select>
-              </div>
-            </div>
-          </div>
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="VD" style="width: '.$leftmargin.'px; float: left; ">Visual Disability </label>
-            <input type="text" class="form-control" id="VD" maxlength="'.$VD_MAX.'" name="VD" value="'.$P_VD.'" style="width: 150px; float: left;" >
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="DC" style="width: '.$leftmargin.'px; float: left; ">Cause of Visual Disability</label>
-            <input type="text" class="form-control" id="DC" maxlength="'.$DC_MAX.'" name="DC" value="'.$P_DC.'" style="width: 280px; float: left;" >
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="LEA" style="width: '.$leftmargin.'px; float: left; ">Affected part of Left Eye</label>
-            <input type="text" class="form-control" id="DC" maxlength="'.$LEA_MAX.'" name="LEA" value="'.$P_LEA.'" style="width: 130px; float: left;" >
-          </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="LEA" style="width: '.$leftmargin.'px; float: left; ">Affected part of Right Eye</label>
-            <input type="text" class="form-control" id="DC" maxlength="'.$REA_MAX.'" name="REA" value="'.$P_REA.'" style="width: 130px; float: left;" >
-          </div>
-          <div class="text-center" style="margin-top: 20px;">
-            <button type="submit" onclick="update()" class="btn btn-default" value="'.$P_ID.'" name="patients_update">Update</button>
-          </div>
-
-          </form>
-        </div>';
-        //EDIT FORM END
-
-        echo '</div>
-          <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
-          </div>
-        </div>';
-        //POP-UP CONTENT END
-
-        echo '<script>
-          function update() {
-            var id = document.getElementById("PAT_ID").value;
-            document.getElementById("updating").action = "patient.php?profilepage="+id;
-          }
-        </script>';
-      
-      echo '</div>
-        </div>';
-      //POP-UP ALERT END
-
-      //FULL DETAILS PAGE END
+     //EDIT HERE
 
     }else if($DEFAULT==2){
 
