@@ -147,6 +147,7 @@ $currmonth = date("m");
 			while($row = $output->fetch_row()){
 				echo ' <div class="col-md-2" >'.$row[0].'</div>';
 				echo ' <div class="col-md-2" >'.$row[1].'</div>';
+				echo '<br/>';
 			}
 				
 			?>
@@ -158,7 +159,9 @@ $currmonth = date("m");
 			$output = $mydatabase->query($S_query);	
 			while($row = $output->fetch_row()){
 				echo ' <div class="col-md-2" >'.$row[0].'</div>';
+				
 				echo ' <div class="col-md-2" >'.$row[1].'</div>';
+				echo '<br/>';
 			}
 				
 			?>

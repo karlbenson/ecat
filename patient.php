@@ -152,7 +152,7 @@ $VA_choice = array(10, 12.5, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200)
       if($DEFAULT==0){
 
         //FILTER
-        include("patient_filter.php");
+        //include("patient_filter.php");
         //FILTER END
 
         if ($output->num_rows>0) {

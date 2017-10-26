@@ -197,7 +197,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                       <div style="width: 80px; float: left; margin-right:10px;">
                           <label class="sr-only" for="DD">Day</label>
-                          <input pattern="[0-3]\d" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
+                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
                       </div>
 
                       <div  style="width: 100px; float: left; margin-right:10px;">

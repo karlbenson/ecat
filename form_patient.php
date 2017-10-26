@@ -6,10 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="references/bootstrap.min.css">
+  <link rel="stylesheet" href="references/typeahead.css">	
   <link rel="stylesheet" href="references/font-awesome.min.css">
   <script src="references/jquery.min.js"></script>
   <script src="references/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="theme2.css">
+  <script src="references/typeahead.bundle.js"></script>
 
 </head>
 
@@ -113,7 +115,6 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 				  <div class="col-md-4" style="width: 280px; float: left;">
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="M" required>Male</label>
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="F">Female</label>
-					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="C">Chinese</label>
 				  </div>
 
 				  <!--<div class="col-md-3" style="width: 180px; float: left;">
@@ -124,9 +125,9 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by: </label>
+              <label class="control-label col-md-2" for="P_PHY" style="float:left; width:170px;">Examined by: </label>
               <div class="col-md-2" style="width: 180px; float: left;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
+				<input type="text" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Physician" maxlength="<?php echo $ANEST_MAX; ?>" name="P_PHY">
               </div>
 
 			  <!--<div class="col-md-2" style="width: 180px; float: left;">
@@ -357,3 +358,46 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
 </body>
 </html>
+
+<?php
+	include("dbconnect.php");
+
+    $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
+                $arr = array();
+    
+                while ($row = $surgeon->fetch_assoc()) {
+
+                        unset($id, $name1, $name2);
+                        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+                        //$name1 = $row['FIRST_NAME'];
+                        //$name2 = $row['LAST_NAME'];
+                        array_push($arr, $id/*.", ".$name2." ".$name1*/);
+                       
+                }
+?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var arrs= <?php echo json_encode($arr);?>;
+    //var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var arrs = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arrs
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'arrs',
+        source: arrs
+    });
+});  
+</script>

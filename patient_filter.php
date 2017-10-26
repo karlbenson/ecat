@@ -10,7 +10,7 @@ $where = "'patient.php'";
 echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" >Revert</button></div>'; //REVERT END
 
 // FILTER
-echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go" >New Filter</button></div>'; //FILTER END
+//echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go" >New Filter</button></div>'; //FILTER END
 
 // SEARCH
 echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper1" id="go" >Search</button></div>'; //SEARCH END

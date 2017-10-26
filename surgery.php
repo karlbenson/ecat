@@ -203,7 +203,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
       if($DEFAULT==0){
 
         //FILTER
-        include("surgery_filter.php");
+        //include("surgery_filter.php");
         //FILTER END
 
         if ($output->num_rows>0) {
@@ -213,7 +213,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           //HEADER
           echo '<li class="list-group-item" id="tophead">';
           echo '<div class="container-fluid row">';
-          echo '<div style="width:200px; float:left; margin-left:20px;"><b>'.'Date (YYYY-MM-DD)'.'</b></div>';
+          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
           echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
           echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
           echo '</div>';
@@ -226,7 +226,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             echo '<li class="list-group-item">';
             echo '<div class="row">';
 
-                echo '<div style="width:200px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
+                echo '<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
                   $s_primary = $dataline["CASE_NUM"];
                 echo '<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>';
                 echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
@@ -411,8 +411,8 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
       //BUTTONS AND LINKS
       echo '<div id="link_buttons">';
-      echo '<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
-      echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+      echo '<a role="button" class="btn btn-default"'.'href="'.'surgery.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
+     // echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
       echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
       echo '</div>';
       //BUTTONS AND LINKS END
