@@ -113,7 +113,6 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 				  <div class="col-md-4" style="width: 280px; float: left;">
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="M" required>Male</label>
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="F">Female</label>
-					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="C">Chinese</label>
 				  </div>
 
 				  <!--<div class="col-md-3" style="width: 180px; float: left;">
