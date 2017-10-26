@@ -48,8 +48,8 @@ function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR, $D_SP){
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
     //(SAMPLE 2) STILL TO BE REVISED/TESTED....
-function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASR1, $P_VASR2, $P_VASL1, $P_VASL2, $P_VAR1, $P_VAR2, $P_VAL1, $P_VAL2, $P_VISUALDISAB, $P_DISABCAUSE, $P_REA, $P_LEA){
-  $P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASR."','".$P_VASL."','".$P_VAR."','".$P_VAL."','".$P_VISUALDISAB."','".$P_DISABCAUSE."','".$P_REA."','".$P_LEA."')";
+function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASL2, $P_VARL1, $P_VARL2, $P_VAL1, $P_VAL2, $P_VAR1, $P_VAR2, $P_VISUALDISAB, $P_DISABCAUSE, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
+  $P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME.",'".$P_AGE."','".$P_PH.",'".$P_SEX.",'".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".$P_VASL2."','".$P_VASR1."','".$P_VASR2."','".$P_VAL1."','".$P_VAL2."','".$P_VAR1."','".$P_VAR2."','".$P_VISUALDISAB."','".$P_DISABCAUSE."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
   if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { echo "<div class='alert alert-success'>New patient record successfully created.</div>"; }
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
