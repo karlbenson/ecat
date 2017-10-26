@@ -233,6 +233,10 @@ div, li{
 	float: left;
 }
 
+.twitter-typeahead, .tt-hint, .tt-input, .tt-menu { width: 100%; }
+
+.tt-suggestion{font-size: 13px;}
+.tt-menu{width: 115%;}
 /*PRINT SETTINGS*/
 @media print {
 	body, #body{
