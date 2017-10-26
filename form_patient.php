@@ -90,8 +90,14 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 			<!-- PATIENT AGE -->
 				<div class="form-group row">
 				  <label class="control-label col-md-4" for="PAT_AGE" style="float:left; width:170px;">Age: </label>
-				  <div class="col-md-4" style="width: 180px; float: left;">
+				  <div class="col-md-3" style="width: 180px; float: left;">
 					<input type="text" class="form-control" id="PAT_AGE" placeholder="Patient Age" maxlength="2" name="PAT_AGE" required>
+				  </div>
+				  
+				  <div class="col-md-3" style="width: 250px; float: left;">
+					<div class="checkbox">
+					  <label><input type="checkbox" value="">Has PhilHealth</label>
+					</div>
 				  </div>
 
 				  <!--<div class="col-md-3" style="width: 180px; float: left;">
@@ -118,7 +124,7 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="PHYS_LIC" style="float:left; width:170px;">Examined by: </label>
-              <div class="col-md-2" style="width: 120px; float: left;">
+              <div class="col-md-2" style="width: 180px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="PHYS_LIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="PHYS_LIC" required>
               </div>
 
@@ -131,7 +137,7 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
           <!-- STAFF LICENSE NUMBER -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="STAFF_LIC" style="float:left; width:170px;">Screened by: </label>
-              <div class="col-md-2" style="width: 120px; float: left;">
+              <div class="col-md-2" style="width: 180px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="STAFF_LIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="STAFF_LIC" required>
               </div>
 			  <!--<div class="col-md-2" style="width: 180px; float: left;">
