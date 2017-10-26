@@ -91,7 +91,7 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 				<div class="form-group row">
 				  <label class="control-label col-md-3 for="P_AGE" style="float:left; width:170px;">Age: </label>
 				  <div class="col-md-3" style="width: 180px; float: left;">
-					<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="2" required>
+					<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
 				  </div>
 				  
 				  <label class="control-label col-md-4" for="P_PH" style="float:left; width:170px;">Has PhilHealth? </label>
