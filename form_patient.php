@@ -68,39 +68,40 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 			
           <!-- PATIENT -->
             <div class="form-group row">
-              <label class="control-label col-md-3 for="PAT_ID" style="float:left; width:170px;">Patient: </label>
+              <label class="control-label col-md-3 for="P_ID" style="float:left; width:170px;">Patient: </label>
 			  <div class="col-md-3" style="width: 180px; float: left;">
-                <input type="text" class="form-control" id="PAT_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
+                <input type="text" class="form-control" id="P_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="P_ID" required>
               </div>
 			  
 			  <div class="col-md-3" style="width: 250px; float: left;">
-                <input type="text" class="form-control" id="PAT_FNAME" placeholder="First Name" maxlength="20" name="PAT_FNAME" required>
+                <input type="text" class="form-control" id="P_FNAME" placeholder="First Name" maxlength="20" name="P_FNAME" required>
               </div>
 			  
 			  <div class="col-md-3" style="width: 250px; float: left;">
-                <input type="text" class="form-control" id="PAT_LNAME" placeholder="Last Name" maxlength="20" name="PAT_LNAME" required>
+                <input type="text" class="form-control" id="P_LNAME" placeholder="Last Name" maxlength="20" name="P_LNAME" required>
               </div>
 			
               <!--<div class="col-md-3" style="width: 180px; float: left;">
                 <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
               </div> -->
             </div>
-          <!-- PATIENT ID END-->
+          <!-- PATIENT END-->
 			
 			<!-- PATIENT AGE -->
 				<div class="form-group row">
-				  <label class="control-label col-md-4" for="PAT_AGE" style="float:left; width:170px;">Age: </label>
+				  <label class="control-label col-md-3 for="P_AGE" style="float:left; width:170px;">Age: </label>
 				  <div class="col-md-3" style="width: 180px; float: left;">
-					<input type="text" class="form-control" id="PAT_AGE" placeholder="Patient Age" maxlength="2" name="PAT_AGE" required>
+					<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="2" required>
 				  </div>
 				  
-				  <div class="col-md-3" style="width: 250px; float: left;">
-					<div class="checkbox">
-					  <label><input type="checkbox" value="">Has PhilHealth</label>
-					</div>
+				  <label class="control-label col-md-4" for="P_PH" style="float:left; width:170px;">Has PhilHealth? </label>
+				  <div class="col-md-4" style="width: 280px; float: left;">
+					<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="Y">Yes</label>
+					<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="N" required>No</label>
 				  </div>
-
-				  <!--<div class="col-md-3" style="width: 180px; float: left;">
+				  
+					<!--
+				  <div class="col-md-3" style="width: 180px; float: left;">
 					<input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
 				  </div> -->
 				</div>
@@ -108,12 +109,12 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 			
 			<!-- PATIENT SEX -->
 				<div class="form-group row">
-				  <label class="control-label col-md-4" for="PAT_SEX" style="float:left; width:170px;">Sex: </label>
+				  <label class="control-label col-md-4" for="P_SEX" style="float:left; width:170px;">Sex: </label>
 				  <div class="col-md-4" style="width: 280px; float: left;">
-					<label class="radio-inline" id="PAT_SEX"><input type="radio" name="sex">Male</label>
-					<label class="radio-inline" id="PAT_SEX"><input type="radio" name="sex">Female</label>
-					<label class="radio-inline" id="PAT_SEX"><input type="radio" name="sex">Chinese</label>
-				</div>
+					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="M" required>Male</label>
+					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="F">Female</label>
+					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="C">Chinese</label>
+				  </div>
 
 				  <!--<div class="col-md-3" style="width: 180px; float: left;">
 					<input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
@@ -123,9 +124,9 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="PHYS_LIC" style="float:left; width:170px;">Examined by: </label>
+              <label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by: </label>
               <div class="col-md-2" style="width: 180px; float: left;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="PHYS_LIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="PHYS_LIC" required>
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
               </div>
 
 			  <!--<div class="col-md-2" style="width: 180px; float: left;">
@@ -136,9 +137,9 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
           <!-- STAFF LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="STAFF_LIC" style="float:left; width:170px;">Screened by: </label>
+              <label class="control-label col-md-2" for="P_STAFFLIC" style="float:left; width:170px;">Screened by: </label>
               <div class="col-md-2" style="width: 180px; float: left;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="STAFF_LIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="STAFF_LIC" required>
+                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
               </div>
 			  <!--<div class="col-md-2" style="width: 180px; float: left;">
                 <input pattern="\d{7}" title="Staff Name" class="form-control" id="STAFF_LIC" placeholder="Staff Name" maxlength="<?php echo $MAX_NAME; ?>" name="STAFF_NAME" required>
@@ -163,14 +164,14 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 						<tr>
 							<td><strong>Left Eye with Spectacles</strong></td>
 							<td>
-								<select class="form-control" id="VASL1"  name="VASL1" style="width: 200px;" required>
+								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
 							   </select>
 							</td>
 							<td>
-								<select class="form-control" id="VASL2"  name="VASL2" style="width: 200px;" required>
+								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
@@ -182,14 +183,14 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 						<tr>
 							<td><strong>Right Eye with Spectacles</strong></td>
 							<td>
-								<select class="form-control" id="VASR1"  name="VASR1" style="width: 200px;" required>
+								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
 							   </select>
 							</td>
 							<td>
-								<select class="form-control" id="VASR2"  name="VASR2" style="width: 200px;" required>
+								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
@@ -201,14 +202,14 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 						<tr>
 							<td><strong>Left Eye without Spectacles</strong></td>
 							<td>
-								<select class="form-control" id="VAL1"  name="VAL1" style="width: 200px;" required>
+								<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
 							   </select>
 							</td>
 							<td>
-								<select class="form-control" id="VAL2"  name="VAL2" style="width: 200px;" required>
+								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
@@ -220,14 +221,14 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 						<tr>
 							<td><strong>Right Eye without Spectacles</strong></td>
 							<td>
-								<select class="form-control" id="VAR1"  name="VAR1" style="width: 200px;" required>
+								<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
 							   </select>
 							</td>
 							<td>
-								<select class="form-control" id="VAR2"  name="VAR2" style="width: 200px;" required>
+								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 200px;" required>
 								  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 									echo "<option>".$VA_choice[$j]."</option>";
 								   } ?>
@@ -253,36 +254,36 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
 						  <!-- VISUAL DISABILITY -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="VD" style="float:left; width:170px;">Visual Disability </label>
+							  <label class="control-label col-md-2" for="P_VD" style="float:left; width:170px;">Visual Disability </label>
 							  <div class="col-md-4" style="width: 400px;">
-								<input type="text" class="form-control" id="VD" placeholder="Enter the patient's eye disability..." maxlength="<?php echo $VD_MAX; ?>" name="VD">
+								<input type="text" class="form-control" id="P_VD" placeholder="Enter the patient's eye disability..." maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
 							  </div>
 							</div>
 						  <!-- VISUAL DISABILITY -->
 
 						  <!-- CAUSE OF DISABILITY -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="DC" style="float:left; width:170px;">Cause </label>
+							  <label class="control-label col-md-2" for="P_DC" style="float:left; width:170px;">Cause </label>
 							  <div class="col-md-6" style="width: 400px;">
-								<input type="text" class="form-control" id="DC" placeholder="Enter the cause of the patient's visual disability..." maxlength="<?php echo $DC_MAX; ?>" name="DC">
+								<input type="text" class="form-control" id="P_DC" placeholder="Enter the cause of the patient's visual disability..." maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
 							  </div>
 							</div>
 						  <!-- CAUSE OF DISABILITY END -->
 						  
 						  <!-- DIAGNOSIS -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="Diag" style="float:left; width:170px;">Diagnosis </label>
+							  <label class="control-label col-md-2" for="P_DIAG" style="float:left; width:170px;">Diagnosis </label>
 							  <div class="col-md-6" style="width: 400px;">
-								<input type="text" class="form-control" id="Diag" placeholder="Enter the doctor's diagnosis..." maxlength="15" name="Diag">
+								<input type="text" class="form-control" id="P_DIAG" placeholder="Enter the doctor's diagnosis..." maxlength="15" name="P_DIAG">
 							  </div>
 							</div>
 						  <!-- DIAGNOSIS END -->
 						  
 						  <!-- PROCEDURE -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="Proc" style="float:left; width:170px;">Procedure </label>
+							  <label class="control-label col-md-2" for="P_PROC" style="float:left; width:170px;">Procedure </label>
 							  <div class="col-md-6" style="width: 400px;">
-								<input type="text" class="form-control" id="Proc" placeholder="Enter the procedure to be done..." maxlength="15" name="Proc">
+								<input type="text" class="form-control" id="P_PROC" placeholder="Enter the procedure to be done..." maxlength="15" name="P_PROC">
 							  </div>
 							</div>
 						  <!-- PROCEDURE END -->
@@ -302,18 +303,18 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 
 						  <!-- AFFECTED PART OF RIGHT EYE -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="REA" style="float:left; width:170px;">Right Eye</label>
+							  <label class="control-label col-md-2" for="P_REA" style="float:left; width:170px;">Right Eye</label>
 							  <div class="col-md-4" style="width: 200px;">
-								<input type="" class="form-control" id="REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="REA">
+								<input type="" class="form-control" id="P_REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="P_REA">
 							  </div>
 							</div>
 						  <!-- AFFECTED PART OF RIGHT EYE END -->
 							
 						  <!-- AFFECTED PART OF LEFT EYE -->
 							<div class="form-group row">
-							  <label class="control-label col-md-2" for="LEA" style="float:left; width:170px;">Left Eye</label>
+							  <label class="control-label col-md-2" for="P_LEA" style="float:left; width:170px;">Left Eye</label>
 							  <div class="col-md-4" style="width: 200px;">
-								<input type="" class="form-control" id="LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="LEA">
+								<input type="" class="form-control" id="P_LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="P_LEA">
 							  </div>
 							</div>
 						  <!-- AFFECTED PART OF LEFT EYE END -->

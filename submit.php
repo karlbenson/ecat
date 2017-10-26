@@ -48,8 +48,8 @@ function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR, $D_SP){
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
     //(SAMPLE 2) STILL TO BE REVISED/TESTED....
-function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASL2, $P_VARL1, $P_VARL2, $P_VAL1, $P_VAL2, $P_VAR1, $P_VAR2, $P_VISUALDISAB, $P_DISABCAUSE, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
-  $P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME.",'".$P_AGE."','".$P_PH.",'".$P_SEX.",'".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".$P_VASL2."','".$P_VASR1."','".$P_VASR2."','".$P_VAL1."','".$P_VAL2."','".$P_VAR1."','".$P_VAR2."','".$P_VISUALDISAB."','".$P_DISABCAUSE."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
+function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASL2, $P_VASR1, $P_VASR2, $P_VAL1, $P_VAL2, $P_VAR1, $P_VAR2, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
+  $P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".$P_VASL2."','".$P_VASR1."','".$P_VASR2."','".$P_VAL1."','".$P_VAL2."','".$P_VAR1."','".$P_VAR2."','".$P_VD."','".$P_DC."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
   if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { echo "<div class='alert alert-success'>New patient record successfully created.</div>"; }
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
@@ -94,22 +94,31 @@ function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIS
         }else if (isset($_POST['patients_info'])) {
 			
 			  //PATIENT INFORMATION FIELDS
-        		$PAT_FNAME = $_POST["PF_NAME"];	//...
-        		$PAT_LNAME = $_POST["PL_NAME"]; //...
-				$PAT_ID_NUM1 = $_POST["PAT_ID"];       
-				$PHY_LICENSE_NUM = $_POST["PHYS_LIC"];
-				$STAFF_LICENSE_NUM = $_POST["STAFF_LIC"];  
-				$VA_WITH_SPECT_RIGHT = '20/'.$_POST["VASR"];     
-				$VA_WITH_SPECT_LEFT = '20/'.$_POST["VASL"];     
-				$VA_NO_SPECT_RIGHT = '20/'.$_POST["VAR"];
-				$VA_NO_SPECT_LEFT = '20/'.$_POST["VAL"];
-				$VISUAL_DISABILITY = $_POST["VD"];         
-				$DISABILITY_CAUSE = $_POST["DC"];          
-				$RIGHT_EYE_AFFECTED = $_POST["REA"];       
-				$LEFT_EYE_AFFECTED = $_POST["LEA"];        
+				$P_ID = $_POST["P_ID"];  
+        		$P_FNAME = $_POST["P_FNAME"];
+        		$P_LNAME = $_POST["P_LNAME"];
+				$P_AGE = $_POST["P_AGE"];
+				$P_PH = $_POST["P_PH"];
+				$P_SEX = $_POST["P_SEX"];
+				$P_PHYLIC = $_POST["P_PHYLIC"];
+				$P_STAFFLIC = $_POST["P_STAFFLIC"];
+				$P_VASL1 = $_POST["P_VASL1"];
+				$P_VASL2 = $_POST["P_VASL2"];
+				$P_VASR1 = $_POST["P_VASR1"];
+				$P_VASR2 = $_POST["P_VASR2"];
+				$P_VAL1 = $_POST["P_VAL1"];
+				$P_VAL2 = $_POST["P_VAL2"];
+				$P_VAR1 = $_POST["P_VAR1"];
+				$P_VAR2 = $_POST["P_VAR2"];
+				$P_VD = $_POST["P_VD"];         
+				$P_DC = $_POST["P_DC"];          
+				$P_DIAG = $_POST["P_DIAG"];       
+				$P_PROC = $_POST["P_PROC"];          
+				$P_REA = $_POST["P_REA"];       
+				$P_LEA = $_POST["P_LEA"];        
 				  //PATIENT INFORMATION FIELDS END
 			
-          SUBMIT_EYEPATIENT($PAT_ID_NUM1, $PAT_FNAME, $PAT_LNAME, $PHY_LICENSE_NUM, $STAFF_LICENSE_NUM, $VA_WITH_SPECT_RIGHT, $VA_WITH_SPECT_LEFT, $VA_NO_SPECT_RIGHT, $VA_NO_SPECT_LEFT, $VISUAL_DISABILITY, $DISABILITY_CAUSE, $RIGHT_EYE_AFFECTED, $LEFT_EYE_AFFECTED);
+          SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASL2, $P_VASR1, $P_VASR2, $P_VAL1, $P_VAL2, $P_VAR1, $P_VAR2, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA);
         }else if (isset($_POST['surgery_info'])) {
 			
 			  //SURGERY INFORMATION FIELDS
