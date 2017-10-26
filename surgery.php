@@ -213,7 +213,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           //HEADER
           echo '<li class="list-group-item" id="tophead">';
           echo '<div class="container-fluid row">';
-          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
+          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (YYYY-MM-DD)'.'</b></div>';
           echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
           echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
           echo '</div>';
