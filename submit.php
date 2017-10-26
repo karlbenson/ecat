@@ -28,7 +28,7 @@
     <h4>Form Submission</h4> <br>
   </div>
 <!-- TITLE -->
-
+	
 <?php  //CODE SECTION START
 
 //ESTABLISHING MYSQL LINK (1)
@@ -42,8 +42,8 @@ $error = "Error. ";
 
   //INSERT INTO DATABASE 
     //(SAMPLE 1) STILL TO BE REVISED/TESTED....
-function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR){
-  $D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."')";
+function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR, $D_SP){
+  $D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."','".$D_SP."')";
   if ($GLOBALS['mydatabase']->query($D_query) === TRUE) { echo "<div class='alert alert-success'>New doctor record successfully created.</div>"; }
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
@@ -54,8 +54,8 @@ function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_SEX, $P_PHYLIC,
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
     //(SAMPLE 3) STILL TO BE REVISED/TESTED....
-function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_DIAG, $S_CLEAR, $S_SURGADDR, $S_SURGDATE, $S_REMARK){
-  $S_query = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_DIAG."','".$S_CLEAR."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."')";
+function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_DIAG, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_TANEST, $S_INTERN, $S_ANESTHE, $S_IOLP,$SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL, $CSF_HB, $CSF_SUPP, $CSF_L){
+  $S_query = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_DIAG."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_TANEST."','".$S_INTERN."','".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."')";
   if ($GLOBALS['mydatabase']->query($S_query) === TRUE) { echo "<div class='alert alert-success'>New surgery record successfully created.</div>"; }
   else { echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; }
 }//END
@@ -88,8 +88,9 @@ function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIS
 				$L_NAME = $_POST["L_NAME"];
 				$LICENSE_NUM = $_POST["LICENSE_NUM"];
 				$ADDRESS = $_POST["ADDRESS"];
+				$SPECIALIZATION = $_POST["SPECIALIZATION"];
 				//DOCTOR INFORMATION END
-          SUBMIT_DOCTOR($F_NAME, $L_NAME, $LICENSE_NUM, $ADDRESS);
+          SUBMIT_DOCTOR($F_NAME, $L_NAME, $LICENSE_NUM, $ADDRESS, $SPECIALIZATION);
         }else if (isset($_POST['patients_info'])) {
 			
 			  //PATIENT INFORMATION FIELDS
@@ -112,19 +113,32 @@ function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIS
         }else if (isset($_POST['surgery_info'])) {
 			
 			  //SURGERY INFORMATION FIELDS
-				$CASE_NUM = $_POST["CASE_NUM"];       
-				$SURG_LICENSE_NUM = $_POST["SURG_LIC"];  
-				$PAT_ID_NUM2 = $_POST["PAT_ID"];          
+				$CASE_NUM = $_POST["CASE_NUM"];
+				$SURGEON = $_POST["SURG_NAME"];
+				$S_LIST = explode("-",$SURGEON);
+				$SURG_LICENSE_NUM = $S_LIST[1];
+				$P_LIST = explode("-",$_POST["PAT_NAME"]);
+				$PAT_ID_NUM2 = $P_LIST[1]; 
 				$VISUAL_IMPARITY = $_POST["VI"];         
 				$MED_HISTORY = $_POST["MED_HIST"];       
 				$DIAGNOSIS = $_POST["DIAG"];             
-				$CLEARANCE_NUM = $_POST["CLEAR"];        
+				$SURG_ANESTHESIA = $_POST["TANES"];
 				$SURG_ADDRESS = $_POST["SURG_ADD"];                      
 				$SURG_DATE = $_POST["YY"]."-".$_POST["MM"]."-".$_POST["DD"];
-				$REMARKS = $_POST["REM"];                                 
-				  //SURGERY INFORMATION FIELDS END
+				$REMARKS = $_POST["REM"];  
+				$INTERNIST = $_POST["INTER"];
+				$ANESTHESIOLOGIST = $_POST["ANEST"];
+				$IOLPOWER = $_POST["IOL"];
+				$PC_IOL = $_POST["PCIOL"];
+				$PC_LAB = $_POST["PCLAB"];
+				$PC_PF =  $_POST["PCPF"];
+				$SPO_IOL = $_POST["SPOIOL"];
+				$CSF_HBILL = $_POST["CSFHBILL"];
+				$CSF_SUPPLIES = $_POST["CSFSUP"];
+				$CSF_LAB = $_POST["CSFLAB"];
+				//SURGERY INFORMATION FIELDS END
 			
-          SUBMIT_SURGERY($CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $CLEARANCE_NUM, $SURG_ADDRESS, $SURG_DATE, $REMARKS);
+          SUBMIT_SURGERY($CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $SURG_ANESTHESIA, $INTERNIST, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB);
         }
         $mydatabase->close();
 

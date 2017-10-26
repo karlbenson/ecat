@@ -82,9 +82,11 @@ $ADDR_MAX = 50;
           $D_LN = $_POST['L_NAME'];
           $D_FN = $_POST['F_NAME'];
           $D_A = $_POST['ADDRESS'];
-          $toupdate = $_POST['doctors_update'];
+          $D_S = $_POST['SPECIALIZATION'];
+		 
+		 $toupdate = $_POST['doctors_update'];
 
-          $D_update = "UPDATE DOCTOR SET DOC_LICENSE_NUM = '$D_DLN', LAST_NAME = '$D_LN', FIRST_NAME = '$D_FN', ADDRESS ='$D_A' WHERE DOC_LICENSE_NUM = '$toupdate' ";
+          $D_update = "UPDATE DOCTOR SET DOC_LICENSE_NUM = '$D_DLN', LAST_NAME = '$D_LN', FIRST_NAME = '$D_FN', ADDRESS ='$D_A', SPECIALIZATION = '$D_S'  WHERE DOC_LICENSE_NUM = '$toupdate' ";
       
           if ($mydatabase->query($D_update) === TRUE) {
             //echo "Record updated successfully";
@@ -120,7 +122,9 @@ $ADDR_MAX = 50;
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'Last Name'.'</b></div>';
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'First Name'.'</b></div>';
           echo '<div class="col-md-1" style="width:120px; float:left;"><b>'.'License No.'.'</b></div>';
+		  echo '<div class="col-md-1" style="width:150px; float:left;"><b>'.'Specialization'.'</b></div>';
           echo '<div class="col-md-5" style="float:left;"><b>'.'Address'.'</b></div>';
+		  
           echo '</div>';
           echo '</li>';
           //HEADER END
@@ -132,6 +136,7 @@ $ADDR_MAX = 50;
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["LAST_NAME"].'</div>';
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["FIRST_NAME"].'</div>';
                 echo '<div class="col-md-1" style="width:120px; float:left;">'.$dataline["DOC_LICENSE_NUM"].'</div>';
+				echo '<div class="col-md-1" style="width:150px; float:left;">'.$dataline["SPECIALIZATION"].'</div>';
                 echo '<div class="col-md-5" style="float:left;">'.$dataline["ADDRESS"].'</div>';
                 echo '<div class="col-md-2" style="width:150px; float:right;"><a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'see more'.'</a></div>';
             echo '<div>';
@@ -177,6 +182,8 @@ $ADDR_MAX = 50;
         $D_FN = $dataline["FIRST_NAME"];
         $D_DLN = $dataline["DOC_LICENSE_NUM"];
         $D_A = $dataline["ADDRESS"];
+		$D_SP = $dataline["SPECIALIZATION"];
+
       //VALUES END
 
       //CONTENT
@@ -192,6 +199,10 @@ $ADDR_MAX = 50;
             <div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Address'.'</div>
               <div class="col-md-9">'.$D_A.'</div>
+            </div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'Specialization'.'</div>
+              <div class="col-md-9">'.$D_SP.'</div>
             </div>
           </div>
         </div>
@@ -238,7 +249,18 @@ $ADDR_MAX = 50;
             <label for="ADDRESS" style="width: 175px; float: left; ">Address </label>
             <input type="text" class="form-control" id="ADDRESS" maxlength="'.$ADDR_MAX.'" name="ADDRESS" value="'.$D_A.'" style="max-width: 450px; float: left;">
           </div>
-          <div class="text-center" style="margin-top: 20px;">
+			<div class="container-fluid" style="margin-bottom: 10px;">
+				<label for="SPECIALIZATION" style="width: 175px; float: left; ">Specialization</label>
+				<select class="form-control" id="SPECIALIZATION" name="SPECIALIZATION" style="max-width: 250px; float: left;">
+					<option value = "">Select specialization</option>
+					<option value = "Pediatrician">Pediatrician</option>
+					<option value = "Optalmologist">Optalmologist</option>
+					<option value = "Anesthesiologist">Anesthesiologist</option>
+					<option value = "Surgeon">Surgeon</option>
+					<option value = "Internist">Internist</option>
+				</select>
+		  </div>
+		 <div class="text-center" style="margin-top: 20px;">
             <button type="submit" onclick="update()" class="btn btn-default" value="'.$D_DLN.'" name="doctors_update">Update</button>
           </div>
 

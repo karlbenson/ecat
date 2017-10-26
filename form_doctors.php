@@ -69,7 +69,7 @@ $ADDR_MAX = 50;
 
               <!-- LAST NAME -->
                 <div style="width: 175px; float: left; margin-right:10px;">
-                  <label class="sr-only" for="L_NAME">Last Name</label>
+					<label class="sr-only" for="L_NAME">Last Name</label>
                   <input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
                 </div>
               <!-- LAST NAME END -->
@@ -95,8 +95,25 @@ $ADDR_MAX = 50;
               </div>
             </div>
           <!-- ADDRESS END -->
-
-          <!-- ENTER -->
+		
+		<!-- SPECIALIZATION -->
+            <div class="form-group row">
+              <label class="control-label col-md-2" for="SPECIALIZATION" style="float:left; width:170px;">Specialization</label>
+              <div style="width: 250px; float: left;">
+                <select type="text" name="SPECIALIZATION" class="form-control" id="SPECIALIZATION">
+				<option value = "">Select specialization</option>
+					<option value = "Pediatrician">Pediatrician</option>
+					<option value = "Optalmologist">Optalmologist</option>
+					<option value = "Anesthesiologist">Anesthesiologist</option>
+					<option value = "Surgeon">Surgeon</option>
+					<option value = "Internist">Internist</option>
+				</select>
+				
+			  </div>
+            </div>
+          <!-- SPECIALIZATION END -->
+         
+		 <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
             <button type="submit" class="btn" id="go" name="doctors_info">Submit</button>
           </div>

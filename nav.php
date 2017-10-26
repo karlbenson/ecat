@@ -3,8 +3,8 @@
   $page = array(" Home ", " Doctors ", " Patient ", " Surgery ");
   $link = array("Home.php", "doctors.php", "patient.php", "surgery.php");
   $link_sym = array("home", "stethoscope", "id-card", "bed");
-  $link1 = array("form_doctors.php", "form_surgery.php");
-  $link1_label = array("Doctor Form", "Surgery Form");
+  $link1 = array("form_doctors.php","form_patient.php", "form_surgery.php");
+  $link1_label = array("Doctor Form", "Patient Form", "Surgery Form");
   $doctor = array("Physicians", "Surgeons");
   $i = 0;
   $s=0;
@@ -105,7 +105,7 @@ function delayform(){
 
 echo '<div class="container" id="headlogo" style="transition: 0.5s; background: linear-gradient(to bottom right, rgba(92, 184, 92, 0.9) 40%, rgba(92, 184, 92, 0) 110%); padding: 10px; width: calc(100% - 100px); height:60px; margin-left:100px; margin-bottom: 10px; min-width: 950px;">
   <div >
-    <img style="float:left; height:40px; margin-left:15px; opacity:0.9;" src="/images/luke_logo.bmp">
+    <img style="float:left; height:40px; margin-left:15px; opacity:0.9;" src="images/luke_logo.bmp">
     <p style="float:left; font-size:16pt; color:#ffffff; margin: 5px 20px;"> LUKE FOUNDATION, INC. </p>
   </div>
   <div style="float:right;">

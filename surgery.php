@@ -35,11 +35,16 @@ $SURG_LENG = 7;
 $ID_LENG = 15;
 $VI_MAX = 100;
 $HIST_MAX = 100;
+$TANES_MAX = 25;
 $DIAG_MAX = 100;
-$CLEAR_LENG = 10;
 $SURGADD_MAX = 50;
-$SURG_DATE_YY = 4; $SURG_DATE_DD = 2;
+$SURG_DATE_YY = 4; 
+$SURG_DATE_DD = 2;
 $REM_MAX = 100;
+$INTER_MAX = 40;
+$ANEST_MAX = 40;
+$IOL_MAX = 20;
+$PC_MAX = 10;
 $MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 //MAX VALUES END
 
@@ -80,13 +85,24 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           $S_VI = $_POST["VI"];         
           $S_MH = $_POST["MED_HIST"];       
           $S_D = $_POST["DIAG"];
-          $S_CLR = $_POST["CLEAR"];
-          $S_A = $_POST["SURG_ADDRESS"];                      
+		  $S_A = $_POST["SURG_ADDRESS"];                      
           $S_DATE = $_POST["YY"]."-".$_POST["MM"]."-".$_POST["DD"];
           $S_R = $_POST["REM"];                                 
-          $toupdate = $_POST["surgery_update"];
+          $S_TA = $_POST["SURG_ANESTHESIA"];	
+		  $S_I = $_POST["INTERNIST"];
+		  $S_AN = $_POST["ANESTHESIOLOGIST"];
+		  $S_IOL = $_POST["IOLPOWER"];
+		  $PC_IOL = $_POST["PC_IOL"];
+		  $PC_L = $_POST["PC_LAB"];
+		  $PC_PF = $_POST["PC_PF"];
+		  $SP_IOL = $_POST["SPO_IOL"];
+		  $C_HB = $_POST["CSF_HBILL"];
+		  $C_S = $_POST["CSF_SUPPLIES"];
+		  $C_L = $_POST["CSF_LAB"];
+		 $toupdate = $_POST["surgery_update"];
 
-          $S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', DIAGNOSIS = '$S_D', CLEARANCE_NUM = '$S_CLR', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R' WHERE CASE_NUM = '$toupdate' ";
+          $S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', DIAGNOSIS = '$S_D', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I',		  ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL' 
+		  , PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$CSF_LAB' WHERE CASE_NUM = '$toupdate' ";
       
           if ($mydatabase->query($S_update) === TRUE) {
             //echo "Record updated successfully";
@@ -197,10 +213,9 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           //HEADER
           echo '<li class="list-group-item" id="tophead">';
           echo '<div class="container-fluid row">';
-          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
+          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (YYYY-MM-DD)'.'</b></div>';
           echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
           echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
-          echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Clearance No.'.'</b></div>';
           echo '</div>';
           echo '</li>';
           //HEADER END
@@ -215,7 +230,6 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                   $s_primary = $dataline["CASE_NUM"];
                 echo '<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>';
                 echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
-                echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["CLEARANCE_NUM"].'</div>';
                 echo '<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
               
             echo '</div>';
@@ -265,10 +279,20 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
       $S_VI = $dataline["VISUAL_IMPARITY"];
       $S_MH = $dataline["MED_HISTORY"];
       $S_D = $dataline["DIAGNOSIS"];
-      $S_CLR = $dataline["CLEARANCE_NUM"];
       $S_A = $dataline["SURG_ADDRESS"];
       $S_DATE = $dataline["SURG_DATE"];
       $S_R = $dataline["REMARKS"];
+	  $S_TA = $dataline["SURG_ANESTHESIA"];
+	  $S_I = $dataline["INTERNIST"];
+	  $S_AN = $dataline["ANESTHESIOLOGIST"];
+	  $S_IOL = $dataline["IOLPOWER"];
+	  $PC_IOL = $dataline["PC_IOL"];
+	  $PC_L = $dataline["PC_LAB"];
+	  $PC_PF = $dataline["PC_PF"];
+	  $SP_IOL = $dataline["SPO_IOL"];
+	  $C_HB = $dataline["CSF_HBILL"];
+	  $C_S = $dataline["CSF_SUPPLIES"];
+	  $C_L = $dataline["CSF_LAB"];
       $date = explode("-", $S_DATE);
       //VALUES END
 
@@ -278,11 +302,23 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
           <h3>Case No. '.$S_CN.'</h3>
           <div class="panel panel-default" style="padding-bottom:10px;">
             <div class="panel-heading" id="tophead1">Surgery Details</div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Clearance Number'.'</div>
-              <div class="col-md-6">'.$S_CLR.'</div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'Internist'.'</div>
+              <div class="col-md-6">'.$S_I.'</div>
             </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'Anesthesiologist'.'</div>
+              <div class="col-md-6">'.$S_AN.'</div>
+            </div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'IOL Power'.'</div>
+              <div class="col-md-6">'.$S_IOL.'</div>
+            </div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'Type of Anesthesia'.'</div>
+              <div class="col-md-6">'.$S_TA.'</div>
+            </div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
               <div class="col-md-3" >'.'Surgery Address'.'</div>
               <div class="col-md-6">'.$S_A.'</div>
             </div>
@@ -329,7 +365,46 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
               <div class="col-md-3" >'.'Remarks'.'</div>
               <div class="col-md-5">'.$S_R.'</div>
             </div>
-          </div>
+        <div class="panel panel-default" style="padding-bottom:10px;">
+            <div class="panel-heading" style="border: 0px; font-weight:bold;">Financial Information</div>
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'<b>Patient Counterpart</b>'.'</div>
+			</div>
+		   <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'IOL'.'</div>
+              <div class="col-md-5">'.$PC_IOL.'</div>
+            </div>
+            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'Lab'.'</div>
+              <div class="col-md-5">'.$PC_L.'</div>
+            </div>
+            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'PF (Others)'.'</div>
+              <div class="col-md-5">'.$PC_PF.'</div>
+            </div>
+			
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'<b>SPONSORED IOL</b>'.'</div>
+              <div class="col-md-5">'.$SP_IOL.'</div>
+            </div>
+
+			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'<b>CSF</b>'.'</div>
+			</div>
+		   <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'HBILL'.'</div>
+              <div class="col-md-5">'.$C_HB.'</div>
+            </div>
+            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'SUPPLIES'.'</div>
+              <div class="col-md-5">'.$C_S.'</div>
+            </div>
+            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
+              <div class="col-md-3" >'.'LAB'.'</div>
+              <div class="col-md-5">'.$C_L.'</div>
+            </div>
+		</div>
+		  </div>
         </div>
       </div>';
       //CONTENT END
@@ -364,11 +439,23 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
             <input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." type="text" class="form-control" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required >
           </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="CLEAR" style="width: '.$leftmargin.'px; float: left; ">Clearance No. </label>
-            <input type="text" class="form-control" id="CLEAR" maxlength="'.$CLEAR_LENG.'" name="CLEAR" value="'.$S_CLR.'" style="width: 150px; float: left;" required >
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Internist</label>
+            <input type="text" class="form-control" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" value="'.$S_I.'" style="max-width: 225px; float: left;">
           </div>
-          <div class="container-fluid" style="margin-bottom: 10px;">
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="ANESTHESIOLOGIST" style="width: '.$leftmargin.'px; float: left; ">Anesthesiologist</label>
+            <input type="text" class="form-control" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" value="'.$S_AN.'" style="max-width: 225px; float: left;">
+          </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="IOLPOWER" style="width: '.$leftmargin.'px; float: left; ">IOL Power</label>
+            <input type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="max-width: 225px; float: left;">
+          </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="SURG_ANESTHESIA" style="width: '.$leftmargin.'px; float: left; ">Type of Anesthesia</label>
+            <input type="text" class="form-control" id="SURG_ANESTHESIA" maxlength="'.$TANES_MAX.'" name="SURG_ANESTHESIA" value="'.$S_TA.'" style="max-width: 225px; float: left;">
+        </div>
+		  <div class="container-fluid" style="margin-bottom: 10px;">
             <label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address </label>
             <input type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
           </div>
@@ -404,7 +491,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <input type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required >
           </div>
           <div class="container-fluid" style="margin-bottom: 10px;">
-            <label for="VI" style="width: '.$leftmargin.'px; float: left; ">Patient Visual Imparity </label>
+            <label for="VI" style="width: '.$leftmargin.'px; float: left; ">Patient Visual Impairment </label>
             <textarea type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="max-width: 550px; float: left;" rows="2" required>'.$S_VI.'</textarea>
           </div>
           <div class="container-fluid" style="margin-bottom: 10px;">
@@ -419,8 +506,42 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <label for="REM" style="width: '.$leftmargin.'px; float: left; ">Surgeon Remarks </label>
             <textarea type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="max-width: 550px; float: left;" rows="2" >'.$S_R.'</textarea>
           </div>
-
-          <div class="text-center" style="margin-top: 20px;">
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="PC" style="width: '.$leftmargin.'px; float: left; ">Patient Counterpart</label>
+		</div>
+        <div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="PC_IOL" style="width: '.$leftmargin.'px; float: left; ">IOL</label>
+            <input type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$PC_IOL.'" style="max-width: 225px; float: left;">
+        </div>		
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="PC_LAB" style="width: '.$leftmargin.'px; float: left; ">LAB</label>
+            <input type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$PC_L.'" style="max-width: 225px; float: left;">
+        </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="PC_PF" style="width: '.$leftmargin.'px; float: left; ">PF(Others)</label>
+            <input type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$PC_PF.'" style="max-width: 225px; float: left;">
+        </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
+            <input type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SPO_IOL.'" style="max-width: 225px; float: left;">
+        </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="PC" style="width: '.$leftmargin.'px; float: left; ">CSF</label>
+		</div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="CSF_HBILL" style="width: '.$leftmargin.'px; float: left; ">HBILL</label>
+            <input type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$C_HB.'" style="max-width: 225px; float: left;">
+        </div>
+		 <div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="CSF_SUPPLIES" style="width: '.$leftmargin.'px; float: left; ">SUPPLIES</label>
+            <input type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$C_S.'" style="max-width: 225px; float: left;">
+        </div>
+		<div class="container-fluid" style="margin-bottom: 10px;">
+            <label for="CSF_LAB" style="width: '.$leftmargin.'px; float: left; ">LAB</label>
+            <input type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$C_L.'" style="max-width: 225px; float: left;">
+        </div>
+		  
+		  <div class="text-center" style="margin-top: 20px;">
             <button type="submit" onclick="update()" class="btn btn-default" value="'.$S_CN.'" name="surgery_update">Update</button>
           </div>
 

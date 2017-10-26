@@ -1,7 +1,7 @@
 <?php
 $server = "localhost";  //own database server name
 $username = "root"; //own database username
-$password = "root";  //own database password
+$password = "";  //own database password
 $database = "lukedb";  //own database name
 
   //CONNECT TO SERVER

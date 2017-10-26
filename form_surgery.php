@@ -6,11 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="references/bootstrap.min.css">
+  <link rel="stylesheet" href="references/typeahead.css">
   <link rel="stylesheet" href="references/font-awesome.min.css">
   <script src="references/jquery.min.js"></script>
   <script src="references/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="theme2.css">
-
+  <script src="references/typeahead.bundle.js"></script>
+  
 </head>
 
 <body style="justify-content: center;">
@@ -38,11 +40,16 @@ $ID_LENG = 15;
 $VI_MAX = 100;
 $HIST_MAX = 100;
 $DIAG_MAX = 100;
-$CLEAR_LENG = 10;
+$TANES_MAX = 25;
 $SURGADD_MAX = 50;
-$SURG_DATE_YY = 4; $SURG_DATE_DD = 2;
+$SURG_DATE_YY = 4; 
+$SURG_DATE_DD = 2;
 $REM_MAX = 100;
 $MAX_NAME = 40;
+$INTER_MAX = 40;
+$ANEST_MAX = 40;
+$IOL_MAX = 20;
+$PC_MAX = 10;
 $MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 //SURGERY INFORMATION FIELDS END
 
@@ -54,7 +61,7 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
   <div id="inner">
   <!-- CONTENT -->
-		<div class="container-fluid" >
+    <div class="container-fluid" >
       
       <!-- FORMS -->
         <div class="container-fluid">
@@ -76,17 +83,23 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <div class="form-group row">
               <label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Conducted by: </label>
               <div class="col-md-7" style="float:left;">
-              <div style="width: 120px; float: left; margin-right:10px;">
-                <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="SURG_LIC" placeholder="Surg. Lic." maxlength="<?php echo $SURG_LENG; ?>" name="SURG_LIC" required>
+              <div style="width: 200px; float: left; ">
+                <input class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40" name="SURG_NAME" type="textbox">
               </div>
-              <div style="width: 200px; float: left; margin-right:10px;">
-      				  <input class="form-control" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40">
-      			  </div>
               </div>
             </div>
           <!-- SURGEON LICENSE NUMBER END -->
-
-          <!-- PATIENT INFORMATION -->
+              
+        <!-- INTERNIST NAME -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="INTER" style="float:left; width:170px;">Internist Name</label>
+                      <div class="col-md-6" style="width: 225px; float: left;">
+                        <input type="text" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name" maxlength="<?php echo $INTER_MAX; ?>" name="INTER">
+                      </div>
+                    </div>
+                <!-- INTERNIST NAME END -->
+         
+     <!-- PATIENT INFORMATION -->
             <div class="panel-group" style="margin-top:25px;">
               <div class="panel panel-default" style="">
                 <div class="panel-heading" id="panelh">Patient Information</div>
@@ -94,23 +107,21 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                   <!-- PATIENT ID -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="PAT_ID" style="float:left; width:170px;">Patient ID </label>
+                    
                       <div class="col-md-7"  style="float:left;">
-                      <div style="float:left; width:170px; margin-right:10px;">
-                        <input  class="form-control" id="PAT_ID" placeholder="Enter Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="PAT_ID" required>
-                      </div>
-					            <div style="width: 180px; float: left; margin-right:10px;">
-						            <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME">
-					           </div>
+					    <label class="control-label col-md-2" for="PAT_NAME" style="float:left; width:170px;">Patient Name </label>
+                      <div style="width: 180px; float: left; margin-right:10px;">
+                        <input type="text" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME">
+                     </div>
                      </div>
                     </div>
                   <!-- PATIENT ID END -->
 
                   <!-- VISUAL IMPARITY -->
                     <div class="form-group row">
-                      <label class="control-label col-md-2" for="VI" style="float:left; width:170px;">Visual Imparity </label>
+                      <label class="control-label col-md-2" for="VI" style="float:left; width:170px;">Visual Impairment </label>
                       <div class="col-md-7" style="width: 600px; float: left;">
-                        <textarea type="text" class="form-control" id="VI" placeholder="Description of visual imparity..." maxlength="<?php echo $VI_MAX; ?>" name="VI" rows="2" required></textarea>
+                        <textarea type="text" class="form-control" id="VI" placeholder="Description of visual impairment`..." maxlength="<?php echo $VI_MAX; ?>" name="VI" rows="2" required></textarea>
                       </div>
                     </div>
                   <!-- VISUAL IMPARITY END -->
@@ -134,32 +145,50 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
                 <div class="panel panel-default" style="">
                   <div class="panel-heading" id="panelh">Surgery Details</div>
                     <div class="panel-body">
-
-                  <!-- CLEARANCE -->
+        
+        <!-- ANESTHESIOLOGIST -->
                     <div class="form-group row">
-                      <label class="control-label col-md-3" for="CLEAR" style="float:left; width:200px;">Clearance Number </label>
-                      <div class="col-md-2" style="width: 170px; float: left;">
-                        <input type="text" class="form-control" id="CLEAR" placeholder="Enter No." maxlength="<?php echo $CLEAR_LENG; ?>" name="CLEAR" required>
+                      <label class="control-label col-md-3" for="ANEST" style="float:left; width:200px;">Anesthesiologist</label>
+                      <div class="col-md-6" style="width: 250px; float: left;">
+                        <input type="text" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST">
                       </div>
                     </div>
-                  <!-- CLEARANCE END -->
-
-                  <!-- SURGERY ADDRESS -->
+                <!-- TYPE OF ANESTHESIOLOGIST END -->
+        
+        <!-- IOL POWER -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="ANEST" style="float:left; width:200px;">IOL Power</label>
+                      <div class="col-md-6" style="width: 150px; float: left;">
+                        <input type="text" class="form-control" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL">
+                      </div>
+                    </div>
+                <!-- IOL POWER END -->
+      
+      <!-- TYPE OF ANESTHESIA -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="TANES" style="float:left; width:200px;">Type of Anesthesia</label>
+                      <div class="col-md-6" style="width: 220px; float: left;">
+                        <input type="text" class="form-control" id="TANES" placeholder="type of Anesthesia used..." maxlength="<?php echo $TANES_MAX; ?>" name="TANES">
+                      </div>
+                    </div>
+            <!-- TYPE OF ANESTHESIA END -->
+        
+        <!-- SURGERY ADDRESS -->
                     <div class="form-group row">
                       <label class="control-label col-md-3" for="SURG_ADD" style="float:left; width:200px;">Surgery Address</label>
                       <div class="col-md-6" style="width: 550px; float: left;">
-                        <input type="" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD">
+                        <input type="text" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD">
                       </div>
                     </div>
-                  <!-- SURGERY ADDRESS END -->
-
+                <!-- SURGERY ADDRESS END -->
+  
                   <!-- DATE -->
                     <div class="form-group row">
                       <label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
                     <div class="col-md-7"  style="float:left; min-width:400px;">
                       <div>
                           <label class="sr-only" for="MM">Month</label>
-                          <select class="form-control" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
+                          <select class="form-control" id="MM" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
                             <?php for ($j=0; $j < count($MONTH_choice); $j++) { 
                               echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
                              } ?>
@@ -168,12 +197,12 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
                       <div style="width: 80px; float: left; margin-right:10px;">
                           <label class="sr-only" for="DD">Day</label>
-                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" required>
+                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
                       </div>
 
                       <div  style="width: 100px; float: left; margin-right:10px;">
                           <label class="sr-only" for="YY">Year</label>
-                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" required>
+                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" id="YY" required>
                       </div>
                     </div>
 
@@ -215,7 +244,64 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
             <!-- SURGERY REPORT END -->
 
 
-          <!-- ENTER -->
+            <!-- FINANCIAL INFORMATION -->
+              <div class="panel-group" style="margin-top:25px;">
+                <div class="panel panel-default" style="">
+                  <div class="panel-heading" id="panelh">Financial Information</div>
+                    <div class="panel-body">
+
+       
+              <!-- PATIENT COUNTERPART -->
+          <div class="form-group row">
+          <label class="control-label col-md-3" style="float:left; width:200px;">Patient Counterpart </label>
+                    <div class="col-md-7"  style="float:left; min-width:400px;">
+                      <div style="width: 125px; float: left; margin-right:10px;">
+              <input type="text" class="form-control" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL">
+                      </div>
+                      <div style="width: 125px; float: left; margin-right:10px;">
+              <input type="text" class="form-control" id="PCLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="PCLAB">
+                      </div>
+
+                      <div style="width: 125px; float: left; margin-right:10px;">
+              <input type="text" class="form-control" id="PCPF" placeholder="PF(Other)" maxlength="<?php echo $PC_MAX; ?>" name="PCPF">
+                      </div>
+                      </div>
+          </div>
+              <!-- PATIENT COUNTERPART END -->
+          
+      <!-- SPONSORED IOL -->
+                    <div class="form-group row">
+                      <label class="control-label col-md-3" for="SPOIOL" style="float:left; width:200px;">SPONSORED</label>
+                      <div class="col-md-6" style="width: 200px; float: left;">
+                        <input type="text" class="form-control" id="SPOIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
+                      </div>
+                    </div>
+            <!-- SPONSORED IOL END -->
+  
+        <!-- CSF -->
+          <div class="form-group row">
+          <label class="control-label col-md-3" style="float:left; width:200px;"> CSF </label>
+                    <div class="col-md-7"  style="float:left; min-width:400px;">
+                      <div style="width: 125px; float: left; margin-right:10px;">
+              <input type="text" class="form-control" id="CSFHBILL" placeholder="H BILL" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL">
+                      </div>
+                      <div style="width: 125px; float: left; margin-right:10px;">
+              <input type="text" class="form-control" id="CSFSUP" placeholder="SUPPLIES" maxlength="<?php echo $PC_MAX; ?>" name="CSFSUP">
+                      </div>
+
+                      <div style="width: 125px; float: left; margin-right:10px;">
+            <input type="text" class="form-control" id="CSFLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="CSFLAB">
+                      </div>
+                      </div>
+          </div>
+              <!-- CSF END -->
+        
+                  </div>
+
+              </div>
+            <!-- FINANCIAL INFORMATION END -->
+         
+     <!-- ENTER -->
           <div class="text-center" style="margin-bottom: 20px;">
             <button type="submit" class="btn" id="go" name="surgery_info">Submit</button>
           </div>
@@ -238,3 +324,86 @@ $MONTH_choice = array("January","Febuary","March","April","May","June","July","A
 
 </body>
 </html>
+
+<?php
+	include("dbconnect.php");
+
+    $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
+                $arr = array();
+    
+                while ($row = $surgeon->fetch_assoc()) {
+
+                        unset($id, $name1, $name2);
+                        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+                        //$name1 = $row['FIRST_NAME'];
+                        //$name2 = $row['LAST_NAME'];
+                        array_push($arr, $id/*.", ".$name2." ".$name1*/);
+                       
+                }
+				
+	 $patient = $mydatabase->query("SELECT PAT_FNAME,PAT_LNAME,PAT_ID_NUM from EYEPATIENT");
+                $arr1 = array();
+    
+                while ($row = $patient->fetch_assoc()) {
+
+                        unset($id, $name1, $name2);
+                        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
+                        //$name1 = $row['FIRST_NAME'];
+                        //$name2 = $row['LAST_NAME'];
+                        array_push($arr1, $id/*.", ".$name2." ".$name1*/);
+                       
+                }
+?>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var arrs= <?php echo json_encode($arr);?>;
+    //var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var arrs = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arrs
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'arrs',
+        source: arrs
+    });
+});  
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // Defining the local dataset
+    var arrs= <?php echo json_encode($arr1);?>;
+    //var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+    
+    // Constructing the suggestion engine
+    var arrs = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: arrs
+    });
+    
+    // Initializing the typeahead
+    $('.typeahead1').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'arrs',
+        source: arrs
+    });
+});  
+</script>
+
