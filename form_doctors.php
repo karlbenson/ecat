@@ -52,12 +52,15 @@ $ADDR_MAX = 50;
         <div class="container-fluid">
           <h3>Doctor Information</h3>
           <hr>
+          <p style="margin-bottom: 20px; color:#666666;">
+            Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
+          </p>
               
           <form method="post" action="submit.php" >
 
           <!-- NAME -->
             <div class="form-group row">
-              <label class="control-label col-md-2" style="float:left; width:170px;">Name</label>
+              <label class="control-label col-md-2" style="float:left; width:170px;">Name <span style="color: #d9534f">*</span></label>
 
               <div class="col-md-7" style="float: left">
               <!-- FIRST NAME -->
@@ -80,7 +83,7 @@ $ADDR_MAX = 50;
 
           <!-- LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number</label>
+              <label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number <span style="color: #d9534f">*</span></label>
               <div class="col-md-2" style="width: 115px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
               </div>
