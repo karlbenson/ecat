@@ -22,10 +22,10 @@
 <div id="body">
 <!-- MAIN -->
 <div class="container-fluid" id="outer">
-
+	
 <!-- TITLE -->
-  <div class="container-fluid" style="color: #ffffff;">
-    <h4>Eye Cataract Program</h4> <br>
+  <div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff; margin-bottom: 10px;">
+    <h4>Eye Program: Doctor Form</h4> 
   </div>
 <!-- TITLE -->
 
@@ -99,17 +99,16 @@ $ADDR_MAX = 50;
 		<!-- SPECIALIZATION -->
             <div class="form-group row">
               <label class="control-label col-md-2" for="SPECIALIZATION" style="float:left; width:170px;">Specialization</label>
-              <div style="width: 250px; float: left;">
+              <div class="col-md-4" style="width: 250px; float: left;">
                 <select type="text" name="SPECIALIZATION" class="form-control" id="SPECIALIZATION">
-				<option value = "">Select specialization</option>
-					<option value = "Pediatrician">Pediatrician</option>
-					<option value = "Optalmologist">Optalmologist</option>
-					<option value = "Anesthesiologist">Anesthesiologist</option>
-					<option value = "Surgeon">Surgeon</option>
-					<option value = "Internist">Internist</option>
-				</select>
-				
-			  </div>
+        				  <option value = "">Select specialization</option>
+        					<option value = "Pediatrician">Pediatrician</option>
+        					<option value = "Optalmologist">Optalmologist</option>
+        					<option value = "Anesthesiologist">Anesthesiologist</option>
+        					<option value = "Surgeon">Surgeon</option>
+        					<option value = "Internist">Internist</option>
+        				</select>
+			         </div>
             </div>
           <!-- SPECIALIZATION END -->
          
