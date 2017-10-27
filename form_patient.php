@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>Luke Foundation Eye Program: Patient Form</title>
+  <title>Luke Foundation Eye Program: Patient Form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="references/bootstrap.min.css">
@@ -24,8 +24,8 @@
 <div class="container-fluid" id="outer">
 
 <!-- TITLE -->
-  <div class="container-fluid" style="color: #ffffff;">
-    <h4>Eye Cataract Program</h4> <br>
+  <div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff; margin-bottom: 10px;">
+    <h4>Eye Program: Patient Form</h4> 
   </div>
 <!-- TITLE -->
 
@@ -62,92 +62,81 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
       <!-- FORMS -->
         <div class="container-fluid">
           <h3>Patient Information</h3>
-          <hr style=" border: solid 1px #2d4309;  width:100%; padding: 0px;">
+          <hr>
+          <p style="margin-bottom: 20px; color:#666666;">
+            Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
+          </p>
               
           <form method="post" action="submit.php">
 			
           <!-- PATIENT -->
             <div class="form-group row">
-              <label class="control-label col-md-3 for="P_ID" style="float:left; width:170px;">Patient: </label>
-			  <div class="col-md-3" style="width: 180px; float: left;">
+              <label class="control-label col-md-3" for="P_ID" style="float:left; width:170px;">Patient<span style="color: #d9534f">*</span> </label>
+			  <div class="" style="width: 180px; float: left; margin-right:10px;">
                 <input type="text" class="form-control" id="P_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="P_ID" required>
               </div>
 			  
-			  <div class="col-md-3" style="width: 250px; float: left;">
+			  <div class="" style="width: 200px; float: left; margin-right:10px;">
                 <input type="text" class="form-control" id="P_FNAME" placeholder="First Name" maxlength="20" name="P_FNAME" required>
               </div>
 			  
-			  <div class="col-md-3" style="width: 250px; float: left;">
+			  <div class="" style="width: 200px; float: left; margin-right:10px;">
                 <input type="text" class="form-control" id="P_LNAME" placeholder="Last Name" maxlength="20" name="P_LNAME" required>
               </div>
-			
-              <!--<div class="col-md-3" style="width: 180px; float: left;">
-                <input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
-              </div> -->
             </div>
           <!-- PATIENT END-->
-			
-			<!-- PATIENT AGE -->
-				<div class="form-group row">
-				  <label class="control-label col-md-3 for="P_AGE" style="float:left; width:170px;">Age: </label>
-				  <div class="col-md-3" style="width: 180px; float: left;">
-					<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
-				  </div>
-				  
-				  <label class="control-label col-md-4" for="P_PH" style="float:left; width:170px;">Has PhilHealth? </label>
-				  <div class="col-md-4" style="width: 280px; float: left;">
-					<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="Y">Yes</label>
-					<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="N" required>No</label>
-				  </div>
-				  
-					<!--
-				  <div class="col-md-3" style="width: 180px; float: left;">
-					<input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
-				  </div> -->
-				</div>
-			<!-- PATIENT AGE END -->
-			
-			<!-- PATIENT SEX -->
-				<div class="form-group row">
-				  <label class="control-label col-md-4" for="P_SEX" style="float:left; width:170px;">Sex: </label>
-				  <div class="col-md-4" style="width: 280px; float: left;">
+
+          <!-- PHIL HEALTH -->
+          	<div class="form-group row">
+			  <label class="control-label col-md-3" for="P_PH" style="float:left; width:170px;">Has PhilHealth?<span style="color: #d9534f">*</span> </label>
+			  <div class="col-md-4" style="width: 280px; float: left;">
+				<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="Y">Yes</label>
+				<label class="radio-inline" id="P_PH"><input name="P_PH" type="radio" value="N" required>No</label>
+			  </div>
+			</div>
+			<!-- PHIL HEALTH END -->
+		
+		<div class="row">
+			<!-- PATIENT AGE AND SEX -->
+			<div class="container-fluid well col-md-5"  style="margin: 0px 15px;">
+			<div class="form-group row">
+			  <label class="control-label col-md-2" for="P_AGE" style="float:left; width:170px;">Age:<span style="color: #d9534f">*</span> </label>
+			  <div class="col-md-3" style="width: 180px; float: left;">
+				<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
+			  </div>
+			 </div>
+			<div class="form-group row" style="margin-bottom:6px;">
+			  <label class="control-label col-md-2" for="P_SEX" style="float:left; width:170px;">Sex:<span style="color: #d9534f">*</span> </label>
+				  <div class="col-md-4" style="width: 180px; float: left;">
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="M" required>Male</label>
 					<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="F">Female</label>
 				  </div>
+			 </div>
+			</div>
+			<!-- PATIENT AGE AND SEX END -->
 
-				  <!--<div class="col-md-3" style="width: 180px; float: left;">
-					<input type="text" class="form-control" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_ID" required>
-				  </div> -->
-				</div>
-			<!-- PATIENT SEX END -->
-
+		<div class="container-fluid well col-md-6" style="margin: 0px 15px;">
           <!-- PHYSICIAN LICENSE NUMBER -->
             <div class="form-group row">
-              <label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by: </label>
+              <label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by:<span style="color: #d9534f">*</span> </label>
               <div class="col-md-2" style="width: 180px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
               </div>
-
-			  <!--<div class="col-md-2" style="width: 180px; float: left;">
-                <input pattern="\d{7}" title="Physician Name" class="form-control" id="PHYS_LIC" placeholder="Physician Name" maxlength="<?php echo $MAX_NAME; ?>" name="PHYS_LIC" required>
-              </div>-->
             </div>
           <!-- PHYSICIAN LICENSE NUMBER END -->
 
           <!-- STAFF LICENSE NUMBER -->
-            <div class="form-group row">
-              <label class="control-label col-md-2" for="P_STAFFLIC" style="float:left; width:170px;">Screened by: </label>
+            <div class="form-group row" style="margin-bottom:0px;">
+              <label class="control-label col-md-2" for="P_STAFFLIC" style="float:left; width:170px;">Screened by:<span style="color: #d9534f">*</span> </label>
               <div class="col-md-2" style="width: 180px; float: left;">
                 <input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
               </div>
-			  <!--<div class="col-md-2" style="width: 180px; float: left;">
-                <input pattern="\d{7}" title="Staff Name" class="form-control" id="STAFF_LIC" placeholder="Staff Name" maxlength="<?php echo $MAX_NAME; ?>" name="STAFF_NAME" required>
-              </div>-->
             </div>
           <!-- STAFF LICENSE NUMBER END -->
-
+        </div>
+        </div>
           <!-- VISUAL ACUITY -->
-            <div class="panel-group" style="margin-top:25px;">
+            <div class="panel-group" style="margin-top:25px; margin-bottom:0px;">
               <div class="panel panel-default" style="">
                 <div class="panel-heading" id="panelh">Visual Acuity</div>
                   <div class="panel-body">
@@ -155,7 +144,7 @@ $VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/4
 				  <table class="table">
 					<thead>
 						<th></th>
-						<th>Pre Surgery Visual Acuity</th>
+						<th>Pre Surgery Visual Acuity<span style="color: #d9534f">*</span></th>
 						<th>Post Surgery Visual Acuity</th>
 					</thead>
 					<tbody>
