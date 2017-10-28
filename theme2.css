@@ -77,6 +77,7 @@ hr{
 	border: solid 1px #bfbfbf;
 	width:100%;
 	padding: 0px;
+	margin: 20px 0px 10px 0px;
 }
 
 input{
@@ -85,6 +86,7 @@ input{
 
 div, li{
 	font-size: 12pt;
+	overflow-wrap: break-word;
 }
 
 #tophead{
@@ -208,23 +210,6 @@ div, li{
 	padding: 0px;
 }
 
-.record > .month{
-	text-align: center;
-	background-color: #bfbfbf;
-	color: rgba(255, 255, 255, 0.7);
-	padding: 10px;
-	border-radius: 5px;
-}
-
-.navbar-default .navbar-nav > li > a{
-	border-radius: 0px;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:active,
-.navbar-default .navbar-nav > li > a:active{
-	background-color: none;
-}
-
 .panel-body .col-md-3{
 	float: left;
 	min-width: 170px;
@@ -233,18 +218,15 @@ div, li{
 	float: left;
 }
 
-.twitter-typeahead, .tt-hint, .tt-input, .tt-menu { width: 100%; }
-
-.tt-suggestion{font-size: 13px;}
-.tt-menu{width: 115%;}
 /*PRINT SETTINGS*/
 @media print {
+
 	body, #body{
 		margin: 0px !important;
 		padding: 0px !important;
 	}
 
-	a, button, #go, #link_buttons, #criteria_buttons, #sider, #headlogo{
+	.hide_section, a, button, #go, #link_buttons, #criteria_buttons, #sider, #headlogo{
 		display: none;
 	}
 
@@ -255,6 +237,13 @@ div, li{
 	input::placeholder, textarea::placeholder{
   		color: transparent !important;
 	}
+	
 } /*PRINT SETTING END*/
+
+@media screen and (max-width: 1150px) {
+    .hide_section {
+        display: none;
+    }
+}
 
 /*THEME END*/
