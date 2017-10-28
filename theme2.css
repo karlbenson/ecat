@@ -1,16 +1,16 @@
 /*THEME*/
 
 /*COLOR PALLETE
-		#HEX		#RGB 			DESCRIPTION			LAYER
+		#HEX		#RGB 			DESCRIPTION
 	---------------------------------------------------------------
-	-	#bfbfbf		191, 191, 191	strong grey			
-	- 	#337ab7						blue
+	-	#bfbfbf		191, 191, 191		strong grey			
+	- 	#337ab7		51, 122, 183		blue
 	- 	#5cb85c		92, 184, 92		green
-	-	#f0ad4e						yellow
-	-	#d9534f						red
+	-	#f0ad4e					yellow
+	-	#d9534f					red
 
 	FONT EXTRA: 	#f2f2f2
-	LUKE:			#163031
+	LUKE:		#163031
 */
 
 #sider{
@@ -136,22 +136,11 @@ div, li{
 	color: #f2f2f2;
 }
 
-.navbar-default{
-	background-color: #5cb85c;
-	color: #ffffff;
-	border: none;
-	border-radius: 5px;
-}
-
 #banner{
 	padding: 50px;
 	font-size: 16;
 	color: #ffffff;
 	border-radius: 5px;
-}
-
-#free{
-	position: relative;
 }
 
 #basic{
@@ -163,14 +152,6 @@ div, li{
 
 #inner{
 	padding: 10px;
-}
-
-#picture{
-	background-color: #bfbfbf;
-	width: 100%;
-	max-width: 150px;
-	padding: 0px;
-	border-radius: 5px;
 }
 
 #profile{
@@ -206,10 +187,6 @@ div, li{
 	color: #ffffff;
 }
 
-.record{
-	padding: 0px;
-}
-
 .panel-body .col-md-3{
 	float: left;
 	min-width: 170px;
@@ -217,6 +194,11 @@ div, li{
 .panel-body .col-md-9{
 	float: left;
 }
+
+.twitter-typeahead, .tt-hint, .tt-input, .tt-menu { width: 100%; }
+ 
+.tt-suggestion{font-size: 13px;}
+.tt-menu{width: 115%;}
 
 /*PRINT SETTINGS*/
 @media print {
