@@ -54,7 +54,7 @@
 							<!-- FORMS -->
 							<div class="container-fluid">
 								<h3>Surgery Information</h3>
-								<br/>
+								<hr>
 								<form method="post" action="submit.php">
 									<!-- CASE NUMBER-->
 									<div class="form-group row">
