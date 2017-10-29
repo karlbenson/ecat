@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>Luke Foundation Eye Program: Home</title>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="references/bootstrap.min.css">
-	  <link rel="stylesheet" href="references/font-awesome.min.css">
-	  <script src="references/jquery.min.js"></script>
-	  <script src="references/bootstrap.min.js"></script>
-	  <link rel="stylesheet" type="text/css" href="theme2.css">
+		<title>Luke Foundation Eye Program: Home</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<link rel="stylesheet" href="references/font-awesome.min.css">
+		<script src="references/jquery.min.js"></script>
+		<script src="references/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="theme2.css">
 	</head>
 	<body style="justify-content: center;">
 
