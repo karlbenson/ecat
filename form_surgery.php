@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Luke Foundation Eye Program: Surgery Form</title>
+		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="references/bootstrap.min.css">
-		<link rel="stylesheet" href="references/typeahead.css">
+		<!--<link rel="stylesheet" href="references/bootstrap.min.css">-->
+		<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="references/font-awesome.min.css">
-		<script src="references/jquery.min.js"></script>
-		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-		<script src="references/typeahead.bundle.js"></script>
+        <link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<script src="references/jquery-2.1.1.min.js"></script>
+		<script src="references/bootstrap.min.js"></script>
+		<script src="references/moment-with-locales.js"></script>
+		<script src="references/bootstrap-datetimepicker.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -34,15 +36,12 @@
 					$DIAG_MAX = 100;
 					$TANES_MAX = 25;
 					$SURGADD_MAX = 50;
-					$SURG_DATE_YY = 4; 
-					$SURG_DATE_DD = 2;
 					$REM_MAX = 100;
 					$MAX_NAME = 40;
 					$INTER_MAX = 40;
 					$ANEST_MAX = 40;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
-					$MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 					//SURGERY INFORMATION FIELDS END
 					//CODE SECTION END
 				?>
@@ -149,7 +148,7 @@
 												<!-- TYPE OF ANESTHESIA -->
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="TANES" style="float:left; width:200px;">Type of Anesthesia</label>
-													<div class="col-md-6" style="width: 220px; float: left;">
+													<div class="col-md-6" style="width: 250px; float: left;">
 														<input type="text" class="form-control" id="TANES" placeholder="type of Anesthesia used..." maxlength="<?php echo $TANES_MAX; ?>" name="TANES">
 													</div>
 												</div>
@@ -167,25 +166,22 @@
 												<!-- DATE -->
 												<div class="form-group row">
 													<label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
-													<div class="col-md-7"  style="float:left; min-width:400px;">
-														<div>
-															<label class="sr-only" for="MM">Month</label>
-															<select class="form-control" id="MM" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
-																<?php 
-																	for ($j=0; $j < count($MONTH_choice); $j++) { 
-																		echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
-																	}
-																?>
-															</select>
+													<div class="col-md-7"  style="float:left; width:250px;">
+														<div class="form-group">
+															<div class='input-group date' id='datetimepicker'>
+																<input type='text' class='form-control' id='DATE' name='DATE' placeholder='MM/DD/YYYY' required>
+																<span class="input-group-addon">
+																	<span class="glyphicon glyphicon-calendar"></span>
+																</span>
+															</div>
 														</div>
-														<div style="width: 80px; float: left; margin-right:10px;">
-															<label class="sr-only" for="DD">Day</label>
-															<input pattern="[0-3]\d" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
-														</div>
-														<div  style="width: 100px; float: left; margin-right:10px;">
-															<label class="sr-only" for="YY">Year</label>
-															<input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" id="YY" required>
-														</div>
+														<script type="text/javascript">
+															$(function () {
+																$('#datetimepicker').datetimepicker({
+																	format: 'L'
+																});
+															});
+														</script>
 													</div>
 												</div>
 												<!-- DATE END -->
@@ -339,7 +335,7 @@
 			name: 'arrs',
 			source: arrs
 		});
-	});  
+	});
 </script>
 
 <script type="text/javascript">

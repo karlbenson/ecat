@@ -5,11 +5,15 @@
 		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<!--<link rel="stylesheet" href="references/bootstrap.min.css">-->
+		<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="references/font-awesome.min.css">
-		<script src="references/jquery.min.js"></script>
-		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
+        <link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<script src="references/jquery-2.1.1.min.js"></script>
+		<script src="references/bootstrap.min.js"></script>
+		<script src="references/moment-with-locales.js"></script>
+		<script src="references/bootstrap-datetimepicker.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -437,26 +441,21 @@
 																			</div>
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label class="control-label" style="float:left; width:'.$leftmargin.'px;">Date of Surgery </label>
-																				<div>
-																					<label class="sr-only" for="MM">Month</label>
-																					<select class="form-control"  name="MM" style="width: 120px; float: left; margin-right:10px;" required>';
-												for ($j=0; $j < count($MONTH_choice); $j++) {
-													if($j==$date[1]-1){
-														echo 							'<option value="'.($j+1).'" selected>'.$MONTH_choice[$j].'</option>';
-													}else{
-														echo 							'<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
-													}
-												}
-												echo 								'</select>
+																				<div class="form-group">
+																					<div class="input-group date" id="datetimepicker3" style="float:left; width:250px;">
+																						<input type="text" class="form-control" id="DATE" name="DATE" placeholder="MM/DD/YYYY" required>
+																						<span class="input-group-addon">
+																							<span class="glyphicon glyphicon-calendar"></span>
+																						</span>
+																					</div>
 																				</div>
-																				<div style="width: 45px; float: left; margin-right:10px;">
-																					<label class="sr-only" for="DD">Day</label>
-																					<input pattern="\d||[0-2]\d|3[0-1]|" title="" class="form-control" placeholder="DD" maxlength="'.$SURG_DATE_DD.'" name="DD" value="'.$date[2].'" required>
-																				</div>
-																				<div style="width: 65px; float: left; margin-right:10px;">
-																					<label class="sr-only" for="YY">Year</label>
-																					<input pattern="[1-2]\d\d\d" title="" class="form-control" placeholder="YYYY" maxlength="'.$SURG_DATE_YY.'" name="YY" value="'.$date[0].'" required>
-																				</div>
+																				<script type="text/javascript">
+																					$(function () {
+																						$("#datetimepicker3").datetimepicker({
+																							format: "L"
+																						});
+																					});
+																				</script>
 																			</div>
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_LIC" style="float:left; width:'.$leftmargin.'px;">Surgeon License No. </label>
