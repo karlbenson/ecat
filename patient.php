@@ -6,9 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
+		<link rel="stylesheet" href="references/typeahead.css">
 		<script src="references/jquery.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
+		<script src="references/typeahead.bundle.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -26,7 +28,7 @@
 					$ID_LENG = 15;
 					$FN_LENG = 20;
 					$LN_LENG = 20;
-					$PHYL_LENG = 7;
+					$PHYL_LENG = 40;
 					$STAFFL_LENG = 7;
 					$VD_MAX = 15;
 					$DC_MAX = 30;
@@ -34,6 +36,9 @@
 					$LEA_MAX = 12;
 					$VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/40', '20/50', '20/63', '20/80', '20/100', '20/125', '20/160', '20/200', 'CF 20', 'CF 19', 'CF 18', 'CF 17', 'CF 16', 'CF 15', 'CF 14', 'CF 13', 'CF 12', 'CF 11', 'CF 10', 'CF 9', 'CF 8', 'CF 7', 'CF 6', 'CF 5', 'CF 4', 'CF 3', 'CF 2', 'CF 1', 'HM', '+LP', '-LP');
 					//MAX VALUES END
+
+					include("auto.php");
+
 					//CODE SECTION ENDS HERE
 				?>
 
@@ -70,7 +75,13 @@
 													$PAT_AGE = $_POST["P_AGE"];
 													$PAT_PH = $_POST["P_PH"];
 													$PAT_SEX = $_POST["P_SEX"];
-													$PHY_LICENSE_NUM = $_POST["P_PHYLIC"];
+													$PHYSICIAN = $_POST["P_PHYLIC"];
+													$PHY_LIST = explode("-",$PHYSICIAN);
+													if(sizeof($PHY_LIST)==1){
+														$PHY_LICENSE_NUM = $PHY_LIST[0];	
+													}else{
+														$PHY_LICENSE_NUM = $PHY_LIST[1];
+													}
 													$STAFF_LICENSE_NUM = $_POST["P_STAFFLIC"];
 													$PRE_VA_WITH_SPECT_LEFT = $_POST["P_VASL1"];
 													$POST_VA_WITH_SPECT_LEFT = $_POST["P_VASL2"];
@@ -476,13 +487,14 @@
 																	<div class="container-fluid well" style="margin:0px; width:100%; float:left;  padding-bottom:5px; background-color:#ffffff; border-color:#f2f2f2;">
 																		<div class="form-group" style="width:50%; float:left;">
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
-																			<div style="width: 90px; float: left;">
-																				<input pattern="\d{7}"  class="form-control" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																			<div style="width: 200px; float: left;">';
+
+																		echo '<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:50%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:150px; font-weight:bold;">Screened by:</label>
-																			<div style="width: 90px; float: left;">
+																			<div style="width: 200px; float: left;">
 																				<input pattern="\d{7}"class="form-control" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
