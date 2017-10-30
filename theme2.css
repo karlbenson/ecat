@@ -2,15 +2,15 @@
 
 /*COLOR PALLETE
 		#HEX		#RGB 			DESCRIPTION
-	---------------------------------------------------------------
-	-	#bfbfbf		191, 191, 191		strong grey			
-	- 	#337ab7		51, 122, 183		blue
+	----------------------------------------------
+	-	#bfbfbf		191, 191, 191	strong grey			
+	- 	#337ab7		51, 122, 183	blue
 	- 	#5cb85c		92, 184, 92		green
-	-	#f0ad4e					yellow
-	-	#d9534f					red
+	-	#f0ad4e						yellow
+	-	#d9534f						red
 
 	FONT EXTRA: 	#f2f2f2
-	LUKE:		#163031
+	LUKE:			#163031
 */
 
 #sider{
@@ -33,7 +33,7 @@
 	margin: 10px 0px;
 }
 
-#headlogo:hover{
+#headlogo:hover, #headlogo button:active{
 	transition: 0.3s;
 	box-shadow: 0px 0px 10px 5px rgba(255,255,255, 0.6);
 }
@@ -44,7 +44,15 @@
 	color: #337ab7;
 }
 
-#headlogo button:hover, #headlogo button:active{
+#add_more{
+	background-color: rgba(255, 255, 255, 0.7);
+	color: #337ab7;
+	padding-top: 3px;
+	padding-bottom: 0px;
+	font-size: 20px;
+}
+
+#headlogo button:hover, #headlogo button:active, #add_more:hover, #add_more:active{
 	background-color: #bfbfbf;
 	color: #ffffff;
 }
@@ -80,10 +88,6 @@ hr{
 	margin: 20px 0px 10px 0px;
 }
 
-input{
-	float: left;
-}
-
 div, li{
 	font-size: 12pt;
 	overflow-wrap: break-word;
@@ -107,13 +111,18 @@ div, li{
 	float: left;
 }
 
-#go:hover, #go:active{
+#wrong_pass:hover{
+	transition: 0.3s;
+	box-shadow: 0px 0px 5px 2px rgba(102, 102, 102, 0.2);
+}
+
+#go:hover, #go:active, #veracity:hover, #veracity:active{
 	background-color: #5cb85c;
 	border-color: #bfbfbf;
 	color: #f2f2f2;
 }
 
-#go{
+#go, #veracity{
 	background-color: #337ab7;
 	border-color: #f2f2f2;
 	color: #ffffff;
@@ -134,13 +143,6 @@ div, li{
 
 .p{
 	color: #f2f2f2;
-}
-
-#banner{
-	padding: 50px;
-	font-size: 16;
-	color: #ffffff;
-	border-radius: 5px;
 }
 
 #basic{
