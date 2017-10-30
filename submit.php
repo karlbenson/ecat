@@ -18,8 +18,8 @@
 			<!-- MAIN -->
 			<div class="container-fluid" id="outer">
 				<!-- TITLE -->
-				<div class="container-fluid" style="color: #ffffff;">
-					<h4>Form Submission</h4> <br>
+				<div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff; margin-bottom: 10px;">
+					<h4>Form Submission</h4> 
 				</div>
 				<!-- TITLE -->
 				<?php  //CODE SECTION START
@@ -29,6 +29,7 @@
 
 					//FUNCTIONS (2)
 					$error = "Error. ";
+					$whereto = "#";
 
 					//INSERT INTO DATABASE 
 					//(SAMPLE 1) STILL TO BE REVISED/TESTED....
@@ -36,6 +37,7 @@
 						$D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."','".$D_SP."')";
 						if ($GLOBALS['mydatabase']->query($D_query) === TRUE){
 							echo "<div class='alert alert-success'>New doctor record successfully created.</div>";
+							$GLOBALS['whereto'] = "doctors.php?profilepage=".$D_LICENSENUM;
 						} else {
 							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; 
 						}
@@ -44,7 +46,8 @@
 					function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASL2, $P_VASR1, $P_VASR2, $P_VAL1, $P_VAL2, $P_VAR1, $P_VAR2, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
 						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".$P_VASL2."','".$P_VASR1."','".$P_VASR2."','".$P_VAL1."','".$P_VAL2."','".$P_VAR1."','".$P_VAR2."','".$P_VD."','".$P_DC."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
-							echo "<div class='alert alert-success'>New patient record successfully created.</div>"; 
+							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
+							$GLOBALS['whereto'] = "patient.php?profilepage=".$P_ID;
 						} else { 
 							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>";
 						}
@@ -53,7 +56,8 @@
 					function SUBMIT_SURGERY($S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_DIAG, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_TANEST, $S_INTERN, $S_ANESTHE, $S_IOLP,$SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL, $CSF_HB, $CSF_SUPP, $CSF_L){
 						$S_query = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_DIAG."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_TANEST."','".$S_INTERN."','".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."')";
 						if ($GLOBALS['mydatabase']->query($S_query) === TRUE) { 
-							echo "<div class='alert alert-success'>New surgery record successfully created.</div>"; 
+							echo "<div class='alert alert-success'>New surgery record successfully created.</div>";
+							$GLOBALS['whereto'] = "surgery.php?profilepage=".$S_CASENUM;
 						}else { 
 							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; 
 						}
@@ -70,7 +74,6 @@
 					<div id="inner">
 					<!-- CONTENT -->
 						<div class="container-fluid" >
-							<div>
 								<!-- CONTENT: TO BE CONSTRUCTED -->
 								<?php
 									if (isset($_POST['doctors_info'])) {
@@ -138,9 +141,9 @@
 									}
 									$mydatabase->close();
 									$where = "'Home.php'";
-									echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right;" > Back-to-Home </button></div>';
+									echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
+									echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 								?>
-							</div>
 						</div>
 						<!-- CONTENT END -->
 					</div>
