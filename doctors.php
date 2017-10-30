@@ -154,6 +154,7 @@
 												$D_DLN = $dataline["DOC_LICENSE_NUM"];
 												$D_A = $dataline["ADDRESS"];
 												$D_SP = $dataline["SPECIALIZATION"];
+												$SPEC_choice = array('Select specialization', 'Pediatrician','Optalmologist','Anesthesiologist','Surgeon','Internist');
 												//VALUES END
 
 												//CONTENT
@@ -163,15 +164,15 @@
 															<div class="panel panel-default" style="padding-bottom:10px;">
 																<div class="panel-heading" id="tophead1">Doctor Information</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'License Number'.'</div>
+																	<div class="col-md-3" style="font-weight:bold;">License Number</div>
 																	<div class="col-md-9">'.$D_DLN.'</div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Address'.'</div>
+																	<div class="col-md-3" style="font-weight:bold;">Address</div>
 																	<div class="col-md-9">'.$D_A.'</div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Specialization'.'</div>
+																	<div class="col-md-3" style="font-weight:bold;">Specialization</div>
 																	<div class="col-md-9">'.$D_SP.'</div>
 																</div>
 															</div>
@@ -220,14 +221,20 @@
 																			</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="SPECIALIZATION" style="width: 175px; float: left; ">Specialization</label>
-																					<select class="form-control" id="SPECIALIZATION" name="SPECIALIZATION" style="max-width: 250px; float: left;">
-																						<option value = "">Select specialization</option>
-																						<option value = "Pediatrician">Pediatrician</option>
-																						<option value = "Optalmologist">Optalmologist</option>
-																						<option value = "Anesthesiologist">Anesthesiologist</option>
-																						<option value = "Surgeon">Surgeon</option>
-																						<option value = "Internist">Internist</option>
-																					</select>
+																					<select class="form-control" id="SPECIALIZATION" name="SPECIALIZATION" style="max-width: 250px; float: left;">';
+																					
+																					for ($spec=0; $spec < sizeof($SPEC_choice); $spec++) { 
+																						if($spec==0){
+																							echo '<option value = "">-Select specialization-</option>';
+																						}else{
+																							if($D_SP==$SPEC_choice[$spec]){
+																								echo '<option value = "'.$SPEC_choice[$spec].'" selected>'.$SPEC_choice[$spec].'</option>';
+																							}else{
+																								echo '<option value = "'.$SPEC_choice[$spec].'">'.$SPEC_choice[$spec].'</option>';
+																							}
+																						}
+																					}
+																					echo '</select>
 																			</div>
 																				<div class="text-center" style="margin-top: 20px;">
 																				<button type="submit" onclick="update()" class="btn btn-default" value="'.$D_DLN.'" name="doctors_update">Update</button>
