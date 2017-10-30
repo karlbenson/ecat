@@ -42,12 +42,12 @@ echo '</div>
 
 //SCRIPT
 echo '<script>
+  $("#verity").keyup(function(event){
+    if(event.keyCode == 13){
+      $("#verify").click();
+    }
+  });
   function redirect_pass(){
-  	$("#verity").keyup(function(event){
-  		if(event.keyCode == 13){
-        $("#verify").click();
-    	}
-		});
   	var password_input = document.getElementById("verity").value;
   	var password = "ABC";
   	if(password==password_input){
