@@ -93,7 +93,13 @@
 										$P_AGE = $_POST["P_AGE"];
 										$P_PH = $_POST["P_PH"];
 										$P_SEX = $_POST["P_SEX"];
-										$P_PHYLIC = $_POST["P_PHYLIC"];
+										$PHYSICIAN = $_POST["P_PHYLIC"];
+										$PHY_LIST = explode("-",$PHYSICIAN);
+										if(sizeof($PHY_LIST)==1){
+											$P_PHYLIC = $PHY_LIST[0];
+										}else{
+											$P_PHYLIC = $PHY_LIST[1];
+										}
 										$P_STAFFLIC = $_POST["P_STAFFLIC"];
 										$P_VASL1 = $_POST["P_VASL1"];
 										$P_VASL2 = $_POST["P_VASL2"];
@@ -116,9 +122,17 @@
 										$CASE_NUM = $_POST["CASE_NUM"];
 										$SURGEON = $_POST["SURG_NAME"];
 										$S_LIST = explode("-",$SURGEON);
-										$SURG_LICENSE_NUM = $S_LIST[1];
+										if(sizeof($S_LIST)==1){
+											$SURG_LICENSE_NUM = $S_LIST[0];
+										}else{
+											$SURG_LICENSE_NUM = $S_LIST[1];
+										}
 										$P_LIST = explode("-",$_POST["PAT_NAME"]);
-										$PAT_ID_NUM2 = $P_LIST[1]; 
+										if(sizeof($P_LIST)==1){
+											$PAT_ID_NUM2 = $P_LIST[0];
+										}else{
+											$PAT_ID_NUM2 = $P_LIST[1];
+										}
 										$VISUAL_IMPARITY = $_POST["VI"];         
 										$MED_HISTORY = $_POST["MED_HIST"];       
 										$DIAGNOSIS = $_POST["DIAG"];             
