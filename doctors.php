@@ -92,6 +92,7 @@
 											//MYSQL SECTION END
 
 											if($DEFAULT==0){
+												include("doctors_filter.php");
 												if ($output->num_rows > 0) {
 													//MAIN PAGE
 													//HEADER
