@@ -37,7 +37,7 @@
 					$VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/40', '20/50', '20/63', '20/80', '20/100', '20/125', '20/160', '20/200', 'CF 20', 'CF 19', 'CF 18', 'CF 17', 'CF 16', 'CF 15', 'CF 14', 'CF 13', 'CF 12', 'CF 11', 'CF 10', 'CF 9', 'CF 8', 'CF 7', 'CF 6', 'CF 5', 'CF 4', 'CF 3', 'CF 2', 'CF 1', 'HM', '+LP', '-LP');
 					//MAX VALUES END
 
-					include("auto.php");
+					include("auto_doc.php");
 
 					//CODE SECTION ENDS HERE
 				?>
