@@ -5,7 +5,7 @@
 	echo '<div class="row" id="criteria_buttons">';
 
 	//REVERT
-	$where = "'patient.php'";
+	$where = "'doctors.php'";
 	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" >Revert</button></div>'; //REVERT END
 
 	// FILTER
@@ -39,16 +39,16 @@
 	// FILTER SECTION
 	echo 
 		'<div class="container-fluid" style="margin-bottom: 10px;" id="filter">
-			<form method="post" action="patient.php">
+			<form method="post" action="doctors.php">
 				<div class="panel panel-default collapse" style="padding: 0px;" id="upper">
 					<div class="panel-body" style="padding:10px;">';
 						// PHYSICIAN LICENSE FILTER
 	echo				'<div class="form-group row" style="margin: 5px; margin-bottom:10px;">
-							<label for="FSL" style="float:left; width:'.$leftmargin1.'px;">Physician </label>
+							<label for="FSL" style="float:left; width:'.$leftmargin1.'px;">Doctor </label>
 							<div>
 								<input class="form-control" id="SPN" placeholder="Physician" name="PHY_FULLNAME" style="width: 200px; float: left; margin-right: 10px;" '.$value_name.' readonly>
 								<input class="form-control" id="PHY_NUM" placeholder="License" name="FPL" style="width: 120px; float: left; margin-right: 10px;" '.$value_id.' readonly>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pickphysician" style="float: left; margin-right: 10px;">Find Physician</button>
+								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pickphysician" style="float: left; margin-right: 10px;">Find Doctor</button>
 							</div>
 						</div>';
 						// PHYSICIAN POP-UP FINDER
