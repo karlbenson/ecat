@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="references/typeahead.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-  <link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
 		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<script src="references/moment-with-locales.js"></script>

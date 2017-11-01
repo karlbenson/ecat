@@ -6,8 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
+		<link rel="stylesheet" href="references/typeahead.css">
 		<script src="references/jquery.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
+		<script src="references/typeahead.bundle.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
 	</head>
 	<body style="justify-content: center;">
@@ -106,7 +108,7 @@
 											<div class="form-group row">
 												<label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 180px; float: left;">
-													<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
+													<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
 												</div>
 											</div>
 											<!-- PHYSICIAN LICENSE NUMBER END -->
@@ -114,7 +116,7 @@
 											<div class="form-group row" style="margin-bottom:0px;">
 												<label class="control-label col-md-2" for="P_STAFFLIC" style="float:left; width:170px;">Screened by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 180px; float: left;">
-													<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
 												</div>
 											</div>
 											<!-- STAFF LICENSE NUMBER END -->
@@ -283,3 +285,54 @@
 		</div>
 	</body>
 </html>
+
+<?php
+	include("dbconnect.php");
+    $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
+    $arr = array();
+    
+    while ($row = $surgeon->fetch_assoc()) {
+        unset($id, $name1, $name2);
+        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+        //$name1 = $row['FIRST_NAME'];
+        //$name2 = $row['LAST_NAME'];
+        array_push($arr, $id/*.", ".$name2." ".$name1*/);
+    }
+				
+	$patient = $mydatabase->query("SELECT PAT_FNAME,PAT_LNAME,PAT_ID_NUM from EYEPATIENT");
+    $arr1 = array();
+    
+    while ($row = $patient->fetch_assoc()) {
+		unset($id, $name1, $name2);
+        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
+        //$name1 = $row['FIRST_NAME'];
+		//$name2 = $row['LAST_NAME'];
+        array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
+	}
+?>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Defining the local dataset
+		var arrs= <?php echo json_encode($arr);?>;
+		//var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
+		
+		// Constructing the suggestion engine
+		var arrs = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			local: arrs
+		});
+		
+		// Initializing the typeahead
+		$('.typeahead').typeahead({
+			hint: true,
+			highlight: true, /* Enable substring highlighting */
+			minLength: 1 /* Specify minimum characters required for showing result */
+		},
+		{
+			name: 'arrs',
+			source: arrs
+		});
+	});
+</script>
