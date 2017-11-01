@@ -138,7 +138,8 @@
 										$DIAGNOSIS = $_POST["DIAG"];             
 										$SURG_ANESTHESIA = $_POST["TANES"];
 										$SURG_ADDRESS = $_POST["SURG_ADD"];                      
-										$SURG_DATE = $_POST["DATE"];
+										$SURG_DATE1 = explode("/",$_POST["DATE"]);
+										$SURG_DATE = $SURG_DATE1[2].'-'.$SURG_DATE1[0].'-'.$SURG_DATE1[1];
 										$REMARKS = $_POST["REM"];  
 										$INTERNIST = $_POST["INTER"];
 										$ANESTHESIOLOGIST = $_POST["ANEST"];
