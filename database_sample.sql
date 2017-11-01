@@ -64,7 +64,7 @@ create table EYEPATIENT(
 );
 
 INSERT INTO EYEPATIENT VALUES
-	('00000011','Johnny','Sins', '34', 'Y', 'M','0000001','0000002','20/32','20/20','20/12.5','20/12.5','20/32','20/20','20/12.5','20/12.5','excess eye', 'too much dota2', 'sample diag', 'remove eye','unknown','unknown');
+	('CAT000','Johnny','Sins', '34', 'Y', 'M','0000001','0000002','20/32','20/20','20/12.5','20/12.5','20/32','20/20','20/12.5','20/12.5','excess eye', 'too much dota2', 'sample diag', 'remove eye','unknown','unknown');
 
 /*NOTE:
 	EYE SURGERY FORM:

@@ -122,39 +122,31 @@
 									</div>
 		  
 									<!-- VISUAL ACUITY -->
-									<div class="panel-group" style="margin-top:25px; margin-bottom:0px;">
+									<div class="panel-group" style="margin-top:25px; margin-bottom:0px 15px;">
 										<div class="panel panel-default" style="">
-											<div class="panel-heading" id="panelh">Visual Acuity</div>
+											<div class="panel-heading" id="panelh">Pre Surgery Visual Acuity</div>
 											<div class="panel-body">
+												
 												<table class="table">
 													<thead>
 														<th></th>
-														<th>Pre Surgery Visual Acuity<span style="color: #d9534f">*</span></th>
-														<th>Post Surgery Visual Acuity</th>
+														<th>Left Eye Visual Acuity<span style="color: #d9534f">*</span></th>
+														<th>Right Eye Visual Acuity<span style="color: #d9534f">*</span></th>
 													</thead>
 													<tbody>
-														<!-- LEFT EYE W/ SPECT -->
 														<tr>
-															<td><strong>Left Eye with Spectacles</strong></td>
+															<td><strong>With Spectacles</strong><span style="color: #d9534f">*</span></td>
+															<!-- LEFT EYE W/ SPECT -->
 															<td>
 																<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 200px;" required>
 																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
 																	echo "<option>".$VA_choice[$j]."</option>";
 																   } ?>
-															   </select>
+																</select>
 															</td>
-															<td>
-																<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-															   </select>
-															</td>
-														</tr>
-														<!-- END -->
-														<!-- RIGHT EYE W/ SPECT -->
-														<tr>
-															<td><strong>Right Eye with Spectacles</strong></td>
+															<!-- LEFT EYE W/ SPECT END-->
+															
+															<!-- RIGHT EYE W/ SPECT -->
 															<td>
 																<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 200px;" required>
 																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
@@ -162,18 +154,11 @@
 																   } ?>
 															   </select>
 															</td>
-															<td>
-																<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-															   </select>
-															</td>
+															<!-- RIGHT EYE W/ SPECT END -->
 														</tr>
-														<!-- END -->
-														<!-- LEFT EYE W/OUT SPECT -->
 														<tr>
-															<td><strong>Left Eye without Spectacles</strong></td>
+															<td><strong>Without Spectacles</strong><span style="color: #d9534f">*</span></td>
+															<!-- LEFT EYE W/OUT SPECT -->
 															<td>
 																<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 200px;" required>
 																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
@@ -181,18 +166,9 @@
 																   } ?>
 															   </select>
 															</td>
-															<td>
-																<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-																</select>
-															</td>
-														</tr>
-														<!-- END -->
-														<!-- RIGHT EYE W/OUT SPECT -->
-														<tr>
-															<td><strong>Right Eye without Spectacles</strong></td>
+															<!-- LEFT EYE W/OUT SPECT END-->
+															
+															<!-- RIGHT EYE W/OUT SPECT -->
 															<td>
 																<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 200px;" required>
 																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
@@ -200,21 +176,15 @@
 																   } ?>
 															   </select>
 															</td>
-															<td>
-																<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-															   </select>
-															</td>
+															<!-- RIGHT EYE W/OUT SPECT END -->
 														</tr>
-														<!-- END -->
 													</tbody>
 												</table>
 											</div>
 										</div>
 									</div>
 									<!-- VISUAL ACUITY END -->
+									
 									<div class="row">
 										<div class="col-md-7">
 											<!-- DESCRIPTION OF VISUAL PROBLEM -->
