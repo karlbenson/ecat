@@ -5,15 +5,17 @@
 		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--<link rel="stylesheet" href="references/bootstrap.min.css">-->
 		<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<link rel="stylesheet" href="references/typeahead.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-        <link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
 		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<script src="references/moment-with-locales.js"></script>
 		<script src="references/bootstrap-datetimepicker.js"></script>
+		<script src="references/typeahead.bundle.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -54,8 +56,9 @@
 					<div id="inner">
 						<!-- TITLE -->
 						<div class="container-fluid" >
-							<h4 style="color:#337ab7;">Eye Cataract Surgeries</h4>
+							<h4 style="color:#337ab7;">Eye Surgeries</h4>
 						</div>
+
 						<!-- TITLE -->
 
 						<!-- CONTENT -->
@@ -205,8 +208,8 @@
 												if ($output->num_rows>0) {
 													//HEADER
 													echo '<li class="list-group-item" id="tophead">
-															<div class="container-fluid row">
-																<div style="width:200px; float:left; margin-left:20px;"><b>'.'Date (YYYY-MM-DD)'.'</b></div>
+															<div class="container-fluid row" style="padding:0px;">
+																<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>
 																<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>
 																<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>
 															</div>
@@ -216,7 +219,7 @@
 													while($dataline = $output->fetch_assoc()) { 
 														echo '<li class="list-group-item">
 																<div class="row">
-																	<div style="width:200px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
+																	<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
 														$s_primary = $dataline["CASE_NUM"];
 														echo 		'<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>
 																	<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>
