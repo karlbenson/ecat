@@ -187,7 +187,7 @@
 												echo '<div id="link_buttons">
 														<button class="btn btn-default" id="del_button" value="doctors" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>
 														<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>
-														<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>
+														<div style="text-align:right;"><a role="button" class="btn" id="go" style="margin-right:15px;" href="doctors.php">Back</a></div>
 													</div>';
 												//BUTTONS AND LINKS END
 
