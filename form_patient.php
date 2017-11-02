@@ -28,9 +28,9 @@
 				<?php //CODE SECTION START
 					//PATIENT INFORMATION FIELDS MAX CHAR VALUES
 					$ID_LENG = 15;
-					$PHYL_LENG = 7;
+					$PHYL_LENG = 50;
 					$MAX_NAME = 40;
-					$STAFFL_LENG = 7;
+					$STAFFL_LENG = 50;
 					$VD_MAX = 15;
 					$DC_MAX = 30;
 					$REA_MAX = 12;
@@ -87,44 +87,55 @@
 		
 									<div class="row">
 										<!-- PATIENT AGE AND SEX -->
-										<div class="container-fluid well col-md-5"  style="margin: 0px 15px;">
+										<div style="width:40%; float:left;">
+										<div class="container-fluid well"  style="margin: 0px 15px;">
 											<div class="form-group row">
-												<label class="control-label col-md-2" for="P_AGE" style="float:left; width:170px;">Age:<span style="color: #d9534f">*</span> </label>
+												<label class="control-label col-md-2" for="P_AGE" style="float:left; width:90px;">Age:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-3" style="width: 180px; float: left;">
 													<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
 												</div>
 											</div>
 											<div class="form-group row" style="margin-bottom:6px;">
-												<label class="control-label col-md-2" for="P_SEX" style="float:left; width:170px;">Sex:<span style="color: #d9534f">*</span> </label>
+												<label class="control-label col-md-2" for="P_SEX" style="float:left; width:90px;">Sex:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-4" style="width: 180px; float: left;">
 													<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="M" required>Male</label>
 													<label class="radio-inline" id="P_SEX"><input name="P_SEX" type="radio" value="F">Female</label>
 												</div>
 											</div>
 										</div>
+									</div>
+
 										<!-- PATIENT AGE AND SEX END -->
-										<div class="container-fluid well col-md-6" style="margin: 0px 15px;">
+									<div style="width:60%; float: left;">
+										<div class="container-fluid well" style="margin: 0px 15px;">
 											<!-- PHYSICIAN LICENSE NUMBER -->
 											<div class="form-group row">
-												<label class="control-label col-md-2" for="P_PHYLIC" style="float:left; width:170px;">Examined by:<span style="color: #d9534f">*</span> </label>
-												<div class="col-md-2" style="width: 180px; float: left;">
-													<input title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="<?php echo $PHYL_LENG; ?>" name="P_PHYLIC" required>
+												<label class="control-label" for="P_PHYLIC" style="float:left; width:30%; padding-left:15px;">Examined by:<span style="color: #d9534f">*</span> </label>
+												<div class="col-md-2" style="width: 70%; float: left; ">
+												<div class="input-group">
+													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
+													<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
+												</div>
 												</div>
 											</div>
 											<!-- PHYSICIAN LICENSE NUMBER END -->
 											<!-- STAFF LICENSE NUMBER -->
 											<div class="form-group row" style="margin-bottom:0px;">
-												<label class="control-label col-md-2" for="P_STAFFLIC" style="float:left; width:170px;">Screened by:<span style="color: #d9534f">*</span> </label>
-												<div class="col-md-2" style="width: 180px; float: left;">
-													<input title="License Number ranges from 0000000-9999999." class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:<span style="color: #d9534f">*</span> </label>
+												<div class="col-md-2" style="width: 70%; float: left; ">
+												<div class="input-group">
+													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
+												</div>
 												</div>
 											</div>
 											<!-- STAFF LICENSE NUMBER END -->
 										</div>
 									</div>
+								</div>
 		  
 									<!-- VISUAL ACUITY -->
-									<div class="panel-group" style="margin-top:25px; margin-bottom:0px 15px;">
+									<div class="panel-group" style="margin-top:25px; margin-bottom:0px;">
 										<div class="panel panel-default" style="">
 											<div class="panel-heading" id="panelh">Pre Surgery Visual Acuity</div>
 											<div class="panel-body">
@@ -132,8 +143,8 @@
 												<table class="table">
 													<thead>
 														<th></th>
-														<th>Left Eye Visual Acuity<span style="color: #d9534f">*</span></th>
-														<th>Right Eye Visual Acuity<span style="color: #d9534f">*</span></th>
+														<th>Left Eye Visual Acuity</th>
+														<th>Right Eye Visual Acuity</th>
 													</thead>
 													<tbody>
 														<tr>
@@ -242,18 +253,22 @@
 													<div class="panel-body">
 														<!-- AFFECTED PART OF RIGHT EYE -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_REA" style="float:left; width:170px;">Right Eye</label>
-															<div class="col-md-4" style="width: 200px;">
+															<label class="control-label col-md-2" for="P_REA" style="float:left; width:30%;">Right Eye</label>
+															<div class="col-md-4" style="width: 70%;">
+															<div style="width:200px;">
 																<input type="" class="form-control" id="P_REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="P_REA">
+															</div>
 															</div>
 														</div>
 														<!-- AFFECTED PART OF RIGHT EYE END -->
 							
 														<!-- AFFECTED PART OF LEFT EYE -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_LEA" style="float:left; width:170px;">Left Eye</label>
-															<div class="col-md-4" style="width: 200px;">
+															<label class="control-label col-md-2" for="P_LEA" style="float:left; width:30%;">Left Eye</label>
+															<div class="col-md-4" style="width: 70%;">
+															<div style="width:200px;">
 																<input type="" class="form-control" id="P_LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="P_LEA">
+															</div>
 															</div>
 														</div>
 														<!-- AFFECTED PART OF LEFT EYE END -->
@@ -286,28 +301,47 @@
 	</body>
 </html>
 
+<!--GO TO SECTION-->
+<?php include("confirm.php");
+?>
+
+<script>
+	function add_on_d(){
+		document.getElementById("add_head").innerHTML = "Add New Doctor";
+		document.getElementById("add_para").innerHTML = "doctor";
+	}
+	function add_on_s(){
+		document.getElementById("add_head").innerHTML = "Add New Staff";
+		document.getElementById("add_para").innerHTML = "staff";
+	}
+</script>
+
+<!--GO TO SECTION END-->
+
+<!--TYPE AHEAD SECTION-->
+
 <?php
 	include("dbconnect.php");
-    $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
-    $arr = array();
-    
-    while ($row = $surgeon->fetch_assoc()) {
-        unset($id, $name1, $name2);
-        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
-        //$name1 = $row['FIRST_NAME'];
-        //$name2 = $row['LAST_NAME'];
-        array_push($arr, $id/*.", ".$name2." ".$name1*/);
-    }
+ $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
+ $arr = array();
+ 
+ while ($row = $surgeon->fetch_assoc()) {
+  unset($id, $name1, $name2);
+  $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+  //$name1 = $row['FIRST_NAME'];
+  //$name2 = $row['LAST_NAME'];
+  array_push($arr, $id/*.", ".$name2." ".$name1*/);
+ }
 				
 	$patient = $mydatabase->query("SELECT PAT_FNAME,PAT_LNAME,PAT_ID_NUM from EYEPATIENT");
     $arr1 = array();
     
-    while ($row = $patient->fetch_assoc()) {
+ while ($row = $patient->fetch_assoc()) {
 		unset($id, $name1, $name2);
-        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
-        //$name1 = $row['FIRST_NAME'];
+  $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
+  //$name1 = $row['FIRST_NAME'];
 		//$name2 = $row['LAST_NAME'];
-        array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
+  array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
 	}
 ?>
 
@@ -336,3 +370,5 @@
 		});
 	});
 </script>
+
+<!--TYPE AHEAD SECTION END-->
