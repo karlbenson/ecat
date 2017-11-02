@@ -106,9 +106,9 @@
 										}
 										$STAFF_LIST = explode("-",$_POST["P_STAFFLIC"]);
 										if(sizeof($STAFF_LIST)==1){
-											$P_STAFFLIC = $PHY_LIST[0];
+											$P_STAFFLIC = $STAFF_LIST[0];
 										}else{
-											$P_STAFFLIC = $PHY_LIST[1];
+											$P_STAFFLIC = $STAFF_LIST[1];
 										}
 										$P_VASL1 = $_POST["P_VASL1"];
 										$P_VASR1 = $_POST["P_VASR1"];
