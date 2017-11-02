@@ -43,6 +43,29 @@
 										'CF 8', 'CF 7', 'CF 6', 'CF 5', 'CF 4', 'CF 3',
 										'CF 2', 'CF 1', 'HM', '+LP', '-LP');
 					//PATIENT INFORMATION FIELDS END
+					
+					//DETERMINE NEXT PAT_ID
+					include('dbconnect.php');
+					$current_year = getdate()['year'];
+					$output = $mydatabase->prepare("select PAT_ID_NUM from EYEPATIENT where PAT_ID_NUM like 'CAT".$current_year."-%' order by PAT_ID_NUM DESC LIMIT 1");
+					$output->execute();
+					$line = $output->get_result();
+					$dataline = $line->fetch_assoc();
+					
+					if(sizeof($dataline) == 0){
+						$NEXT_ID = "CAT".$current_year."-000";
+					}else{
+						$LAST_VAL = explode("-", $dataline["PAT_ID_NUM"])[1];
+						if(intval($LAST_VAL)+1 < 10){
+							$NEXT_ID = "CAT".$current_year."-00".( (string) intval($LAST_VAL)+1);
+						}else if(intval($LAST_VAL)+1 < 100){
+							$NEXT_ID = "CAT".$current_year."-0".( (string) intval($LAST_VAL)+1);
+						}else{
+							$NEXT_ID = "CAT".$current_year."-".( (string) intval($LAST_VAL)+1);
+						}
+					}
+					//DETERMINE NEXT PAT_ID END
+					
 					//CODE SECTION END
 				?>
 
@@ -63,7 +86,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-3" for="P_ID" style="float:left; width:170px;">Patient<span style="color: #d9534f">*</span> </label>
 										<div class="" style="width: 180px; float: left; margin-right:10px;">
-											<input type="text" class="form-control" id="P_ID" placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" name="P_ID" required>
+											<input type="text" class="form-control" id="P_ID" name="P_ID"  placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" value=<?php echo $NEXT_ID ?> required readonly>
 										</div>
 			  
 										<div class="" style="width: 200px; float: left; margin-right:10px;">

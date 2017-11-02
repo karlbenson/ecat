@@ -126,13 +126,13 @@
 										//SURGERY INFORMATION FIELDS
 										$CASE_NUM = $_POST["CASE_NUM"];
 										$SURGEON = $_POST["SURG_NAME"];
-										$S_LIST = explode("-",$SURGEON);
+										$S_LIST = explode(" - ",$SURGEON);
 										if(sizeof($S_LIST)==1){
 											$SURG_LICENSE_NUM = $S_LIST[0];
 										}else{
 											$SURG_LICENSE_NUM = $S_LIST[1];
 										}
-										$P_LIST = explode("-",$_POST["PAT_NAME"]);
+										$P_LIST = explode(" - ",$_POST["PAT_NAME"]);
 										if(sizeof($P_LIST)==1){
 											$PAT_ID_NUM2 = $P_LIST[0];
 										}else{

@@ -45,6 +45,33 @@
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
 					//SURGERY INFORMATION FIELDS END
+					
+					//DETERMINE NEXT CASE_NUM
+					include('dbconnect.php');
+					$current_year = getdate()['year'];
+					$output = $mydatabase->prepare("select CASE_NUM from SURGERY where CASE_NUM like '".$current_year."-%' order by CASE_NUM DESC LIMIT 1");
+					$output->execute();
+					$line = $output->get_result();
+					$dataline = $line->fetch_assoc();
+					
+					if(sizeof($dataline) == 0){
+						$NEXT_CASE_NUM = $current_year."-00000";
+					}else{
+						$LAST_VAL = explode("-", $dataline["CASE_NUM"])[1];
+						if(intval($LAST_VAL)+1 < 10){
+							$NEXT_CASE_NUM = $current_year."-0000".( (string) intval($LAST_VAL)+1);
+						}else if(intval($LAST_VAL)+1 < 100){
+							$NEXT_CASE_NUM = $current_year."-000".( (string) intval($LAST_VAL)+1);
+						}else if(intval($LAST_VAL)+1 < 1000){
+							$NEXT_CASE_NUM = $current_year."-00".( (string) intval($LAST_VAL)+1);
+						}else if(intval($LAST_VAL)+1 < 10000){
+							$NEXT_CASE_NUM = $current_year."-0".( (string) intval($LAST_VAL)+1);
+						}else{
+							$NEXT_CASE_NUM = $current_year."-".( (string) intval($LAST_VAL)+1);
+						}
+					}
+					//DETERMINE NEXT CASE_NUM END
+					
 					//CODE SECTION END
 				?>
 				<!-- SURGERY FORM -->
@@ -67,7 +94,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="CASE_NUM" style="float:left; width:170px;">Case Number<span style="color: #d9534f">*</span></label>
 										<div class="col-md-2" style="width: 150px; float: left;">
-											<input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." class="form-control" id="CASE_NUM" placeholder="20XX-XXXXX" maxlength="<?php echo $CASE_LENG; ?>" name="CASE_NUM" required>
+											<input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." class="form-control" id="CASE_NUM" placeholder="20XX-XXXXX" maxlength="<?php echo $CASE_LENG; ?>" name="CASE_NUM" value="<?php echo $NEXT_CASE_NUM ?>" required readonly>
 										</div>
 									</div>
 									<!-- CASER NUMBER END -->
@@ -396,7 +423,7 @@
     
     while ($row = $surgeon->fetch_assoc()) {
         unset($id, $name1, $name2);
-        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']." - ".$row['DOC_LICENSE_NUM'];
         //$name1 = $row['FIRST_NAME'];
         //$name2 = $row['LAST_NAME'];
         array_push($arr, $id/*.", ".$name2." ".$name1*/);
@@ -407,7 +434,7 @@
     
     while ($row = $patient->fetch_assoc()) {
 		unset($id, $name1, $name2);
-        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']."-".$row['PAT_ID_NUM'];
+        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']." - ".$row['PAT_ID_NUM'];
         //$name1 = $row['FIRST_NAME'];
 		//$name2 = $row['LAST_NAME'];
         array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
