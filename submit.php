@@ -146,8 +146,20 @@
 										$SURG_DATE1 = explode("/",$_POST["DATE"]);
 										$SURG_DATE = $SURG_DATE1[2].'-'.$SURG_DATE1[0].'-'.$SURG_DATE1[1];
 										$REMARKS = $_POST["REM"];  
-										$INTERNIST = $_POST["INTER"];
-										$ANESTHESIOLOGIST = $_POST["ANEST"];
+										$INTER = $_POST["INTER"];
+										$I_LIST = explode(" - ",$INTER);
+										if(sizeof($I_LIST)==1){
+											$INTERNIST = $I_LIST[0];
+										}else{
+											$INTERNIST = $I_LIST[1];
+										}		
+										$ANEST = $_POST["ANEST"];
+										$A_LIST = explode(" - ",$ANEST);
+										if(sizeof($I_LIST)==1){
+											$ANESTHESIOLOGIST = $A_LIST[0];
+										}else{
+											$ANESTHESIOLOGIST = $A_LIST[1];
+										}
 										$IOLPOWER = $_POST["IOL"];
 										$PC_IOL = $_POST["PCIOL"];
 										$PC_LAB = $_POST["PCLAB"];
