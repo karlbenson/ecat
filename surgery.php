@@ -219,8 +219,8 @@
 														echo 	'<tr>
 																	<td>'.$dataline["SURG_DATE"].'</td>
 																	<td>'.$dataline["CASE_NUM"].'</td>
-																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
-																	<td>'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
+																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'" style="color:#000000">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</a></td>
+																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="color:#000000">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
 																	<td><a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a></td>
 																</tr>';
 													}
