@@ -9,8 +9,10 @@
 		<script src="references/jquery.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-		<link rel="stylesheet" type="text/css" href="references/dataTables.bootstrap.min.css"/>
-		<script type="text/javascript" src="references/jQuery.datatables.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="references/DataTables/buttons.print.min.js">
+		<link rel="stylesheet" type="text/css" href="references/DataTables/datatables.min.css"/>
+ 		<link rel="stylesheet" type="text/css" href="references/DataTables/dataTables.buttons.min.js">
+		<script type="text/javascript" src="references/DataTables/datatables.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
