@@ -31,17 +31,17 @@
 				<?php  //CODE SECTION START
 					//SURGERY INFORMATION FIELDS MAX CHAR VALUES
 					$CASE_LENG = 10;
-					$SURG_LENG = 7;
+					$SURG_LENG = 50;
 					$ID_LENG = 15;
 					$VI_MAX = 100;
 					$HIST_MAX = 100;
 					$DIAG_MAX = 100;
-					$TANES_MAX = 25;
+					$TANES_MAX = 50;
 					$SURGADD_MAX = 50;
 					$REM_MAX = 100;
-					$MAX_NAME = 40;
-					$INTER_MAX = 40;
-					$ANEST_MAX = 40;
+					$MAX_NAME = 50;
+					$INTER_MAX = 50;
+					$ANEST_MAX = 50;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
 					//SURGERY INFORMATION FIELDS END
@@ -94,7 +94,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="CASE_NUM" style="float:left; width:170px;">Case Number<span style="color: #d9534f">*</span></label>
 										<div class="col-md-2" style="width: 150px; float: left;">
-											<input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." class="form-control" id="CASE_NUM" placeholder="20XX-XXXXX" maxlength="<?php echo $CASE_LENG; ?>" name="CASE_NUM" value="<?php echo $NEXT_CASE_NUM ?>" required readonly>
+											<input class="form-control" id="CASE_NUM" placeholder="20XX-XXXXX" maxlength="<?php echo $CASE_LENG; ?>" name="CASE_NUM" value="<?php echo $NEXT_CASE_NUM ?>" required readonly>
 										</div>
 									</div>
 									<!-- CASER NUMBER END -->
@@ -102,9 +102,10 @@
 									<!-- SURGEON LICENSE NUMBER -->
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="float:left;">
-											<div style="width: 200px; float: left; ">
-												<input class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name" maxlength="40" name="SURG_NAME" type="textbox" required>
+										<div class="col-md-6" style="width: 320px; float:left;">
+											<div class="input-group">
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or Lic. No." maxlength="40" name="SURG_NAME" type="textbox" required>
+												<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 											</div>
 										</div>
 									</div>
@@ -113,8 +114,11 @@
 									<!-- INTERNIST NAME -->
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="width: 225px; float: left;">
-											<input type="text" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+										<div class="col-md-6" style="width: 320px; float: left;">
+										<div class="input-group">
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name  or Lic. No." maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
+										</div>
 										</div>
 									</div>
 									<!-- INTERNIST NAME END -->
@@ -122,8 +126,11 @@
 									<!-- TYPE OF ANESTHESIOLOGIST -->
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="ANEST" style="float:left; width:170px;">Anesthesiologist<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="width: 225px; float: left;">
-											<input type="text" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
+										<div class="col-md-6" style="width: 320px; float: left;">
+										<div class="input-group">
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or Lic. No." maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
+											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
+										</div>
 										</div>
 									</div>
 									<!-- TYPE OF ANESTHESIOLOGIST END -->
@@ -137,8 +144,11 @@
 												<!-- PATIENT ID -->
 												<div class="form-group row">
 	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
-             <div class="col-md-6" style="width: 250px; float: left; margin-right:10px;">
+             <div class="col-md-6" style="width: 320px; float: left; margin-right:10px;">
+             <div class="input-group">
                <input type="text" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
+              <span class="input-group-addon" role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-id-card" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
+             </div>
 	            </div>
 	           </div>
 												<!-- PATIENT ID END -->
@@ -211,7 +221,7 @@
 															<div class='input-group date' id='datetimepicker'>
 																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY' required>
 																<span class="input-group-addon">
-																	<span class="glyphicon glyphicon-calendar" style="color:#337ab7;"></span>
+																	<span class="glyphicon glyphicon-calendar"></span>
 																</span>
 															</div>
 														</div>
@@ -236,18 +246,13 @@
 											<div class="panel-heading" id="panelh">Post Surgery Visual Acuity</div>
 											<div class="panel-body">
 												<?php
-													$VA_choice = array('20/10', '20/12.5', '20/16', '20/20', '20/25', '20/32', '20/40', '20/50', '20/63', '20/80',
-																	'20/100', '20/125', '20/160', '20/200',
-																	'CF 20', 'CF 19', 'CF 18', 'CF 17', 'CF 16', 'CF 15',
-																	'CF 14', 'CF 13', 'CF 12', 'CF 11', 'CF 10', 'CF 9',
-																	'CF 8', 'CF 7', 'CF 6', 'CF 5', 'CF 4', 'CF 3',
-																	'CF 2', 'CF 1', 'HM', '+LP', '-LP');
+													$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 20", "CF 19'", "CF 18'", "CF 17'", "CF 16'", "CF 15'", "CF 14'", "CF 13'", "CF 12'", "CF 11'", "CF 10'", "CF 9'", "CF 8'", "CF 7'", "CF 6'", "CF 5'", "CF 4'", "CF 3'", "CF 2'", "CF 1'", "HM", "+LP", "-LP", "U");
 												?>
 												<table class="table">
 													<thead>
 														<th></th>
-														<th>Left Eye Visual Acuity<span style="color: #d9534f">*</span></th>
-														<th>Right Eye Visual Acuity<span style="color: #d9534f">*</span></th>
+														<th>Left Eye Visual Acuity</th>
+														<th>Right Eye Visual Acuity</th>
 													</thead>
 													<tbody>
 														<tr>
@@ -415,6 +420,21 @@
 		</div>
 	</body>
 </html>
+
+<?php
+include("confirm.php");
+?>
+
+<script>
+	function add_on_d(){
+		document.getElementById("add_head").innerHTML = "Add New Doctor";
+		document.getElementById("add_para").innerHTML = "doctor";
+	}
+	function add_on_p(){
+		document.getElementById("add_head").innerHTML = "Add New Patient";
+		document.getElementById("add_para").innerHTML = "patient";
+	}
+</script>
 
 <?php
 	include("dbconnect.php");
