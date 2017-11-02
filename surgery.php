@@ -197,45 +197,6 @@
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
-<<<<<<< HEAD
-      if($DEFAULT==0){
-
-        //FILTER
-        //include("surgery_filter.php");
-        //FILTER END
-
-        if ($output->num_rows>0) {
-
-        //MAIN PAGE
-
-          //HEADER
-          echo '<li class="list-group-item" id="tophead">';
-          echo '<div class="container-fluid row">';
-          echo '<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>';
-          echo '<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>';
-          echo '<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>';
-          echo '</div>';
-          echo '</li>';
-          //HEADER END
-
-          //CONTENT
-          while($dataline = $output->fetch_assoc()) { 
-
-            echo '<li class="list-group-item">';
-            echo '<div class="row">';
-
-                echo '<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
-                  $s_primary = $dataline["CASE_NUM"];
-                echo '<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>';
-                echo '<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>';
-                echo '<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>';
-              
-            echo '</div>';
-            echo '</li>';
-
-          }//CONTENT END
-        echo '</ul>';
-=======
 											if($DEFAULT==0){
 												//FILTER
 												include("surgery_filter.php");
@@ -264,7 +225,6 @@
 															</li>';
 													}//CONTENT END
 													echo '</ul>';
->>>>>>> 90c6b721fea731b065cd73d4fe522570dc7bef1f
       
 													//PAGER
 													echo '<div style="text-align:center;">
@@ -275,181 +235,6 @@
 													$item_no = $check2->num_rows;
 													$page_no = ceil($item_no/$limit);
       
-<<<<<<< HEAD
-      if($page_no>1){
-        for ($p_no=0; $p_no < $page_no; $p_no++) { 
-          echo '<li><a style="color:#337ab7;" href="'.'surgery.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
-        }
-      } 
-
-      echo '</ul>';
-      echo '</div>';
-      //PAGER END
-
-      } else { echo "No Records."; }
-
-      //MAIN PAGE END
-
-    }else if ($DEFAULT==1) {
-
-      //FULL DETAILS PAGE
-
-      //MYSQL SECTION
-      $output1 = $mydatabase->prepare("SELECT s.*, d.LAST_NAME, d.FIRST_NAME FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM and CASE_NUM = '$profile_p' ");      
-      $output1->execute();
-      $line = $output1->get_result();
-      $dataline = $line->fetch_assoc();
-      //MYSQL SECTION END
-
-      //VALUES
-      $S_CN = $dataline["CASE_NUM"];
-      $S_LN = $dataline["SURG_LICENSE_NUM"];
-      $S_ID = $dataline["PAT_ID_NUM"];
-      $S_VI = $dataline["VISUAL_IMPARITY"];
-      $S_MH = $dataline["MED_HISTORY"];
-      $S_D = $dataline["DIAGNOSIS"];
-      $S_A = $dataline["SURG_ADDRESS"];
-      $S_DATE = $dataline["SURG_DATE"];
-      $S_R = $dataline["REMARKS"];
-	  $S_TA = $dataline["SURG_ANESTHESIA"];
-	  $S_I = $dataline["INTERNIST"];
-	  $S_AN = $dataline["ANESTHESIOLOGIST"];
-	  $S_IOL = $dataline["IOLPOWER"];
-	  $PC_IOL = $dataline["PC_IOL"];
-	  $PC_L = $dataline["PC_LAB"];
-	  $PC_PF = $dataline["PC_PF"];
-	  $SP_IOL = $dataline["SPO_IOL"];
-	  $C_HB = $dataline["CSF_HBILL"];
-	  $C_S = $dataline["CSF_SUPPLIES"];
-	  $C_L = $dataline["CSF_LAB"];
-      $date = explode("-", $S_DATE);
-      //VALUES END
-
-      //CONTENT
-      echo '<div>
-        <div class="container-fluid">
-          <h3>Case No. '.$S_CN.'</h3>
-          <div class="panel panel-default" style="padding-bottom:10px;">
-            <div class="panel-heading" id="tophead1">Surgery Details</div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Internist'.'</div>
-              <div class="col-md-6">'.$S_I.'</div>
-            </div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Anesthesiologist'.'</div>
-              <div class="col-md-6">'.$S_AN.'</div>
-            </div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'IOL Power'.'</div>
-              <div class="col-md-6">'.$S_IOL.'</div>
-            </div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Type of Anesthesia'.'</div>
-              <div class="col-md-6">'.$S_TA.'</div>
-            </div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Surgery Address'.'</div>
-              <div class="col-md-6">'.$S_A.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Surgery Date'.'</div>
-              <div class="col-md-6">';
-            echo $MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0];
-            echo'</div>
-            </div>
-          </div>
-          <div class="panel panel-default" style="padding-bottom:10px;">
-            <div class="panel-heading" style="border: 0px; font-weight:bold;">Conducting Surgeon</div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Name'.'</div>
-              <div class="col-md-6">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'License No.'.'</div>
-              <div class="col-md-6">'.$S_LN.'</div>
-            </div>
-          </div>
-          <div class="panel panel-default" style="padding-bottom:10px;">
-            <div class="panel-heading" style="border: 0px; font-weight:bold;">Patient Information</div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Patient ID'.'</div>
-              <div class="col-md-5">'.$S_ID.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Visual Imparity'.'</div>
-              <div class="col-md-5">'.$S_VI.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Medical History'.'</div>
-              <div class="col-md-5">'.$S_MH.'</div>
-            </div>
-          </div>
-          <div class="panel panel-default" style="padding-bottom:10px;">
-            <div class="panel-heading" style="border: 0px; font-weight:bold;">Surgeon Remarks</div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Diagnosis'.'</div>
-              <div class="col-md-5">'.$S_D.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Remarks'.'</div>
-              <div class="col-md-5">'.$S_R.'</div>
-            </div>
-        <div class="panel panel-default" style="padding-bottom:10px;">
-            <div class="panel-heading" style="border: 0px; font-weight:bold;">Financial Information</div>
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'<b>Patient Counterpart</b>'.'</div>
-			</div>
-		   <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'IOL'.'</div>
-              <div class="col-md-5">'.$PC_IOL.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'Lab'.'</div>
-              <div class="col-md-5">'.$PC_L.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'PF (Others)'.'</div>
-              <div class="col-md-5">'.$PC_PF.'</div>
-            </div>
-			
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'<b>SPONSORED IOL</b>'.'</div>
-              <div class="col-md-5">'.$SP_IOL.'</div>
-            </div>
-
-			<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'<b>CSF</b>'.'</div>
-			</div>
-		   <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'HBILL'.'</div>
-              <div class="col-md-5">'.$C_HB.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'SUPPLIES'.'</div>
-              <div class="col-md-5">'.$C_S.'</div>
-            </div>
-            <div class="panel-body row" style="margin:0px; padding:5px 10px;">
-              <div class="col-md-3" >'.'LAB'.'</div>
-              <div class="col-md-5">'.$C_L.'</div>
-            </div>
-		</div>
-		  </div>
-        </div>
-      </div>';
-      //CONTENT END
-
-      //BUTTONS AND LINKS
-      echo '<div id="link_buttons">';
-      echo '<a role="button" class="btn btn-default"'.'href="'.'surgery.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>';
-     // echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
-      echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>';
-      echo '</div>';
-      //BUTTONS AND LINKS END
-
-      // POP-UP ALERT
-      echo '<div class="modal fade" id="EditBox" role="dialog" style="">
-        <div class="modal-dialog modal-lg">';
-=======
 													if($page_no>1){
 														for ($p_no=0; $p_no < $page_no; $p_no++) { 
 															echo '<li><a style="color:#337ab7;" href="'.'surgery.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
@@ -616,7 +401,6 @@
 												// POP-UP ALERT
 												echo '<div class="modal fade" id="EditBox" role="dialog" style="">
 														<div class="modal-dialog modal-lg">';
->>>>>>> 90c6b721fea731b065cd73d4fe522570dc7bef1f
     
 												//POP-UP CONTENT
 												echo 		'<div class="modal-content">

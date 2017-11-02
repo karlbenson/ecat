@@ -176,54 +176,6 @@
            	</div>
 												<!-- SURGERY ADDRESS END -->
   
-<<<<<<< HEAD
-                  <!-- DATE -->
-                    <div class="form-group row">
-                      <label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
-                    <div class="col-md-7"  style="float:left; min-width:400px;">
-                      <div>
-                          <label class="sr-only" for="MM">Month</label>
-                          <select class="form-control" id="MM" name="MM" style="width: 120px; float: left; margin-right:10px;" required>
-                            <?php for ($j=0; $j < count($MONTH_choice); $j++) { 
-                              echo '<option value="'.($j+1).'">'.$MONTH_choice[$j].'</option>';
-                             } ?>
-                          </select>
-                      </div>
-
-                      <div style="width: 80px; float: left; margin-right:10px;">
-                          <label class="sr-only" for="DD">Day</label>
-                          <input pattern="\d||[0-2]\d|3[0-1]|" class="form-control" placeholder="DD" maxlength="<?php echo $SURG_DATE_DD; ?>" name="DD" id="DD" required>
-                      </div>
-
-                      <div  style="width: 100px; float: left; margin-right:10px;">
-                          <label class="sr-only" for="YY">Year</label>
-                          <input pattern="[1-2]\d\d\d" class="form-control" placeholder="YYYY" maxlength="<?php echo $SURG_DATE_YY; ?>" name="YY" id="YY" required>
-                      </div>
-                    </div>
-
-                    </div>
-                  <!-- DATE END -->
-
-                  </div>
-                </div>
-              </div>
-            <!-- SURGERY DETAILS END -->
-
-            <!-- SURGEON REPORT -->
-              <div class="panel-group" style="margin-top:25px;">
-                <div class="panel panel-default" style="">
-                  <div class="panel-heading" id="panelh">Surgery Report</div>
-                    <div class="panel-body">
-
-                  <!-- DIAGNOSIS-->
-                    <div class="form-group row">
-                      <label class="control-label col-md-2" for="DIAG" style="float:left; width:170px;">Diagnosis </label>
-                      <div class="col-md-7" style="width: 600px; float: left;">
-                        <textarea type="text" class="form-control" id="DIAG" placeholder="Eye Surgery Diagnosis" maxlength="<?php echo $DIAG_MAX; ?>" name="DIAG"></textarea>
-                      </div>
-                    </div>
-                  <!-- DIAGNOSIS END -->
-=======
 												<!-- DATE -->
 												<div class="form-group row">
 													<label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
@@ -335,7 +287,6 @@
 													</div>
 												</div>
 												<!-- DIAGNOSIS END -->
->>>>>>> 90c6b721fea731b065cd73d4fe522570dc7bef1f
                     
 												<!-- SURGERY REMARKS -->
 												<div class="form-group row">
