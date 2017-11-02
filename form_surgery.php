@@ -211,7 +211,7 @@
 															<div class='input-group date' id='datetimepicker'>
 																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY' required>
 																<span class="input-group-addon">
-																	<span class="glyphicon glyphicon-calendar" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span>
+																	<span class="glyphicon glyphicon-calendar" style="color:#337ab7;"></span>
 																</span>
 															</div>
 														</div>
