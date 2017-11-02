@@ -67,6 +67,8 @@
 					link_there = "form_doctors.php";
 				}else if(to=="staff"){
 					link_there = "#";
+				}else if(to=="patient"){
+					link_there = "form_patient.php";
 				}
 				window.location = link_there;
 			}
