@@ -88,17 +88,21 @@ hr{
 	margin: 20px 0px 10px 0px;
 }
 
-div, li{
+div, li, td{
 	font-size: 12pt;
 	overflow-wrap: break-word;
 }
 
 #tophead{
 	background-color: #5cb85c;
-	padding: 10px 0px;
 	border-radius: 5px;
 	color: #f2f2f2;
 	border: 0px;
+	font-weight: bold;
+}
+
+.col-md-1{
+	column-span: 20px;
 }
 
 #tophead1{
@@ -189,6 +193,7 @@ div, li{
 	color: #ffffff;
 }
 
+
 .panel-body .col-md-3{
 	float: left;
 	min-width: 170px;
@@ -201,6 +206,20 @@ div, li{
  
 .tt-suggestion{font-size: 13px;}
 .tt-menu{width: 115%;}
+
+.pagination>.active>a,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  background-color: #5cb85c!important;
+  border-color: #bfbfbf;
+  color: white;
+}
+
+.pagination>li>a{
+	color: black;
+}
+
 
 /*PRINT SETTINGS*/
 @media print {
