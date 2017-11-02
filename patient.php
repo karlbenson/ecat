@@ -194,51 +194,39 @@
 												if ($output->num_rows>0) {
 													//MAIN PAGE
 													//HEADER
-													echo '<li class="list-group-item" id="tophead">';
-													echo '<div class="container-fluid row" style="padding:0px;">';
-													echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'Last Name'.'</b></div>';
-													echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'First Name'.'</b></div>';
-													echo '<div style="width:120px; float:left; margin-left:20px;"><b>'.'Patient ID'.'</b></div>';
-													echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'Examined by'.'</b></div>';
-													echo '<div class="hide_section" style="width:110px; float:left; margin-left:20px;"><b>'.'Screened by'.'</b></div>';
-													echo '</div>';
-													echo '</li>';
+													echo '<table class="table table-hover table-responsive">
+															<thead style="background:#5cb85c">
+																<th style="color:#ffffff">'.'Patient ID'.'</th>
+																<th style="color:#ffffff">'.'Last Name'.'</th>
+																<th style="color:#ffffff">'.'First Name'.'</th>
+																<th style="color:#ffffff">'.'Sex'.'</th>
+																<th style="color:#ffffff">'.'Age'.'</th>
+																<th></th>
+															</thead>
+															<tbody>';
 													//HEADER END
 
 													//CONTENT
 													while($dataline = $output->fetch_assoc()) { 
-														echo '<li class="list-group-item">';
-														echo '<div class="row">';
-															echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["PAT_LNAME"].'</div>';
-															echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["PAT_FNAME"].'</div>';
-															echo '<div style="width:120px; float:left; margin-left:20px;">'.$dataline["PAT_ID_NUM"].'</div>';
-															echo '<div style="width:170px; float:left; margin-left:20px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>';
-															echo '<div class="hide_section" style="width:110px; float:left; margin-left:20px;">'.$dataline["STAFF_LICENSE_NUM"].'</div>';
-															echo '<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'see full details'.'</a>'.'</div>';
-														echo '</div>';
-														echo '</li>';
-													}
-													//CONTENT END
-													echo '</ul>';
-
-													//PAGER
-													echo '<div style="text-align:center;">';
-													echo '<ul class="pagination" style="margin:auto;"><br>';
-														  
-													$check = "SELECT PAT_ID_NUM FROM EYEPATIENT";
-													$check2 = $mydatabase->query($check);
-													$item_no = $check2->num_rows;
-													$page_no = ceil($item_no/$limit);
-													  
-													if($page_no>1){
-														for ($p_no=0; $p_no < $page_no; $p_no++) { 
-														echo '<li><a style="color:#337ab7;" href="'.'patient.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
+														echo 	'<tr>
+																	<td>'.$dataline["PAT_ID_NUM"].'</td>
+																	<td>'.$dataline["PAT_LNAME"].'</td>
+																	<td>'.$dataline["PAT_FNAME"].'</td>';
+														if($dataline["PAT_SEX"]=='M'){
+															echo '<td>Male</td>';
+														}else{
+															echo '<td>Female</td>';
 														}
-													} 
+														echo		'<td>'.$dataline["PAT_AGE"].'</td>
+																	<td>
+																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a>
+																	</td>
+																</tr>';
+													} //CONTENT END
+													
+													echo 	'</tbody>
+														</table>';
 
-													echo '</ul>';
-													echo '</div>';
-													//PAGER END
 												} else { echo "No Records."; }
 												//MAIN PAGE END
 											}else if ($DEFAULT==1) {

@@ -96,48 +96,33 @@
 												if ($output->num_rows > 0) {
 													//MAIN PAGE
 													//HEADER
-													echo '<li class="list-group-item" id="tophead">
-															<div class="container-fluid row" style="padding:0px;">
-																<div class="col-md-1" style="width:120px; float:left;"><b>'.'Last Name'.'</b></div>
-																<div class="col-md-1" style="width:120px; float:left;"><b>'.'First Name'.'</b></div>
-																<div class="col-md-1" style="width:120px; float:left;"><b>'.'License No.'.'</b></div>
-																<div class="col-md-1" style="width:150px; float:left;"><b>'.'Specialization'.'</b></div>
-																<div class="col-md-4 hide_section" style="float:left;"><b>'.'Address'.'</b></div>
-															</div>
-														</li>';
+													echo '<table class="table table-hover table-responsive">
+															<thead style="background:#5cb85c">
+																<th style="color:#ffffff">'.'Last Name'.'</th>
+																<th style="color:#ffffff">'.'First Name'.'</th>
+																<th style="color:#ffffff">'.'License No.'.'</th>
+																<th style="color:#ffffff">'.'Specialization'.'</th>
+																<th></th>
+															</thead>
+															<tbody>';
 													//HEADER END
 
 													//CONTENT
 													while($dataline = $output->fetch_assoc()) { 
-														echo '<li class="list-group-item">
-																<div class="row">
-																	<div class="col-md-1" style="width:120px; float:left;">'.$dataline["LAST_NAME"].'</div>
-																	<div class="col-md-1" style="width:120px; float:left;">'.$dataline["FIRST_NAME"].'</div>
-																	<div class="col-md-1" style="width:120px; float:left;">'.$dataline["DOC_LICENSE_NUM"].'</div>
-																	<div class="col-md-1" style="width:150px; float:left;">'.$dataline["SPECIALIZATION"].'</div>
-																	<div class="col-md-4 hide_section" style="float:left;">'.$dataline["ADDRESS"].'</div>
-																	<div class="col-md-2" style="width:150px; float:right;"><a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'see more'.'</a></div>
-																<div>
-															</li>';
+														echo 	'<tr>
+																	<td>'.$dataline["LAST_NAME"].'</td>
+																	<td>'.$dataline["FIRST_NAME"].'</td>
+																	<td>'.$dataline["DOC_LICENSE_NUM"].'</td>
+																	<td>'.$dataline["SPECIALIZATION"].'</td>
+																	<td>
+																		<a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a>
+																	</td>
+																</tr>';
 													} //CONTENT END
-
-													//PAGER
-													echo 	'<div style="text-align:center;">
-																<ul class="pagination" style="margin:auto;"><br>';
-
-													$check = "SELECT DOC_LICENSE_NUM FROM DOCTOR";
-													$check2 = $mydatabase->query($check);
-													$item_no = $check2->num_rows;
-													$page_no = ceil($item_no/$limit);
-
-													if($page_no>1){
-														for ($p_no=0; $p_no < $page_no; $p_no++) { 
-															echo '<li><a style="color:#337ab7;" href="'.'doctors.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
-														}
-													} 
-													echo 		'</ul>
-															</div>';
-													//PAGER END
+													
+													echo 	'</tbody>
+														</table>';
+													
 												} else { echo "No Records."; }
 												//MAIN PAGE END
 											}else if ($DEFAULT==1) {

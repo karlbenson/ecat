@@ -196,7 +196,7 @@
 											//SEARCH END
 
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM $filter $search order by s.SURG_DATE desc limit $begin, ".$limit;
+											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM ORDER by s.SURG_DATE desc;";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
@@ -206,47 +206,26 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													//HEADER
-													echo '<li class="list-group-item" id="tophead">
-															<div class="container-fluid row" style="padding:0px;">
-																<div style="width:150px; float:left; margin-left:20px;"><b>'.'Date (y-m-d)'.'</b></div>
-																<div style="width:150px; float:left; margin-left:10px;"><b>'.'Case No.'.'</b></div>
-																<div style="width:200px; float:left; margin-left:10px;"><b>'.'Conducted by'.'</b></div>
-															</div>
-														</li>';
-													//HEADER END
-													//CONTENT
+													echo '<table id="example" class="table table-hover table-responsive">
+															<thead style="background:#5cb85c">
+																<th style="color:#ffffff">Date</th>
+																<th style="color:#ffffff">Case No.</th>
+																<th style="color:#ffffff">Patient</th>
+																<th style="color:#ffffff">Surgeon</th>
+																<th></th>
+															</thead>
+															<tbody>';
 													while($dataline = $output->fetch_assoc()) { 
-														echo '<li class="list-group-item">
-																<div class="row">
-																	<div style="width:150px; float:left; margin-left:20px;">'.$dataline["SURG_DATE"].'</div>';
-														$s_primary = $dataline["CASE_NUM"];
-														echo 		'<div style="width:150px; float:left; margin-left:10px;">'.$s_primary.'</div>
-																	<div style="width:200px; float:left; margin-left:10px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</div>
-																	<div style="width:130px; float:right; margin-right:10px;">'.'<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'see full details'.'</a>'.'</div>
-																</div>
-															</li>';
-													}//CONTENT END
-													echo '</ul>';
-      
-													//PAGER
-													echo '<div style="text-align:center;">
-															<ul class="pagination" style="margin:auto;"><br>';
-          
-													$check = "SELECT CASE_NUM FROM SURGERY";
-													$check2 = $mydatabase->query($check);
-													$item_no = $check2->num_rows;
-													$page_no = ceil($item_no/$limit);
-      
-													if($page_no>1){
-														for ($p_no=0; $p_no < $page_no; $p_no++) { 
-															echo '<li><a style="color:#337ab7;" href="'.'surgery.php'.'?currentpage='.($p_no+1).'">'.($p_no+1).'</a> </li>';
-														}
+														echo 	'<tr>
+																	<td>'.$dataline["SURG_DATE"].'</td>
+																	<td>'.$dataline["CASE_NUM"].'</td>
+																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
+																	<td>'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
+																	<td><a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a></td>
+																</tr>';
 													}
-													echo 	'</ul>
-														</div>';
-													//PAGER END
-
+													echo	'</tbody>
+														</table>';
 												} else {
 													echo "No Records.";
 												}
