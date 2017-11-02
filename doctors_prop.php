@@ -4,15 +4,14 @@
 		<title>Luke Foundation Eye Program: Doctors</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="references/font-awesome.min.css">
-		<script src="references/jquery.min.js"></script>
-		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-		<link rel="stylesheet" type="text/css" href="references/DataTables/buttons.print.min.js">
-		<link rel="stylesheet" type="text/css" href="references/DataTables/datatables.min.css"/>
- 		<link rel="stylesheet" type="text/css" href="references/DataTables/dataTables.buttons.min.js">
-		<script type="text/javascript" src="references/DataTables/datatables.min.js"></script>
+		<link rel="stylesheet" href="references/dataTables.bootstrap.min.css"/>
+		<script src="references/jquery-2.1.1.min.js"></script>
+		<script src="references/bootstrap.min.js"></script>
+		<script src="references/jquery.dataTables.min.js"></script>
+		<script src="references/dataTables.bootstrap.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
