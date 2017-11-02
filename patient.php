@@ -195,7 +195,7 @@
 													//MAIN PAGE
 													//HEADER
 													echo '<li class="list-group-item" id="tophead">';
-													echo '<div class="container-fluid row">';
+													echo '<div class="container-fluid row" style="padding:0px;">';
 													echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'Last Name'.'</b></div>';
 													echo '<div style="width:170px; float:left; margin-left:20px;"><b>'.'First Name'.'</b></div>';
 													echo '<div style="width:120px; float:left; margin-left:20px;"><b>'.'Patient ID'.'</b></div>';
