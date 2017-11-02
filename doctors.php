@@ -97,7 +97,7 @@
 													//MAIN PAGE
 													//HEADER
 													echo '<li class="list-group-item" id="tophead">
-															<div class="container-fluid row">
+															<div class="container-fluid row" style="padding:0px;">
 																<div class="col-md-1" style="width:120px; float:left;"><b>'.'Last Name'.'</b></div>
 																<div class="col-md-1" style="width:120px; float:left;"><b>'.'First Name'.'</b></div>
 																<div class="col-md-1" style="width:120px; float:left;"><b>'.'License No.'.'</b></div>
