@@ -486,10 +486,10 @@
 																	<div class="container-fluid" style="float:left; width:100%; margin:0px; padding:10px 0px 0px 15px;">
 																	<div class="container-fluid well" style="margin:0px; width:100%; float:left;  padding-bottom:5px; background-color:#ffffff; border-color:#f2f2f2;">
 																		<div class="form-group" style="width:50%; float:left;">
-																			<label class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
+																			<label pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:50%; float:left;">
