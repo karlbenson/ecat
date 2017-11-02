@@ -4,10 +4,10 @@
 		<title>Luke Foundation Eye Program: Doctors</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="references/bootstrap.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="theme2.css">
-		<link rel="stylesheet" href="references/dataTables.bootstrap.min.css"/>
+		<link rel="stylesheet" href="references/dataTables.bootstrap4.min.css"/>
 		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<script src="references/jquery.dataTables.min.js"></script>
