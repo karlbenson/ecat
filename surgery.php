@@ -443,7 +443,7 @@
 																				<label class="control-label" style="float:left; width:'.$leftmargin.'px;">Date of Surgery </label>
 																				<div class="form-group">
 																					<div class="input-group date" id="datetimepicker3" style="float:left; width:250px;">
-																						<input type="text" class="form-control" id="DATE" name="DATE" placeholder="MM/DD/YYYY" required>
+																						<input type="text" class="form-control" pattern="^\d{1,2}\/\d{1,2}\/\d{4}$" id="DATE" name="DATE" placeholder="MM/DD/YYYY" required>
 																						<span class="input-group-addon">
 																							<span class="glyphicon glyphicon-calendar"></span>
 																						</span>
