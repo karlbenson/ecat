@@ -268,126 +268,262 @@
 												$date = explode("-", $S_DATE);
 												//VALUES END
 												
-												$output2 = $mydatabase->prepare("SELECT d.LAST_NAME, d.FIRST_NAME FROM DOCTOR d WHERE d.DOC_LICENSE_NUM='$S_I'");
+												$output2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I'");
 												$output2->execute();
 												$line2 = $output2->get_result();
 												$dataline2 = $line2->fetch_assoc();
 												
-												$output3 = $mydatabase->prepare("SELECT d.LAST_NAME, d.FIRST_NAME FROM DOCTOR d WHERE d.DOC_LICENSE_NUM='$S_AN'");
+												$output3 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_AN'");
 												$output3->execute();
 												$line3 = $output3->get_result();
 												$dataline3 = $line3->fetch_assoc();
 												
-												$INTER = $dataline2["FIRST_NAME"].' '.$dataline2["LAST_NAME"];
-												$ANES = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
+												$SURG_NAME = $dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"];
+												$INTER_NAME = $dataline2["FIRST_NAME"].' '.$dataline2["LAST_NAME"];
+												$ANES_NAME = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
+												$PATIENT_NAME = $dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"];
+
+												$PC_SUM1 = $PC_IOL+$PC_L+$PC_PF;
+												$PC_SUM = number_format((float)$PC_SUM1, 2, '.', '');
+												$CSF_SUM1 = $C_HB+$C_S+$C_L;
+												$CSF_SUM = number_format((float)$CSF_SUM1, 2, '.', '');
+												$TOTAL_ALL1 = $PC_SUM+$CSF_SUM+$SP_IOL;
+												$TOTAL_ALL = number_format((float)$TOTAL_ALL1, 2, '.', '');
+
+												$patient_link = "patient.php?profilepage=".$S_ID;
+												$placeholder = "placeholder";
+
+												$to_surg = "doctors.php?profilepage=".$S_LN;
+												$to_intern = "doctors.php?profilepage=".$S_I;
+												$to_anes = "doctors.php?profilepage=".$S_AN;
+
+												$margin0 = "25%";
+												$margin00 = "75%";
+												$margin000 = "50%";
+
+												$E_link = '<span class="fa fa-external-link"></span>';
 
 												//CONTENT
 												echo '<div>
-														<div class="container-fluid">
-															<h3>Case No. '.$S_CN.'</h3>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" id="tophead1">Surgery Details</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Internist'.'</div>
-																	<div class="col-md-6">'.$INTER.' <a href="doctors.php?profilepage='.$S_I.'""><span class="fa fa-external-link"></span></a></div>
+													<div class="container-fluid">
+														<h3>Case No. '.$S_CN.'</h3>
+
+														<div class="row" style="">
+
+														<div style="width:60%; float:left; margin:0px; padding-right:20px;">
+														<div class="panel panel-default" style="padding-bottom:10px;">
+															<div class="panel-heading" id="tophead1">Surgery Details</div>
+															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Date:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0].'</div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Anesthesiologist'.'</div>
-																	<div class="col-md-6">'.$ANES.' <a href="doctors.php?profilepage='.$S_AN.'""><span class="fa fa-external-link"></span></a></div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Address:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_A.'</div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'IOL Power'.'</div>
-																	<div class="col-md-6">'.$S_IOL.'</div>
-																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Type of Anesthesia'.'</div>
-																	<div class="col-md-6">'.$S_TA.'</div>
-																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Surgery Address'.'</div>
-																	<div class="col-md-6">'.$S_A.'</div>
-																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Surgery Date'.'</div>
-																	<div class="col-md-6">'.$MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0].'</div>
-																</div>
+
 															</div>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" style="border: 0px; font-weight:bold;">Conducting Surgeon</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Name'.'</div>
-																	<div class="col-md-6">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].' <a href="doctors.php?profilepage='.$S_LN.'""><span class="fa fa-external-link"></span></a></div>
+														</div>
+														</div>
+
+														<div style="width:40%; float: left;">
+														<div class="well">
+															<div style="margin:0px; padding:10px 0px;">	
+
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:50%; float: left;">'.'IOL Power:'.'</div>
+																	<div style="width:50%; float: left;">'.$dataline["IOLPOWER"].'</div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'License No.'.'</div>
-																	<div class="col-md-6">'.$S_LN.'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:50%; float: left;">'.'Anesthesia:'.'</div>
+																	<div style="width:50%; float: left;">'.$dataline["SURG_ANESTHESIA"].'</div>
 																</div>
+																<div style="padding-bottom:5px;"></div>
+
 															</div>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" style="border: 0px; font-weight:bold;">Patient Information</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Patient ID'.'</div>
-																	<div class="col-md-5">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].' <a href="patient.php?profilepage='.$S_ID.'""><span class="fa fa-external-link"></span></a></div>
+														</div>
+														</div>
+
+														</div>
+
+														<div class="row" style="">
+														<div class="panel panel-default" style="padding-bottom:10px;">
+															<div class="panel-heading">Doctors</div>
+															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+																	
+																	<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Surgeon:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_surg.'">  <span style="color:#000000; float:left; margin-right:3px;">'.$SURG_NAME.' </span> '.$E_link.'</a></div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Visual Imparity'.'</div>
-																	<div class="col-md-5">'.$S_VI.'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Internist:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_intern.'"><span style="color:#000000; float:left; margin-right:3px;">'.$INTER_NAME.' </span> '.$E_link.'</a></div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Medical History'.'</div>
-																	<div class="col-md-5">'.$S_MH.'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Anesthesiologist:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_anes.'"><span style="color:#000000; float:left; margin-right:3px;">'.$ANES_NAME.' </span> '.$E_link.'</a></div>
 																</div>
+
 															</div>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" style="border: 0px; font-weight:bold;">Surgeon Remarks</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Diagnosis'.'</div>
-																	<div class="col-md-5">'.$S_D.'</div>
+														</div>
+														</div>
+
+														<div class="row" style="">
+														<div class="panel panel-default" style="padding-bottom:10px;">
+															<div class="panel-heading">Patient Information</div>
+															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+																	
+																	<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Name:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$PATIENT_NAME.'</div>
 																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" >'.'Remarks'.'</div>
-																	<div class="col-md-5">'.$S_R.'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Visual Impairment:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_VI.'</div>
 																</div>
-																<div class="panel panel-default" style="padding-bottom:10px;">
-																	<div class="panel-heading" style="border: 0px; font-weight:bold;">Financial Information</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'<b>Patient Counterpart</b>'.'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Medical History:'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_MH.'</div>
+																</div>
+
+																<div style="margin:0px; padding:5px 5px; float:right;"><a href="'.$patient_link.'">
+																<span style="float:left; margin-right:3px;">Check Full Patient Information</span>'.$E_link.'</a></div>
+
+															</div>
+														</div>
+														</div>
+
+														<div class="row" style="">
+														<div class="panel panel-default" style="padding-bottom:10px; margin:0px;">
+															<div class="panel-heading">Surgery Report</div>
+															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+																	
+																	<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Diagnosis'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$dataline["DIAGNOSIS"].'</div>
+																</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Remarks'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$dataline["REMARKS"].'</div>
+																</div>
+
+															</div>
+														</div>
+														</div>
+
+														<div class="row" style="margin:0px; padding: 0px 0px 20px 0px;"><hr></div>
+
+														<div class="well" style="width: 100%; float: left; color:#337ab7">Financial Report</div>
+
+														<div style="width:100%;">
+															<div class="well" style="background-color:#f9f9f9; width:100%; float:left; padding:10px;">
+																<div style="margin:0px; padding:0px 10px;">	
+																	
+																	<div style="width:100%; float:left; padding:0px 0px;">
+																		<div style="float:left; width:40%; font-weight:bold;">Sponsored IOL</div>
+																		<div style="float:left; width:60%;">'.$dataline["SPO_IOL"].'</div>
 																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'IOL'.'</div>
-																		<div class="col-md-5">'.$PC_IOL.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'Lab'.'</div>
-																		<div class="col-md-5">'.$PC_L.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'PF (Others)'.'</div>
-																		<div class="col-md-5">'.$PC_PF.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'<b>SPONSORED IOL</b>'.'</div>
-																		<div class="col-md-5">'.$SP_IOL.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'<b>CSF</b>'.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'HBILL'.'</div>
-																		<div class="col-md-5">'.$C_HB.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'SUPPLIES'.'</div>
-																		<div class="col-md-5">'.$C_S.'</div>
-																	</div>
-																	<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<div class="col-md-3" >'.'LAB'.'</div>
-																		<div class="col-md-5">'.$C_L.'</div>
-																	</div>
+
 																</div>
 															</div>
 														</div>
-													</div>';
+
+														<div style="width:100%;">
+														
+															<div style="width:50%; padding-right:20px; float:left;">
+																<div class="well" style="background-color:#f9f9f9; float:left; padding:20px; width:100%;">
+																	<div style="width:100%; float:left; padding:0px 0px;">
+
+																		<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>Patient Counterpart</th>
+																				<th>Amount</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>IOL</td>
+																				<td>'.$dataline["PC_IOL"].'</td>
+																			</tr>
+																			<tr>
+																				<td>LAB</td>
+																				<td>'.$dataline["PC_LAB"].'</td>
+																			</tr>
+																			<tr>
+																				<td>PF(others)</td>
+																				<td>'.$dataline["PC_PF"].'</td>
+																			</tr>
+																			<tr>
+																				<td>Total</td>
+																				<td>'.$PC_SUM.'</td>
+																			</tr>
+																		</tbody>
+																	</table>
+
+																	</div>
+																</div>
+															</div>
+														
+
+															<div style="width:50%; float:left;">
+																<div class="well" style="background-color:#f9f9f9; float:left; padding:20px; width:100%;">
+
+																	<div style="width:100%; float:left; padding:0px 0px;">
+																	<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>CSF</th>
+																				<th>Amount</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>Hospital Bill</td>
+																				<td>'.$dataline["CSF_HBILL"].'</td>
+																			</tr>
+																			<tr>
+																				<td>Laboratory</td>
+																				<td>'.$dataline["CSF_SUPPLIES"].'</td>
+																			</tr>
+																			<tr>
+																				<td>Supplies</td>
+																				<td>'.$dataline["CSF_LAB"].'</td>
+																			</tr>
+																			<tr>
+																				<td>Total</td>
+																				<td>'.$CSF_SUM.'</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																	</div>
+
+																</div>
+															</div>
+														
+														</div>
+
+
+														<div style="width:100%;">
+															<div class="well" style="background-color:#f9f9f9; width:100%; float:left; padding:10px; margin-bottom:0px;">
+																<div style="margin:0px; padding:0px 10px;">	
+																	
+																	<div style="width:100%; float:left; padding:0px 0px;">
+																		<div style="float:left; width:40%; font-weight:bold;">Total:</div>
+																		<div style="float:left; width:60%;">'.$TOTAL_ALL.'</div>
+																	</div>
+
+																</div>
+															</div>
+														</div>
+
+														</div>
+													</div>
+												</div>';
+
+
 												//CONTENT END
 
 												//BUTTONS AND LINKS
