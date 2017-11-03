@@ -222,18 +222,23 @@
 																<div class="modal-body">';
 																	//EDIT FORM
 												echo 				'<div class="container-fluid">
-																		<form method="post" id="updating" action="#" >
+																		<form method="post" id="updating">
+
+																			<p style="margin-bottom: 20px; color:#666666;">
+																				Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
+																			</p>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="F_NAME" style="width: 175px; float: left; ">First Name </label>
+																				<label for="F_NAME" style="width: 175px; float: left; ">First Name<span style="color: #d9534f">*</span> </label>
 																				<input type="text" class="form-control" id="F_NAME" maxlength="'.$FN_MAX.'" name="F_NAME" value="'.$D_FN.'" style="width: 150px; float: left;" required >
 																			</div>
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="L_NAME" style="width: 175px; float: left; ">Last Name </label>
+																				<label for="L_NAME" style="width: 175px; float: left; ">Last Name<span style="color: #d9534f">*</span> </label>
 																				<input type="text" class="form-control" id="L_NAME" maxlength="'.$LN_MAX.'" name="L_NAME" value="'.$D_LN.'" style="width: 150px; float: left;" required >
 																			</div>
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="LICENSE_NUM" style="width: 175px; float: left; ">License No. </label>
-																				<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." type="text" class="form-control" id="LICENSE_NUM" maxlength="'.$LIC_LENG.'" name="LICENSE_NUM" value="'.$D_DLN.'" style="width: 90px; float: left;" required >
+																				<label for="LICENSE_NUM" style="width: 175px; float: left; ">License Number<span style="color: #d9534f">*</span> </label>
+																				<input pattern="\d{5,7}" type="text" class="form-control" id="LICENSE_NUM" maxlength="'.$LIC_LENG.'" name="LICENSE_NUM" value="'.$D_DLN.'" style="width: 90px; float: left;" required >
 																			</div>
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="ADDRESS" style="width: 175px; float: left; ">Address </label>
