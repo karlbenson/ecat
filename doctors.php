@@ -133,7 +133,7 @@
 											}else if ($DEFAULT==1) {
 												//SEE MORE PAGE
 												//MYSQL SECTION
-												$query = "SELECT s.CASE_NUM, s.SURG_DATE, s.SURG_ADDRESS, p.PAT_ID_NUM, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, EYEPATIENT p WHERE s.SURG_LICENSE_NUM='$profile_p' or s.INTERNIST='$profile_p' or s.ANESTHESIOLOGIST='$profile_p'";
+												$query = "SELECT s.CASE_NUM, s.SURG_DATE, s.SURG_ADDRESS, p.PAT_ID_NUM, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, EYEPATIENT p WHERE s.PAT_ID_NUM=p.PAT_ID_NUM ORDER BY SURG_DATE DESC";
 												$output1 = $mydatabase->prepare("SELECT * FROM DOCTOR where DOC_LICENSE_NUM = '$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
