@@ -259,13 +259,17 @@
 												$margin0 = "20%";
 												$margin00 = "80%";
 												$margin000 = "50%";
+
+												$E_link = '<span class="fa fa-external-link"></span>';
+												$PHY_link = "doctors.php?profilepage=".$P_LN;
+												$STAFF_link = "#";
 												
 												//CONTENT
 												echo '<div>
 														<div class="container-fluid">
 															<h3>'.$P_PPFN.' '.$P_PPLN.'</h3>
-																<div style="background-color: #bbb; margin-right:0px; width:100%; height: 100%:">
-																	<div style="width:60%; float: left; margin:0px;">
+																<div style="background-color: #bbb; margin-right:0px; width:100%;">
+																	<div style="width:45%; float: left; margin:0px;">
 																		<div class="panel panel-default"  style="padding-bottom:0px; margin-right:20px;">
 																			<div class="panel-heading" id="tophead1">Patient Record</div>
 																			<div class="panel-body">
@@ -285,13 +289,14 @@
 																						}else{
 																							echo 'Female';
 																						}
-												echo 								'</div>									
+															echo '</div>									
 																				</div>
 																			</div>
 																		</div>
 																	</div>
 
-																	<div class="well" style="width: 40%; height: 100%; float:left; margin-bottom:20px;">
+																	<div style="width:55%; float:left;">
+																	<div class="well" style="width: 100%; float:left; margin-bottom:20px;">
 																		<div>
 																			<div style=" width:'.$margin000.'; float: left; font-weight:bold;">'.'Has Phil. Health? '.'</div>
 																			<div style="width:'.$margin000.'; float: left;">';
@@ -304,17 +309,18 @@
 																		</div>
 																	</div>
 																  
-																	<div class="well" style="width: 40%; height: 100%; float:left; margin:0px;">
+																	<div class="well" style="width: 100%; float:left; margin:0px;">
 																		<div>
 																			<div style=" width:'.$margin000.'; float: left; font-weight:bold;">'.'Examined by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="doctors.php?profilepage='.$P_LN.'"><span class="fa fa-external-link"></span></a> '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$PHY_link.'"><span style="color:#000000; float:left; margin-right:3px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span>'.$E_link.'</a></div>
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="#"><span class="fa fa-external-link"></span></a> '.$P_SLN.'</div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:3px;">'.$P_SLN.'</span>'.$E_link.'</a></div>
 																		</div>
 																	</div>
 																</div>
+															</div>
 															</div>
 															<div class="panel panel-default" style="padding-bottom:0px;">
 																<div class="panel-heading" style="border: 0px; font-weight:bold;">Visual Acuity</div>
@@ -431,11 +437,11 @@
 																			<div style="width:50%; float: left;"> <div style="margin-right:20px; margin-top: 5px;">
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="PAT_FNAME" style="width: 175px; float: left; ">First Name </label>
-																					<input type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 150px; float: left;" required >
+																					<input placeholder="Patient Name" type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 150px; float: left;" required >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="PAT_LNAME" style="width: 175px; float: left; ">Last Name </label>
-																					<input type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 150px; float: left;" required >
+																					<input placeholder="Patient Surname" type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 150px; float: left;" required >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<div class="form-group">
@@ -490,13 +496,13 @@
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Phys. Lic." maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:50%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:150px; font-weight:bold;">Screened by:</label>
 																			<div style="width: 200px; float: left;">
-																				<input pattern="\d{7}"class="form-control" id="P_STAFFLIC" placeholder="Staff Lic." maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																				<input pattern="\d{7}"class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
 																	</div>
