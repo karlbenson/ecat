@@ -7,10 +7,13 @@
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<link rel="stylesheet" href="references/typeahead.css">
-		<script src="references/jquery.min.js"></script>
+		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
 		<script src="references/typeahead.bundle.js"></script>
+		<link rel="stylesheet" href="references/dataTables.bootstrap4.min.css"/>
+		<script src="references/jquery.dataTables.min.js"></script>
+		<script src="references/dataTables.bootstrap.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -194,14 +197,16 @@
 												if ($output->num_rows>0) {
 													//MAIN PAGE
 													//HEADER
-													echo '<table class="table table-hover table-responsive">
-															<thead style="background:#5cb85c">
-																<th style="color:#ffffff">'.'Patient ID'.'</th>
-																<th style="color:#ffffff">'.'Last Name'.'</th>
-																<th style="color:#ffffff">'.'First Name'.'</th>
-																<th style="color:#ffffff">'.'Sex'.'</th>
-																<th style="color:#ffffff">'.'Age'.'</th>
-																<th style="color:#ffffff">Action</th>
+													echo '<table id="docdat" class="table table-striped row">
+															<thead>
+																<tr id="tophead">
+																	<td style="color:#ffffff">'.'Patient ID'.'</td>
+																	<td style="color:#ffffff">'.'Last Name'.'</td>
+																	<td style="color:#ffffff">'.'First Name'.'</td>
+																	<td style="color:#ffffff">'.'Sex'.'</td>
+																	<td style="color:#ffffff">'.'Age'.'</td>
+																	<td style="color:#ffffff">Action</td>
+																</tr>
 															</thead>
 															<tbody>';
 													//HEADER END
@@ -746,3 +751,22 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+
+	var myTable=$('#docdat').DataTable({
+			"search":false,
+			"sDom":"ltipr",
+			"columns": [
+			null,
+		    null,
+		    null,
+		    null,
+		    null,
+		    { "orderable": false }
+  			],
+		});
+
+	$('#dataseek').keyup(function(){
+		myTable.search($(this).val()).draw();
+	})
+</script>

@@ -24,11 +24,8 @@
 					<form class="navbar-form navbar-center" role="search" style="text-align:center;">
 						<div class="container-fluid" style="width:350px;">
 							<div class="form-group" style="float:left;">
-								<input type="text" class="form-control" style="width:200px;" placeholder="Type in a keyword..." maxlength="36" name="search_record">
+								<input class="form-control" type="text" id="dataseek" placeholder="Type in a keyword..." maxlength="36" style="width: 200px; margin-left:40px;">
 							</div>
-							<button type="submit" class="btn btn-default" id="go" style="float:left;">
-								<span class="fa fa-search" style="font-size:15px;"></span> Search
-							</button>
 						</div>
 					</form>
 				</div>
