@@ -130,15 +130,16 @@
 											}else if ($DEFAULT==1) {
 												//SEE MORE PAGE
 												//MYSQL SECTION
+												$query = "SELECT s.CASE_NUM, s.SURG_DATE, s.SURG_ADDRESS, p.PAT_ID_NUM, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, EYEPATIENT p WHERE s.SURG_LICENSE_NUM='$profile_p' or s.INTERNIST='$profile_p' or s.ANESTHESIOLOGIST='$profile_p'";
 												$output1 = $mydatabase->prepare("SELECT * FROM DOCTOR where DOC_LICENSE_NUM = '$profile_p' ");      
 												$output1->execute();
-												$line = $output1->get_result();
-												$dataline = $line->fetch_assoc();
+												$line1 = $output1->get_result();
+												$dataline = $line1->fetch_assoc();
+												$output2 = $mydatabase->query($query);
 												//MYSQL SECTION END
 
 												//VALUES
-												$D_LN = $dataline["LAST_NAME"];
-												$D_FN = $dataline["FIRST_NAME"];
+												$D_NAME = $dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"];
 												$D_DLN = $dataline["DOC_LICENSE_NUM"];
 												$D_A = $dataline["ADDRESS"];
 												$D_SP = $dataline["SPECIALIZATION"];
@@ -148,7 +149,7 @@
 												//CONTENT
 												echo '<div>
 														<div class="container-fluid">
-															<h3>Dr. '.$D_FN.' '.$D_LN.'</h3>
+															<h3>Dr. '.$D_NAME.'</h3>
 															<div class="panel panel-default" style="padding-bottom:10px;">
 																<div class="panel-heading" id="tophead1">Doctor Information</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
@@ -162,6 +163,32 @@
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" style="font-weight:bold;">Specialization</div>
 																	<div class="col-md-9">'.$D_SP.'</div>
+																</div>
+															</div>
+															<div class="panel panel-default" style="padding-bottom:10px;">
+																<div class="panel-heading" id="tophead1">Surgeries Attended</div>
+																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+																	<table class="table table-hover table-responsive">
+																		<thead style="background:#5cb85c">
+																			<th style="color:#ffffff">'.'Date'.'</th>
+																			<th style="color:#ffffff">'.'Patient'.'</th>
+																			<th style="color:#ffffff">'.'Address'.'</th>
+																			<th style="color:#ffffff">'.'Action'.'</th>
+																		</thead>
+																		<tbody>';
+												while($dataline2 = $output2->fetch_assoc()) { 
+													echo 	'<tr>
+																<td>'.$dataline2["SURG_DATE"].'</td>
+																<td><a href="patient.php?profilepage='.$dataline2["PAT_ID_NUM"].'""><span class="fa fa-external-link" title="View patient"></span></a> '.$dataline2["PAT_FNAME"].' '.$dataline2["PAT_LNAME"].'</td>
+																<td>'.$dataline2["SURG_ADDRESS"].'</td>
+																<td>
+																	<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
+																	<a href=""><span class="fa fa-trash" title="Delete"></span></a>
+																	<a href="'.'surgery.php'.'?profilepage='.$dataline2["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																</td>
+															</tr>';
+												}
+												echo				'</table>
 																</div>
 															</div>
 														</div>

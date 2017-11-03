@@ -279,7 +279,13 @@
 																				</div>
 																				<div class="row" style="margin:0px; padding:3px 10px;">
 																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Sex:'.'</div>
-																					<div style="width:'.$margin00.'; float: left;">'.$dataline["PAT_SEX"].'</div>
+																					<div style="width:'.$margin00.'; float: left;">';
+																						if($dataline["LEFT_EYE_AFFECTED"]=="M"){
+																							echo 'Male';
+																						}else{
+																							echo 'Female';
+																						}
+												echo 								'</div>									
 																				</div>
 																			</div>
 																		</div>
