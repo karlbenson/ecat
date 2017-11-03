@@ -81,7 +81,6 @@
 												$profile_p = $_GET["profilepage"]; $DEFAULT=1;
 												//RECEIVE UPDATE
 												if(isset($_POST['surgery_update'])){
-													var_dump($_POST);
 													$S_CN = $_POST["CASE_NUM"];
 													$S_ID = $_POST["PAT_ID"];          
 													$S_VI = $_POST["VI"];         
