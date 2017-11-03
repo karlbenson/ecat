@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!-- UPDATE STILL FIXING... -->
+
 <html>
 	<head>
 		<title>Luke Foundation Eye Program: Surgery</title>
@@ -270,6 +272,8 @@
 												$C_L = $dataline["CSF_LAB"];
 												$date = explode("-", $S_DATE);
 												//VALUES END
+
+												$val_date = $date[1]."/".$date[2]."/".$date[0];
 												
 												$output2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I'");
 												$output2->execute();
@@ -555,35 +559,19 @@
 												//EDIT FORM
 												echo '<div class="container-fluid">
 																		<form method="post" id="updating" >
+
+																			<div style="width:100%; float:left; margin-bottom: 10px;">
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
-																				<input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." type="text" class="form-control" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required >
+																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Surgery Case Number </label>
+																				<input pattern="20\d\d-\d\d\d\d\d" class="form-control" placeholder="20XX-XXXXX" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required >
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Internist</label>
-																				<input type="text" class="form-control" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" value="'.$S_I.'" style="max-width: 225px; float: left;">
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="ANESTHESIOLOGIST" style="width: '.$leftmargin.'px; float: left; ">Anesthesiologist</label>
-																				<input type="text" class="form-control" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" value="'.$S_AN.'" style="max-width: 225px; float: left;">
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="IOLPOWER" style="width: '.$leftmargin.'px; float: left; ">IOL Power</label>
-																				<input type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="max-width: 225px; float: left;">
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ANESTHESIA" style="width: '.$leftmargin.'px; float: left; ">Type of Anesthesia</label>
-																				<input type="text" class="form-control" id="SURG_ANESTHESIA" maxlength="'.$TANES_MAX.'" name="SURG_ANESTHESIA" value="'.$S_TA.'" style="max-width: 225px; float: left;">
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address </label>
-																				<input type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
-																			</div>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label class="control-label" style="float:left; width:'.$leftmargin.'px;">Date of Surgery </label>
 																				<div class="form-group">
 																					<div class="input-group date" id="datetimepicker3" style="float:left; width:250px;">
-																						<input type="text" class="form-control" pattern="^\d{1,2}\/\d{1,2}\/\d{4}$" id="DATE" name="DATE" placeholder="MM/DD/YYYY" required>
+																						<input type="text" class="form-control" pattern="^\d{1,2}\/\d{1,2}\/\d{4}$" id="DATE" name="DATE" placeholder="MM/DD/YYYY" value="'.$val_date.'" required>
 																						<span class="input-group-addon">
 																							<span class="fa fa-calendar" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span>
 																						</span>
@@ -597,72 +585,180 @@
 																					});
 																				</script>
 																			</div>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_LIC" style="float:left; width:'.$leftmargin.'px;">Surgeon License No. </label>
-																				<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." type="text" class="form-control id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" value="'.$S_LN.'" style="width: 90px; float: left;" required>
+																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address </label>
+																				<input placeholder="Enter address of where the sugery was conducted..." type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PAT_ID" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
-																				<input type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required >
+
 																			</div>
+
+																			<div style="width:100%;">
+
+																			<div style="width:60%; float:left; padding-right:20px;">
+																			<div class="well" style="width:100%; float: left;" >
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="VI" style="width: '.$leftmargin.'px; float: left; ">Patient Visual Impairment </label>
-																				<textarea type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="max-width: 550px; float: left;" rows="2" required>'.$S_VI.'</textarea>
+																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon</label>
+																				<input class="form-control id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" style="width: 60%; float: left;" required>
 																			</div>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="MED_HIST" style="width: '.$leftmargin.'px; float: left; ">Patient Medical History </label>
-																				<textarea type="text" class="form-control" id="MED_HIST" maxlength="'.$HIST_MAX.'" name="MED_HIST" style="max-width: 550px; float: left;" rows="2" >'.$S_MH.'</textarea>
+																				<label for="SURG_ADDRESS" style="width: 40%; float: left; ">Internist</label>
+																				<input class="form-control" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" style="width: 60%; float: left;">
 																			</div>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="DIAG" style="width: '.$leftmargin.'px; float: left; ">Surgeon Diagnosis </label>
-																				<textarea type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG" style="max-width: 550px; float: left;" rows="2" >'.$S_D.'</textarea>
+																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist</label>
+																				<input class="form-control" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" style="width:60%; float: left;">
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="REM" style="width: '.$leftmargin.'px; float: left; ">Surgeon Remarks </label>
-																				<textarea type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="max-width: 550px; float: left;" rows="2" >'.$S_R.'</textarea>
+
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PC" style="width: '.$leftmargin.'px; float: left; ">Patient Counterpart</label>
 																			</div>
+
+																			<div style="width:40%; float:left;">
+																			<div class="well" style="width:100%; float: left;">
+																			
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PC_IOL" style="width: '.$leftmargin.'px; float: left; ">IOL</label>
-																				<input type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$PC_IOL.'" style="max-width: 225px; float: left;">
-																			</div>		
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PC_LAB" style="width: '.$leftmargin.'px; float: left; ">LAB</label>
-																				<input type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$PC_L.'" style="max-width: 225px; float: left;">
+																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power</label>
+																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;">
 																			</div>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PC_PF" style="width: '.$leftmargin.'px; float: left; ">PF(Others)</label>
-																				<input type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$PC_PF.'" style="max-width: 225px; float: left;">
+																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia</label>
+																				<input placeholder="Type of Anesthesia" type="text" class="form-control" id="SURG_ANESTHESIA" maxlength="'.$TANES_MAX.'" name="SURG_ANESTHESIA" value="'.$S_TA.'" style="width: 60%; float: left;">
 																			</div>
+
+																			</div>
+																			</div>
+																			
+																			</div>
+																			
+																			<div style="width:100%; float:left;">
+																				<div class="panel panel-default" style="padding-bottom:10px;">
+																					<div class="panel-heading" style="color:#337ab7;">Patient Information</div>
+																					<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																					<div style="margin-bottom:10px;"></div>
+
+																					<div class="container-fluid" style="margin-bottom: 10px;">
+																						<label for="PAT_ID" style="width: 25%; float: left; ">ID Number </label>
+																						<input placeholder="Patient ID" type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required >
+																					</div>
+																							
+																					<div class="container-fluid" style="margin-bottom: 10px;">
+																						<label for="VI" style="width: 25%; float: left; ">Visual Impairment </label>
+																						<div style="width: 75%; padding-right:20px; float:left;">
+																						<input placeholder="Patient Visual Impairment..." type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="float: left;" rows="2" value="'.$S_VI.'" required>
+																						</div>
+																					</div>
+																					<div class="container-fluid" style="margin-bottom: 10px;">
+																						<label for="MED_HIST" style="width: 25%; float: left; ">Medical History </label>
+																						<div style="width: 75%; padding-right:20px; float:left;">
+																						<input placeholder="Patient Medical History..." type="text" class="form-control" id="MED_HIST" maxlength="'.$HIST_MAX.'" name="MED_HIST" style="float: left;" value="'.$S_MH.'">
+																						</div>
+																					</div>
+
+																					</div>
+																				</div>
+																			</div>
+																			
+																			<div style="width:100%; float:left;">
+																			<div class="well" style="width:100%; float: left;">
+																			
+																				<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="DIAG" style="width: 25%; float: left; ">Surgeon Diagnosis </label>
+																					<input placeholder="Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG" style="width: 75%; float: left;" value="'.$S_D.'" >
+																				</div>
+																				<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="REM" style="width: 25%; float: left; ">Surgeon Remarks </label>
+																					<input placeholder="Remarks of Surgeon..." type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="width: 75%; float: left;" value="'.$S_R.'" >
+																				</div>
+																			
+																			</div>
+																			</div>
+
+																			<div style="width:100%; float:left;">
+																			<div class="well" style="width:100%; float:left; background-color:#f9f9f9;">
+
+																			<div style="width:100%; float:left; font-weight:bold;">Financial Information</div>
+
+																			<div style="width:100%; float:left"><hr style="border-color:#337ab7; margin-bottom:20px;"></div>
+
+																			<div style="width:100%;margin-bottom:10px; float:left;"></div>
+
+																			<div style="width:100%; float:left;">
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
-																				<input type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SPO_IOL.'" style="max-width: 225px; float: left;">
+																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SPO_IOL.'" style="max-width: 225px; float: left;">
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="PC" style="width: '.$leftmargin.'px; float: left; ">CSF</label>
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="CSF_HBILL" style="width: '.$leftmargin.'px; float: left; ">HBILL</label>
-																				<input type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$C_HB.'" style="max-width: 225px; float: left;">
+
+																			<div style="width:100%; margin-bottom:10px; float:left;"></div>
+																			
+																			<div style="width:100%; float:left;">
+
+																			<div style="width:50%; float:left;">
+																			<div style="width:100%; float:left; padding-right:20px;">
+																				<div class="panel panel-default" style="padding-bottom:10px;">
+																					<div class="panel-heading" style="color:#337ab7;">Patient Counterpart</div>
+																					<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																						<div style="margin-bottom:10px;"></div>
+
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="PC_IOL" style="width: 40%; float: left; ">IOL</label>
+																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$PC_IOL.'" style="width: 60%; float: left;">
+																						</div>		
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="PC_LAB" style="width: 40%; float: left; ">LAB</label>
+																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$PC_L.'" style="width: 60%; float: left;">
+																						</div>
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="PC_PF" style="width: 40%; float: left; ">PF(Others)</label>
+																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$PC_PF.'" style="width: 60%; float: left;">
+																						</div>
+
+																					</div>
+																				</div>
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="CSF_SUPPLIES" style="width: '.$leftmargin.'px; float: left; ">SUPPLIES</label>
-																				<input type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$C_S.'" style="max-width: 225px; float: left;">
 																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="CSF_LAB" style="width: '.$leftmargin.'px; float: left; ">LAB</label>
-																				<input type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$C_L.'" style="max-width: 225px; float: left;">
+
+																			<div style="width:50%; float:left;">
+																			<div style="width:100%; float:left;">
+																				<div class="panel panel-default" style="padding-bottom:10px;">
+																					<div class="panel-heading" style="color:#337ab7;">CSF</div>
+																					<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																						<div style="margin-bottom:10px;"></div>
+
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="CSF_HBILL" style="width: 40%; float: left; ">HBILL</label>
+																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$C_HB.'" style="width: 60%; float: left;">
+																						</div>
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="CSF_SUPPLIES" style="width: 40%; float: left; ">SUPPLIES</label>
+																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$C_S.'" style="width: 60%; float: left;">
+																						</div>
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="CSF_LAB" style="width: 40%; float: left; ">LAB</label>
+																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$C_L.'" style="width: 60%; float: left;">
+																						</div>
+
+																					</div>
+																				</div>
 																			</div>
-																			<div class="text-center" style="margin-top: 20px;">
-																				<button type="submit" onclick="update()" class="btn btn-default" value="'.$S_CN.'" name="surgery_update">Update</button>
 																			</div>
-																		</form>
+
+																			</div>
+																			</div>
+																			
 																	</div>';
 																	//EDIT FORM END
 												echo 			'</div>
-																<div class="modal-footer">
+																<div class="modal-footer" style="text-align:center;">
+																		<button type="submit" onclick="update()" class="btn btn-default" value="'.$S_CN.'" name="surgery_update">Update</button>
+																	</form>
 																	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
 																</div>
 															</div>';
