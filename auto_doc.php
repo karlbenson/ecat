@@ -4,7 +4,7 @@
  
  while ($row = $surgeon->fetch_assoc()) {
   unset($id, $name1, $name2);
-  $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+  $id = $row['FIRST_NAME']." ".$row['LAST_NAME']." - ".$row['DOC_LICENSE_NUM'];
   array_push($arr, $id);
  }
 
