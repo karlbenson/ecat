@@ -35,7 +35,7 @@
 					$DC_MAX = 30;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5'", "CF 6'", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
 					//PATIENT INFORMATION FIELDS END
 					
 					//DETERMINE NEXT PAT_ID
@@ -130,7 +130,7 @@
 												<label class="control-label" for="P_PHYLIC" style="float:left; width:30%; padding-left:15px;">Examined by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
+													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
 													<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -141,7 +141,7 @@
 												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
 													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
