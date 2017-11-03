@@ -35,7 +35,7 @@
 					$DC_MAX = 30;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5'", "CF 6'", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("n/a", "20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5'", "CF 6'", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
 					//PATIENT INFORMATION FIELDS END
 					
 					//DETERMINE NEXT PAT_ID
@@ -224,35 +224,43 @@
 													<div class="panel-body">
 														<!-- VISUAL DISABILITY -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_VD" style="float:left; width:170px;">Visual Disability </label>
-															<div class="col-md-4" style="width: 400px;">
-																<input type="text" class="form-control" id="P_VD" placeholder="Enter the patient's eye disability..." maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
+															<label class="control-label col-md-1" for="P_VD" style="float:left; width:35%; float:left;">Visual Disability </label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:300px;">
+																<input type="text" class="form-control" id="P_VD" placeholder="Patient's Visual Disability" maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
 															</div>
+														</div>
 														</div>
 														<!-- VISUAL DISABILITY -->
 														<!-- CAUSE OF DISABILITY -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_DC" style="float:left; width:170px;">Cause </label>
-															<div class="col-md-6" style="width: 400px;">
-																<input type="text" class="form-control" id="P_DC" placeholder="Enter the cause of the patient's visual disability..." maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
+															<label class="control-label col-md-1" for="P_DC" style="float:left; width:35%; float:left;">Cause </label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:300px;">
+																<input type="text" class="form-control" id="P_DC" placeholder="Cause of Disability" maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
+															</div>
 															</div>
 														</div>
 														<!-- CAUSE OF DISABILITY END -->
 						  
 														<!-- DIAGNOSIS -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_DIAG" style="float:left; width:170px;">Diagnosis </label>
-															<div class="col-md-6" style="width: 400px;">
-																<input type="text" class="form-control" id="P_DIAG" placeholder="Enter the doctor's diagnosis..." maxlength="15" name="P_DIAG">
+															<label class="control-label col-md-1" for="P_DIAG" style="float:left; width:35%; float:left;">Diagnosis </label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:300px;">
+																<input type="text" class="form-control" id="P_DIAG" placeholder="Doctor's Diagnosis" maxlength="15" name="P_DIAG">
+															</div>
 															</div>
 														</div>
 														<!-- DIAGNOSIS END -->
 						  
 														<!-- PROCEDURE -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_PROC" style="float:left; width:170px;">Procedure </label>
-															<div class="col-md-6" style="width: 400px;">
-																<input type="text" class="form-control" id="P_PROC" placeholder="Enter the procedure to be done..." maxlength="15" name="P_PROC">
+															<label class="control-label col-md-1" for="P_PROC" style="float:left; width:35%;">Procedure </label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:300px;">
+																<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
+															</div>
 															</div>
 														</div>
 														<!-- PROCEDURE END -->
@@ -270,9 +278,9 @@
 													<div class="panel-body">
 														<!-- AFFECTED PART OF RIGHT EYE -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_REA" style="float:left; width:30%;">Right Eye</label>
-															<div class="col-md-4" style="width: 70%;">
-															<div style="width:200px;">
+															<label class="control-label col-md-1" for="P_REA" style="float:left; width:40%; float:left;">Right Eye</label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:300px;">
 																<input type="" class="form-control" id="P_REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="P_REA">
 															</div>
 															</div>
@@ -281,9 +289,9 @@
 							
 														<!-- AFFECTED PART OF LEFT EYE -->
 														<div class="form-group row">
-															<label class="control-label col-md-2" for="P_LEA" style="float:left; width:30%;">Left Eye</label>
-															<div class="col-md-4" style="width: 70%;">
-															<div style="width:200px;">
+															<label class="control-label col-md-1" for="P_LEA" style="float:left; width:40%; float:left;">Left Eye</label>
+															<div class="col-md-4" style="width: 60%; float:left;">
+															<div style="max-width:200px;">
 																<input type="" class="form-control" id="P_LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="P_LEA">
 															</div>
 															</div>
