@@ -219,8 +219,8 @@
 														echo 	'<tr>
 																	<td>'.$dataline["SURG_DATE"].'</td>
 																	<td>'.$dataline["CASE_NUM"].'</td>
-																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'" style="color:#000000">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</a></td>
-																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="color:#000000">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
+																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'""><span class="fa fa-external-link"></span></a> '.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
+																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'""><span class="fa fa-external-link"></span></a> '.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
 																	<td>
 																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
 																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
@@ -275,11 +275,11 @@
 																<div class="panel-heading" id="tophead1">Surgery Details</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Internist'.'</div>
-																	<div class="col-md-6">'.$S_I.'</div>
+																	<div class="col-md-6">'.$S_I.' <a href="doctors.php?profilepage='.$S_I.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Anesthesiologist'.'</div>
-																	<div class="col-md-6">'.$S_AN.'</div>
+																	<div class="col-md-6">'.$S_AN.' <a href="doctors.php?profilepage='.$S_AN.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'IOL Power'.'</div>
@@ -302,7 +302,7 @@
 																<div class="panel-heading" style="border: 0px; font-weight:bold;">Conducting Surgeon</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Name'.'</div>
-																	<div class="col-md-6">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
+																	<div class="col-md-6">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].' <a href="doctors.php?profilepage='.$S_LN.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'License No.'.'</div>
@@ -313,7 +313,7 @@
 																<div class="panel-heading" style="border: 0px; font-weight:bold;">Patient Information</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Patient ID'.'</div>
-																	<div class="col-md-5">'.$S_ID.'</div>
+																	<div class="col-md-5">'.$S_ID.' <a href="patient.php?profilepage='.$S_ID.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Visual Imparity'.'</div>

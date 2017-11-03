@@ -263,15 +263,15 @@
 												//CONTENT
 												echo '<div>
 														<div class="container-fluid">
-															<h3>Patient ID No. '.$P_ID.'</h3>
+															<h3>'.$P_PPFN.' '.$P_PPLN.'</h3>
 																<div style="background-color: #bbb; margin-right:0px; width:100%; height: 100%:">
 																	<div style="width:60%; float: left; margin:0px;">
 																		<div class="panel panel-default"  style="padding-bottom:0px; margin-right:20px;">
 																			<div class="panel-heading" id="tophead1">Patient Record</div>
 																			<div class="panel-body">
 																				<div class="row" style="margin:0px; padding:5px 10px;">
-																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Name:'.'</div>
-																					<div style="width:'.$margin00.'; float: left;">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</div>
+																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'ID:'.'</div>
+																					<div style="width:'.$margin00.'; float: left;">'.$P_ID.'</div>
 																				</div>
 																				<div class="row" style="margin:0px; padding:5px 10px;">
 																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Age:'.'</div>
@@ -301,11 +301,11 @@
 																	<div class="well" style="width: 40%; height: 100%; float:left; margin:0px;">
 																		<div>
 																			<div style=" width:'.$margin000.'; float: left; font-weight:bold;">'.'Examined by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="doctors.php?profilepage='.$P_LN.'"><span class="fa fa-external-link"></span></a> '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</div>
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;">'.$P_SLN.'</div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="#"><span class="fa fa-external-link"></span></a> '.$P_SLN.'</div>
 																		</div>
 																	</div>
 																</div>
