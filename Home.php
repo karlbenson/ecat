@@ -42,8 +42,7 @@
 					$CSF_SUPP_SUM=0;
 					$CSF_LAB_SUM=0;
 					while($dataline = $output->fetch_assoc()) {
-						echo '<li class="list-group-item">';
-						echo '<div class="row">';
+						
 						$PC_PF_SUM=$PC_PF_SUM+$dataline["PC_PF"];
 						$PC_LAB_SUM=$PC_LAB_SUM+$dataline["PC_LAB"];
 						$PC_IOL_SUM=$PC_IOL_SUM+$dataline["PC_IOL"];
