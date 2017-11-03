@@ -84,9 +84,9 @@
 													}
 													$STAFF_LIST = explode("-",$_POST["P_STAFFLIC"]);
 													if(sizeof($STAFF_LIST)==1){
-														$STAFF_LICENSE_NUM = $PHY_LIST[0];
+														$STAFF_LICENSE_NUM = $STAFF_LIST[0];
 													}else{
-														$STAFF_LICENSE_NUM = $PHY_LIST[1];
+														$STAFF_LICENSE_NUM = $STAFF_LIST[1];
 													}
 													$PRE_VA_WITH_SPECT_LEFT = $_POST["P_VASL1"];
 													$POST_VA_WITH_SPECT_LEFT = $_POST["P_VASL2"];
@@ -496,13 +496,13 @@
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:50%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:150px; font-weight:bold;">Screened by:</label>
 																			<div style="width: 200px; float: left;">
-																				<input pattern="\d{7}"class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
 																	</div>
