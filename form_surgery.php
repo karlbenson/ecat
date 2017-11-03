@@ -4,7 +4,7 @@
 		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="references/3.3.1/bootstrap.min.css" />
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/typeahead.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
@@ -104,7 +104,7 @@
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float:left;">
 											<div class="input-group">
-												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or Lic. No." maxlength="40" name="SURG_NAME" type="textbox" required>
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License" maxlength="50" name="SURG_NAME" type="textbox" required>
 												<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name  or Lic. No." maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
@@ -128,7 +128,7 @@
 										<label class="control-label col-md-2" for="ANEST" style="float:left; width:170px;">Anesthesiologist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or Lic. No." maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or License" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
