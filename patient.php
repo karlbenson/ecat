@@ -33,11 +33,9 @@
 					$LN_LENG = 20;
 					$PHYL_LENG = 40;
 					$STAFFL_LENG = 7;
-					$VD_MAX = 15;
-					$DC_MAX = 30;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5", "CF 6", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -79,13 +77,13 @@
 													$PAT_PH = $_POST["P_PH"];
 													$PAT_SEX = $_POST["P_SEX"];
 													$PHYSICIAN = $_POST["P_PHYLIC"];
-													$PHY_LIST = explode("-",$PHYSICIAN);
+													$PHY_LIST = explode(" - ",$PHYSICIAN);
 													if(sizeof($PHY_LIST)==1){
 														$PHY_LICENSE_NUM = $PHY_LIST[0];	
 													}else{
 														$PHY_LICENSE_NUM = $PHY_LIST[1];
 													}
-													$STAFF_LIST = explode("-",$_POST["P_STAFFLIC"]);
+													$STAFF_LIST = explode(" - ",$_POST["P_STAFFLIC"]);
 													if(sizeof($STAFF_LIST)==1){
 														$STAFF_LICENSE_NUM = $STAFF_LIST[0];
 													}else{
@@ -408,7 +406,7 @@
 
 												//BUTTONS AND LINKS
 												$back = "'patient.php'";
-												echo '<div id="link_buttons">';
+												echo '<div id="link_buttons" style="margin:20px 0px;">';
 												echo '<button class="btn btn-default" id="del_button" value="patient" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
 												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
@@ -438,45 +436,68 @@
 
 																	//EDIT FORM
 												echo 				'<div class="container-fluid">
-																		<form method="post" id="updating" action="#" >
+																		<form method="post" id="updating">
 																			<div style="width:50%; float: left;"> <div style="margin-right:20px; margin-top: 5px;">
-																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="PAT_FNAME" style="width: 175px; float: left; ">First Name </label>
-																					<input placeholder="Patient Name" type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 150px; float: left;" required >
+																				<div class="container-fluid" style="margin-bottom: 20px;">
+																					<label for="PAT_ID" style="width: 40%; float: left; ">Patient ID</label>
+																					<input placeholder="ID Number" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$dataline["PAT_ID_NUM"].'" style="width: 60%; float: left;" required readonly>
+																				</div>
+																				<div class="container-fluid" style="margin-bottom: 20px;">
+																					<label for="PAT_FNAME" style="width: 40%; float: left; ">First Name </label>
+																					<input placeholder="Patient Name" type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="PAT_LNAME" style="width: 175px; float: left; ">Last Name </label>
-																					<input placeholder="Patient Surname" type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 150px; float: left;" required >
-																				</div>
-																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<div class="form-group">
-																						<label for="P_PH" style="float:left; width:175px;">Has PhilHealth? </label>
-																						<div  style="width: 150px; float: left;">
-																							<label class="radio-inline"><input id="P_PH_Y" name="P_PH" type="radio" value="Y" selected>Yes</label>
-																							<label class="radio-inline"><input id="P_PH_N" name="P_PH" type="radio" value="N" required>No</label>
-																						</div>
-																					</div>
+																					<label for="PAT_LNAME" style="width: 40%; float: left; ">Last Name </label>
+																					<input placeholder="Patient Surname" type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																			</div>
 																		</div>
-																		<div style="width:50%; float: left; margin: 0px;">
-																			<div>
-																				<div class="row">
-																					<div class="container-fluid well"  style="margin: 0px 15px;">
-																					<div class="form-group row">
-																						<label class="control-label col-md-1" for="P_AGE" style="float:left; width:120px;">Age:</label>
-																						<div class="col-md-1" style="width: 180px; float: left;">
+
+																		<div style="width:50%; float: left; margin: 0px; padding-right:0px;">
+																			<div style="width:100%; float: left;">
+																				
+																					<div class="well"  style="float:left; padding: 20px 20px 0px 20px; width:100%; margin-bottom:0px;">
+																					<div class="form-group" style="width:100%; float:left;">
+																						<label class="control-label" for="P_AGE" style="float:left; width:50%;">Age:</label>
+																						<div  style="width: 40%; float: left;">
 																							<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" value="'.$dataline["PAT_AGE"].'" required>
 																						</div>
 																					</div>
-																					<div class="form-group row" style="margin-bottom:6px;">
-																						<label class="control-label col-md-1" for="P_SEX" style="float:left; width:120px;">Sex:</label>
-																						<div class="col-md-1" style="width: 180px; float: left;">
-																							<label class="radio-inline"><input id="MALE" name="P_SEX" type="radio" value="M" required>Male</label>
-																							<label class="radio-inline"><input id="FEMALE" name="P_SEX" type="radio" value="F">Female</label>
-																						</div>
+																					<div class="form-group" style="width:100%; float:left;">
+																						<label class="control-label" for="P_SEX" style="float:left; width:50%">Sex:</label>
+																						<div style="width: 50%; float: left; ">';
+
+																							if($dataline["PAT_SEX"]=="M"){
+																								$S_M = "selected";
+																								$S_F = "";
+																							}else{
+																								$S_M = "";
+																								$S_F = "selected";
+																							}
+
+																							echo '<label class="radio-inline"><input id="MALE" name="P_SEX" type="radio" value="M" '.$S_M.' '.$S_F.'>Male</label>';
+																							echo '<label class="radio-inline"><input id="FEMALE" name="P_SEX" type="radio" value="F" '.$S_M.' '.$S_F.'>Female</label>';
+
+																						echo '</div>
 																					</div>
-																				</div>
+																					<div class="form-group" style="width:100%; float:left;">
+																						<label class="control-label" for="P_PH" style="float:left; width:50%;">Has PhilHealth?</label>
+																						<div style="width: 50%; float: left;">';
+
+																							if($dataline["PAT_PH"]=="Y"){ 
+																								$P_Y = "selected";
+																								$P_N = "";
+																							}else{
+																								$P_Y = "";
+																								$P_N = "selected";
+																							}
+
+																							echo '<label class="radio-inline"><input id="P_PH_Y" name="P_PH" type="radio" value="Y" '.$P_Y.' '.$P_N.'>Yes</label>';
+																							echo '<label class="radio-inline"><input id="P_PH_N" name="P_PH" type="radio" value="N" '.$P_Y.' '.$P_N.'>No</label>';
+
+																						echo '</div>
+																					</div>
+																				
 																			</div>
 
 																			<script>
@@ -496,18 +517,19 @@
 																		</div>
 																	</div>
 																	<div class="container-fluid" style="float:left; width:100%; margin:0px; padding:10px 0px 0px 15px;">
-																	<div class="container-fluid well" style="margin:0px; width:100%; float:left;  padding-bottom:5px; background-color:#ffffff; border-color:#f2f2f2;">
-																		<div class="form-group" style="width:50%; float:left;">
-																			<label class="control-label" for="P_PHYLIC" style="float:left; width:150px; font-weight:bold;">Examined by:</label>
+
+																	<div class="container-fluid well" style="margin:10px 0px 0px 0px; width:100%; float:left;  padding-bottom:5px; background-color:#f9f9f9; border-color:#f2f2f2;">
+																		<div class="form-group" style="width:100%; float:left;">
+																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:</label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
-																		<div class="form-group" style="width:50%; float:left;">
-																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:150px; font-weight:bold;">Screened by:</label>
+																		<div class="form-group" style="width:100%; float:left;">
+																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:</label>
 																			<div style="width: 200px; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
 																	</div>
@@ -669,8 +691,8 @@
 																		<!-- VISUAL DISABILITY -->
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_VD" style="float:left; width:170px;">Visual Disability </label>
-																			<div class="col-md-4" style="width: 400px;">
-																				<input type="text" class="form-control" id="P_VD" placeholder="Eye disability..." maxlength="'.$VD_MAX.'" name="P_VD" value="'.$dataline["VISUAL_DISABILITY"].'">
+																			<div class="col-md-4" style="width: 200px;">
+																				<input type="text" class="form-control" id="P_VD" placeholder="Eye disability..." maxlength="15" name="P_VD" value="'.$dataline["VISUAL_DISABILITY"].'">
 																			</div>
 																		</div>
 																		<!-- VISUAL DISABILITY -->
@@ -678,8 +700,8 @@
 																		<!-- CAUSE OF DISABILITY -->
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_DC" style="float:left; width:170px;">Cause </label>
-																			<div class="col-md-6" style="width: 400px;">
-																				<input type="text" class="form-control" id="P_DC" placeholder="Cause visual disability..." maxlength="'.$DC_MAX.'" name="P_DC" value="'.$dataline["DISABILITY_CAUSE"].'">
+																			<div class="col-md-6" style="width: 200px;">
+																				<input type="text" class="form-control" id="P_DC" placeholder="Cause of disability..." maxlength="30" name="P_DC" value="'.$dataline["DISABILITY_CAUSE"].'">
 																			</div>
 																		</div>
 																		<!-- CAUSE OF DISABILITY END -->
@@ -687,7 +709,7 @@
 																		<!-- DIAGNOSIS -->
 																		  <div class="form-group row">
 																			<label class="control-label col-md-2" for="P_DIAG" style="float:left; width:170px;">Diagnosis </label>
-																			<div class="col-md-6" style="width: 400px;">
+																			<div class="col-md-4" style="width: 200px;">
 																				<input type="text" class="form-control" id="P_DIAG" placeholder="Diagnosis..." maxlength="15" name="P_DIAG" value="'.$dataline["DIAGNOSIS"].'">
 																			</div>
 																		</div>
@@ -696,8 +718,8 @@
 																		<!-- PROCEDURE -->
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_PROC" style="float:left; width:170px;">Procedure </label>
-																			<div class="col-md-6" style="width: 400px;">
-																				<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to be done..." maxlength="15" name="P_PROC" value="'.$dataline["PROCEDURE_TO_DO"].'">
+																			<div class="col-md-4" style="width: 200px;">
+																				<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do..." maxlength="15" name="P_PROC" value="'.$dataline["PROCEDURE_TO_DO"].'">
 																			</div>
 																		</div>
 																		<!-- PROCEDURE END -->
@@ -706,7 +728,7 @@
 															</div>';
 															//EDIT FORM END
 												echo 	'</div>
-														<div class="modal-footer">
+														<div class="modal-footer" style="text-align:center;">
 															<button type="submit" onclick="update()" class="btn btn-default" value="'.$PAT_ID.'" name="patients_update">Update</button>
 															<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
 														</div>
@@ -757,7 +779,7 @@
 			"search":false,
 			"sDom":"ltipr",
 			"columns": [
-			null,
+						null,
 		    null,
 		    null,
 		    null,
