@@ -312,7 +312,7 @@
 
 														<div style="width:60%; float:left; margin:0px; padding-right:20px;">
 														<div class="panel panel-default" style="padding-bottom:10px;">
-															<div class="panel-heading" id="tophead1">Surgery Details</div>
+															<div class="panel-heading" id="tophead1" >Surgery Details</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 
 																<div class="row" style="margin:0px; padding:5px 10px;">
@@ -350,20 +350,20 @@
 
 														<div class="row" style="">
 														<div class="panel panel-default" style="padding-bottom:10px;">
-															<div class="panel-heading">Doctors</div>
+															<div class="panel-heading" style="color:#337ab7;">Doctors</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 																	
 																	<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Surgeon:'.'</div>
-																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_surg.'">  <span style="color:#000000; float:left; margin-right:3px;">'.$SURG_NAME.' </span> '.$E_link.'</a></div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_surg.'">  <span style="color:#000000; float:left; margin-right:5px;">'.$SURG_NAME.' </span> '.$E_link.'</a></div>
 																</div>
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Internist:'.'</div>
-																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_intern.'"><span style="color:#000000; float:left; margin-right:3px;">'.$INTER_NAME.' </span> '.$E_link.'</a></div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_intern.'"><span style="color:#000000; float:left; margin-right:5px;">'.$INTER_NAME.' </span> '.$E_link.'</a></div>
 																</div>
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Anesthesiologist:'.'</div>
-																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_anes.'"><span style="color:#000000; float:left; margin-right:3px;">'.$ANES_NAME.' </span> '.$E_link.'</a></div>
+																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_anes.'"><span style="color:#000000; float:left; margin-right:5px;">'.$ANES_NAME.' </span> '.$E_link.'</a></div>
 																</div>
 
 															</div>
@@ -372,7 +372,7 @@
 
 														<div class="row" style="">
 														<div class="panel panel-default" style="padding-bottom:10px;">
-															<div class="panel-heading">Patient Information</div>
+															<div class="panel-heading" style="color:#337ab7;">Patient Information</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 																	
 																	<div class="row" style="margin:0px; padding:5px 10px;">
@@ -389,7 +389,7 @@
 																</div>
 
 																<div style="margin:0px; padding:5px 5px; float:right;"><a href="'.$patient_link.'">
-																<span style="float:left; margin-right:3px;">Check Full Patient Information</span>'.$E_link.'</a></div>
+																<span style="float:left; margin-right:5px;">see patient profile</span>'.$E_link.'</a></div>
 
 															</div>
 														</div>
@@ -397,7 +397,7 @@
 
 														<div class="row" style="">
 														<div class="panel panel-default" style="padding-bottom:10px; margin:0px;">
-															<div class="panel-heading">Surgery Report</div>
+															<div class="panel-heading" style="color:#337ab7;">Surgery Report</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 																	
 																	<div class="row" style="margin:0px; padding:5px 10px;">
@@ -413,9 +413,9 @@
 														</div>
 														</div>
 
-														<div class="row" style="margin:0px; padding: 0px 0px 20px 0px;"><hr></div>
+														<div class="row" style="margin:0px; padding: 10px 0px 20px 0px;"><hr style="border-color:#337ab7;"></div>
 
-														<div class="well" style="width: 100%; float: left; color:#337ab7">Financial Report</div>
+														<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Financial Report</div>
 
 														<div style="width:100%;">
 															<div class="well" style="background-color:#f9f9f9; width:100%; float:left; padding:10px;">
@@ -550,8 +550,8 @@
 												$leftmargin = 220;
 
 												//EDIT FORM
-												echo 				'<div class="container-fluid">
-																		<form method="post" id="updating" action="#" >
+												echo '<div class="container-fluid">
+																		<form method="post" id="updating" >
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Patient ID No. </label>
 																				<input pattern="20\d\d-\d\d\d\d\d" title="Case Numbers range from 2000-00000 to 2099-99999." type="text" class="form-control" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required >
@@ -673,6 +673,9 @@
 														</div>
 													</div>';
 													//POP-UP ALERT END
+
+													include("pass_verify.php");
+
 												//FULL DETAILS PAGE END
 											}else if($DEFAULT==2){
 												//DELETE PAGE
