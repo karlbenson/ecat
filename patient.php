@@ -312,18 +312,18 @@
 																	<div class="well" style="width: 100%; float:left; margin:0px;">
 																		<div>
 																			<div style=" width:'.$margin000.'; float: left; font-weight:bold;">'.'Examined by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$PHY_link.'"><span style="color:#000000; float:left; margin-right:3px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span>'.$E_link.'</a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$PHY_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span>'.$E_link.'</a></div>
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:3px;">'.$P_SLN.'</span>'.$E_link.'</a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$P_SLN.'</span>'.$E_link.'</a></div>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															</div>
 															<div class="panel panel-default" style="padding-bottom:0px;">
-																<div class="panel-heading" style="border: 0px; font-weight:bold;">Visual Acuity</div>
+																<div class="panel-heading" style="border: 0px; color:#337ab7;">Visual Acuity</div>
 																<div style="margin: 0px 50px;">
 																	<table class="table table-condensed">
 																		<thead>
@@ -351,7 +351,7 @@
 
 												echo 		'<div style="width:60%; float: left; margin:0px;">
 																<div class="panel panel-default" style="padding-bottom:10px;  margin-right:20px;">
-																	<div class="panel-heading" style="border: 0px; font-weight:bold;">Visual Problem</div>
+																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Visual Problem</div>
 																	<div class="panel-body">
 																		<div class="row" style="margin:0px; padding:5px 10px;">
 																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Visual Disability'.'</div>
@@ -374,7 +374,7 @@
 															</div>
 															<div style="width:40%; float: left; margin:0px;">
 																<div class="panel panel-default" style="padding-bottom:10px;">
-																	<div class="panel-heading" style="border: 0px; font-weight:bold;">Affected Area of Eye</div>
+																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Affected Area of Eye</div>
 																	<div class="panel-body" style="margin:0px 50px; padding:0px;">
 																		<table class="table table-condensed">
 																			<thead>
