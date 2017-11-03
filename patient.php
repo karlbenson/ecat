@@ -437,17 +437,22 @@
 																	//EDIT FORM
 												echo 				'<div class="container-fluid">
 																		<form method="post" id="updating">
+
+																			<p style="margin-bottom: 20px; color:#666666;">
+																				Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
+																			</p>
+
 																			<div style="width:50%; float: left;"> <div style="margin-right:20px; margin-top: 5px;">
 																				<div class="container-fluid" style="margin-bottom: 20px;">
-																					<label for="PAT_ID" style="width: 40%; float: left; ">Patient ID</label>
+																					<label for="PAT_ID" style="width: 40%; float: left; ">Patient ID<span style="color: #d9534f">*</span></label>
 																					<input placeholder="ID Number" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$dataline["PAT_ID_NUM"].'" style="width: 60%; float: left;" required readonly>
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 20px;">
-																					<label for="PAT_FNAME" style="width: 40%; float: left; ">First Name </label>
+																					<label for="PAT_FNAME" style="width: 40%; float: left; ">First Name<span style="color: #d9534f">*</span> </label>
 																					<input placeholder="Patient Name" type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="PAT_LNAME" style="width: 40%; float: left; ">Last Name </label>
+																					<label for="PAT_LNAME" style="width: 40%; float: left; ">Last Name<span style="color: #d9534f">*</span> </label>
 																					<input placeholder="Patient Surname" type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																			</div>
@@ -458,13 +463,13 @@
 																				
 																					<div class="well"  style="float:left; padding: 20px 20px 0px 20px; width:100%; margin-bottom:0px;">
 																					<div class="form-group" style="width:100%; float:left;">
-																						<label class="control-label" for="P_AGE" style="float:left; width:50%;">Age:</label>
+																						<label class="control-label" for="P_AGE" style="float:left; width:50%;">Age:<span style="color: #d9534f">*</span></label>
 																						<div  style="width: 40%; float: left;">
 																							<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" value="'.$dataline["PAT_AGE"].'" required>
 																						</div>
 																					</div>
 																					<div class="form-group" style="width:100%; float:left;">
-																						<label class="control-label" for="P_SEX" style="float:left; width:50%">Sex:</label>
+																						<label class="control-label" for="P_SEX" style="float:left; width:50%">Sex:<span style="color: #d9534f">*</span></label>
 																						<div style="width: 50%; float: left; ">';
 
 																							if($dataline["PAT_SEX"]=="M"){
@@ -481,7 +486,7 @@
 																						echo '</div>
 																					</div>
 																					<div class="form-group" style="width:100%; float:left;">
-																						<label class="control-label" for="P_PH" style="float:left; width:50%;">Has PhilHealth?</label>
+																						<label class="control-label" for="P_PH" style="float:left; width:50%;">Has PhilHealth?<span style="color: #d9534f">*</span></label>
 																						<div style="width: 50%; float: left;">';
 
 																							if($dataline["PAT_PH"]=="Y"){ 
@@ -520,14 +525,14 @@
 
 																	<div class="container-fluid well" style="margin:10px 0px 0px 0px; width:100%; float:left;  padding-bottom:5px; background-color:#f9f9f9; border-color:#f2f2f2;">
 																		<div class="form-group" style="width:100%; float:left;">
-																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:</label>
+																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">';
 
 																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
-																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:</label>
+																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">
 																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
@@ -542,7 +547,7 @@
 																				<table class="table" style="margin-top:0px; ">
 																					<thead>
 																						<th></th>
-																						<th>Pre Surgery</th>
+																						<th>Pre Surgery<span style="color: #d9534f">*</span></th>
 																						<th>Post Surgery</th>
 																					</thead>
 																					<tbody>
@@ -561,7 +566,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
 																										echo "<option selected>".$VA_choice[$j]."</option>";    
@@ -588,7 +593,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
 																										echo "<option selected>".$VA_choice[$j]."</option>";    
@@ -615,7 +620,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 100px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($POST_VA_NO_SPECT_LEFT==$VA_choice[$j]){
 																										echo "<option selected>".$VA_choice[$j]."</option>";    
@@ -642,7 +647,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 100px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($POST_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
 																										echo "<option selected>".$VA_choice[$j]."</option>";    
