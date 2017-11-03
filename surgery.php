@@ -585,8 +585,12 @@
 
 																			<div style="width:100%; float:left; margin-bottom: 10px;">
 
+																			<p style="margin-bottom: 20px; color:#666666;">
+										          Please do not leave the required<span style="color: #d9534f">*</span> fields blank. If there are no entries, use indicators (such as n/a or NA).
+										        </p>
+
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Surgery Case Number </label>
+																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Surgery Case Number<span style="color: #d9534f">*</span> </label>
 																				<input pattern="20\d\d-\d\d\d\d\d" class="form-control" placeholder="20XX-XXXXX" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required readonly>
 																			</div>
 
@@ -610,7 +614,7 @@
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address </label>
+																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address<span style="color: #d9534f">*</span> </label>
 																				<input placeholder="Enter address of where the sugery was conducted..." type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
 																			</div>
 
@@ -619,24 +623,24 @@
 																			<div style="width:100%;">
 
 																			<div style="width:60%; float:left; padding-right:20px;">
-																			<div class="well" style="width:100%; float: left;" >
+																			<div class="well" style="width:100%; float: left;  padding-left:10px;" >
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon</label>
+																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
 																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ADDRESS" style="width: 40%; float: left; ">Internist</label>
+																				<label for="INTERNIST" style="width: 40%; float: left; ">Internist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
 																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist</label>
+																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
 																				</div>
@@ -646,15 +650,15 @@
 																			</div>
 
 																			<div style="width:40%; float:left;">
-																			<div class="well" style="width:100%; float: left;">
+																			<div class="well" style="width:100%; float: left;  padding-left:10px;">
 																			
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power</label>
+																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power<span style="color: #d9534f">*</span></label>
 																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;" required>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia</label>
+																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;" id="SURG_ANESTHESIA" name="SURG_ANESTHESIA">
 							              <select class="form-control" id="TANES"  name="TANES" required>';
 							              for ($anes_count=0; $anes_count < sizeof($ANES_choice); $anes_count++) { 
@@ -685,12 +689,12 @@
 																					<div style="margin-bottom:10px;"></div>
 
 																					<div class="container-fluid" style="margin-bottom: 10px;">
-																						<label for="PAT_ID" style="width: 25%; float: left; ">ID Number </label>
+																						<label for="PAT_ID" style="width: 25%; float: left; ">ID Number<span style="color: #d9534f">*</span></label>
 																						<input placeholder="Patient ID" type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required>
 																					</div>
 																							
 																					<div class="container-fluid" style="margin-bottom: 10px;">
-																						<label for="VI" style="width: 25%; float: left; ">Visual Impairment </label>
+																						<label for="VI" style="width: 25%; float: left; ">Visual Impairment<span style="color: #d9534f">*</span></label>
 																						<div style="width: 75%; padding-right:20px; float:left;">
 																						<input placeholder="Patient Visual Impairment..." type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="float: left;" rows="2" value="'.$S_VI.'" required>
 																						</div>
