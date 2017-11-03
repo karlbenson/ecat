@@ -5,17 +5,19 @@
 		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/typeahead.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="theme2.css">
 		<link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="references/dataTables.bootstrap4.min.css"/>
 		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<script src="references/moment-with-locales.js"></script>
 		<script src="references/bootstrap-datetimepicker.js"></script>
 		<script src="references/typeahead.bundle.js"></script>
+		<script src="references/jquery.dataTables.min.js"></script>
+		<script src="references/dataTables.bootstrap.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -206,15 +208,16 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<table id="example" class="table table-hover table-responsive">
-															<thead style="background:#5cb85c">
-																<th style="color:#ffffff">Date</th>
-																<th style="color:#ffffff">Case No.</th>
-																<th style="color:#ffffff">Patient</th>
-																<th style="color:#ffffff">Surgeon</th>
-																<th style="color:#ffffff">Action</th>
-															</thead>
-															<tbody>';
+													echo '<table id="docdat" class="table table-striped row">
+															<thead>
+																<tr id="tophead">
+																<td style="color:#ffffff">Date</td>
+																<td style="color:#ffffff">Case No.</td>
+																<td style="color:#ffffff">Patient</td>
+																<td style="color:#ffffff">Surgeon</td>
+																<td style="color:#ffffff">Action</td>
+																</tr>
+															</thead>';
 													while($dataline = $output->fetch_assoc()) { 
 														echo 	'<tr>
 																	<td>'.$dataline["SURG_DATE"].'</td>
@@ -704,3 +707,21 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+
+	var myTable=$('#docdat').DataTable({
+			"search":false,
+			"sDom":"ltipr",
+			"columns": [
+			null,
+		    null,
+		    null,
+		    null,
+		    { "orderable": false }
+  			],
+		});
+
+	$('#dataseek').keyup(function(){
+		myTable.search($(this).val()).draw();
+	})
+</script>
