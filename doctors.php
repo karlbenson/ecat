@@ -144,6 +144,8 @@
 												//VALUES
 												$D_NAME = $dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"];
 												$D_DLN = $dataline["DOC_LICENSE_NUM"];
+												$D_LN = $dataline["LAST_NAME"];
+												$D_FN = $dataline["FIRST_NAME"];
 												$D_A = $dataline["ADDRESS"];
 												$D_SP = $dataline["SPECIALIZATION"];
 												$SPEC_choice = array('Select specialization', 'Pediatrician','Opthalmologist','Anesthesiologist','Surgeon','Internist');
