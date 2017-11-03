@@ -522,16 +522,17 @@
 														</div>
 													</div>
 												</div>';
-
-
 												//CONTENT END
 
+												include("confirm.php");
+
 												//BUTTONS AND LINKS
-												echo '<div id="link_buttons">
-														<a role="button" class="btn btn-default"'.'href="'.'doctors.php'.'?delete='.$profile_p.'" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </a>
-														<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>
-														<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="history.back();">Back</button></div>
-													</div>';
+												$back = "'surgery.php'";
+												echo '<div id="link_buttons">';
+												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
+												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
+												echo '</div>';
 												//BUTTONS AND LINKS END
 
 												// POP-UP ALERT
@@ -679,7 +680,7 @@
 												$del = "DELETE FROM SURGERY WHERE CASE_NUM = '$delete_p' ";
 												if ($mydatabase->query($del) === TRUE) {
 													echo "Record deleted.";
-													echo '<div style="text-align:right;"><a href="'.'surgery.php'.'">Back</a></div>';
+													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'surgery.php'.'">Back</a></div>';
 												} else { 
 													echo "Error deleting record: " . $mydatabase->error; 
 												}
