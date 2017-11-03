@@ -100,15 +100,15 @@
 										$PHYSICIAN = $_POST["P_PHYLIC"];
 										$PHY_LIST = explode("-",$PHYSICIAN);
 										if(sizeof($PHY_LIST)==1){
-											$P_PHYLIC = $PHY_LIST[0];
+											$P_PHYLIC = trim($PHY_LIST[0]);
 										}else{
-											$P_PHYLIC = $PHY_LIST[1];
+											$P_PHYLIC = trim($PHY_LIST[1]);
 										}
 										$STAFF_LIST = explode("-",$_POST["P_STAFFLIC"]);
 										if(sizeof($STAFF_LIST)==1){
-											$P_STAFFLIC = $STAFF_LIST[0];
+											$P_STAFFLIC = trim($STAFF_LIST[0]);
 										}else{
-											$P_STAFFLIC = $STAFF_LIST[1];
+											$P_STAFFLIC = trim($STAFF_LIST[1]);
 										}
 										$P_VASL1 = $_POST["P_VASL1"];
 										$P_VASR1 = $_POST["P_VASR1"];
@@ -128,15 +128,15 @@
 										$SURGEON = $_POST["SURG_NAME"];
 										$S_LIST = explode(" - ",$SURGEON);
 										if(sizeof($S_LIST)==1){
-											$SURG_LICENSE_NUM = $S_LIST[0];
+											$SURG_LICENSE_NUM = trim($S_LIST[0]);
 										}else{
-											$SURG_LICENSE_NUM = $S_LIST[1];
+											$SURG_LICENSE_NUM = trim($S_LIST[1]);
 										}
 										$P_LIST = explode(" - ",$_POST["PAT_NAME"]);
 										if(sizeof($P_LIST)==1){
-											$PAT_ID_NUM2 = $P_LIST[0];
+											$PAT_ID_NUM2 = trim($P_LIST[0]);
 										}else{
-											$PAT_ID_NUM2 = $P_LIST[1];
+											$PAT_ID_NUM2 = trim($P_LIST[1]);
 										}
 										$VISUAL_IMPARITY = $_POST["VI"];         
 										$MED_HISTORY = $_POST["MED_HIST"];       
@@ -149,16 +149,16 @@
 										$INTER = $_POST["INTER"];
 										$I_LIST = explode(" - ",$INTER);
 										if(sizeof($I_LIST)==1){
-											$INTERNIST = $I_LIST[0];
+											$INTERNIST = trim($I_LIST[0]);
 										}else{
-											$INTERNIST = $I_LIST[1];
+											$INTERNIST = trim($I_LIST[1]);
 										}		
 										$ANEST = $_POST["ANEST"];
 										$A_LIST = explode(" - ",$ANEST);
 										if(sizeof($I_LIST)==1){
-											$ANESTHESIOLOGIST = $A_LIST[0];
+											$ANESTHESIOLOGIST = trim($A_LIST[0]);
 										}else{
-											$ANESTHESIOLOGIST = $A_LIST[1];
+											$ANESTHESIOLOGIST = trim($A_LIST[1]);
 										}
 										$IOLPOWER = $_POST["IOL"];
 										$PC_IOL = $_POST["PCIOL"];
