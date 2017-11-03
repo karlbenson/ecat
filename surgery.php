@@ -237,10 +237,11 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT s.*, d.LAST_NAME, d.FIRST_NAME FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM and CASE_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT s.*, d.LAST_NAME, d.FIRST_NAME, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, DOCTOR d, EYEPATIENT p where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM and p.PAT_ID_NUM = s.PAT_ID_NUM and CASE_NUM ='$profile_p' ");      
 												$output1->execute();
 												$line = $output1->get_result();
 												$dataline = $line->fetch_assoc();
+												
 												//MYSQL SECTION END
 
 												//VALUES
@@ -266,6 +267,19 @@
 												$C_L = $dataline["CSF_LAB"];
 												$date = explode("-", $S_DATE);
 												//VALUES END
+												
+												$output2 = $mydatabase->prepare("SELECT d.LAST_NAME, d.FIRST_NAME FROM DOCTOR d WHERE d.DOC_LICENSE_NUM='$S_I'");
+												$output2->execute();
+												$line2 = $output2->get_result();
+												$dataline2 = $line2->fetch_assoc();
+												
+												$output3 = $mydatabase->prepare("SELECT d.LAST_NAME, d.FIRST_NAME FROM DOCTOR d WHERE d.DOC_LICENSE_NUM='$S_AN'");
+												$output3->execute();
+												$line3 = $output3->get_result();
+												$dataline3 = $line3->fetch_assoc();
+												
+												$INTER = $dataline2["FIRST_NAME"].' '.$dataline2["LAST_NAME"];
+												$ANES = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
 
 												//CONTENT
 												echo '<div>
@@ -275,11 +289,11 @@
 																<div class="panel-heading" id="tophead1">Surgery Details</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Internist'.'</div>
-																	<div class="col-md-6">'.$S_I.' <a href="doctors.php?profilepage='.$S_I.'""><span class="fa fa-external-link"></span></a></div>
+																	<div class="col-md-6">'.$INTER.' <a href="doctors.php?profilepage='.$S_I.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Anesthesiologist'.'</div>
-																	<div class="col-md-6">'.$S_AN.' <a href="doctors.php?profilepage='.$S_AN.'""><span class="fa fa-external-link"></span></a></div>
+																	<div class="col-md-6">'.$ANES.' <a href="doctors.php?profilepage='.$S_AN.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'IOL Power'.'</div>
@@ -313,7 +327,7 @@
 																<div class="panel-heading" style="border: 0px; font-weight:bold;">Patient Information</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Patient ID'.'</div>
-																	<div class="col-md-5">'.$S_ID.' <a href="patient.php?profilepage='.$S_ID.'""><span class="fa fa-external-link"></span></a></div>
+																	<div class="col-md-5">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].' <a href="patient.php?profilepage='.$S_ID.'""><span class="fa fa-external-link"></span></a></div>
 																</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 																	<div class="col-md-3" >'.'Visual Imparity'.'</div>
