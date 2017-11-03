@@ -4,11 +4,14 @@
 		<title>Luke Foundation Eye Program: Doctors</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<link href="references/bootstrap.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="references/font-awesome.min.css">
-		<script src="references/jquery.min.js"></script>
-		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
+		<link rel="stylesheet" href="references/dataTables.bootstrap4.min.css"/>
+		<script src="references/jquery-2.1.1.min.js"></script>
+		<script src="references/bootstrap.min.js"></script>
+		<script src="references/jquery.dataTables.min.js"></script>
+		<script src="references/dataTables.bootstrap.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -96,34 +99,34 @@
 												if ($output->num_rows > 0) {
 													//MAIN PAGE
 													//HEADER
-													echo '<table class="table table-hover table-responsive">
-															<thead style="background:#5cb85c">
-																<th style="color:#ffffff">'.'Last Name'.'</th>
-																<th style="color:#ffffff">'.'First Name'.'</th>
-																<th style="color:#ffffff">'.'License No.'.'</th>
-																<th style="color:#ffffff">'.'Specialization'.'</th>
-																<th style="color:#ffffff">'.'Action'.'</th>
-															</thead>
-															<tbody>';
+													echo '<table id="docdat" class="table table-striped row">
+															<thead>
+																<tr id="tophead">
+																<td style="color:#ffffff">'.'Last Name'.'</th>
+																<td style="color:#ffffff">'.'First Name'.'</th>
+																<td style="color:#ffffff">'.'License No.'.'</th>
+																<td style="color:#ffffff">'.'Specialization'.'</th>
+																<td style="color:#ffffff">'.'Action'.'</th>
+																</tr>
+															</thead>';
 													//HEADER END
 
 													//CONTENT
-													while($dataline = $output->fetch_assoc()) { 
+													while($row = $output->fetch_assoc()) { 
 														echo 	'<tr>
-																	<td>'.$dataline["LAST_NAME"].'</td>
-																	<td>'.$dataline["FIRST_NAME"].'</td>
-																	<td>'.$dataline["DOC_LICENSE_NUM"].'</td>
-																	<td>'.$dataline["SPECIALIZATION"].'</td>
+																	<td>'.$row["LAST_NAME"].'</td>
+																	<td>'.$row["FIRST_NAME"].'</td>
+																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
+																	<td>'.$row["SPECIALIZATION"].'</td>
 																	<td>
 																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
 																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
-																		<a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																		<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													} //CONTENT END
 													
-													echo 	'</tbody>
-														</table>';
+													echo 	'</table>';
 													
 												} else { echo "No Records."; }
 												//MAIN PAGE END
@@ -302,3 +305,21 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+
+	var myTable=$('#docdat').DataTable({
+			"search":false,
+			"sDom":"ltipr",
+			"columns": [
+			null,
+		    null,
+		    null,
+		    { "orderable": false },
+		    { "orderable": false }
+  			],
+		});
+
+	$('#dataseek').keyup(function(){
+		myTable.search($(this).val()).draw();
+	})
+</script>
