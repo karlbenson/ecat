@@ -35,7 +35,7 @@
 
 					//MAX VAUES
 					$CASE_LENG = 10;
-					$SURG_LENG = 7;
+					$SURG_LENG = 50;
 					$ID_LENG = 15;
 					$VI_MAX = 100;
 					$HIST_MAX = 100;
@@ -45,12 +45,14 @@
 					$SURG_DATE_YY = 4; 
 					$SURG_DATE_DD = 2;
 					$REM_MAX = 100;
-					$INTER_MAX = 40;
-					$ANEST_MAX = 40;
+					$INTER_MAX = 50;
+					$ANEST_MAX = 50;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
 					$MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
 					//MAX VALUES END
+
+					include("auto_doc.php");
 
 					//CODE SECTION ENDS HERE
 				?>
@@ -79,18 +81,17 @@
 												$profile_p = $_GET["profilepage"]; $DEFAULT=1;
 												//RECEIVE UPDATE
 												if(isset($_POST['surgery_update'])){
+													var_dump($_POST);
 													$S_CN = $_POST["CASE_NUM"];
-													$S_LN = $_POST["SURG_LIC"];  
 													$S_ID = $_POST["PAT_ID"];          
 													$S_VI = $_POST["VI"];         
 													$S_MH = $_POST["MED_HIST"];       
 													$S_D = $_POST["DIAG"];
 													$S_A = $_POST["SURG_ADDRESS"];                      
-													$S_DATE = $_POST["YY"]."-".$_POST["MM"]."-".$_POST["DD"];
+													$S_DATE1 = explode("/",$_POST["DATE"]);
+													$S_DATE = $S_DATE1[2].'-'.$S_DATE1[0].'-'.$S_DATE1[1];
 													$S_R = $_POST["REM"];                                 
-													$S_TA = $_POST["SURG_ANESTHESIA"];	
-													$S_I = $_POST["INTERNIST"];
-													$S_AN = $_POST["ANESTHESIOLOGIST"];
+													$S_TA = $_POST["TANES"];
 													$S_IOL = $_POST["IOLPOWER"];
 													$PC_IOL = $_POST["PC_IOL"];
 													$PC_L = $_POST["PC_LAB"];
@@ -99,15 +100,33 @@
 													$C_HB = $_POST["CSF_HBILL"];
 													$C_S = $_POST["CSF_SUPPLIES"];
 													$C_L = $_POST["CSF_LAB"];
+													
+													$SS_SURG = $_POST["SURG_LIC"];
+													$SS_LIST = explode("-",$SS_SURG);
+													if(sizeof($SS_LIST)==1){
+														$S_LN = trim($SS_LIST[0]);
+													}else{
+														$S_LN = trim($SS_LIST[1]);
+													}
+
+													$SS_INTER = $_POST["INTERNIST"];
+													$SI_LIST = explode("-",$SS_INTER);
+													if(sizeof($SI_LIST)==1){
+														$S_I = trim($SI_LIST[0]);
+													}else{
+														$S_I = trim($SI_LIST[1]);
+													}
+
+													$SS_ANES = $_POST["ANESTHESIOLOGIST"];
+													$SA_LIST = explode("-",$SS_ANES);
+													if(sizeof($SA_LIST)==1){
+														$S_AN = trim($SA_LIST[0]);
+													}else{
+														$S_AN = trim($SA_LIST[1]);
+													}
+
 													$toupdate = $_POST["surgery_update"];
-													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', 
-													PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', 
-													DIAGNOSIS = '$S_D', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', 
-													SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', ANESTHESIOLOGIST = '$S_AN', 
-													IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', 
-													SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$CSF_LAB' 
-													WHERE CASE_NUM = '$toupdate' ";
-		  
+													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', DIAGNOSIS = '$S_D', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L' WHERE CASE_NUM = '$toupdate' ";
 													if ($mydatabase->query($S_update) === TRUE) {
 														//echo "Record updated successfully";
 													} else {
@@ -251,17 +270,20 @@
 
 												//VALUES
 												$S_CN = $dataline["CASE_NUM"];
+												$S_DATE = $dataline["SURG_DATE"];
+												$S_A = $dataline["SURG_ADDRESS"];
+												
 												$S_LN = $dataline["SURG_LICENSE_NUM"];
+												$S_I = $dataline["INTERNIST"];
+												$S_AN = $dataline["ANESTHESIOLOGIST"];
+
 												$S_ID = $dataline["PAT_ID_NUM"];
 												$S_VI = $dataline["VISUAL_IMPARITY"];
 												$S_MH = $dataline["MED_HISTORY"];
 												$S_D = $dataline["DIAGNOSIS"];
-												$S_A = $dataline["SURG_ADDRESS"];
-												$S_DATE = $dataline["SURG_DATE"];
 												$S_R = $dataline["REMARKS"];
+
 												$S_TA = $dataline["SURG_ANESTHESIA"];
-												$S_I = $dataline["INTERNIST"];
-												$S_AN = $dataline["ANESTHESIOLOGIST"];
 												$S_IOL = $dataline["IOLPOWER"];
 												$PC_IOL = $dataline["PC_IOL"];
 												$PC_L = $dataline["PC_LAB"];
@@ -270,6 +292,7 @@
 												$C_HB = $dataline["CSF_HBILL"];
 												$C_S = $dataline["CSF_SUPPLIES"];
 												$C_L = $dataline["CSF_LAB"];
+
 												$date = explode("-", $S_DATE);
 												//VALUES END
 
@@ -492,11 +515,11 @@
 																				<td>'.$dataline["CSF_HBILL"].'</td>
 																			</tr>
 																			<tr>
-																				<td>Laboratory</td>
+																				<td>Supplies</td>
 																				<td>'.$dataline["CSF_SUPPLIES"].'</td>
 																			</tr>
 																			<tr>
-																				<td>Supplies</td>
+																				<td>Laboratory</td>
 																				<td>'.$dataline["CSF_LAB"].'</td>
 																			</tr>
 																			<tr>
@@ -535,7 +558,7 @@
 
 												//BUTTONS AND LINKS
 												$back = "'surgery.php'";
-												echo '<div id="link_buttons">';
+												echo '<div id="link_buttons" style="margin:20px 0px;">';
 												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
 												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
@@ -555,6 +578,7 @@
 																<div class="modal-body">';
 
 												$leftmargin = 220;
+												$ANES_choice = array("n/a", "General", "Local", "Topical");
 
 												//EDIT FORM
 												echo '<div class="container-fluid">
@@ -564,7 +588,7 @@
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="CASE_NUM" style="width: '.$leftmargin.'px; float: left; ">Surgery Case Number </label>
-																				<input pattern="20\d\d-\d\d\d\d\d" class="form-control" placeholder="20XX-XXXXX" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required >
+																				<input pattern="20\d\d-\d\d\d\d\d" class="form-control" placeholder="20XX-XXXXX" id="CASE_NUM" maxlength="'.$CASE_LENG.'" name="CASE_NUM" value="'.$S_CN.'" style="width: 150px; float: left;" required readonly>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
@@ -600,17 +624,23 @@
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon</label>
-																				<input class="form-control id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" style="width: 60%; float: left;" required>
+																				<div style="width: 60%; float: left;">
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
+																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ADDRESS" style="width: 40%; float: left; ">Internist</label>
-																				<input class="form-control" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" style="width: 60%; float: left;">
+																				<div style="width: 60%; float: left;">
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
+																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist</label>
-																				<input class="form-control" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" style="width:60%; float: left;">
+																				<div style="width: 60%; float: left;">
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
+																				</div>
 																			</div>
 
 																			</div>
@@ -621,12 +651,26 @@
 																			
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power</label>
-																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;">
+																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;" required>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia</label>
-																				<input placeholder="Type of Anesthesia" type="text" class="form-control" id="SURG_ANESTHESIA" maxlength="'.$TANES_MAX.'" name="SURG_ANESTHESIA" value="'.$S_TA.'" style="width: 60%; float: left;">
+																				<div style="width: 60%; float: left;" id="SURG_ANESTHESIA" name="SURG_ANESTHESIA">
+							              <select class="form-control" id="TANES"  name="TANES" required>';
+							              for ($anes_count=0; $anes_count < sizeof($ANES_choice); $anes_count++) { 
+							              	if($anes_count==0){
+							              		echo '<option value="n/a" selected>--Select Type--</option>';
+							              	}else{
+							              		if($S_TA==$ANES_choice[$anes_count]){
+							              			echo '<option value="'.$ANES_choice[$anes_count].'" selected>'.$ANES_choice[$anes_count].'</option>';
+							              		}else{
+							              			echo '<option value="'.$ANES_choice[$anes_count].'">'.$ANES_choice[$anes_count].'</option>';
+							              		}
+							              	}
+							              }
+							             echo '</select>
+							             </div>
 																			</div>
 
 																			</div>
@@ -643,7 +687,7 @@
 
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="PAT_ID" style="width: 25%; float: left; ">ID Number </label>
-																						<input placeholder="Patient ID" type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required >
+																						<input placeholder="Patient ID" type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required>
 																					</div>
 																							
 																					<div class="container-fluid" style="margin-bottom: 10px;">
@@ -690,7 +734,7 @@
 																			<div style="width:100%; float:left;">
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
-																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SPO_IOL.'" style="max-width: 225px; float: left;">
+																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SP_IOL.'" style="max-width: 225px; float: left;">
 																			</div>
 																			</div>
 
