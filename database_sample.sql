@@ -13,22 +13,6 @@ create table DOCTOR(
 	PRIMARY KEY (DOC_LICENSE_NUM)
 );
 
-INSERT INTO DOCTOR VALUES
-	('0000001','Smith','John','West Virginia. 26 Santos Street.','Anesthesiologist'),
-	('0000002','South','Johan','West Virginia. 15 Santos Street.','Internist'),
-	('0000003','Reefs','James','West Virginia. 106 Santos Street.','Anesthesiologist'),
-	('0000004','Reefs','Jessie','West Virginia. 106 Santos Street.','Surgeon'),
-	('0000005','Nedd','Milah','Florida, Border Street Avenue, Block 56.','Surgeon'),
-	('0000006','Colonel','Sanders','Kentucky, Fried Chicken.','Internist'),
-	('0000007','Ricardo','Heart','09 Silver Road, Beckham Park.','Anesthesiologist'),
-	('0000008','Ketchup','Ash','Pallet Town, West Kanto Region.','Internist'),
-	('0000009','Viva','Giovanni','Soul Silver Street, Viridian City, West Kanto Region.','Surgeon'),
-	('0000010','Crystal','Grey','City of Evergreen, Central Johto Region.','Internist'),
-	('0000011','Light','Lilian','','Surgeon'),
-	('0000012','Violet','Vivi','Route 26, Cinnabar Island, Kanto Region.','Internist'),
-	('0000013','Lilam','Loren','Route 205, Floaroma Town, Sinnoh Region.','Anesthesiologist')
-;
-
 /*NOTE:
 	EYE PATIENT FORM:
 	- form will be filed before surgery
@@ -62,11 +46,6 @@ create table EYEPATIENT(
 	PRIMARY KEY (PAT_ID_NUM),
 	FOREIGN KEY (PHY_LICENSE_NUM) references DOCTOR(DOC_LICENSE_NUM) on update cascade
 );
-
-INSERT INTO EYEPATIENT VALUES
-	('CAT2016-000','Johnny','Sins', '34', 'Y', 'M','0000001','0000002','20/32','20/20','20/12.5','20/12.5','20/32','20/20','20/12.5','20/12.5','excess eye', 'too much dota2', 'sample diag', 'remove eye','unknown','unknown'),
-	('CAT2017-000','JL','Gayo', '69', 'N', 'M','0000006','0000012','20/32','20/20','20/12.5','20/12.5','20/32','20/20','20/12.5','20/12.5','excess eye', 'too much dota2', 'sample diag', 'remove eye','unknown','unknown')
-;
 
 /*NOTE:
 	EYE SURGERY FORM:
