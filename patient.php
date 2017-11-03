@@ -35,7 +35,7 @@
 					$STAFFL_LENG = 7;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5", "CF 6", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("n/a","20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5", "CF 6", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -528,13 +528,13 @@
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
 																	</div>
@@ -557,10 +557,14 @@
 																							<td>
 																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 100px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) {
-																									if($PRE_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($PRE_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -568,10 +572,14 @@
 																							<td>
 																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -584,10 +592,14 @@
 																							<td>
 																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 100px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($PRE_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($PRE_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -595,10 +607,14 @@
 																							<td>
 																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																							echo '</select>
@@ -611,10 +627,14 @@
 																							<td>
 																								<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 100px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($PRE_VA_NO_SPECT_LEFT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($PRE_VA_NO_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -622,10 +642,14 @@
 																							<td>
 																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 100px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($POST_VA_NO_SPECT_LEFT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($POST_VA_NO_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -638,10 +662,14 @@
 																							<td>
 																								<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 100px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($PRE_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($PRE_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
@@ -649,10 +677,14 @@
 																							<td>
 																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 100px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($POST_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
-																										echo "<option selected>".$VA_choice[$j]."</option>";    
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
 																									}else{
-																										echo "<option>".$VA_choice[$j]."</option>";
+																										if($POST_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
 																									}
 																								}
 																								echo '</select>
