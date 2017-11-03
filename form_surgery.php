@@ -104,7 +104,7 @@
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float:left;">
 											<div class="input-group">
-												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or Lic. No." maxlength="40" name="SURG_NAME" type="textbox" required>
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or Lic. No." maxlength="40" name="SURG_NAME" type="textbox" required>
 												<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name  or Lic. No." maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name  or Lic. No." maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
@@ -128,7 +128,7 @@
 										<label class="control-label col-md-2" for="ANEST" style="float:left; width:170px;">Anesthesiologist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" title="Invalid Input." class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or Lic. No." maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or Lic. No." maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
@@ -246,7 +246,7 @@
 											<div class="panel-heading" id="panelh">Post Surgery Visual Acuity</div>
 											<div class="panel-body">
 												<?php
-													$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+													$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5'", "CF 6'", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
 												?>
 												<table class="table">
 													<thead>
