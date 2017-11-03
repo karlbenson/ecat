@@ -201,7 +201,7 @@
 																<th style="color:#ffffff">'.'First Name'.'</th>
 																<th style="color:#ffffff">'.'Sex'.'</th>
 																<th style="color:#ffffff">'.'Age'.'</th>
-																<th></th>
+																<th style="color:#ffffff">Action</th>
 															</thead>
 															<tbody>';
 													//HEADER END
@@ -219,7 +219,9 @@
 														}
 														echo		'<td>'.$dataline["PAT_AGE"].'</td>
 																	<td>
-																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
+																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
+																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													} //CONTENT END

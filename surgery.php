@@ -212,7 +212,7 @@
 																<th style="color:#ffffff">Case No.</th>
 																<th style="color:#ffffff">Patient</th>
 																<th style="color:#ffffff">Surgeon</th>
-																<th></th>
+																<th style="color:#ffffff">Action</th>
 															</thead>
 															<tbody>';
 													while($dataline = $output->fetch_assoc()) { 
@@ -221,7 +221,11 @@
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'" style="color:#000000">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</a></td>
 																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="color:#000000">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
-																	<td><a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a></td>
+																	<td>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
+																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
+																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																	</td>
 																</tr>';
 													}
 													echo	'</tbody>

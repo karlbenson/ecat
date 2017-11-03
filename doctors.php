@@ -102,7 +102,7 @@
 																<th style="color:#ffffff">'.'First Name'.'</th>
 																<th style="color:#ffffff">'.'License No.'.'</th>
 																<th style="color:#ffffff">'.'Specialization'.'</th>
-																<th></th>
+																<th style="color:#ffffff">'.'Action'.'</th>
 															</thead>
 															<tbody>';
 													//HEADER END
@@ -115,7 +115,9 @@
 																	<td>'.$dataline["DOC_LICENSE_NUM"].'</td>
 																	<td>'.$dataline["SPECIALIZATION"].'</td>
 																	<td>
-																		<a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'See full details <span class="fa fa-mail-forward"></span></a>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
+																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
+																		<a href="'.'doctors.php'.'?profilepage='.$dataline["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													} //CONTENT END
