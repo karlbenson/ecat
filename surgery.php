@@ -67,6 +67,8 @@
 
 						<!-- TITLE -->
 
+						<?php include("confirm.php"); ?>
+
 						<!-- CONTENT -->
 						<div class="container-fluid" >
 							<div>
@@ -131,7 +133,7 @@
 													} else {
 														echo '
 														<div class="alert alert-danger alert-dismissable">
-															<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+															<a class="close" data-dismiss="alert" aria-label="close">×</a>
 															<strong>Error updating record: </strong>'.$mydatabase->error.
 														'</div>';
 													}
@@ -239,17 +241,22 @@
 														echo 	'<tr>
 																	<td>'.$dataline["SURG_DATE"].'</td>
 																	<td>'.$dataline["CASE_NUM"].'</td>
-																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'""><span class="fa fa-external-link"></span></a> '.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
-																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'""><span class="fa fa-external-link"></span></a> '.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</td>
+																	<td><a href="patient.php?profilepage='.$dataline["PAT_ID_NUM"].'" style="text-decoration:none;"><span class="fa fa-external-link"></span> <span style="color:#000000; margin-left:5px;">'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</span></a></td>
+																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="text-decoration:none;"><span class="fa fa-external-link"></span><span style="color:#000000; margin-left:5px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</span></a></td>
 																	<td>
+
 																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
-																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
+
+																		<a role="button" id="'.$dataline["CASE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													}
 													echo	'</tbody>
 														</table>';
+
+														echo '<button style="display:none;" id="del_button" value="surgery"></button>';
+
 												} else {
 													echo "No Records.";
 												}
@@ -547,8 +554,6 @@
 												</div>';
 												//CONTENT END
 
-												include("confirm.php");
-
 												//BUTTONS AND LINKS
 												$back = "'surgery.php'";
 												echo '<div id="link_buttons" style="margin:20px 0px;">';
@@ -825,7 +830,10 @@
 													echo "Record deleted.";
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'surgery.php'.'">Back</a></div>';
 												} else { 
-													echo "Error deleting record: " . $mydatabase->error; 
+													echo '<div style="margin-top:10px;" class="alert alert-danger alert-dismissable"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+														<p><strong>Cannot Delete Record</strong></p>
+														<p>Error deleting record: '.$mydatabase->error.'</p></div>'; 
+													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'surgery.php'.'">Back</a></div>';
 												}
 												//MYSQL SECTION
 												//DELETE PAGE END
