@@ -343,15 +343,15 @@
 													<label class="control-label col-md-3" style="float:left; width:200px;">Patient Counterpart </label>
 													<div class="col-md-7"  style="float:left; min-width:400px;">
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL">
 														</div>
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="PCLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="PCLAB">
 														</div>
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="PCPF" placeholder="PF(Other)" maxlength="<?php echo $PC_MAX; ?>" name="PCPF">
 														</div>
 													</div>
@@ -362,7 +362,7 @@
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="SPOIOL" style="float:left; width:200px;">Sponsored IOL</label>
 													<div class="input-group money" class="col-md-7" style="width: 200px; float: left;">
-														<span class="input-group-addon">$</span>
+														<span class="input-group-addon"><strong>₱</strong></span>
 														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsorship Amount" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
 													</div>
 												</div>
@@ -373,15 +373,15 @@
 													<label class="control-label col-md-3" style="float:left; width:200px;"> CSF </label>
 													<div class="col-md-7"  style="float:left; min-width:400px;">
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="CSFHBILL" placeholder="Hospital Bill" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL">
 														</div>
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="CSFSUP" placeholder="Supplies" maxlength="<?php echo $PC_MAX; ?>" name="CSFSUP">
 														</div>
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon">$</span>
+															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="CSFLAB" placeholder="Laboratory" maxlength="<?php echo $PC_MAX; ?>" name="CSFLAB">
 														</div>
 													</div>

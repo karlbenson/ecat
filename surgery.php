@@ -281,13 +281,13 @@
 
 												$S_TA = $dataline["SURG_ANESTHESIA"];
 												$S_IOL = $dataline["IOLPOWER"];
-												$PC_IOL = $dataline["PC_IOL"];
-												$PC_L = $dataline["PC_LAB"];
-												$PC_PF = $dataline["PC_PF"];
-												$SP_IOL = $dataline["SPO_IOL"];
-												$C_HB = $dataline["CSF_HBILL"];
-												$C_S = $dataline["CSF_SUPPLIES"];
-												$C_L = $dataline["CSF_LAB"];
+												$PC_IOL = "₱ ".number_format($dataline["PC_IOL"], 2);
+												$PC_L = "₱ ".number_format($dataline["PC_LAB"], 2);
+												$PC_PF = "₱ ".number_format($dataline["PC_PF"], 2);
+												$SP_IOL = "₱ ".number_format($dataline["SPO_IOL"], 2);
+												$C_HB = "₱ ".number_format($dataline["CSF_HBILL"], 2);
+												$C_S = "₱ ".number_format($dataline["CSF_SUPPLIES"], 2);
+												$C_L = "₱ ".number_format($dataline["CSF_LAB"], 2);
 
 												$date = explode("-", $S_DATE);
 												//VALUES END
@@ -309,12 +309,9 @@
 												$ANES_NAME = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
 												$PATIENT_NAME = $dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"];
 
-												$PC_SUM1 = $PC_IOL+$PC_L+$PC_PF;
-												$PC_SUM = number_format((float)$PC_SUM1, 2, '.', '');
-												$CSF_SUM1 = $C_HB+$C_S+$C_L;
-												$CSF_SUM = number_format((float)$CSF_SUM1, 2, '.', '');
-												$TOTAL_ALL1 = $PC_SUM+$CSF_SUM+$SP_IOL;
-												$TOTAL_ALL = number_format((float)$TOTAL_ALL1, 2, '.', '');
+												$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"];
+												$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"];
+												$TOTAL_ALL = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+$dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+$dataline["SPO_IOL"];
 
 												$patient_link = "patient.php?profilepage=".$S_ID;
 												$placeholder = "placeholder";
@@ -449,7 +446,7 @@
 																	
 																	<div style="width:100%; float:left; padding:0px 0px;">
 																		<div style="float:left; width:40%; font-weight:bold;">Sponsored IOL</div>
-																		<div style="float:left; width:60%;">'.$dataline["SPO_IOL"].'</div>
+																		<div style="float:left; width:60%;">₱ '.number_format($dataline["SPO_IOL"], "2").'</div>
 																	</div>
 
 																</div>
@@ -472,19 +469,19 @@
 																		<tbody>
 																			<tr>
 																				<td>IOL</td>
-																				<td>'.$dataline["PC_IOL"].'</td>
+																				<td>₱ '.number_format($dataline["PC_IOL"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>LAB</td>
-																				<td>'.$dataline["PC_LAB"].'</td>
+																				<td>₱ '.number_format($dataline["PC_LAB"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>PF(others)</td>
-																				<td>'.$dataline["PC_PF"].'</td>
+																				<td>₱ '.number_format($dataline["PC_PF"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>Total</td>
-																				<td>'.$PC_SUM.'</td>
+																				<td>₱ '.number_format($PC_SUM, "2").'</td>
 																			</tr>
 																		</tbody>
 																	</table>
@@ -508,19 +505,19 @@
 																		<tbody>
 																			<tr>
 																				<td>Hospital Bill</td>
-																				<td>'.$dataline["CSF_HBILL"].'</td>
+																				<td>₱ '.number_format($dataline["CSF_HBILL"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>Supplies</td>
-																				<td>'.$dataline["CSF_SUPPLIES"].'</td>
+																				<td>₱ '.number_format($dataline["CSF_SUPPLIES"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>Laboratory</td>
-																				<td>'.$dataline["CSF_LAB"].'</td>
+																				<td>₱ '.number_format($dataline["CSF_LAB"], "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>Total</td>
-																				<td>'.$CSF_SUM.'</td>
+																				<td>₱ '.number_format($CSF_SUM, "2").'</td>
 																			</tr>
 																		</tbody>
 																	</table>
@@ -538,7 +535,7 @@
 																	
 																	<div style="width:100%; float:left; padding:0px 0px;">
 																		<div style="float:left; width:40%; font-weight:bold;">Total:</div>
-																		<div style="float:left; width:60%;">'.$TOTAL_ALL.'</div>
+																		<div style="float:left; width:60%;">₱ '.number_format($TOTAL_ALL, "2").'</div>
 																	</div>
 
 																</div>

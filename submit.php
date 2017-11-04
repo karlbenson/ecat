@@ -161,13 +161,13 @@
 											$ANESTHESIOLOGIST = trim($A_LIST[1]);
 										}
 										$IOLPOWER = $_POST["IOL"];
-										$PC_IOL = $_POST["PCIOL"];
-										$PC_LAB = $_POST["PCLAB"];
-										$PC_PF =  $_POST["PCPF"];
-										$SPO_IOL = $_POST["SPOIOL"];
-										$CSF_HBILL = $_POST["CSFHBILL"];
-										$CSF_SUPPLIES = $_POST["CSFSUP"];
-										$CSF_LAB = $_POST["CSFLAB"];
+										$PC_IOL = str_replace(",", "", $_POST["PCIOL"]);
+										$PC_LAB = str_replace(",", "", $_POST["PCLAB"]);
+										$PC_PF =  str_replace(",", "", $_POST["PCPF"]);
+										$SPO_IOL = str_replace(",", "", $_POST["SPOIOL"]);
+										$CSF_HBILL = str_replace(",", "", $_POST["CSFHBILL"]);
+										$CSF_SUPPLIES = str_replace(",", "", $_POST["CSFSUP"]);
+										$CSF_LAB = str_replace(",", "", $_POST["CSFLAB"]);
 										$P_VASL2 = rtrim($_POST["P_VASL2"], "'");
 										$P_VASR2 = rtrim($_POST["P_VASR2"], "'");
 										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
