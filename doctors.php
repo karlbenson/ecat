@@ -88,9 +88,7 @@
 											} else {};
 
 											//MYSQL SECTION
-											$limit = 20;
-											$begin = ($current_p-1)*$limit;
-											$D_query = "SELECT * FROM DOCTOR order by LAST_NAME asc limit $begin, ".$limit;
+											$D_query = "SELECT * FROM DOCTOR order by LAST_NAME asc";
 											$output = $mydatabase->query($D_query);
 											//MYSQL SECTION END
 
