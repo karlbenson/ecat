@@ -144,9 +144,6 @@
 												$DEFAULT=2; 
 											} else {};
 
-											$limit = 20;
-											$begin = ($current_p-1)*$limit;
-
 											//FILTER ADD
 											if(isset($_POST["filter_check"])){
 												//var_dump($_POST);
@@ -184,7 +181,7 @@
 											//SEARCH END
 
 											//MYSQL SECTION
-											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM $filter $search order by p.PAT_LNAME asc limit $begin, ".$limit;
+											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM $filter $search order by p.PAT_LNAME";
 											$output = $mydatabase->query($P_query);
 											//MYSQL SECTION END
 
@@ -192,6 +189,7 @@
 												//FILTER
 												include("patient_filter.php");
 												//FILTER END
+												
 												if ($output->num_rows>0) {
 													//MAIN PAGE
 													//HEADER
