@@ -52,6 +52,8 @@
 						</div>
 						<!-- TITLE END -->
 
+						<?php include("confirm.php"); ?>
+
 						<!-- CONTENT -->
 						<div class="container-fluid" >
 							<div>
@@ -221,14 +223,16 @@
 														echo		'<td>'.$dataline["PAT_AGE"].'</td>
 																	<td>
 																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
-																		<a href=""><span class="fa fa-trash" title="Delete"></span></a>
-																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																		<a role="button" id="'.$dataline["PAT_ID_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
+																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'"><span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													} //CONTENT END
 													
 													echo 	'</tbody>
 														</table>';
+
+													echo '<button style="display:none;" id="del_button" value="patient"></button>';
 
 												} else { echo "No Records."; }
 												//MAIN PAGE END
@@ -405,8 +409,6 @@
 														</div>
 													</div>';
 													//CONTENT END
-
-												include("confirm.php");
 
 												//BUTTONS AND LINKS
 												$back = "'patient.php'";
@@ -799,7 +801,10 @@
 													echo "Record deleted.";
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'patient.php'.'">Back</a></div>';
 												} else { 
-													echo "Error deleting record: " . $mydatabase->error; 
+													echo '<div style="margin-top:10px;" class="alert alert-danger alert-dismissable"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+														<p><strong>Cannot Delete Record</strong></p>
+														<p>Error deleting record: '.$mydatabase->error.'</p></div>'; 
+													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'patient.php'.'">Back</a></div>';
 												}
 												//MYSQL SECTION END
 												//DELETE PAGE END
