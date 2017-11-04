@@ -141,9 +141,6 @@
 												$delete_p=$_GET["delete"]; $DEFAULT=2;
 											} else {};
 
-											$limit = 20;
-											$begin = ($current_p-1)*$limit;
-
 											//FILTER ADD
 											if(isset($_POST["filter_check"])){
 												//var_dump($_POST);
@@ -218,7 +215,7 @@
 											//SEARCH END
 
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM ORDER by s.SURG_DATE desc;";
+											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM ORDER by s.SURG_DATE desc";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
