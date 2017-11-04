@@ -110,10 +110,10 @@
 										}else{
 											$P_STAFFLIC = trim($STAFF_LIST[1]);
 										}
-										$P_VASL1 = $_POST["P_VASL1"];
-										$P_VASR1 = $_POST["P_VASR1"];
-										$P_VAL1 = $_POST["P_VAL1"];
-										$P_VAR1 = $_POST["P_VAR1"];
+										$P_VASL1 = rtrim($_POST["P_VASL1"], "'");
+										$P_VASR1 = rtrim($_POST["P_VASR1"], "'");
+										$P_VAL1 = rtrim($_POST["P_VAL1"], "'");
+										$P_VAR1 = rtrim($_POST["P_VAR1"], "'");
 										$P_VD = $_POST["P_VD"];         
 										$P_DC = $_POST["P_DC"];          
 										$P_DIAG = $_POST["P_DIAG"];       
@@ -168,10 +168,10 @@
 										$CSF_HBILL = $_POST["CSFHBILL"];
 										$CSF_SUPPLIES = $_POST["CSFSUP"];
 										$CSF_LAB = $_POST["CSFLAB"];
-										$P_VASL2 = $_POST["P_VASL2"];
-										$P_VASR2 = $_POST["P_VASR2"];
-										$P_VAL2 = $_POST["P_VAL2"];
-										$P_VAR2 = $_POST["P_VAR2"];
+										$P_VASL2 = rtrim($_POST["P_VASL2"], "'");
+										$P_VASR2 = rtrim($_POST["P_VASR2"], "'");
+										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
+										$P_VAR2 = rtrim($_POST["P_VAR2"], "'");
 										//SURGERY INFORMATION FIELDS END
 										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB);
 									}

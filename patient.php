@@ -35,7 +35,7 @@
 					$STAFFL_LENG = 7;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("n/a","20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1", "CF 2", "CF 3", "CF 4", "CF 5", "CF 6", "CF 7", "CF 8", "CF 9", "CF 10", "CF 11", "CF 12", "CF 13", "CF 14", "CF 15", "CF 16", "CF 17", "CF 18", "CF 19", "CF 20", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("n/a","20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -244,7 +244,13 @@
 												$VA_LABEL = array("Left Eye with Spectacles", "Right Eye with Spectacles", "Left Eye without Spectacles", "Right Eye without Spectacles");
 												$P_PREVA = array($dataline["PRE_VA_WITH_SPECT_LEFT"], $dataline["PRE_VA_WITH_SPECT_RIGHT"], $dataline["PRE_VA_NO_SPECT_LEFT"], $dataline["PRE_VA_NO_SPECT_RIGHT"]);
 												$P_POSTVA = array($dataline["POST_VA_WITH_SPECT_LEFT"], $dataline["POST_VA_WITH_SPECT_RIGHT"], $dataline["POST_VA_NO_SPECT_LEFT"], $dataline["POST_VA_NO_SPECT_RIGHT"]);
-
+												for($i=0; $i<sizeof($VA_LABEL); $i++){
+													if(explode(" ",$P_PREVA[$i])[0]=="CF")
+														$P_PREVA[$i] = $P_PREVA[$i]."'";
+													if(explode(" ",$P_POSTVA[$i])[0]=="CF")
+														$P_POSTVA[$i] = $P_POSTVA[$i]."'";
+												}
+												
 												//VALUES
 												$P_ID = $dataline["PAT_ID_NUM"];
 												$P_PPFN = $dataline["PAT_FNAME"];
@@ -410,16 +416,23 @@
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
 												echo '</div>';
 												//BUTTONS AND LINKS END
+												
+												$VISUAL_ACUITY = array($dataline["PRE_VA_WITH_SPECT_LEFT"], $dataline["POST_VA_WITH_SPECT_LEFT"], $dataline["PRE_VA_WITH_SPECT_RIGHT"],
+													$dataline["POST_VA_WITH_SPECT_RIGHT"], $dataline["PRE_VA_NO_SPECT_LEFT"], $dataline["POST_VA_NO_SPECT_LEFT"],
+													$dataline["PRE_VA_NO_SPECT_RIGHT"], $dataline["POST_VA_NO_SPECT_RIGHT"]);
+												for($i=0;$i<sizeof($VISUAL_ACUITY);$i++)
+													if(explode(" ",$VISUAL_ACUITY[$i])[0]=="CF")
+														$VISUAL_ACUITY[$i] = $VISUAL_ACUITY[$i]."'";
 
-												$PRE_VA_WITH_SPECT_LEFT = $dataline["PRE_VA_WITH_SPECT_LEFT"];
-												$POST_VA_WITH_SPECT_LEFT = $dataline["POST_VA_WITH_SPECT_LEFT"];
-												$PRE_VA_WITH_SPECT_RIGHT = $dataline["PRE_VA_WITH_SPECT_RIGHT"]; 
-												$POST_VA_WITH_SPECT_RIGHT = $dataline["POST_VA_WITH_SPECT_RIGHT"];
-												$PRE_VA_NO_SPECT_LEFT = $dataline["PRE_VA_NO_SPECT_LEFT"];
-												$POST_VA_NO_SPECT_LEFT = $dataline["POST_VA_NO_SPECT_LEFT"];
-												$PRE_VA_NO_SPECT_RIGHT = $dataline["PRE_VA_NO_SPECT_RIGHT"];
-												$POST_VA_NO_SPECT_RIGHT = $dataline["POST_VA_NO_SPECT_RIGHT"];
-
+												$PRE_VA_WITH_SPECT_LEFT = $VISUAL_ACUITY[0];
+												$POST_VA_WITH_SPECT_LEFT = $VISUAL_ACUITY[1];
+												$PRE_VA_WITH_SPECT_RIGHT = $VISUAL_ACUITY[2];
+												$POST_VA_WITH_SPECT_RIGHT = $VISUAL_ACUITY[3];
+												$PRE_VA_NO_SPECT_LEFT = $VISUAL_ACUITY[4];
+												$POST_VA_NO_SPECT_LEFT = $VISUAL_ACUITY[5];
+												$PRE_VA_NO_SPECT_RIGHT = $VISUAL_ACUITY[6];
+												$POST_VA_NO_SPECT_RIGHT = $VISUAL_ACUITY[7];
+													
 												// POP-UP ALERT
 												echo '<div class="modal fade" id="EditBox" role="dialog" style="">
 														<div class="modal-dialog modal-lg">';
@@ -764,7 +777,7 @@
 															//EDIT FORM END
 												echo 	'</div>
 														<div class="modal-footer" style="text-align:center;">
-															<button type="submit" onclick="update()" class="btn btn-default" value="'.$PAT_ID.'" name="patients_update">Update</button>
+															<button type="submit" onclick="update()" class="btn btn-default" value="'.$P_ID.'" name="patients_update">Update</button>
 															<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
 														</div>
 													</div>
