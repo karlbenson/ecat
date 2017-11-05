@@ -6,13 +6,13 @@
 
 	//REVERT
 	$where = "'patient.php'";
-	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" >Revert</button></div>'; //REVERT END
+	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
 
 	// FILTER
-	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go" >New Filter</button></div>'; //FILTER END
+	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go"><span class="fa fa-check-square-o" style="font-size:16px; margin-right:5px;"></span>New Filter</button></div>'; //FILTER END
 
 	// SEARCH
-	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper1" id="go" >Search</button></div>'; //SEARCH END
+	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper1" id="go"><span class="fa fa-search" style="font-size:16px; margin-right:5px;"></span>Search</button></div>'; //SEARCH END
 
 	echo '</div>';
 	// BUTTON END
@@ -22,9 +22,9 @@
 	echo 	'<div class="panel panel-default collapse" style="padding: 0px;" id="upper1">
 				<div class="panel-body">
 					<form class="navbar-form navbar-center" role="search" style="text-align:center;">
-						<div class="container-fluid" style="width:350px;">
-							<div class="form-group" style="float:left;">
-								<input class="form-control" type="text" id="dataseek" placeholder="Type in a keyword..." maxlength="36" style="width: 200px; margin-left:40px;">
+						<div class="container-fluid">
+							<div class="form-group">
+								<input class="form-control" type="text" id="dataseek" placeholder="Type in a keyword..." maxlength="36" style="width: 300px;">
 							</div>
 						</div>
 					</form>
@@ -39,74 +39,59 @@
 			<form method="post" action="patient.php">
 				<div class="panel panel-default collapse" style="padding: 0px;" id="upper">
 					<div class="panel-body" style="padding:10px;">';
+
+ echo '<div class="">';
+	echo '<div style="float: left; width:50%; padding-left:10px;">';
+
 						// PHYSICIAN LICENSE FILTER
 	echo				'<div class="form-group row" style="margin: 5px; margin-bottom:10px;">
-							<label for="FSL" style="float:left; width:'.$leftmargin1.'px;">Physician </label>
+							<label for="FPL" style="float:left; width:35%; ">Examined by: </label>
 							<div>
-								<input class="form-control" id="SPN" placeholder="Physician" name="PHY_FULLNAME" style="width: 200px; float: left; margin-right: 10px;" '.$value_name.' readonly>
-								<input class="form-control" id="PHY_NUM" placeholder="License" name="FPL" style="width: 120px; float: left; margin-right: 10px;" '.$value_id.' readonly>
-								<button type="button" class="btn btn-default" data-toggle="modal" data-target="#pickphysician" style="float: left; margin-right: 10px;">Find Physician</button>
-							</div>
-						</div>';
-						// PHYSICIAN POP-UP FINDER
-	echo				'<div class="modal fade" id="pickphysician" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">List of Doctors</h4>
-									</div>
-									<div class="modal-body">';
-	//MYSQL SECTION  
-	$popquery1 = $mydatabase->query("SELECT DOC_LICENSE_NUM, LAST_NAME, FIRST_NAME FROM DOCTOR");
-	//MYSQL SECTION END
-
-	$cnt = 100;
-	if ($popquery1->num_rows > 0) {
-		echo 							'<div class = "container-fluid">';
-		while($datalinepop = $popquery1->fetch_assoc()) { 
-			$p_fullname = $datalinepop["FIRST_NAME"].' '.$datalinepop["LAST_NAME"];
-			$p_license = $datalinepop["DOC_LICENSE_NUM"];
-					//DOCTOR LIST
-				echo 						'<button type="button" class="list-group-item row" name="phy_filter" style="margin:0px; padding:5px;" onclick="pick_doc('.$cnt.')">
-												<div class="col-md-2" style="width:220px; float:left;" id="pop_fullname'.$cnt.'">'.$p_fullname.'</div>
-												<div class="col-md-1" style="width:120px; float:left;"><b>License No. </b></div>
-												<div class="col-md-1" style="width:100px; float:left;" id="pop_license'.$cnt.'">'.$p_license.'</div>
-											</button>';
-			$cnt++;
-		}
-			echo 						'</div>';
-		} else { echo "No Records."; }
-					//DOCTOR LIST END
-		echo
-									'</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-									</div>
+							 <div style="width: 225px; float: left; margin-right:10px;">
+								<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="FPL" maxlength="50" name="FPL" placeholder="Physician Name or License">
 								</div>
 							</div>
 						</div>';
-						// PHYSICIAN POP-UP FINDER END
+						// PHYSICIAN LICENSE FILTER END
 
-		$v = 5;
-						//SCRIPT
-						echo
-						'<script>
-							function pick_doc(x){
-								var v0 = x;
-								var v1 = "pop_fullname";
-								var v2 = "pop_license";
-								var v3 = v1.concat(v0);
-								var v4 = v2.concat(v0);
-								var name = document.getElementById(v3).innerHTML;
-								var id = document.getElementById(v4).innerHTML;
-								document.getElementById("PHY_NUM").value = id;
-								document.getElementById("SPN").value = name;
-								$("#pickphysician").modal("hide");
-							}
-						</script>';
-						//SCRIPT END
-					// PHYSICIAN LICENSE FILTER END
+						// STAFF LICENSE FILTER
+	echo				'<div class="form-group row" style="margin: 5px; margin-bottom:10px;">
+							<label for="FSI" style="float:left; width:35%;">Screened by: </label>
+							<div>
+							 <div style="width: 225px; float: left; margin-right:10px;">
+								<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control" autocomplete="off" id="FSI" maxlength="50" name="FSI" placeholder="Staff Name or License/ID">
+								</div>
+							</div>
+						</div>';
+						// STAFF LICENSE FILTER END
+
+	echo '</div>';
+	echo '<div style="float: left; width:50%; padding: 0px 10px;">
+								<div class="well" style="width:100%; float:left; padding:10px;">';
+
+						// PHILHEALTH FILTER
+	echo				'<div class="form-group row" style="margin: 5px;">
+							<label for="FPH" style="float:left; width: 150px;">Has PhilHealth? </label>
+							 <div style="width: 120px; float: left; margin-right:10px;">';
+											echo '<label class="radio-inline"><input id="FPH" name="FPH" type="radio" value="Y" >Yes</label>';
+											echo '<label class="radio-inline"><input id="FPH" name="FPH" type="radio" value="N" >No</label>';
+									echo '</div>
+							</div>';
+						// PHILHEALTH FILTER END
+
+						// PHILHEALTH FILTER
+	echo				'<div class="form-group row" style="margin: 5px;">
+							<label for="FSX" style="float:left; width: 150px;">Sex </label>
+							 <div style="width: 150px; float: left; margin-right:10px;">';
+											echo '<label class="radio-inline"><input id="FSX" name="FSX" type="radio" value="M" >Male</label>';
+											echo '<label class="radio-inline"><input id="FSX" name="FSX" type="radio" value="F" >Female</label>';
+									echo '</div>
+							</div>';
+						// PHILHEALTH FILTER END
+
+	echo '</div></div>';
+	echo '</div>';
+
 	echo		 	'</div>
 					<div class="panel-footer text-center" style="padding:0px;">
 						<button class="btn" id="go" style="width:100%; height: 100%; padding: 10px; border-color:#f2f2f2;" name="filter_check" type="submit"> Filter Records </button>
