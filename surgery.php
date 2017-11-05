@@ -154,7 +154,7 @@
 											//FILTER ADD
 											if(isset($_POST["filter_check"])){
 												//var_dump($_POST);
-												$F_DD = $F_MM = $F_YY = $F_LN = $F_ID = "";
+												$F_DD = $F_MM = $F_YY = $F_LN = $F_CI =  $F_DR = "";
 												$D = 0;
 
 												if(isset($_POST["FSS"])){
@@ -196,36 +196,68 @@
 													}
 												}
 												if(isset($_POST["FSL"])) {
-													if(strlen($_POST["FSL"])>0){
-														$F_LN = ' AND s.SURG_LICENSE_NUM='.trim($_POST["FSL"]);
-													}
-												}
-												if(isset($_POST["FID"])) {
-													if(strlen($_POST["FID"])>0){
-														$F_ID = ' AND s.PAT_ID_NUM2='.trim($_POST["FID"]);
+
+													if(isset($_POST["DR"])){
+														$F_DR = $_POST["DR"];
+
+														if($F_DR=="any"){
+															if(strlen($_POST["FSL"])>0){
+																$FIL_DOC = $_POST["FSL"];
+																$FD_LIST = explode(" - ",$FIL_DOC);
+																if(sizeof($FD_LIST)==1){
+																	$doc_lic = trim($FD_LIST[0]);
+																}else{
+																	$doc_lic = trim($FD_LIST[1]);
+																}
+																$F_LN = ' AND ( s.SURG_LICENSE_NUM='.$doc_lic.' OR s.ANESTHESIOLOGIST='.$doc_lic.' OR s.INTERNIST='.$doc_lic.' ) ';
+															}
+														}else{
+
+															if($F_DR=="Surgeon"){
+																$F_DR = "s.SURG_LICENSE_NUM";
+															}elseif ($F_DR=="Internist") {
+																$F_DR = "s.INTERNIST";
+															}elseif ($F_DR=="Anesthesiologist") {
+																$F_DR = "s.ANESTHESIOLOGIST";
+															}
+
+															if(strlen($_POST["FSL"])>0){
+																$FIL_DOC = $_POST["FSL"];
+																$FD_LIST = explode(" - ",$FIL_DOC);
+																if(sizeof($FD_LIST)==1){
+																	$doc_lic = trim($FD_LIST[0]);
+																}else{
+																	$doc_lic = trim($FD_LIST[1]);
+																}
+
+																$F_LN = ' AND '.$F_DR.'='.$doc_lic;
+																	
+															}
+														}
 													}
 												}
 
-												$filter =  $F_DD.$F_MM.$F_YY.$F_LN.$F_ID;
+												if(isset($_POST["FCI"])) {
+													if(strlen($_POST["FCI"])>0){
+															$FIL_PAT = $_POST["FCI"];
+															$FPI_LIST = explode(" - ",$FIL_PAT);
+															if(sizeof($FP_LIST)==1){
+																$patient_id = '"'.trim($FPI_LIST[0]).'"';
+															}else{
+																$patient_id = '"'.trim($FPI_LIST[1]).'"';
+															}
+															$F_CI = ' AND s.PAT_ID_NUM='.$patient_id;
+														}
+												}
+
+												$filter = $F_DD.$F_MM.$F_YY.$F_CI.$F_LN;
 											} else {
 												$filter = "";
 											}
 											//FILTER ADD END
 
-											//SEARCH
-											if(isset($_GET["search_record"])){
-												$search = "";
-												$key = trim($_GET["search_record"]);
-												if(strlen($key)>0){
-													$search = '';
-												}
-											}else{
-												$search = "";
-											}
-											//SEARCH END
-
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM ORDER by s.SURG_DATE desc";
+											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM $filter ORDER by s.SURG_DATE desc";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
@@ -635,21 +667,21 @@
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
 																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="INTERNIST" style="width: 40%; float: left; ">Internist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
 																				</div>
 																			</div>
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
 																				</div>
 																			</div>
 
