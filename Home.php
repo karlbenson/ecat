@@ -20,8 +20,8 @@
 			<!-- MAIN -->
 			<div class="container-fluid" id="outer">
 				<!-- TITLE -->
-				<div class="container-fluid" style="color: #ffffff;">
-					<h4>Eye Program</h4>
+				<div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff;padding-bottom:15px;">
+					<h4>Eye Program</h4> 
 				</div>
 				<!-- TITLE END -->
 
@@ -54,71 +54,105 @@
 					//CONTENT END
 					$PC_TOT=$PC_PF_SUM+$PC_LAB_SUM+$PC_IOL_SUM;
 					$CSF_TOT=$CSF_HBILL_SUM+$CSF_LAB_SUM+$CSF_SUPP_SUM;
+
+					$GRAND = $PC_TOT+$CSF_TOT+$SPO_IOL_SUM;
+
+
+					$pesos = "₱ ";
 				?>
 
+
 				<!-- HOME -->
-				<div class="container-fluid" id="basic" style="padding-top: 10px; background-color: rgba(74, 106, 21  ,0);">
-					<div id="inner">
+				<div class="container-fluid" id="basic" style=" background-color: rgba(74, 106, 21  ,0);">
+					<div id="inner" style="margin:0px; padding:0px;">
 						<!-- CONTENT -->
-						<div class="container-fluid" >
+						<div class="container-fluid" style="margin:0px; padding:0px;">
 							<div class="row" >
 								<!-- RIGHT COLUMN -->
 								<div class="container-fluid">
 									<div style="min-width: 70%; max-width: 100%; float:left; margin:auto;">	
 										<!-- CENTER SPACE: WHAT TO DO? -->
 										<!-- TO BE CONSTRUCTED -->
-										<div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%; ">
+										<div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%;">
 											<div>
-												<div class="container-fluid">
-													<h3>Monthly Report (<?php echo date("M-Y"); ?>)</h3>
+
+												<div class="container-fluid" style="padding:20px 20px;">
+													<p>Space for Graphs, etc...</p>
+													<!-- TO BE CONSTRUCTED... FOR GRAPH... etc. -->
+												</div>
+
+												<div class="container-fluid" style="padding:20px 20px;">
+
+													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; "><strong>Financial Report</strong>
+														<h5>Running Total as of <?php echo date("M-Y"); ?></h5>
+													</div>
+
+													<div style="float:left; width:50%; padding-right:20px;">
 													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" id="tophead">Financial Information</div>
-														&nbsp;
-														<div class="panel-heading" id="tophead1">Patient Counterpart</div>
+														<div class="panel-heading" style="color:#337ab7;">Patient Counterpart</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Misc. Expenses</div>
-															<div class="col-md-3"><?php echo ' '.$PC_PF_SUM.'.00'; ?></div>
+															<div class="col-md-6" >Misc. Expenses</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$PC_PF_SUM; ?></div>
+														</div>
+														<div class="row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-6" >Laboratory</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$PC_LAB_SUM; ?></div>
+														</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">										<div class="col-md-6" >Intra Ocular Lens</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$PC_IOL_SUM; ?></div>
 														</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Laboratory</div>
-															<div class="col-md-3"><?php echo ' '.$PC_LAB_SUM.'.00'; ?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">															<div class="col-md-3" >Intra Ocular Lens</div>
-															<div class="col-md-3"><?php echo ' '.$PC_IOL_SUM.'.00'; ?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" ><b>Total</b></div>
-															<div class="col-md-3"><b><?php echo ' '.$PC_TOT.'.00'; ?></b></div>
-														</div>
-														&nbsp;
-														<div class="panel-heading" id="tophead1">Sponsored</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Intra Ocular Lens</div>
-															<div class="col-md-3"><?php echo ' '.$SPO_IOL_SUM.'.00'; ?></div>
-														</div>
-														&nbsp;
-														<div class="panel-heading" id="tophead1">Luke Foundation Counterpart</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Hospital Bill</div>
-															<div class="col-md-3"><?php echo ' '.$CSF_HBILL_SUM.'.00';?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Supplies</div>
-															<div class="col-md-3"><?php echo ' '.$CSF_SUPP_SUM.'.00';?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Laboratory</div>
-															<div class="col-md-3"><?php echo ' '.$CSF_LAB_SUM.'.00';?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" ><b>Total</b></div>
-															<div class="col-md-3"><b><?php echo ' '.$CSF_TOT.'.00';?></b></div>
+															<div class="col-md-6" ><b>Total</b></div>
+															<div class="col-md-6"><b><?php echo ' '.$pesos.$PC_TOT; ?></b></div>
 														</div>
 													</div>
+													</div>
+
+													<div style="float:left; width:50%;">
 													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" id="tophead">Patient Information</div>
-														&nbsp;
-														<div class="panel-heading" id="tophead1">Pre-Surgery Visual Acuity</div>
+														<div class="panel-heading" style="color:#337ab7;">Luke Foundation Counterpart</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-6" >Hospital Bill</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_HBILL_SUM;?></div>
+														</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-6" >Supplies</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_SUPP_SUM;?></div>
+														</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-6" >Laboratory</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_LAB_SUM;?></div>
+														</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-6" ><b>Total</b></div>
+															<div class="col-md-6"><b><?php echo ' '.$pesos.$CSF_TOT;?></b></div>
+														</div>
+													</div>
+													</div>
+
+													<div style="float:left; width:40%; padding-right:20px;">
+													<div class="panel panel-default" style="padding-bottom:10px;">
+														<div class="panel-heading" style="color:#337ab7;">Sponsored Payment</div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+															<div class="col-md-3" >Intra Ocular Lens</div>
+															<div class="col-md-3"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
+														</div>
+													</div>
+													</div>
+
+													<div class="well" style="float:left; width:60%; background:#f9f9f9;">
+														<div  style="float:left; width:100%; padding:10px; font-weight:bold;">
+															<div style="width:50%; float:left;">Grand Total</div>
+															<div style="width:50%; float:left;"><?php echo ' '.$pesos.$GRAND; ?></div>
+														</div>
+													</div>
+
+													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%;"><strong>Patient Information</strong>
+													</div>
+
+													<div style="float:left; width:100%;">
+													<div class="panel panel-default" style="padding-bottom:10px;">
+														<div class="panel-heading" style="color:#337ab7;">Pre-Surgery Visual Acuity</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 															<?php
 																$S_query = "SELECT PRE_VA_WITH_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT GROUP BY PRE_VA_WITH_SPECT_LEFT";
@@ -129,7 +163,12 @@
 																}
 															?>
 														</div>
-														<div class="panel-heading " id="tophead1">Post-Surgery Visual Acuity</div>
+													</div>
+													</div>
+
+													<div style="float:left; width:100%;">
+													<div class="panel panel-default" style="padding-bottom:10px;">
+														<div class="panel-heading " style="color:#337ab7;">Post-Surgery Visual Acuity</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 															<?php
 																$S_query = "SELECT POST_VA_WITH_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT GROUP BY POST_VA_WITH_SPECT_LEFT";
@@ -141,7 +180,15 @@
 															?>
 														</div>
 													</div>
+													</div>
+
 												</div>
+
+												<div class="container-fluid" style="padding:20px 20px;">
+													<p>Space for Graphs, etc...</p>
+													<!-- TO BE CONSTRUCTED... FOR GRAPH... etc. -->
+												</div>
+
 											</div>
 										</div>
 									</div>
