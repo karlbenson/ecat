@@ -52,3 +52,5 @@ echo '<script type="text/javascript">
 		});
 	});
 </script>';
+
+?>
