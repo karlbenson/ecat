@@ -36,7 +36,7 @@
 					//MAX VAUES
 					$CASE_LENG = 10;
 					$SURG_LENG = 50;
-					$ID_LENG = 15;
+					$ID_LENG = 50;
 					$VI_MAX = 100;
 					$HIST_MAX = 100;
 					$TANES_MAX = 25;
@@ -82,9 +82,9 @@
 											if (isset($_GET["profilepage"])) { 
 												$profile_p = $_GET["profilepage"]; $DEFAULT=1;
 												//RECEIVE UPDATE
+
 												if(isset($_POST['surgery_update'])){
 													$S_CN = $_POST["CASE_NUM"];
-													$S_ID = $_POST["PAT_ID"];          
 													$S_VI = $_POST["VI"];         
 													$S_MH = $_POST["MED_HIST"];       
 													$S_D = $_POST["DIAG"];
@@ -101,6 +101,14 @@
 													$C_HB = $_POST["CSF_HBILL"];
 													$C_S = $_POST["CSF_SUPPLIES"];
 													$C_L = $_POST["CSF_LAB"];
+
+													$SS_ID = $_POST["PAT_ID"];
+													$SP_LIST = explode(" - ",$SS_ID);
+													if(sizeof($SP_LIST)==1){
+														$S_ID = trim($SP_LIST[0]);
+													}else{
+														$S_ID = trim($SP_LIST[1]);
+													}
 													
 													$SS_SURG = $_POST["SURG_LIC"];
 													$SS_LIST = explode("-",$SS_SURG);
@@ -688,8 +696,10 @@
 																					<div style="margin-bottom:10px;"></div>
 
 																					<div class="container-fluid" style="margin-bottom: 10px;">
-																						<label for="PAT_ID" style="width: 25%; float: left; ">ID Number<span style="color: #d9534f">*</span></label>
-																						<input placeholder="Patient ID" type="text" class="form-control" id="PAT_ID" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width: 150px; float: left;" required>
+																						<label for="PAT_ID" style="width: 25%; float: left; ">Patient<span style="color: #d9534f">*</span></label>
+																						<div style="width: 250px; float: left;">
+																						<input class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
+																						</div>
 																					</div>
 																							
 																					<div class="container-fluid" style="margin-bottom: 10px;">
@@ -736,7 +746,10 @@
 																			<div style="width:100%; float:left;">
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
-																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$SP_IOL.'" style="max-width: 225px; float: left;">
+																				<div class="input-group money">
+																				<span class="input-group-addon"><strong>₱</strong></span>
+																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" style="max-width: 225px; float: left;">
+																				</div>
 																			</div>
 																			</div>
 
@@ -754,15 +767,24 @@
 
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_IOL" style="width: 40%; float: left; ">IOL</label>
-																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$PC_IOL.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_LAB" style="width: 40%; float: left; ">LAB</label>
-																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$PC_L.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_PF" style="width: 40%; float: left; ">PF(Others)</label>
-																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$PC_PF.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>
 
 																					</div>
@@ -780,15 +802,24 @@
 
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_HBILL" style="width: 40%; float: left; ">HBILL</label>
-																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$C_HB.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_SUPPLIES" style="width: 40%; float: left; ">SUPPLIES</label>
-																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$C_S.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_LAB" style="width: 40%; float: left; ">LAB</label>
-																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$C_L.'" style="width: 60%; float: left;">
+																							<div class="input-group money">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" style="width: 60%; float: left;">
+																							</div>
 																						</div>
 
 																					</div>
