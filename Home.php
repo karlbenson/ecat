@@ -134,8 +134,8 @@
 													<div class="panel panel-default" style="padding-bottom:10px;">
 														<div class="panel-heading" style="color:#337ab7;">Sponsored Payment</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-3" >Intra Ocular Lens</div>
-															<div class="col-md-3"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
+															<div class="col-md-6" >Intra Ocular Lens</div>
+															<div class="col-md-6"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
 														</div>
 													</div>
 													</div>
