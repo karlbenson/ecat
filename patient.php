@@ -150,21 +150,52 @@
 											if(isset($_POST["filter_check"])){
 												//var_dump($_POST);
 
-												$F_LN = $F_ID = "";
+												$F_LN = $F_SI = $F_PH = $F_SX = "";
 												$D = 0;
 
 												if(isset($_POST["FPL"])) {
 													if(strlen($_POST["FPL"])>0){
-														$F_LN = ' AND p.PHY_LICENSE_NUM='.trim($_POST["FPL"]);
-													}
-												}
-												if(isset($_POST["FID"])) {
-													if(strlen($_POST["FID"])>0){
-														$F_ID = ' AND p.PAT_ID_NUM2='.trim($_POST["FID"]);
-													}
+																$FIL_DOC = $_POST["FPL"];
+																$FD_LIST = explode(" - ",$FIL_DOC);
+																if(sizeof($FD_LIST)==1){
+																	$doc_lic = trim($FD_LIST[0]);
+																}else{
+																	$doc_lic = trim($FD_LIST[1]);
+																}
+																$F_LN = ' AND p.PHY_LICENSE_NUM='.$doc_lic.' ';
+															}
 												}
 
-												$filter =  $F_LN.$F_ID;
+												if(isset($_POST["FSI"])) {
+													if(strlen($_POST["FSI"])>0){
+																$FIL_STA = $_POST["FSI"];
+																$FS_LIST = explode(" - ",$FIL_STA);
+																if(sizeof($FS_LIST)==1){
+																	$sta_lic = trim($FS_LIST[0]);
+																}else{
+																	$sta_lic = trim($FS_LIST[1]);
+																}
+																$F_SI = ' AND p.STAFF_LICENSE_NUM='.$sta_lic.' ';
+															}
+												}
+
+												if(isset($_POST["FPH"])) {
+													if(strlen($_POST["FPH"])>0){
+																$ph = $_POST["FPH"];
+																$F_PH = ' AND p.PAT_PH="'.$ph.'" ';
+														}
+												}
+
+												if(isset($_POST["FSX"])) {
+													if(strlen($_POST["FSX"])>0){
+																$sx = $_POST["FSX"];
+																$F_SX = ' AND p.PAT_SEX="'.$sx.'" ';
+														}
+												}
+												//
+
+
+												$filter =  $F_LN.$F_SI.$F_PH.$F_SX;
 											} else {
 												$filter = "";
 											}
