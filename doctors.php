@@ -89,8 +89,27 @@
 												$delete_p =$_GET["delete"]; $DEFAULT=2; 
 											} else {};
 
+											//FILTER ADD
+											if(isset($_POST["filter_check"])){
+												$F_SC = "";
+												if(isset($_POST["FSC"])){
+													if(strlen($_POST["FSC"])>0){
+														$F_SC1 = $_POST["FSC"];
+													}
+													if(strlen($F_SC1)>1){
+														$F_SC = 'SPECIALIZATION="'.$F_SC1.'"';
+														$filter = " WHERE ".$F_SC;
+													}else {
+														$filter = "";
+													}
+												}
+												echo "filter=".$filter;
+											} else {
+												$filter = "";
+											}
+
 											//MYSQL SECTION
-											$D_query = "SELECT * FROM DOCTOR order by LAST_NAME asc";
+											$D_query = "SELECT * FROM DOCTOR $filter order by LAST_NAME asc";
 											$output = $mydatabase->query($D_query);
 											//MYSQL SECTION END
 
