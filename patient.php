@@ -91,14 +91,14 @@
 													}else{
 														$STAFF_LICENSE_NUM = $STAFF_LIST[1];
 													}
-													$PRE_VA_WITH_SPECT_LEFT = $_POST["P_VASL1"];
-													$POST_VA_WITH_SPECT_LEFT = $_POST["P_VASL2"];
-													$PRE_VA_WITH_SPECT_RIGHT = $_POST["P_VASR1"];
-													$POST_VA_WITH_SPECT_RIGHT = $_POST["P_VASR2"];
-													$PRE_VA_NO_SPECT_LEFT = $_POST["P_VAL1"];
-													$POST_VA_NO_SPECT_LEFT = $_POST["P_VAL2"];
-													$PRE_VA_NO_SPECT_RIGHT = $_POST["P_VAR1"];
-													$POST_VA_NO_SPECT_RIGHT = $_POST["P_VAR2"];
+													$PRE_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL1"], "'");
+													$POST_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL2"], "'");
+													$PRE_VA_WITH_SPECT_RIGHT = rtrim($_POST["P_VASR1"], "'");
+													$POST_VA_WITH_SPECT_RIGHT = rtrim($_POST["P_VASR2"], "'");
+													$PRE_VA_NO_SPECT_LEFT = rtrim($_POST["P_VAL1"], "'");
+													$POST_VA_NO_SPECT_LEFT = rtrim($_POST["P_VAL2"], "'");
+													$PRE_VA_NO_SPECT_RIGHT = rtrim($_POST["P_VAR1"], "'");
+													$POST_VA_NO_SPECT_RIGHT = rtrim($_POST["P_VAR2"], "'");
 													$VISUAL_DISABILITY = $_POST["P_VD"];
 													$DISABILITY_CAUSE = $_POST["P_DC"];
 													$DIAGNOSIS = $_POST["P_DIAG"];
@@ -135,7 +135,7 @@
 														//echo "Record updated successfully";
 													} else {
 														echo '<div class="alert alert-danger alert-dismissable">
-																<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+																<a class="close" data-dismiss="alert" aria-label="close">×</a>
 																<strong>Error updating record: </strong>'.$mydatabase->error.
 															'</div>';
 													}
@@ -541,7 +541,7 @@
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
