@@ -104,7 +104,7 @@
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float:left;">
 											<div class="input-group">
-												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License" maxlength="50" name="SURG_NAME" type="textbox" required>
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License" maxlength="50" name="SURG_NAME" required>
 												<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 											</div>
 										</div>
@@ -116,7 +116,7 @@
 										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
@@ -128,7 +128,7 @@
 										<label class="control-label col-md-2" for="ANEST" style="float:left; width:170px;">Anesthesiologist<span style="color: #d9534f">*</span></label>
 										<div class="col-md-6" style="width: 320px; float: left;">
 										<div class="input-group">
-											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or License" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or License" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
 											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
 										</div>
@@ -340,8 +340,10 @@
 											<div class="panel-body">
 												<!-- PATIENT COUNTERPART -->
 												<div class="form-group row">
-													<label class="control-label col-md-3" style="float:left; width:200px;">Patient Counterpart </label>
-													<div class="col-md-7"  style="float:left; min-width:400px;">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" >Patient Counterpart </label>
+													</div>
+													<div style="float:left; min-width:70%;">
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL">
@@ -360,18 +362,24 @@
           
 												<!-- SPONSORED IOL -->
 												<div class="form-group row">
-													<label class="control-label col-md-3" for="SPOIOL" style="float:left; width:200px;">Sponsored IOL</label>
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" for="SPOIOL" >Sponsored IOL</label>
+													</div>
+													<div style="float:left; min-width:70%;">
 													<div class="input-group money" class="col-md-7" style="width: 200px; float: left;">
 														<span class="input-group-addon"><strong>₱</strong></span>
 														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsorship Amount" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
+													</div>
 													</div>
 												</div>
 												<!-- SPONSORED IOL END -->
   
 												<!-- CSF -->
 												<div class="form-group row">
-													<label class="control-label col-md-3" style="float:left; width:200px;"> CSF </label>
-													<div class="col-md-7"  style="float:left; min-width:400px;">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" > CSF </label>
+													</div>
+													<div style="float:left; min-width:70%;">
 														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
 															<input type="text" class="form-control numberOnly" id="CSFHBILL" placeholder="Hospital Bill" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL">
