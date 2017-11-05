@@ -91,19 +91,19 @@
 													<div class="panel panel-default" style="padding-bottom:10px;">
 														<div class="panel-heading" style="color:#337ab7;">Patient Counterpart</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Misc. Expenses</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$PC_PF_SUM; ?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Misc. Expenses</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_PF_SUM; ?></div>
 														</div>
 														<div class="row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Laboratory</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$PC_LAB_SUM; ?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Laboratory</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_LAB_SUM; ?></div>
 														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">										<div class="col-md-6" >Intra Ocular Lens</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$PC_IOL_SUM; ?></div>
+														<div class="panel-body row" style="margin:0px; padding:5px 10px;">										<div style="width:50%; float:left; padding-left:10px;" >Intra Ocular Lens</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_IOL_SUM; ?></div>
 														</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" ><b>Total</b></div>
-															<div class="col-md-6"><b><?php echo ' '.$pesos.$PC_TOT; ?></b></div>
+															<div style="width:50%; float:left; padding-left:10px;" ><b>Total</b></div>
+															<div style="width:50%; float:left; padding-left:10px;"><b><?php echo ' '.$pesos.$PC_TOT; ?></b></div>
 														</div>
 													</div>
 													</div>
@@ -112,20 +112,20 @@
 													<div class="panel panel-default" style="padding-bottom:10px;">
 														<div class="panel-heading" style="color:#337ab7;">Luke Foundation Counterpart</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Hospital Bill</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_HBILL_SUM;?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Hospital Bill</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_HBILL_SUM;?></div>
 														</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Supplies</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_SUPP_SUM;?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Supplies</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_SUPP_SUM;?></div>
 														</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Laboratory</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$CSF_LAB_SUM;?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Laboratory</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_LAB_SUM;?></div>
 														</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" ><b>Total</b></div>
-															<div class="col-md-6"><b><?php echo ' '.$pesos.$CSF_TOT;?></b></div>
+															<div style="width:50%; float:left; padding-left:10px;" ><b>Total</b></div>
+															<div style="width:50%; float:left; padding-left:10px;"><b><?php echo ' '.$pesos.$CSF_TOT;?></b></div>
 														</div>
 													</div>
 													</div>
@@ -134,16 +134,16 @@
 													<div class="panel panel-default" style="padding-bottom:10px;">
 														<div class="panel-heading" style="color:#337ab7;">Sponsored Payment</div>
 														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div class="col-md-6" >Intra Ocular Lens</div>
-															<div class="col-md-6"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
+															<div style="width:50%; float:left; padding-left:10px;" >Intra Ocular Lens</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
 														</div>
 													</div>
 													</div>
 
 													<div class="well" style="float:left; width:60%; background:#f9f9f9;">
 														<div  style="float:left; width:100%; padding:10px; font-weight:bold;">
-															<div style="width:50%; float:left;">Grand Total</div>
-															<div style="width:50%; float:left;"><?php echo ' '.$pesos.$GRAND; ?></div>
+															<div style="width:50%; float:left; padding-left:10px;">Grand Total</div>
+															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$GRAND; ?></div>
 														</div>
 													</div>
 
