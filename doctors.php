@@ -103,7 +103,6 @@
 														$filter = "";
 													}
 												}
-												echo "filter=".$filter;
 											} else {
 												$filter = "";
 											}
