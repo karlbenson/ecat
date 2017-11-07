@@ -54,11 +54,22 @@
 					//CONTENT END
 					$PC_TOT=$PC_PF_SUM+$PC_LAB_SUM+$PC_IOL_SUM;
 					$CSF_TOT=$CSF_HBILL_SUM+$CSF_LAB_SUM+$CSF_SUPP_SUM;
-
 					$GRAND = $PC_TOT+$CSF_TOT+$SPO_IOL_SUM;
-
-
 					$pesos = "₱ ";
+
+					//COMMA PORTION
+					$PC_PF_SUM=number_format($PC_PF_SUM, 2, ".", ",");
+					$PC_LAB_SUM=number_format($PC_LAB_SUM, 2, ".", ",");
+					$PC_IOL_SUM=number_format($PC_IOL_SUM, 2, ".", ",");
+					$SPO_IOL_SUM=number_format($SPO_IOL_SUM, 2, ".", ",");
+					$CSF_HBILL_SUM=number_format($CSF_HBILL_SUM, 2, ".", ",");
+					$CSF_SUPP_SUM=number_format($CSF_SUPP_SUM, 2, ".", ",");
+					$CSF_LAB_SUM=number_format($CSF_LAB_SUM, 2, ".", ",");
+					$PC_TOT=number_format($PC_TOT, 2, ".", ",");
+					$CSF_TOT=number_format($CSF_TOT, 2, ".", ",");
+					$GRAND=number_format($GRAND, 2, ".", ",");
+
+					//END COMMA
 				?>
 
 
