@@ -93,7 +93,7 @@
 											<select type="text" name="SPECIALIZATION" class="form-control" id="SPECIALIZATION">
 												<option value = "">Select specialization</option>
 												<option value = "Pediatrician">Pediatrician</option>
-												<option value = "Opthalmologist">Opthalmologist</option>
+												<option value = "Ophthalmologist">Ophthalmologist</option>
 												<option value = "Anesthesiologist">Anesthesiologist</option>
 												<option value = "Surgeon">Surgeon</option>
 												<option value = "Internist">Internist</option>
