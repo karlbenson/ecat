@@ -169,7 +169,7 @@
 												$D_FN = $dataline["FIRST_NAME"];
 												$D_A = $dataline["ADDRESS"];
 												$D_SP = $dataline["SPECIALIZATION"];
-												$SPEC_choice = array('Select specialization', 'Pediatrician','Opthalmologist','Anesthesiologist','Surgeon','Internist');
+												$SPEC_choice = array('Select specialization', 'Pediatrician','Ophthalmologist','Anesthesiologist','Surgeon','Internist');
 												//VALUES END
 
 												//CONTENT

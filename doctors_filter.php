@@ -1,6 +1,6 @@
 <?php
 	$leftmargin1 = 200;
-	$SPEC_choice = array('Select specialization', 'Pediatrician','Opthalmologist','Anesthesiologist','Surgeon','Internist');
+	$SPEC_choice = array('Select specialization', 'Pediatrician','Ophthalmologist','Anesthesiologist','Surgeon','Internist');
 
 	// BUTTION
 	echo '<div class="row" id="criteria_buttons">';
