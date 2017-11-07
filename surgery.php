@@ -67,7 +67,10 @@
 
 						<!-- TITLE -->
 
-						<?php include("confirm.php"); ?>
+						<?php
+							include("confirm.php");
+							include("pass_verify.php");
+						?>
 
 						<!-- CONTENT -->
 						<div class="container-fluid" >
@@ -599,6 +602,7 @@
 												echo '<div id="link_buttons" style="margin:20px 0px;">';
 												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
 												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+												echo '<button type="button" class="btn btn-default" id="enable_disable" style="margin-left:10px;" onclick="pass()"><span class="fa fa-check" style="font-size:15px; margin-right:5px;"></span>Enable Full Editing</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
 												echo '</div>';
 												//BUTTONS AND LINKS END
@@ -637,7 +641,7 @@
 																				<label class="control-label" style="float:left; width:'.$leftmargin.'px;">Date of Surgery </label>
 																				<div class="form-group">
 																					<div class="input-group date" id="datetimepicker3" style="float:left; width:250px;">
-																						<input type="text" class="form-control" pattern="^\d{1,2}\/\d{1,2}\/\d{4}$" id="DATE" name="DATE" placeholder="MM/DD/YYYY" value="'.$val_date.'" required>
+																						<input type="text" class="form-control" pattern="^\d{1,2}\/\d{1,2}\/\d{4}$" id="DATE" name="DATE" placeholder="MM/DD/YYYY" value="'.$val_date.'">
 																						<span class="input-group-addon">
 																							<span class="fa fa-calendar" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span>
 																						</span>
@@ -780,7 +784,7 @@
 																				<label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
 																				<div class="input-group money">
 																				<span class="input-group-addon"><strong>₱</strong></span>
-																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" style="max-width: 225px; float: left;">
+																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" style="max-width: 225px; float: left;" readonly>
 																				</div>
 																			</div>
 																			</div>
@@ -801,21 +805,21 @@
 																							<label for="PC_IOL" style="width: 40%; float: left; ">IOL</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" style="width: 60%; float: left;">
+																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_LAB" style="width: 40%; float: left; ">LAB</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" style="width: 60%; float: left;">
+																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_PF" style="width: 40%; float: left; ">PF(Others)</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" style="width: 60%; float: left;">
+																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>
 
@@ -836,21 +840,21 @@
 																							<label for="CSF_HBILL" style="width: 40%; float: left; ">HBILL</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" style="width: 60%; float: left;">
+																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_SUPPLIES" style="width: 40%; float: left; ">SUPPLIES</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" style="width: 60%; float: left;">
+																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_LAB" style="width: 40%; float: left; ">LAB</label>
 																							<div class="input-group money">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" style="width: 60%; float: left;">
+																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" style="width: 60%; float: left;" readonly>
 																							</div>
 																						</div>
 
@@ -866,11 +870,36 @@
 																	//EDIT FORM END
 												echo 			'</div>
 																<div class="modal-footer" style="text-align:center;">
-																		<button type="submit" onclick="update()" class="btn btn-default" value="'.$S_CN.'" name="surgery_update">Update</button>
+																		<button type="submit" class="btn btn-default" value="'.$S_CN.'" name="surgery_update">Update</button>
 																	</form>
 																	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
 																</div>
 															</div>';
+
+															echo '<!-- SCRIPT -->
+																<script>
+
+						          	function pass(){
+						          		$("#enter_pass").modal("toggle");
+						          	}
+
+						          	function go_on(){
+						          			$("#enable_disable").attr("disabled", "disabled");
+						          		 $("#CASE_NUM").attr("readonly", false); 
+						          		 $("#SPO_IOL").attr("readonly", false); 
+						          		 $("#PC_IOL").attr("readonly", false); 
+						          		 $("#PC_LAB").attr("readonly", false); 
+						          		 $("#PC_PF").attr("readonly", false); 
+						          		 $("#CSF_HBILL").attr("readonly", false); 
+						          		 $("#CSF_SUPPLIES").attr("readonly", false); 
+						          		 $("#CSF_LAB").attr("readonly", false); 
+						          	}
+						          	
+																</script>
+																<!-- SCRIPT END -->';
+
+														// VERIFY PASSWORD
+
 															//POP-UP CONTENT END
 												echo 		'<script>
 																function update() {
