@@ -4,6 +4,28 @@ drop database lukedb;
 create database lukedb;
 use lukedb;
 
+create table patient(
+patient_id int unsigned not null auto_increment,
+patient_fname varchar(30) not null,
+patient_lname varchar(30) not null,
+patient_minitial char(1) not null,
+school_number int references school(school_id) on update cascade,
+age tinyint(3) not null,
+sex varchar(1) not null,
+present_address varchar(150) null,
+provincial_address varchar(150) null,
+civil_status char(20) null,
+birthdate date null,
+birthplace varchar(150) null,
+religion varchar(30) null,
+occupation varchar(50) null,
+monthly_income varchar(50) null,
+contact_number varchar(50) null,
+highest_educ_attainment varchar(50) null,
+primary key (patient_id)
+);
+
+
 create table DOCTOR(
 	DOC_LICENSE_NUM  CHAR(7) NOT NULL UNIQUE,
 	LAST_NAME VARCHAR(20) NOT NULL,
@@ -22,7 +44,7 @@ create table DOCTOR(
 
 create table EYEPATIENT(
 	PAT_ID_NUM VARCHAR(15) NOT NULL UNIQUE,
-	PAT_UNIV_ID INT NOT NULL,
+	PAT_UNIV_ID INT UNSIGNED NOT NULL,
 	PAT_FNAME VARCHAR(20) NOT NULL,
 	PAT_LNAME VARCHAR(20) NOT NULL,
 	PAT_AGE VARCHAR(6) NOT NULL,
