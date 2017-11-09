@@ -117,7 +117,7 @@
 												if ($output->num_rows > 0) {
 													//MAIN PAGE
 													//HEADER
-													echo '<table id="docdat" class="table table-striped row">
+													echo '<div id="tableCon"><table id="docdat" class="table table-striped row">
 															<thead>
 																<tr id="tophead">
 																<td style="color:#ffffff">'.'Last Name'.'</th>
@@ -144,7 +144,7 @@
 																</tr>';
 													} //CONTENT END
 													
-													echo 	'</table>';
+													echo 	'</table></div>';
 
 													echo '<button style="display:none;" id="del_button" value="doctors"></button>';
 													
@@ -350,4 +350,9 @@
 	$('#dataseek').keyup(function(){
 		myTable.search($(this).val()).draw();
 	})
+	
+	$("#download").click(function (e) {
+		window.open('data:application/vnd.ms-excel,' + $('#tableCon').html());
+		e.preventDefault();
+	});
 </script>

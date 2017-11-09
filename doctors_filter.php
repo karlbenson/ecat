@@ -5,9 +5,13 @@
 	// BUTTION
 	echo '<div class="row" id="criteria_buttons">';
 
+	
+	// print
+	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="download" ><span class="fa fa-file-excel-o" style="font-size:16px; margin-right:5px;"></span>Download</button></div>'; //SEARCH END
+
 	//REVERT
 	$where = "'doctors.php'";
-	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
+	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
 
 	// FILTER
 	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go" ><span class="fa fa-filter" style="font-size:16px; margin-right:5px;"></span>New Filter</button></div>'; //FILTER END
