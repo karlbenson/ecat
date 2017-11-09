@@ -99,41 +99,61 @@
 									</div>
 									<!-- CASER NUMBER END -->
 
+									<div class="row">
 									<!-- SURGEON LICENSE NUMBER -->
-									<div class="form-group row">
+									<div class="form-group row" style="margin:0px;">
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="width: 320px; float:left;">
-											<div class="input-group">
+										<div class="col-md-8" style=" float:left;">
+											<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
 												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License" maxlength="50" name="SURG_NAME" required>
-												<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 											</div>
+											<div class="add_s1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License (Optional)" maxlength="50" name="SURG_NAME1">
+											</div>
+											<div class="add_s2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+												<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License (Optional)" maxlength="50" name="SURG_NAME2">
+											</div>
+											<a role="button" id="add_surg" class="btn btn-default" title="Add another surgeon" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
+											<a role="button" id="minus_surg" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
 										</div>
 									</div>
 									<!-- SURGEON LICENSE NUMBER END -->
               
 									<!-- INTERNIST NAME -->
-									<div class="form-group row">
+									<div class="form-group row" style="margin:0px;">
 										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="width: 320px; float: left;">
-										<div class="input-group">
+										<div class="col-md-8" style=" float: left;">
+
+										<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
 											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
-											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
+										<div class="add_i1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License (Optional)" maxlength="<?php echo $INTER_MAX; ?>" name="INTER1">
+										</div>
+										<div class="add_i2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License (Optional)" maxlength="<?php echo $INTER_MAX; ?>" name="INTER2">
+										</div>
+										<a role="button" id="add_inter" class="btn btn-default" title="Add another internist" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
+										<a role="button" id="minus_inter" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
 										</div>
 									</div>
 									<!-- INTERNIST NAME END -->
 
 									<!-- TYPE OF ANESTHESIOLOGIST -->
-									<div class="form-group row">
+									<div class="form-group row" style="margin:0px;">
 										<label class="control-label col-md-2" for="ANEST" style="float:left; width:170px;">Anesthesiologist<span style="color: #d9534f">*</span></label>
-										<div class="col-md-6" style="width: 320px; float: left;">
-										<div class="input-group">
+										<div class="col-md-6" style=" float: left;">
+										<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
 											<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANEST" placeholder="Anesthesiologist Name or License" maxlength="<?php echo $ANEST_MAX; ?>" name="ANEST" required>
-											<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 										</div>
+										</div>
+										<div style="float:right; margin-right:20px;">
+											<a role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;" title="Add new doctor"><span class="fa fa-stethoscope" style="margin-right:5px;"></span>Add New Doctor</a>
 										</div>
 									</div>
 									<!-- TYPE OF ANESTHESIOLOGIST END -->
+
+									</div>
          
 									<!-- PATIENT INFORMATION -->
 									<div class="panel-group" style="margin-top:25px;">
@@ -144,11 +164,11 @@
 												<!-- PATIENT ID -->
 												<div class="form-group row">
 	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
-             <div class="col-md-6" style="width: 320px; float: left; margin-right:10px;">
-             <div class="input-group">
+             <div class="col-md-7" style=" float: left;">
+             	<div style="width: 320px; float: left; margin-right:5px;" >
                <input type="text" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
-              <span class="input-group-addon" role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-id-card" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
-             </div>
+              </div>
+              <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new patient"><span class="fa fa-id-card"></span></a>
 	            </div>
 	           </div>
 												<!-- PATIENT ID END -->
@@ -198,7 +218,6 @@
                <option value="n/a" selected>--Select--</option>
                <option>General</option>
                <option>Local</option>
-               <option>Topical</option>
               </select>
              </div>
            </div>
@@ -246,7 +265,7 @@
 											<div class="panel-heading" id="panelh">Post Surgery Visual Acuity</div>
 											<div class="panel-body">
 												<?php
-													$VA_choice = array("n/a", "20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+													$VA_choice = array("U", "20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP");
 												?>
 												<table class="table">
 													<thead>
@@ -255,28 +274,7 @@
 														<th>Right Eye Visual Acuity</th>
 													</thead>
 													<tbody>
-														<tr>
-															<td><strong>With Spectacles</strong><span style="color: #d9534f">*</span></td>
-															<!-- LEFT EYE W/ SPECT -->
-															<td>
-																<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-																</select>
-															</td>
-															<!-- LEFT EYE W/ SPECT END-->
-															
-															<!-- RIGHT EYE W/ SPECT -->
-															<td>
-																<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-															   </select>
-															</td>
-															<!-- RIGHT EYE W/ SPECT END -->
-														</tr>
+
 														<tr>
 															<td><strong>Without Spectacles</strong><span style="color: #d9534f">*</span></td>
 															<!-- LEFT EYE W/OUT SPECT -->
@@ -299,6 +297,31 @@
 															</td>
 															<!-- RIGHT EYE W/OUT SPECT END -->
 														</tr>
+
+														<tr>
+															<td><strong>With Spectacles</strong><span style="color: #d9534f">*</span></td>
+
+															<!-- LEFT EYE W/ SPECT -->
+															<td>
+																<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 200px;" required>
+																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+																	echo "<option>".$VA_choice[$j]."</option>";
+																   } ?>
+																</select>
+															</td>
+															<!-- LEFT EYE W/ SPECT END-->
+															
+															<!-- RIGHT EYE W/ SPECT -->
+															<td>
+																<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 200px;" required>
+																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+																	echo "<option>".$VA_choice[$j]."</option>";
+																   } ?>
+															   </select>
+															</td>
+															<!-- RIGHT EYE W/ SPECT END -->
+														</tr>
+
 													</tbody>
 												</table>
 											</div>
@@ -334,152 +357,177 @@
 									<!-- SURGERY REPORT END -->
 
 									<!-- FINANCIAL INFORMATION -->
-									<div class="panel-group" style="margin-top:25px;">
-										<div class="panel panel-default" style="">
-											<div class="panel-heading" id="panelh">Financial Information</div>
-											<div class="panel-body">
+									<div class="row" style="padding: 10px 15px 0px 15px;">
+										<div class="well" style="color:#337ab7; padding:10px 20px;">Financial Information</div>
+									</div>
+
+									<div class="row">
+
 												<!-- PATIENT COUNTERPART -->
+												<div style="float:left; width: 50%; padding:0px 10px 0px 15px;">
+
+												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
+												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
+													Patient Counterpart
+													<hr style="margin-top:0px;">
+												</div>
+
 												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" >Patient Counterpart </label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Intraocular Lens</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL">
+															<input type="text" class="form-control numberOnly" id="PCIOL" placeholder="IOL" maxlength="<?php echo $PC_MAX; ?>" name="PCIOL" style="width: 130px;">
 														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Laboratory</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="PCLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="PCLAB">
+															<input type="text" class="form-control numberOnly" id="PCLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="PCLAB" style="width: 130px;">
 														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Patient Fee</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="PCPF" placeholder="PF(Other)" maxlength="<?php echo $PC_MAX; ?>" name="PCPF">
+															<input type="text" class="form-control numberOnly" id="PCPF" placeholder="PF(Other)" maxlength="<?php echo $PC_MAX; ?>" name="PCPF" style="width: 130px;">
 														</div>
-													</div>
+												</div>
+
+												</div>
 												</div>
 												<!-- PATIENT COUNTERPART END -->
-          
-												<!-- SPONSORED IOL -->
-												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" for="SPOIOL" >Sponsored IOL</label>
-													</div>
-													<div style="float:left; min-width:70%;">
-													<div class="input-group money" class="col-md-7" style="width: 200px; float: left;">
-														<span class="input-group-addon"><strong>₱</strong></span>
-														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsored Amount" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
-													</div>
-													</div>
-												</div>
-												<!-- SPONSORED IOL END -->
   
 												<!-- CSF -->
-												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" > CSF </label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="CSFHBILL" placeholder="Hospital Bill" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL">
-														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="CSFSUP" placeholder="Supplies" maxlength="<?php echo $PC_MAX; ?>" name="CSFSUP">
-														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
-															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="CSFLAB" placeholder="Laboratory" maxlength="<?php echo $PC_MAX; ?>" name="CSFLAB">
-														</div>
-													</div>
-												</div>
-												<!-- CSF END -->
+												<div style="float:left; width: 50%; padding:0px 15px 0px 10px;">
 
-												<!-- CSF -->
+												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
+												<div style="margin-bottom:20px; opacity:0.7; font-weight:bold; color:#337ab7 ;">
+													CSF
+													<hr style="margin-top:0px;">
+												</div>
+
 												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" > LF </label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Hospital Bill</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="LFPF" placeholder="PF" maxlength="<?php echo $PC_MAX; ?>" name="LFPF">
+															<input type="text" class="form-control numberOnly" id="CSFHBILL" placeholder="HBILL" maxlength="<?php echo $PC_MAX; ?>" name="CSFHBILL" style="width:130px;">
 														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Supplies</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="LFCPCF" placeholder="CPC F" maxlength="<?php echo $PC_MAX; ?>" name="LFCPCF">
+															<input type="text" class="form-control numberOnly" id="CSFSUP" placeholder="SUPPLIES" maxlength="<?php echo $PC_MAX; ?>" name="CSFSUP" style="width:130px;">
 														</div>
-													</div>
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Laboratory</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="CSFLAB" placeholder="LAB" maxlength="<?php echo $PC_MAX; ?>" name="CSFLAB" style="width:130px;">
+														</div>
+													
+												</div>
+
+												</div>
 												</div>
 												<!-- CSF END -->
 
 												<!-- NDDCH -->
-												<div class="well" style="background-color:#f9f9f9; padding-bottom:0px;">
+												<div style="float:left; width:50%; padding:0px 10px 0px 15px;">
+
+												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
 												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
 													Notre Dame de Chartres Hospital Accounts
 													<hr style="margin-top:0px;">
 												</div>
+												<div class="row">
 
 												<!-- NDDCH DISC. -->
+												<div style="width:100%; float:left; padding-left:15px;">
 												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" > Disc. </label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+													<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">RA</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="NDDCHRA" placeholder="RA" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRA">
+															<input type="text" class="form-control numberOnly" id="NDDCHRA" placeholder="RA" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRA"  style="width:130px;">
 														</div>
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">ZEISS</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="NDDCHRAZEISS" placeholder="ZEISS" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRAZEISS">
+															<input type="text" class="form-control numberOnly" id="NDDCHRAZEISS" placeholder="ZEISS" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRAZEISS" style="width:130px;">
 														</div>
-													</div>
+												</div>
 												</div>
 												<!-- NDDCH DISC. END -->
 
-												<!-- NDDCH DISC. -->
+												<!-- NDDCH SUPP -->
+												<div style="width:100%; float:left; padding:0px 15px;">
+												<div class="well" style="background-color:#f9f9f9; padding-bottom:0px;">
 												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" > Supplies </label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+														<div style="width:40%; float:left; font-weight:bold; padding-left:20px;">Supplies</div>
+														<div class="input-group money" style="width:60%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="NDDCHSUPP" placeholder="Supplies" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHSUPP">
+															<input type="text" class="form-control numberOnly" id="NDDCHSUPP" placeholder="NDDCH SUPPLIES" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHSUPP" style="width:150px;">
 														</div>
-													</div>
+														<div style="margin:12px; float:left; width:100%; color:#666666;">*Note: Not included in payment. For comparison.</div>
 												</div>
-												<!-- NDDCH DISC. END -->
+												</div>
+												</div>
+												<!-- NDDCH SUPP END -->
 
+												</div>
+												</div>
 												</div>
 												<!-- NDDCH END -->
 
+												<!-- LF -->
+												<div style="float:left; width: 50%; padding:0px 15px 0px 10px;">
 
-												<!-- DIFFERENCE -->
-												<div class="well" style="padding-bottom:0px; background-color: #f9f9f9; ">
+												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
+												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
+													LF
+													<hr style="margin-top:0px;">
+												</div>
+
 												<div class="form-group row">
-													<div style="float:left; width:30%; padding-left:20px;">
-													<label class="control-label" > Difference</label>
-													</div>
-													<div style="float:left; min-width:70%;">
-														<div class="input-group money" style="width: 200px; float: left; margin-right:10px;">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Professional Fee</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
 															<span class="input-group-addon"><strong>₱</strong></span>
-															<input type="text" class="form-control numberOnly" id="DIFF" placeholder="Difference" maxlength="<?php echo $PC_MAX; ?>" name="DIFF">
+															<input type="text" class="form-control numberOnly" id="LFPF" placeholder="PF" maxlength="<?php echo $PC_MAX; ?>" name="LFPF" style="width:130px;">
 														</div>
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">CPC Fee</div>
+														<div class="input-group money" style="width:50%; float:left; padding:5px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="LFCPCF" placeholder="CPC F" maxlength="<?php echo $PC_MAX; ?>" name="LFCPCF" style="width:130px;">
 														</div>
+												</div>
+
+												</div>
+												</div>
+												<!-- LF END -->
+
+												<!-- SPONSORED IOL -->
+												<div style="float:left; width: 50%; padding:0px 15px 0px 10px;">
+
+												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
+												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
+													Sponsored Payment
+													<hr style="margin-top:0px;">
+												</div>
+
+												<div class="form-group row">
+														<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Intraocular Lens</div>
+													<div class="input-group money" style="width:50%; float:left; padding:5px;">
+														<span class="input-group-addon"><strong>₱</strong></span>
+														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsored IOL" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL" style="width:130px;">
+													</div>
 													</div>
 												</div>
-												<!-- DIFFERENCE END -->
 
+												</div>
+												</div>
+												<!-- SPONSORED IOL END -->												
 
 											</div>
-										</div>
+
 										<!-- FINANCIAL INFORMATION END -->
          
 										<!-- ENTER -->
-										<div class="text-center" style="margin: 20px;">
+										<div class="text-center" style="margin: 10px 20px 20px 20px;">
            <button type="submit" class="btn" id="veracity" name="surgery_info">Submit</button>
           </div>
 										<!-- ENTER END -->
@@ -515,6 +563,66 @@
 	</body>
 </html>
 
+<script >
+//ADD INTERNIST AND SURGEON
+
+$('.add_s1').hide();
+$('.add_s2').hide();
+$('.add_i1').hide();
+$('.add_i2').hide();
+$('#minus_surg').hide();
+$('#minus_inter').hide();
+
+$(document).ready(function(){
+ $("#add_surg").click(function(){
+  if($(".add_s1").is(':visible') === true){
+  	$(".add_s2").show();
+  	$("#add_surg").hide();
+  }else{
+  	$(".add_s1").show();
+  	$("#minus_surg").show();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#add_inter").click(function(){
+  if($(".add_i1").is(':visible') === true){
+  	$(".add_i2").show();
+  	$("#add_inter").hide();
+  }else{
+  	$(".add_i1").show();
+  	$("#minus_inter").show();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#minus_inter").click(function(){
+  if($(".add_i2").is(':visible') === true){
+  	$(".add_i2").hide();
+  	$("#add_inter").show();
+  }else{
+  	$(".add_i1").hide();
+  	$("#minus_inter").hide();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#minus_surg").click(function(){
+  if($(".add_s2").is(':visible') === true){
+  	$(".add_s2").hide();
+  	$("#add_surg").show();
+  }else{
+  	$(".add_s1").hide();
+  	$("#minus_surg").hide();
+  }
+ });
+});
+
+</script>
+
 <?php
 include("confirm.php");
 ?>
@@ -531,15 +639,12 @@ include("confirm.php");
 </script>
 
 <?php
-	include("dbconnect.php");
     $surgeon = $mydatabase->query("SELECT FIRST_NAME,LAST_NAME,DOC_LICENSE_NUM from DOCTOR");
     $arr = array();
     
     while ($row = $surgeon->fetch_assoc()) {
         unset($id, $name1, $name2);
         $id = $row['FIRST_NAME']." ".$row['LAST_NAME']." - ".$row['DOC_LICENSE_NUM'];
-        //$name1 = $row['FIRST_NAME'];
-        //$name2 = $row['LAST_NAME'];
         array_push($arr, $id/*.", ".$name2." ".$name1*/);
     }
 				
@@ -549,8 +654,6 @@ include("confirm.php");
     while ($row = $patient->fetch_assoc()) {
 		unset($id, $name1, $name2);
         $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']." - ".$row['PAT_ID_NUM'];
-        //$name1 = $row['FIRST_NAME'];
-		//$name2 = $row['LAST_NAME'];
         array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
 	}
 ?>
@@ -559,7 +662,6 @@ include("confirm.php");
 	$(document).ready(function(){
 		// Defining the local dataset
 		var arrs= <?php echo json_encode($arr);?>;
-		//var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
 		
 		// Constructing the suggestion engine
 		var arrs = new Bloodhound({
@@ -585,8 +687,7 @@ include("confirm.php");
 	$(document).ready(function(){
 		// Defining the local dataset
 		var arrs= <?php echo json_encode($arr1);?>;
-		//var cars = ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen'];
-		
+
 		// Constructing the suggestion engine
 		var arrs = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.whitespace,
