@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-
-<!-- UPDATE STILL FIXING... -->
-
 <html>
 	<head>
 		<title>Luke Foundation Eye Program: Surgery</title>
@@ -157,7 +154,7 @@
 											//FILTER ADD
 											if(isset($_POST["filter_check"])){
 												//var_dump($_POST);
-												$F_DD = $F_MM = $F_YY = $F_LN = $F_CI =  $F_DR = "";
+												$F_DD = $F_MM = $F_YY = $F_LN = $F_CI = $F_DR = $F_AN = "";
 												$D = 0;
 
 												if(isset($_POST["FSS"])){
@@ -239,7 +236,6 @@
 														}
 													}
 												}
-
 												if(isset($_POST["FCI"])) {
 													if(strlen($_POST["FCI"])>0){
 															$FIL_PAT = $_POST["FCI"];
@@ -252,8 +248,13 @@
 															$F_CI = ' AND s.PAT_ID_NUM='.$patient_id;
 														}
 												}
+												if(isset($_POST["FAN"])){
+													if(strlen($_POST["FAN"])>0){
+														$F_AN = 'AND SURG_ANESTHESIA="'.$_POST["FAN"].'" ';
+													}
+												}
 
-												$filter = $F_DD.$F_MM.$F_YY.$F_CI.$F_LN;
+												$filter = $F_DD.$F_MM.$F_YY.$F_CI.$F_LN.$F_AN;
 											} else {
 												$filter = "";
 											}
@@ -290,8 +291,8 @@
 
 																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
 
-																		<a role="button" id="'.$dataline["CASE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
-																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																		<a role="button" id="del_out" onclick="'.'" ><span class="fa fa-trash" title="Delete"></span></a>
+																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full details"></span></a>
 																	</td>
 																</tr>';
 													}
@@ -600,9 +601,9 @@
 												//BUTTONS AND LINKS
 												$back = "'surgery.php'";
 												echo '<div id="link_buttons" style="margin:20px 0px;">';
-												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
+												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;" disabled> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
 												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
-												echo '<button type="button" class="btn btn-default" id="enable_disable" style="margin-left:10px;" onclick="pass()"><span class="fa fa-check" style="font-size:15px; margin-right:5px;"></span>Enable Full Editing</button>';
+												echo '<button type="button" class="btn btn-default" id="enable_disable" style="margin-left:10px;" onclick="pass()" title="Authorize delete and editing of accounts"><span class="fa fa-check" style="font-size:15px; margin-right:5px;"></span>Enable</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
 												echo '</div>';
 												//BUTTONS AND LINKS END
@@ -885,6 +886,7 @@
 
 						          	function go_on(){
 						          			$("#enable_disable").attr("disabled", "disabled");
+						          			$("#del_button").removeAttr("disabled"); 
 						          		 $("#CASE_NUM").attr("readonly", false); 
 						          		 $("#SPO_IOL").attr("readonly", false); 
 						          		 $("#PC_IOL").attr("readonly", false); 
