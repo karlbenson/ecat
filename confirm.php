@@ -51,7 +51,7 @@
 
 <?php
 		// CONFIRM?
-	echo '<div class="modal fade" id="add_new" role="dialog" style="margin-top:50px;">
+	echo '<div class="modal fade" id="add_new" role="dialog" style="margin-top:15%;">
 			<div class="modal-dialog">';
 		
 	// CONFIRM CONTENT (ADD NEW)
