@@ -193,14 +193,15 @@
 															<div class="panel panel-default" style="padding-bottom:10px;">
 																<div class="panel-heading" id="tophead1">Surgeries Attended</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<table class="table table-hover table-responsive">
-																		<thead style="background:#5cb85c">
-																			<th style="color:#ffffff">'.'Date'.'</th>
-																			<th style="color:#ffffff">'.'Patient'.'</th>
-																			<th style="color:#ffffff">'.'Address'.'</th>
-																			<th style="color:#ffffff">'.'Action'.'</th>
-																		</thead>
-																		<tbody>';
+																		<table id="docdat2" class="table table-striped row">
+																		<thead>
+																			<tr id="tophead">
+																			<td style="color:#ffffff">'.'Date'.'</th>
+																			<td style="color:#ffffff">'.'Patient'.'</th>
+																			<td style="color:#ffffff">'.'Address'.'</th>
+																			<td style="color:#ffffff">'.'Action'.'</th>
+																			</tr>
+																		</thead>';
 												while($dataline2 = $output2->fetch_assoc()) { 
 													echo 	'<tr>
 																<td>'.$dataline2["SURG_DATE"].'</td>
@@ -340,6 +341,16 @@
 			"sDom":"ltipr",
 			"columns": [
 			null,
+		    null,
+		    null,
+		    null,
+		    { "orderable": false }
+  			],
+		});
+
+	var myTable=$('#docdat2').DataTable({
+			"search":true,
+			"columns": [
 		    null,
 		    null,
 		    null,
