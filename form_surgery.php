@@ -219,7 +219,7 @@
 													<div class="col-md-7"  style="float:left; width:250px;">
 														<div class="form-group">
 															<div class='input-group date' id='datetimepicker'>
-																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY' required>
+																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY'>
 																<span class="input-group-addon">
 																	<span class="fa fa-calendar" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span>
 																</span>
@@ -368,7 +368,7 @@
 													<div style="float:left; min-width:70%;">
 													<div class="input-group money" class="col-md-7" style="width: 200px; float: left;">
 														<span class="input-group-addon"><strong>₱</strong></span>
-														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsorship Amount" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
+														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsored Amount" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL">
 													</div>
 													</div>
 												</div>
@@ -395,6 +395,85 @@
 													</div>
 												</div>
 												<!-- CSF END -->
+
+												<!-- CSF -->
+												<div class="form-group row">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" > LF </label>
+													</div>
+													<div style="float:left; min-width:70%;">
+														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="LFPF" placeholder="PF" maxlength="<?php echo $PC_MAX; ?>" name="LFPF">
+														</div>
+														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="LFCPCF" placeholder="CPC F" maxlength="<?php echo $PC_MAX; ?>" name="LFCPCF">
+														</div>
+													</div>
+												</div>
+												<!-- CSF END -->
+
+												<!-- NDDCH -->
+												<div class="well" style="background-color:#f9f9f9; padding-bottom:0px;">
+												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
+													Notre Dame de Chartres Hospital Accounts
+													<hr style="margin-top:0px;">
+												</div>
+
+												<!-- NDDCH DISC. -->
+												<div class="form-group row">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" > Disc. </label>
+													</div>
+													<div style="float:left; min-width:70%;">
+														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="NDDCHRA" placeholder="RA" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRA">
+														</div>
+														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="NDDCHRAZEISS" placeholder="ZEISS" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHRAZEISS">
+														</div>
+													</div>
+												</div>
+												<!-- NDDCH DISC. END -->
+
+												<!-- NDDCH DISC. -->
+												<div class="form-group row">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" > Supplies </label>
+													</div>
+													<div style="float:left; min-width:70%;">
+														<div class="input-group money" style="width: 150px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="NDDCHSUPP" placeholder="Supplies" maxlength="<?php echo $PC_MAX; ?>" name="NDDCHSUPP">
+														</div>
+													</div>
+												</div>
+												<!-- NDDCH DISC. END -->
+
+												</div>
+												<!-- NDDCH END -->
+
+
+												<!-- DIFFERENCE -->
+												<div class="well" style="padding-bottom:0px; background-color: #f9f9f9; ">
+												<div class="form-group row">
+													<div style="float:left; width:30%; padding-left:20px;">
+													<label class="control-label" > Difference</label>
+													</div>
+													<div style="float:left; min-width:70%;">
+														<div class="input-group money" style="width: 200px; float: left; margin-right:10px;">
+															<span class="input-group-addon"><strong>₱</strong></span>
+															<input type="text" class="form-control numberOnly" id="DIFF" placeholder="Difference" maxlength="<?php echo $PC_MAX; ?>" name="DIFF">
+														</div>
+														</div>
+													</div>
+												</div>
+												<!-- DIFFERENCE END -->
+
+
 											</div>
 										</div>
 										<!-- FINANCIAL INFORMATION END -->
