@@ -1,5 +1,4 @@
 <?php
-	$leftmargin1 = 200;
 
 	// BUTTION
 	echo '<div class="row" id="criteria_buttons">';
@@ -98,11 +97,28 @@
 								<input class="form-control typeahead1 tt-query" autocomplete="off" id="FCI" maxlength="50" name="FCI" placeholder="Patient Name or ID">
 							</div>
 						</div>
-						</div>
-				</div>';
-				//PATIENT FILTER END
+					</div>';
+				// PATIENT FILTER END
 
-	echo		'<div class="panel-footer text-center" style="padding:0px;">
+				// ANESTHESIA FILTER
+				echo			'<div class="form-group row" style="margin: 5px; margin-bottom:10px;">
+						<label for="FAN" style="float:left; width:20%;">Anesthesia </label>
+						<div>
+							<div style="width:225px; float: left;">
+							<label class="sr-only" for="FAN">Anesthesia</label>
+							<select class="form-control" id="FAN" name="FAN" style="width: 100%; float: left; margin-right:10px;">';
+									echo '<option value = "">-Select Anesthesia-</option>';
+									echo '<option value = "General">General</option>';
+									echo '<option value = "Local">Local</option>';
+									echo '<option value = "Topical">Topical</option>';
+					echo '</select>
+						</div>
+						</div>
+					</div>';
+				// ANESTHESIA FILTER END
+
+	echo		' </div>
+					<div class="panel-footer text-center" style="padding:0px;">
 					<button class="btn" id="go" style="width:100%; height: 100%; padding: 10px; border-color:#f2f2f2;" name="filter_check" type="submit">
 						Filter Records
 					</button>
