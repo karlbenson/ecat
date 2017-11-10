@@ -43,8 +43,8 @@
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
-					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
-						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
+					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC){
+						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag."','".$P_PROC."')";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
 							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
 							$GLOBALS['whereto'] = "patient.php?profilepage=".$P_ID;
@@ -53,8 +53,8 @@
 						}
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
-					function SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_DIAG, $S_TANEST, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_INTERN, $S_ANESTHE, $S_IOLP,$SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL, $CSF_HB, $CSF_SUPP, $CSF_L){
-						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_DIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."','".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."')";
+					function SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $S_CASENUM, $S_SURGLIC, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_RDIAG, $S_LDIAG, $S_TANEST, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_INTERN, $S_ANESTHE, $S_IOLP,$SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL, $CSF_HB, $CSF_SUPP, $CSF_L){
+						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_RDIAG."','".$S_LDIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."','".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."')";
 						$S_query2 = "UPDATE EYEPATIENT SET POST_VA_WITH_SPECT_LEFT = '".$P_VASL2."', POST_VA_WITH_SPECT_RIGHT = '".$P_VASR2."', POST_VA_NO_SPECT_LEFT = '".$P_VAL2."', POST_VA_NO_SPECT_RIGHT = '".$P_VAR2."' WHERE EYEPATIENT.PAT_ID_NUM = '".$S_PATID."';";
 						if ($GLOBALS['mydatabase']->query($S_query1) === TRUE) { 
 							if ($GLOBALS['mydatabase']->query($S_query2) === TRUE) {
@@ -117,12 +117,11 @@
 										$P_VAR1 = rtrim($_POST["P_VAR1"], "'");
 										$P_VD = $_POST["P_VD"];         
 										$P_DC = $_POST["P_DC"];          
-										$P_DIAG = $_POST["P_DIAG"];       
-										$P_PROC = $_POST["P_PROC"];          
-										$P_REA = $_POST["P_REA"];       
-										$P_LEA = $_POST["P_LEA"];        
+										$P_RDiag = $_POST["P_RDiag"];           
+										$P_LDiag = $_POST["P_LDiag"];       
+										$P_PROC = $_POST["P_PROC"];     
 										//PATIENT INFORMATION FIELDS END
-										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA);
+										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC);
 									}else if (isset($_POST['surgery_info'])) {
 										//SURGERY INFORMATION FIELDS
 										$CASE_NUM = $_POST["CASE_NUM"];
@@ -141,7 +140,8 @@
 										}
 										$VISUAL_IMPARITY = $_POST["VI"];         
 										$MED_HISTORY = $_POST["MED_HIST"];       
-										$DIAGNOSIS = $_POST["DIAG"];             
+										$RDIAGNOSIS = $_POST["RDIAG"];           
+										$LDIAGNOSIS = $_POST["LDIAG"];             
 										$SURG_ANESTHESIA = $_POST["TANES"];
 										$SURG_ADDRESS = $_POST["SURG_ADD"];                      
 										$SURG_DATE1 = explode("/",$_POST["DATE"]);
@@ -174,7 +174,7 @@
 										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
 										$P_VAR2 = rtrim($_POST["P_VAR2"], "'");
 										//SURGERY INFORMATION FIELDS END
-										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $DIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB);
+										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB);
 									}
 									$mydatabase->close();
 									$where = "'Home.php'";

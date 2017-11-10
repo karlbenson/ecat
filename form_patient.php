@@ -239,24 +239,13 @@
 														</div>
 														<!-- CAUSE OF DISABILITY END -->
 						  
-														<!-- DIAGNOSIS -->
-														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_DIAG" style="float:left; width:35%; float:left;">Diagnosis </label>
-															<div class="col-md-4" style="width: 60%; float:left;">
-															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_DIAG" placeholder="Doctor's Diagnosis" maxlength="15" name="P_DIAG">
-															</div>
-															</div>
-														</div>
-														<!-- DIAGNOSIS END -->
-						  
 														<!-- PROCEDURE -->
 														<div class="form-group row">
 															<label class="control-label col-md-1" for="P_PROC" style="float:left; width:35%;">Procedure </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
-															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
-															</div>
+																<div style="max-width:300px;">
+																	<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
+																</div>
 															</div>
 														</div>
 														<!-- PROCEDURE END -->
@@ -267,32 +256,32 @@
 										</div>
 			
 										<div class="col-md-5">
-											<!-- AFFECTED EYE -->
+											<!-- DIAGNOSIS -->
 											<div class="panel-group" style="margin-top:25px;">
 												<div class="panel panel-default" style="">
-													<div class="panel-heading" id="panelh">Affected Eye</div>
+													<div class="panel-heading" id="panelh">Eye Diagnosis</div>
 													<div class="panel-body">
-														<!-- AFFECTED PART OF RIGHT EYE -->
+														<!-- RIGHT EYE DIAGNOSIS -->
 														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_REA" style="float:left; width:40%; float:left;">Right Eye</label>
+															<label class="control-label col-md-1" for="P_RDiag" style="float:left; width:40%; float:left;">Right Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
-															<div style="max-width:300px;">
-																<input type="" class="form-control" id="P_REA" placeholder="Affected Area of Eye" maxlength="<?php echo $REA_MAX; ?>" name="P_REA">
-															</div>
+																<div style="max-width:300px;">
+																	<input type="text" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="<?php echo $REA_MAX; ?>" name="P_RDiag">
+																</div>
 															</div>
 														</div>
-														<!-- AFFECTED PART OF RIGHT EYE END -->
+														<!-- RIGHT EYE DIAGNOSIS END -->
 							
-														<!-- AFFECTED PART OF LEFT EYE -->
+														<!-- LEFT EYE DIAGNOSIS -->
 														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_LEA" style="float:left; width:40%; float:left;">Left Eye</label>
+															<label class="control-label col-md-1" for="P_LDiag" style="float:left; width:40%; float:left;">Left Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input type="" class="form-control" id="P_LEA" placeholder="Affected Area of Eye" maxlength="<?php echo $LEA_MAX; ?>" name="P_LEA">
+																<input type="text" class="form-control" id="P_LDiag" placeholder="Left eye diagnosis" maxlength="<?php echo $LEA_MAX; ?>" name="P_LDiag">
 															</div>
 															</div>
 														</div>
-														<!-- AFFECTED PART OF LEFT EYE END -->
+														<!-- LEFT EYE DIAGNOSIS END -->
 													</div>
 												</div>
 											</div>

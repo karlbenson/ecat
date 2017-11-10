@@ -294,8 +294,6 @@
 												$P_SLN = $dataline["STAFF_LICENSE_NUM"];
 												$P_VD = $dataline["VISUAL_DISABILITY"];
 												$P_DC = $dataline["DISABILITY_CAUSE"];
-												$P_REA = $dataline["RIGHT_EYE_AFFECTED"];
-												$P_LEA = $dataline["LEFT_EYE_AFFECTED"];
 												//VALUES END
 												
 												$margin0 = "20%";
@@ -328,7 +326,7 @@
 																				<div class="row" style="margin:0px; padding:3px 10px;">
 																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Sex:'.'</div>
 																					<div style="width:'.$margin00.'; float: left;">';
-																						if($dataline["LEFT_EYE_AFFECTED"]=="M"){
+																						if($dataline["PAT_SEX"]=="M"){
 																							echo 'Male';
 																						}else{
 																							echo 'Female';
@@ -406,10 +404,6 @@
 																			<div style="width:'.$margin11.'; float: left;">'.$P_DC.'</div>
 																		</div>
 																		<div class="row" style="margin:0px; padding:5px 10px;">
-																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Diagnosis'.'</div>
-																			<div style="width:'.$margin11.'; float: left;">'.$dataline["DIAGNOSIS"].'</div>
-																		</div>
-																		<div class="row" style="margin:0px; padding:5px 10px;">
 																			<div style="width:'.$margin1.'; float:left;font-weight:bold;">'.'Procedure'.'</div>
 																			<div style="width:'.$margin11.'; float: left;">'.$dataline["PROCEDURE_TO_DO"].'</div>
 																		</div>
@@ -418,24 +412,16 @@
 															</div>
 															<div style="width:40%; float: left; margin:0px;">
 																<div class="panel panel-default" style="padding-bottom:10px;">
-																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Affected Area of Eye</div>
+																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Eye Dignosis</div>
 																	<div class="panel-body" style="margin:0px 50px; padding:0px;">
-																		<table class="table table-condensed">
-																			<thead>
-																				<th>Eye</th>
-																				<th>Affected Part</th>
-																			</thead>
-																			<tbody>
-																				<tr>
-																					<td>Left</td>
-																					<td>'.$P_LEA.'</td>
-																				</tr>
-																				<tr>
-																					<td>Right</td>
-																					<td>'.$P_REA.'</td>
-																				</tr>
-																			</tbody>
-																		</table>
+																		<div class="row" style="margin:0px; padding:5px 10px;">
+																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Right Eye'.'</div>
+																			<div style="width:'.$margin11.'; float: left;">'.$dataline["RIGHT_DIAGNOSIS"].'</div>
+																		</div>
+																		<div class="row" style="margin:0px; padding:5px 10px;">
+																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Left Eye'.'</div>
+																			<div style="width:'.$margin11.'; float: left;">'.$dataline["LEFT_DIAGNOSIS"].'</div>
+																		</div>
 																	</div>
 																</div>
 															</div>
@@ -747,25 +733,25 @@
 
 																<div class="container-fluid" style="width:35%; float:left; padding:0px;">
 																	<div class="panel panel-default" style="margin-top:20px; width:100%;">
-																		<div class="panel-heading" style="color:#999999;">Affected Eye</div>
+																		<div class="panel-heading" style="color:#999999;">Eye Diagnosis</div>
 																		<div class="panel-body" style="">
-																			<!-- AFFECTED PART OF LEFT EYE -->
+																			<!-- RIGHT EYE DIAGNOSIS -->
 																			<div class="form-group" style="width:100%; float:left;">
-																				<label class="control-label" for="P_LEA" style="float:left; width:40%;">Left Eye</label>
+																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Right Eye</label>
 																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_LEA" placeholder="Affected Area" maxlength="'.$LEA_MAX.'" name="P_LEA" value="'.$P_LEA.'">
+																					<input class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="15" name="P_RDiag" value="'.$dataline["RIGHT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
-																			<!-- AFFECTED PART OF LEFT EYE END -->
+																			<!-- RIGHT EYE DIAGNOSIS END -->
 
-																			<!-- AFFECTED PART OF RIGHT EYE -->
+																			<!-- LEFT EYE DIAGNOSIS -->
 																			<div class="form-group" style="width:100%; float:left;">
-																				<label class="control-label" for="P_REA" style="float:left; width:40%;">Right Eye</label>
+																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Left Eye</label>
 																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_REA" placeholder="Affected Area" maxlength="'.$REA_MAX.'" name="P_REA" value="'.$P_REA.'">
+																					<input class="form-control" id="P_LDiag" placeholder="Left eye diagnois" maxlength="15" name="P_LDiag" value="'.$dataline["LEFT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
-																			<!-- AFFECTED PART OF RIGHT EYE END -->
+																			<!-- LEFT EYE DIAGNOSIS END -->
 																		</div>
 																	</div>
 																</div>
@@ -788,15 +774,6 @@
 																			</div>
 																		</div>
 																		<!-- CAUSE OF DISABILITY END -->
-					  
-																		<!-- DIAGNOSIS -->
-																		  <div class="form-group row">
-																			<label class="control-label col-md-2" for="P_DIAG" style="float:left; width:170px;">Diagnosis </label>
-																			<div class="col-md-4" style="width: 200px;">
-																				<input type="text" class="form-control" id="P_DIAG" placeholder="Diagnosis..." maxlength="15" name="P_DIAG" value="'.$dataline["DIAGNOSIS"].'">
-																			</div>
-																		</div>
-																		<!-- DIAGNOSIS END -->
 					  
 																		<!-- PROCEDURE -->
 																		<div class="form-group row">

@@ -336,16 +336,22 @@
 											<div class="panel-body">
 												<!-- DIAGNOSIS-->
 												<div class="form-group row">
-													<label class="control-label col-md-2" for="DIAG" style="float:left; width:170px;">Diagnosis </label>
+													<label class="control-label col-md-3" for="RDIAG" style="float:left; width:200px;">Right Eye Diagnosis </label>
 													<div class="col-md-7" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="DIAG" placeholder="Eye Surgery Diagnosis" maxlength="<?php echo $DIAG_MAX; ?>" name="DIAG">
+														<input type="text" class="form-control" id="RDIAG" placeholder="Right Eye Surgery Diagnosis" maxlength="30" name="RDIAG">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="control-label col-md-3" for="LDIAG" style="float:left; width:200px;">Left Eye Diagnosis </label>
+													<div class="col-md-7" style="width: 600px; float: left;">
+														<input type="text" class="form-control" id="LDIAG" placeholder="Left Eye Surgery Diagnosis" maxlength="30" name="LDIAG">
 													</div>
 												</div>
 												<!-- DIAGNOSIS END -->
                     
 												<!-- SURGERY REMARKS -->
 												<div class="form-group row">
-													<label class="control-label col-md-2" for="REM" style="float:left; width:170px;">Remarks</label>
+													<label class="control-label col-md-2" for="REM" style="float:left; width:200px;">Remarks</label>
 													<div class="col-md-7" style="width: 600px; float: left;">
 														<input type="text" class="form-control" id="REM" placeholder="Surgeon's Remarks" maxlength="<?php echo $REM_MAX; ?>" name="REM">
 													</div>
