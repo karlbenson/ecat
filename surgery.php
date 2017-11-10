@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!--UPDATE AND DELETE STILL TO BE FIXED-->
+
 <html>
 	<head>
 		<title>Luke Foundation Eye Program: Surgery</title>
@@ -261,7 +264,7 @@
 											//FILTER ADD END
 
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM $filter ORDER by s.SURG_DATE desc";
+											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.VISIBLE != 'N' $filter ORDER by s.SURG_DATE desc";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
@@ -321,13 +324,18 @@
 												$S_A = $dataline["SURG_ADDRESS"];
 												
 												$S_LN = $dataline["SURG_LICENSE_NUM"];
+												$S_LN1 = $dataline["SURG_LICENSE_NUM1"];
+												$S_LN2 = $dataline["SURG_LICENSE_NUM2"];
 												$S_I = $dataline["INTERNIST"];
+												$S_I1 = $dataline["INTERNIST1"];
+												$S_I2 = $dataline["INTERNIST2"];
 												$S_AN = $dataline["ANESTHESIOLOGIST"];
 
 												$S_ID = $dataline["PAT_ID_NUM"];
 												$S_VI = $dataline["VISUAL_IMPARITY"];
 												$S_MH = $dataline["MED_HISTORY"];
-												$S_D = $dataline["DIAGNOSIS"];
+												$S_RD = $dataline["RIGHT_DIAGNOSIS"];
+												$S_LD = $dataline["LEFT_DIAGNOSIS"];
 												$S_R = $dataline["REMARKS"];
 
 												$S_TA = $dataline["SURG_ANESTHESIA"];
@@ -344,11 +352,38 @@
 												//VALUES END
 
 												$val_date = $date[1]."/".$date[2]."/".$date[0];
+
+
+
+												$output_1 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_LN1'");
+												$output_1->execute();
+												$line_1 = $output_1->get_result();
+												$dataline_1 = $line_1->fetch_assoc();
+
+												$output_2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_LN2'");
+												$output_2->execute();
+												$line_2 = $output_2->get_result();
+												$dataline_2 = $line_2->fetch_assoc();
 												
 												$output2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I'");
 												$output2->execute();
 												$line2 = $output2->get_result();
 												$dataline2 = $line2->fetch_assoc();
+
+												$output2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I'");
+												$output2->execute();
+												$line2 = $output2->get_result();
+												$dataline2 = $line2->fetch_assoc();
+
+												$output21 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I1'");
+												$output21->execute();
+												$line21 = $output21->get_result();
+												$dataline21 = $line21->fetch_assoc();
+
+												$output22 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_I2'");
+												$output22->execute();
+												$line22 = $output22->get_result();
+												$dataline22 = $line22->fetch_assoc();
 												
 												$output3 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$S_AN'");
 												$output3->execute();
@@ -356,19 +391,29 @@
 												$dataline3 = $line3->fetch_assoc();
 												
 												$SURG_NAME = $dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"];
+												$SURG_NAME1 = $dataline_1["FIRST_NAME"].' '.$dataline_1["LAST_NAME"];
+												$SURG_NAME2 = $dataline_2["FIRST_NAME"].' '.$dataline_2["LAST_NAME"];
 												$INTER_NAME = $dataline2["FIRST_NAME"].' '.$dataline2["LAST_NAME"];
+												$INTER_NAME1 = $dataline21["FIRST_NAME"].' '.$dataline21["LAST_NAME"];
+												$INTER_NAME2 = $dataline22["FIRST_NAME"].' '.$dataline22["LAST_NAME"];
 												$ANES_NAME = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
 												$PATIENT_NAME = $dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"];
 
 												$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"];
 												$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"];
+												$NDDCH_SUM = $dataline["NDDCH_RA"]+$dataline["NDDCH_ZEISS"]+$dataline["PC_PF"];
+												$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
 												$TOTAL_ALL = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+$dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+$dataline["SPO_IOL"];
 
 												$patient_link = "patient.php?profilepage=".$S_ID;
 												$placeholder = "placeholder";
 
 												$to_surg = "doctors.php?profilepage=".$S_LN;
+												$to_surg1 = "doctors.php?profilepage=".$S_LN1;
+												$to_surg2 = "doctors.php?profilepage=".$S_LN2;
 												$to_intern = "doctors.php?profilepage=".$S_I;
+												$to_intern1 = "doctors.php?profilepage=".$S_I1;
+												$to_intern2 = "doctors.php?profilepage=".$S_I2;
 												$to_anes = "doctors.php?profilepage=".$S_AN;
 
 												$margin0 = "25%";
@@ -427,14 +472,36 @@
 															<div class="panel-heading" style="color:#337ab7;">Doctors</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 																	
-																	<div class="row" style="margin:0px; padding:5px 10px;">
+																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Surgeon:'.'</div>
-																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_surg.'">  <span style="color:#000000; float:left; margin-right:5px;">'.$SURG_NAME.' </span> '.$E_link.'</a></div>
-																</div>
+																	<div style="width:'.$margin00.'; float: left;">
+																		<a href="'.$to_surg.'" style="float:left;">  <span style="color:#000000; float:left; margin-right:5px;">'.$SURG_NAME.' </span> '.$E_link.'</a>';
+
+																	if(strlen($S_LN1)>1){
+																		echo '<span style="float:left; margin-right:10px;">, </span>  <a href="'.$to_surg1.'" style="float:left;">  <span style="color:#000000; float:left; margin-right:5px;">'.$SURG_NAME1.' </span> '.$E_link.'</a>';
+																	}
+
+																	if(strlen($S_LN2)>1){
+																		echo '<span style="float:left; margin-right:10px;">, </span>  <a href="'.$to_surg2.'" style="float:left;">  <span style="color:#000000; float:left; margin-right:5px;">'.$SURG_NAME2.' </span> '.$E_link.'</a>';
+																	}
+
+																echo '</div></div>
+
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Internist:'.'</div>
-																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_intern.'"><span style="color:#000000; float:left; margin-right:5px;">'.$INTER_NAME.' </span> '.$E_link.'</a></div>
-																</div>
+																	<div style="width:'.$margin00.'; float: left;">
+																		<a href="'.$to_intern.'" style="float:left;"><span style="color:#000000; float:left; margin-right:5px;">'.$INTER_NAME.' </span> '.$E_link.'</a>';
+
+																	if(strlen($S_I1)>1){
+																		echo '<span style="float:left; margin-right:10px;">, </span> <a href="'.$to_intern1.'" style="float:left;">  <span style="color:#000000; float:left; margin-right:5px;">'.$INTER_NAME1.' </span> '.$E_link.'</a>';
+																	}
+
+																	if(strlen($S_I2)>1){
+																		echo '<span style="float:left; margin-right:10px;">, </span> <a href="'.$to_intern2.'" style="float:left;">  <span style="color:#000000; float:left; margin-right:5px;">'.$INTER_NAME2.' </span> '.$E_link.'</a>';
+																	}
+
+																echo '</div></div>
+
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Anesthesiologist:'.'</div>
 																	<div style="width:'.$margin00.'; float: left;"><a href="'.$to_anes.'"><span style="color:#000000; float:left; margin-right:5px;">'.$ANES_NAME.' </span> '.$E_link.'</a></div>
@@ -451,6 +518,7 @@
 																	
 																	<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Name:'.'</div>
+
 																	<div style="width:'.$margin00.'; float: left;">'.$PATIENT_NAME.'</div>
 																</div>
 																<div class="row" style="margin:0px; padding:5px 10px;">
@@ -474,13 +542,17 @@
 															<div class="panel-heading" style="color:#337ab7;">Surgery Report</div>
 															<div class="panel-body" style="margin:0px; padding:5px 10px;">	
 																	
-																	<div class="row" style="margin:0px; padding:5px 10px;">
-																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Diagnosis'.'</div>
-																	<div style="width:'.$margin00.'; float: left;">'.$dataline["DIAGNOSIS"].'</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Right Eye Diagnosis'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_RD.'</div>
+																</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Left Eye Diagnosis'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_LD.'</div>
 																</div>
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Remarks'.'</div>
-																	<div style="width:'.$margin00.'; float: left;">'.$dataline["REMARKS"].'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_R.'</div>
 																</div>
 
 															</div>
@@ -492,29 +564,16 @@
 														<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Financial Report</div>
 
 														<div style="width:100%;">
-															<div class="well" style="background-color:#f9f9f9; width:100%; float:left; padding:10px;">
-																<div style="margin:0px; padding:0px 10px;">	
-																	
-																	<div style="width:100%; float:left; padding:0px 0px;">
-																		<div style="float:left; width:40%; font-weight:bold;">Sponsored IOL</div>
-																		<div style="float:left; width:60%;">₱ '.number_format($dataline["SPO_IOL"], "2").'</div>
-																	</div>
-
-																</div>
-															</div>
-														</div>
-
-														<div style="width:100%;">
 														
 															<div style="width:50%; padding-right:20px; float:left;">
-																<div class="well" style="background-color:#f9f9f9; float:left; padding:20px; width:100%;">
+																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
 																	<div style="width:100%; float:left; padding:0px 0px;">
 
 																		<table class="table table-condensed" style="margin-bottom:0px;">
 																		<thead>
 																			<tr>
 																				<th>Patient Counterpart</th>
-																				<th>Amount</th>
+																				<th></th>
 																			</tr>
 																		</thead>
 																		<tbody>
@@ -543,14 +602,14 @@
 														
 
 															<div style="width:50%; float:left;">
-																<div class="well" style="background-color:#f9f9f9; float:left; padding:20px; width:100%;">
+																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
 
 																	<div style="width:100%; float:left; padding:0px 0px;">
 																	<table class="table table-condensed" style="margin-bottom:0px;">
 																		<thead>
 																			<tr>
 																				<th>CSF</th>
-																				<th>Amount</th>
+																				<th></th>
 																			</tr>
 																		</thead>
 																		<tbody>
@@ -579,18 +638,116 @@
 														
 														</div>
 
-
-														<div style="width:100%;">
-															<div class="well" style="background-color:#f9f9f9; width:100%; float:left; padding:10px; margin-bottom:0px;">
-																<div style="margin:0px; padding:0px 10px;">	
-																	
+														<div style="width:50%; padding-right:20px; float:left;">
+														
+																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
 																	<div style="width:100%; float:left; padding:0px 0px;">
-																		<div style="float:left; width:40%; font-weight:bold;">Total:</div>
-																		<div style="float:left; width:60%;">₱ '.number_format($TOTAL_ALL, "2").'</div>
-																	</div>
 
+																		<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>NDDCH</th>
+																				<th></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>RA</td>
+																				<td>₱ '.number_format($dataline["NDDCH_RA"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>ZEISS</td>
+																				<td>₱ '.number_format($dataline["NDDCH_ZEISS"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>Total</td>
+																				<td>₱ '.number_format($NDDCH_SUM, "2").'</td>
+																			</tr>
+																		</tbody>
+																	</table>
+
+																	</div>
 																</div>
+
+																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
+																	<div style="width:100%; float:left; padding:0px 0px;">
+
+																		<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>Comparison</th>
+																				<th></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>NDDCH Supplies</td>
+																				<td>₱ '.number_format($dataline["NDDCH_SUPPLIES"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>Difference</td>
+																				<td>₱ '.number_format($DIFF, "2").'</td>
+																			</tr>
+																		</tbody>
+																	</table>
+
+																	</div>
+																</div>
+
 															</div>
+														
+
+															<div style="width:50%; float:left;">
+
+																<div class="well" style="background-color:#fefefe; width:100%; float:left; padding:10px;">
+																	<div style="margin:0px; padding:0px 10px;">	
+																		
+																		<div style="width:100%; float:left; padding:0px 0px;">
+																			<div style="float:left; width:50%; font-weight:bold;">Sponsored IOL</div>
+																			<div style="float:left; width:50%;">₱ '.number_format($dataline["SPO_IOL"], "2").'</div>
+																		</div>
+
+																	</div>
+																</div>
+
+																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
+																	<div style="width:100%; float:left; padding:0px 0px;">
+
+																	<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>LF</th>
+																				<th></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>Professional Fee</td>
+																				<td>₱ '.number_format($dataline["LF_PF"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>CPC Fee</td>
+																				<td>₱ '.number_format($dataline["LF_CPC"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>Total</td>
+																				<td>₱ '.number_format($LF_SUM, "2").'</td>
+																			</tr>
+																		</tbody>
+																	</table>
+
+																	</div>
+																</div>
+
+																<div class="well" style=" float:left; padding:20px; width:100%;">
+																		<div style="width:100%; float:left; padding:4px 0px;">
+
+																			<div style="float:left; width:50%; font-weight:bold;">Grand Total:</div>
+																			<div style="float:left; width:50%;">₱ '.number_format($TOTAL_ALL, "2").'</div>
+
+																		</div>
+																</div>
+														
 														</div>
 
 														</div>
@@ -772,7 +929,7 @@
 																			</div>
 
 																			<div style="width:100%; float:left;">
-																			<div class="well" style="width:100%; float:left; background-color:#f9f9f9;">
+																			<div class="well" style="width:100%; float:left; background-color:#fefefe;">
 
 																			<div style="width:100%; float:left; font-weight:bold;">Financial Information</div>
 
