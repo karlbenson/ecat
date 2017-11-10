@@ -43,8 +43,8 @@
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
-					function SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
-						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."','".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
+					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA){
+						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_DIAG."','".$P_PROC."','".$P_REA."','".$P_LEA."')";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
 							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
 							$GLOBALS['whereto'] = "patient.php?profilepage=".$P_ID;
@@ -91,9 +91,10 @@
 										SUBMIT_DOCTOR($F_NAME, $L_NAME, $LICENSE_NUM, $ADDRESS, $SPECIALIZATION);
 									}else if (isset($_POST['patients_info'])) {
 										//PATIENT INFORMATION FIELDS
-										$P_ID = $_POST["P_ID"];  
-										$P_FNAME = $_POST["P_FNAME"];
-										$P_LNAME = $_POST["P_LNAME"];
+										$P_ID = $_POST["P_ID"];
+										$P_UNIVID = intval(explode(" - ", $_POST["P_NAME"])[0]);
+										$P_FNAME = explode(" ", explode(" - ", $_POST["P_NAME"])[1])[0];
+										$P_LNAME = explode(" ", explode(" - ", $_POST["P_NAME"])[1])[2];
 										$P_AGE = $_POST["P_AGE"];
 										$P_PH = $_POST["P_PH"];
 										$P_SEX = $_POST["P_SEX"];
@@ -121,7 +122,7 @@
 										$P_REA = $_POST["P_REA"];       
 										$P_LEA = $_POST["P_LEA"];        
 										//PATIENT INFORMATION FIELDS END
-										SUBMIT_EYEPATIENT($P_ID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA);
+										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_DIAG, $P_PROC, $P_REA, $P_LEA);
 									}else if (isset($_POST['surgery_info'])) {
 										//SURGERY INFORMATION FIELDS
 										$CASE_NUM = $_POST["CASE_NUM"];

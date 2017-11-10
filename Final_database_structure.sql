@@ -1,8 +1,3 @@
-/*SQL TRIAL CODE*/
-
-drop database lukedb;
-create database lukedb;
-use lukedb;
 
 create table patient(
 patient_id int unsigned not null auto_increment primary key,
@@ -19,13 +14,6 @@ create table DOCTOR(
 	SPECIALIZATION VARCHAR(25),
 	PRIMARY KEY (DOC_LICENSE_NUM)
 );
-
-/*NOTE:
-	EYE PATIENT FORM:
-	- form will be filed before surgery
-	- post VA values will be placed after surgery
-	- Patient info. such as name, age, sex... (taken from patient record's group?)
-*/
 
 create table EYEPATIENT(
 	PAT_ID_NUM VARCHAR(15) NOT NULL UNIQUE,
@@ -55,14 +43,6 @@ create table EYEPATIENT(
 	FOREIGN KEY (PHY_LICENSE_NUM) references DOCTOR(DOC_LICENSE_NUM) on update cascade,
 	FOREIGN KEY (PAT_UNIV_ID) references PATIENT(PATIENT_ID) on update cascade
 );
-
-/*NOTE:
-	EYE SURGERY FORM:
-	- info. provided (from eye.xsl):
-		- has empty values for dates
-		- surgeon, internist, anesthesiologist field are not left blank
-		- internist field may have more than one value
-*/
 
 CREATE TABLE SURGERY(
 	CASE_NUM CHAR(10) NOT NULL UNIQUE,

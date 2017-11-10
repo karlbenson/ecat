@@ -35,7 +35,7 @@
 					$STAFFL_LENG = 7;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("n/a","20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -48,7 +48,7 @@
 					<div id="inner">
 						<!-- TITLE -->
 						<div class="container-fluid" >
-							<h4 style="color:#337ab7;">Eye Patients</h4>
+							<h4 style="color:#337ab7;">Patient's Eye Record</h4>
 						</div>
 						<!-- TITLE END -->
 
@@ -313,7 +313,9 @@
 																<div style="background-color: #bbb; margin-right:0px; width:100%;">
 																	<div style="width:45%; float: left; margin:0px;">
 																		<div class="panel panel-default"  style="padding-bottom:0px; margin-right:20px;">
-																			<div class="panel-heading" id="tophead1">Patient Record</div>
+																			<a href="../pat/LukePatient/pages/records.php">
+																				<div class="panel-heading" id="tophead1">Patient Record<span class="pull-right fa fa-arrow-circle-right"></span></div>
+																			</a>
 																			<div class="panel-body">
 																				<div class="row" style="margin:0px; padding:5px 10px;">
 																					<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'ID:'.'</div>
@@ -331,7 +333,7 @@
 																						}else{
 																							echo 'Female';
 																						}
-															echo '</div>									
+															echo '</div>				
 																				</div>
 																			</div>
 																		</div>

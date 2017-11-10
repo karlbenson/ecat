@@ -83,12 +83,8 @@
 											<input type="text" class="form-control" id="P_ID" name="P_ID"  placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" value=<?php echo $NEXT_ID ?> required readonly>
 										</div>
 			  
-										<div class="" style="width: 200px; float: left; margin-right:10px;">
-											<input type="text" class="form-control" id="P_FNAME" placeholder="First Name" maxlength="20" name="P_FNAME" required>
-										</div>
-			  
-										<div class="" style="width: 200px; float: left; margin-right:10px;">
-											<input type="text" class="form-control" id="P_LNAME" placeholder="Last Name" maxlength="20" name="P_LNAME" required>
+										<div class="" style="width: 300px; float: left; margin-right:10px;">
+											<input type="text" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
 										</div>
 									</div>
 									<!-- PATIENT END-->
@@ -351,18 +347,26 @@
  $arr = array();
  
  while ($row = $phy->fetch_assoc()) {
-  unset($id, $name1, $name2);
   $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
-  //$name1 = $row['FIRST_NAME'];
-  //$name2 = $row['LAST_NAME'];
-  array_push($arr, $id/*.", ".$name2." ".$name1*/);
+  array_push($arr, $id);
  }
+ 
+ $pat = $mydatabase->query("SELECT * from patient");
+ $arr1 = array();
+ 
+ while ($row = $pat->fetch_assoc()) {
+	$patID = $row['patient_id']." - ".$row['patient_fname']." ".$row['patient_minitial'].". ".$row['patient_lname'];
+  
+  array_push($arr1, $patID);
+ }
+ 
 ?>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		// Defining the local dataset
 		var arrs= <?php echo json_encode($arr);?>;
+		var arrs1= <?php echo json_encode($arr1);?>;
 		
 		// Constructing the suggestion engine
 		var arrs = new Bloodhound({
@@ -370,9 +374,14 @@
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
 			local: arrs
 		});
+		var arrs1 = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			local: arrs1
+		});
 		
 		// Initializing the typeahead
-		$('.typeahead').typeahead({
+		$('#P_PHYLIC').typeahead({
 			hint: true,
 			highlight: true, /* Enable substring highlighting */
 			minLength: 1 /* Specify minimum characters required for showing result */
@@ -380,6 +389,15 @@
 		{
 			name: 'arrs',
 			source: arrs
+		});
+		$('#P_NAME').typeahead({
+			hint: true,
+			highlight: true, /* Enable substring highlighting */
+			minLength: 1 /* Specify minimum characters required for showing result */
+		},
+		{
+			name: 'arrs1',
+			source: arrs1
 		});
 	});
 </script>
