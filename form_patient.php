@@ -161,28 +161,6 @@
 													</thead>
 													<tbody>
 														<tr>
-															<td><strong>With Spectacles</strong><span style="color: #d9534f">*</span></td>
-															<!-- LEFT EYE W/ SPECT -->
-															<td>
-																<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-																</select>
-															</td>
-															<!-- LEFT EYE W/ SPECT END-->
-															
-															<!-- RIGHT EYE W/ SPECT -->
-															<td>
-																<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 200px;" required>
-																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
-																	echo "<option>".$VA_choice[$j]."</option>";
-																   } ?>
-															   </select>
-															</td>
-															<!-- RIGHT EYE W/ SPECT END -->
-														</tr>
-														<tr>
 															<td><strong>Without Spectacles</strong><span style="color: #d9534f">*</span></td>
 															<!-- LEFT EYE W/OUT SPECT -->
 															<td>
@@ -203,6 +181,28 @@
 															   </select>
 															</td>
 															<!-- RIGHT EYE W/OUT SPECT END -->
+														</tr>
+														<tr>
+															<td><strong>With Spectacles</strong><span style="color: #d9534f">*</span></td>
+															<!-- LEFT EYE W/ SPECT -->
+															<td>
+																<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 200px;" required>
+																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+																	echo "<option>".$VA_choice[$j]."</option>";
+																   } ?>
+																</select>
+															</td>
+															<!-- LEFT EYE W/ SPECT END-->
+															
+															<!-- RIGHT EYE W/ SPECT -->
+															<td>
+																<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 200px;" required>
+																  <?php for ($j=0; $j < count($VA_choice); $j++) { 
+																	echo "<option>".$VA_choice[$j]."</option>";
+																   } ?>
+															   </select>
+															</td>
+															<!-- RIGHT EYE W/ SPECT END -->
 														</tr>
 													</tbody>
 												</table>

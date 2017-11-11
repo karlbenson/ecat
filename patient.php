@@ -274,9 +274,9 @@
 												$dataline = $line->fetch_assoc();
 												//MYSQL SECTION END
 
-												$VA_LABEL = array("Left Eye with Spectacles", "Right Eye with Spectacles", "Left Eye without Spectacles", "Right Eye without Spectacles");
-												$P_PREVA = array($dataline["PRE_VA_WITH_SPECT_LEFT"], $dataline["PRE_VA_WITH_SPECT_RIGHT"], $dataline["PRE_VA_NO_SPECT_LEFT"], $dataline["PRE_VA_NO_SPECT_RIGHT"]);
-												$P_POSTVA = array($dataline["POST_VA_WITH_SPECT_LEFT"], $dataline["POST_VA_WITH_SPECT_RIGHT"], $dataline["POST_VA_NO_SPECT_LEFT"], $dataline["POST_VA_NO_SPECT_RIGHT"]);
+												$VA_LABEL = array("Left Eye without Spectacles", "Right Eye without Spectacles", "Left Eye with Spectacles", "Right Eye with Spectacles");
+												$P_PREVA = array($dataline["PRE_VA_NO_SPECT_LEFT"], $dataline["PRE_VA_NO_SPECT_RIGHT"], $dataline["PRE_VA_WITH_SPECT_LEFT"], $dataline["PRE_VA_WITH_SPECT_RIGHT"]);
+												$P_POSTVA = array($dataline["POST_VA_NO_SPECT_LEFT"], $dataline["POST_VA_NO_SPECT_RIGHT"], $dataline["POST_VA_WITH_SPECT_LEFT"], $dataline["POST_VA_WITH_SPECT_RIGHT"]);
 												for($i=0; $i<sizeof($VA_LABEL); $i++){
 													if(explode(" ",$P_PREVA[$i])[0]=="CF")
 														$P_PREVA[$i] = $P_PREVA[$i]."'";
@@ -581,76 +581,6 @@
 																						<th>Post Surgery</th>
 																					</thead>
 																					<tbody>
-																						<!-- LEFT EYE W/ SPECT -->
-																						<tr>
-																							<td><strong>Left Eye with Spectacles</strong></td>
-																							<td>
-																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 100px;" required>';
-																								for ($j=0; $j < count($VA_choice); $j++) {
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
-																										if($PRE_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
-																											echo "<option selected>".$VA_choice[$j]."</option>";    
-																										}else{
-																											echo "<option>".$VA_choice[$j]."</option>";
-																										}
-																									}
-																								}
-																								echo '</select>
-																							</td>
-																							<td>
-																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;">';
-																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
-																										if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
-																											echo "<option selected>".$VA_choice[$j]."</option>";    
-																										}else{
-																											echo "<option>".$VA_choice[$j]."</option>";
-																										}
-																									}
-																								}
-																								echo '</select>
-																							</td>
-																						</tr>
-																						<!-- END -->
-																						<!-- RIGHT EYE W/ SPECT -->
-																						<tr>
-																							<td><strong>Right Eye with Spectacles</strong></td>
-																							<td>
-																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 100px;" required>';
-																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
-																										if($PRE_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
-																											echo "<option selected>".$VA_choice[$j]."</option>";    
-																										}else{
-																											echo "<option>".$VA_choice[$j]."</option>";
-																										}
-																									}
-																								}
-																								echo '</select>
-																							</td>
-																							<td>
-																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" >';
-																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
-																										if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
-																											echo "<option selected>".$VA_choice[$j]."</option>";    
-																										}else{
-																											echo "<option>".$VA_choice[$j]."</option>";
-																										}
-																									}
-																								}
-																							echo '</select>
-																							</td>
-																						</tr>
-																						<!-- END -->
 																						<!-- LEFT EYE W/OUT SPECT -->
 																						<tr>
 																							<td><strong>Left Eye without Spectacles</strong></td>
@@ -718,6 +648,77 @@
 																									}
 																								}
 																								echo '</select>
+																							</td>
+																						</tr>
+																						<!-- END -->
+																						
+																						<!-- LEFT EYE W/ SPECT -->
+																						<tr>
+																							<td><strong>Left Eye with Spectacles</strong></td>
+																							<td>
+																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 100px;" required>';
+																								for ($j=0; $j < count($VA_choice); $j++) {
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
+																									}else{
+																										if($PRE_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
+																									}
+																								}
+																								echo '</select>
+																							</td>
+																							<td>
+																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;">';
+																								for ($j=0; $j < count($VA_choice); $j++) { 
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
+																									}else{
+																										if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
+																									}
+																								}
+																								echo '</select>
+																							</td>
+																						</tr>
+																						<!-- END -->
+																						<!-- RIGHT EYE W/ SPECT -->
+																						<tr>
+																							<td><strong>Right Eye with Spectacles</strong></td>
+																							<td>
+																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 100px;" required>';
+																								for ($j=0; $j < count($VA_choice); $j++) { 
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
+																									}else{
+																										if($PRE_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
+																									}
+																								}
+																								echo '</select>
+																							</td>
+																							<td>
+																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" >';
+																								for ($j=0; $j < count($VA_choice); $j++) { 
+																									if($j==0){
+																										echo "<option>"."n/a"."</option>";
+																									}else{
+																										if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
+																											echo "<option selected>".$VA_choice[$j]."</option>";    
+																										}else{
+																											echo "<option>".$VA_choice[$j]."</option>";
+																										}
+																									}
+																								}
+																							echo '</select>
 																							</td>
 																						</tr>
 																						<!-- END -->
