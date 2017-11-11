@@ -90,7 +90,8 @@
 													$S_CN = $_POST["CASE_NUM"];
 													$S_VI = $_POST["VI"];         
 													$S_MH = $_POST["MED_HIST"];       
-													$S_D = $_POST["DIAG"];
+													$S_RD = $_POST["DIAG_RIGHT"];
+													$S_LD = $_POST["DIAG_LEFT"];
 													$S_A = $_POST["SURG_ADDRESS"];                      
 													$S_DATE1 = explode("/",$_POST["DATE"]);
 													$S_DATE = $S_DATE1[2].'-'.$S_DATE1[0].'-'.$S_DATE1[1];
@@ -104,6 +105,11 @@
 													$C_HB = $_POST["CSF_HBILL"];
 													$C_S = $_POST["CSF_SUPPLIES"];
 													$C_L = $_POST["CSF_LAB"];
+													$N_RA = $_POST["NDDCH_RA"];
+													$N_ZEISS = $_POST["NDDCH_ZEISS"];
+													$N_SUPP = $_POST["NDDCH_SUPPLIES"];
+													$L_PF = $_POST["LF_PF"];
+													$L_CPC = $_POST["LF_CPC"];
 
 													$SS_ID = $_POST["PAT_ID"];
 													$SP_LIST = explode(" - ",$SS_ID);
@@ -121,12 +127,44 @@
 														$S_LN = trim($SS_LIST[1]);
 													}
 
+													$SS_SURG1 = $_POST["SURG_LIC1"];
+													$SS_LIST1 = explode("-",$SS_SURG1);
+													if(sizeof($SS_LIST1)==1){
+														$S_LN1 = trim($SS_LIST1[0]);
+													}else{
+														$S_LN1 = trim($SS_LIST1[1]);
+													}
+
+													$SS_SURG2 = $_POST["SURG_LIC2"];
+													$SS_LIST2 = explode("-",$SS_SURG2);
+													if(sizeof($SS_LIST2)==1){
+														$S_LN2 = trim($SS_LIST2[0]);
+													}else{
+														$S_LN2 = trim($SS_LIST2[1]);
+													}
+
 													$SS_INTER = $_POST["INTERNIST"];
 													$SI_LIST = explode("-",$SS_INTER);
 													if(sizeof($SI_LIST)==1){
 														$S_I = trim($SI_LIST[0]);
 													}else{
 														$S_I = trim($SI_LIST[1]);
+													}
+
+													$SS_INTER1 = $_POST["INTERNIST1"];
+													$SI_LIST1 = explode("-",$SS_INTER1);
+													if(sizeof($SI_LIST1)==1){
+														$S_I1 = trim($SI_LIST1[0]);
+													}else{
+														$S_I1 = trim($SI_LIST1[1]);
+													}
+
+													$SS_INTER2 = $_POST["INTERNIST2"];
+													$SI_LIST2 = explode("-",$SS_INTER2);
+													if(sizeof($SI_LIST2)==1){
+														$S_I2 = trim($SI_LIST2[0]);
+													}else{
+														$S_I2 = trim($SI_LIST2[1]);
 													}
 
 													$SS_ANES = $_POST["ANESTHESIOLOGIST"];
@@ -138,7 +176,7 @@
 													}
 
 													$toupdate = $_POST["surgery_update"];
-													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', DIAGNOSIS = '$S_D', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L' WHERE CASE_NUM = '$toupdate' ";
+													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
 													if ($mydatabase->query($S_update) === TRUE) {
 														//echo "Record updated successfully";
 													} else {
@@ -212,17 +250,9 @@
 																}else{
 																	$doc_lic = trim($FD_LIST[1]);
 																}
-																$F_LN = ' AND ( s.SURG_LICENSE_NUM='.$doc_lic.' OR s.ANESTHESIOLOGIST='.$doc_lic.' OR s.INTERNIST='.$doc_lic.' ) ';
+																$F_LN = ' AND ( s.SURG_LICENSE_NUM='.$doc_lic.' OR s.SURG_LICENSE_NUM1='.$doc_lic.' OR s.SURG_LICENSE_NUM2='.$doc_lic.' OR s.ANESTHESIOLOGIST='.$doc_lic.' OR s.INTERNIST='.$doc_lic.' OR s.INTERNIST1='.$doc_lic.' OR s.INTERNIST2='.$doc_lic.' ) ';
 															}
 														}else{
-
-															if($F_DR=="Surgeon"){
-																$F_DR = "s.SURG_LICENSE_NUM";
-															}elseif ($F_DR=="Internist") {
-																$F_DR = "s.INTERNIST";
-															}elseif ($F_DR=="Anesthesiologist") {
-																$F_DR = "s.ANESTHESIOLOGIST";
-															}
 
 															if(strlen($_POST["FSL"])>0){
 																$FIL_DOC = $_POST["FSL"];
@@ -233,7 +263,15 @@
 																	$doc_lic = trim($FD_LIST[1]);
 																}
 
-																$F_LN = ' AND '.$F_DR.'='.$doc_lic;
+																if($F_DR=="Surgeon"){
+																	$F_DR = "s.SURG_LICENSE_NUM = ".$doc_lic." OR s.SURG_LICENSE_NUM = ".$doc_lic." OR s.SURG_LICENSE_NUM2 = ".$doc_lic;
+																}elseif ($F_DR=="Internist") {
+																	$F_DR = "s.INTERNIST = ".$doc_lic." OR s.INTERNIST1 = ".$doc_lic." OR s.INTERNIST2 = ".$doc_lic;
+																}elseif ($F_DR=="Anesthesiologist") {
+																	$F_DR = "s.ANESTHESIOLOGIST = ".$doc_lic;
+																}
+
+																$F_LN = ' AND ( '.$F_DR.' )';
 																	
 															}
 														}
@@ -778,7 +816,7 @@
 																<div class="modal-body">';
 
 												$leftmargin = 220;
-												$ANES_choice = array("n/a", "General", "Local", "Topical");
+												$ANES_choice = array("n/a", "General", "Local");
 
 												//EDIT FORM
 												echo '<div class="container-fluid">
@@ -823,40 +861,68 @@
 
 																			<div style="width:100%;">
 
-																			<div style="width:60%; float:left; padding-right:20px;">
+																			<div style="width:100%; float:left;">
 																			<div class="well" style="width:100%; float: left;  padding-left:10px;" >
 
-																			<div class="container-fluid" style="margin-bottom: 10px;">
+																			<div class="container-fluid">
 																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
+																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																					<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.'" required>
+																				</div>
+																				<div class="add_s1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																					<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC1" maxlength="'.$SURG_LENG.'" name="SURG_LIC1" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN1.'">
+																				</div>
+																				<div class="add_s2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																					<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC2" maxlength="'.$SURG_LENG.'" name="SURG_LIC2" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN2.'">
+																				</div>
+																				<a role="button" id="add_surg" class="btn btn-default" title="Add another surgeon" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
+																				<a role="button" id="minus_surg" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
 																				</div>
 																			</div>
 
-																			<div class="container-fluid" style="margin-bottom: 10px;">
+																			<div class="container-fluid">
 																				<label for="INTERNIST" style="width: 40%; float: left; ">Internist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
+																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																					<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.'" required>
+																				</div>
+																				<div class="add_i1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST1" maxlength="'.$INTER_MAX.'" name="INTERNIST1" placeholder="Internist Name or License (Optional)" value="'.$S_I1.'">
+																				</div>
+																				<div class="add_i2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST2" maxlength="'.$INTER_MAX.'" name="INTERNIST2" placeholder="Internist Name or License (Optional)" value="'.$S_I2.'">
+																				</div>
+																				<a role="button" id="add_inter" class="btn btn-default" title="Add another internist" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
+																				<a role="button" id="minus_inter" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
 																				</div>
 																			</div>
 
-																			<div class="container-fluid" style="margin-bottom: 10px;">
+																			<div class="container-fluid">
 																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
+																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+																					<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.'" required>
+																				</div>
 																				</div>
 																			</div>
 
 																			</div>
 																			</div>
 
-																			<div style="width:40%; float:left;">
+																			<div style="width:50%; float:left; padding-right: 20px;">
 																			<div class="well" style="width:100%; float: left;  padding-left:10px;">
 																			
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power<span style="color: #d9534f">*</span></label>
 																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;" required>
 																			</div>
+
+																			</div>
+																			</div>
+
+																			<div style="width:50%; float:left;">
+																			<div class="well" style="width:100%; float: left;  padding-left:10px;">
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia<span style="color: #d9534f">*</span></label>
@@ -917,8 +983,12 @@
 																			<div class="well" style="width:100%; float: left;">
 																			
 																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="DIAG" style="width: 25%; float: left; ">Surgeon Diagnosis </label>
-																					<input placeholder="Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG" style="width: 75%; float: left;" value="'.$S_D.'" >
+																					<label for="DIAG" style="width: 25%; float: left; ">Right Eye Diagnosis </label>
+																					<input placeholder="Right Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_RIGHT" style="width: 75%; float: left;" value="'.$S_RD.'" >
+																				</div>
+																				<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="DIAG" style="width: 25%; float: left; ">Left Eye Diagnosis </label>
+																					<input placeholder="Left Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_LEFT" style="width: 75%; float: left;" value="'.$S_LD.'" >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="REM" style="width: 25%; float: left; ">Surgeon Remarks </label>
@@ -931,21 +1001,9 @@
 																			<div style="width:100%; float:left;">
 																			<div class="well" style="width:100%; float:left; background-color:#fefefe;">
 
-																			<div style="width:100%; float:left; font-weight:bold;">Financial Information</div>
+																			<div style="width:100%; float:left; font-weight:bold; color:#337ab7;">Financial Information</div>
 
-																			<div style="width:100%; float:left"><hr style="border-color:#337ab7; margin-bottom:20px;"></div>
-
-																			<div style="width:100%;margin-bottom:10px; float:left;"></div>
-
-																			<div style="width:100%; float:left;">
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="SPO_IOL" style="width: '.$leftmargin.'px; float: left; ">Sponsored IOL</label>
-																				<div class="input-group money">
-																				<span class="input-group-addon"><strong>₱</strong></span>
-																				<input placeholder="Sponsored Amount" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" style="max-width: 225px; float: left;" readonly>
-																				</div>
-																			</div>
-																			</div>
+																			<div style="width:100%; float:left"><hr style="border-color:#337ab7; margin-top:0px;"></div>
 
 																			<div style="width:100%; margin-bottom:10px; float:left;"></div>
 																			
@@ -960,24 +1018,24 @@
 																						<div style="margin-bottom:10px;"></div>
 
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="PC_IOL" style="width: 40%; float: left; ">IOL</label>
-																							<div class="input-group money">
+																							<label for="PC_IOL" style="width: 50%; float: left; ">IOL</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" readonly>
 																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="PC_LAB" style="width: 40%; float: left; ">LAB</label>
-																							<div class="input-group money">
+																							<label for="PC_LAB" style="width: 50%; float: left; ">LAB</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="PC_PF" style="width: 40%; float: left; ">PF(Others)</label>
-																							<div class="input-group money">
+																							<label for="PC_PF" style="width: 50%; float: left; ">PF(Others)</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" readonly>
 																							</div>
 																						</div>
 
@@ -995,27 +1053,103 @@
 																						<div style="margin-bottom:10px;"></div>
 
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="CSF_HBILL" style="width: 40%; float: left; ">HBILL</label>
-																							<div class="input-group money">
+																							<label for="CSF_HBILL" style="width: 50%; float: left; ">HBILL</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="CSF_SUPPLIES" style="width: 40%; float: left; ">SUPPLIES</label>
-																							<div class="input-group money">
+																							<label for="CSF_SUPPLIES" style="width: 50%; float: left; ">SUPPLIES</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
-																							<label for="CSF_LAB" style="width: 40%; float: left; ">LAB</label>
-																							<div class="input-group money">
+																							<label for="CSF_LAB" style="width: 50%; float: left; ">LAB</label>
+																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" style="width: 60%; float: left;" readonly>
+																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" readonly>
 																							</div>
 																						</div>
 
+																					</div>
+																				</div>
+																			</div>
+																			</div>
+
+																			<div style="width:50%; float:left;">
+																			<div style="width:100%; float:left; padding-right:20px;">
+																				<div class="panel panel-default" style="padding-bottom:10px;">
+																					<div class="panel-heading" style="color:#337ab7;">NDDCH</div>
+																					<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																						<div style="margin-bottom:10px;"></div>
+
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="NDDCH_RA" style="width: 50%; float: left; ">RA</label>
+																							<div class="input-group money" style="width:150px; float:left;">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="RA" type="text" class="form-control" id="NDDCH_RA" maxlength="'.$PC_MAX.'" name="NDDCH_RA" value="'.$dataline["NDDCH_RA"].'" readonly>
+																							</div>
+																						</div>		
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="NDDCH_ZEISS" style="width: 50%; float: left; ">ZEISS</label>
+																							<div class="input-group money" style="width:150px; float:left;">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="ZEISS" type="text" class="form-control" id="NDDCH_ZEISS" maxlength="'.$PC_MAX.'" name="NDDCH_ZEISS" value="'.$dataline["NDDCH_ZEISS"].'" readonly>
+																							</div>
+																						</div>
+
+																					</div>
+																				</div>
+																			
+																				<div class="well" style="width:100%; float:left; padding-right:20px;">
+																					<label for="NDDCH_SUPPLIES" style="width: 50%; float: left; ">NDDCH SUPPLIES</label>
+																					<div class="input-group money" style="width:150px; float:left;">
+																					<span class="input-group-addon"><strong>₱</strong></span>
+																					<input placeholder="Supplies" type="text" class="form-control" id="NDDCH_SUPPLIES" maxlength="'.$PC_MAX.'" name="NDDCH_SUPPLIES" value="'.$dataline["NDDCH_SUPPLIES"].'" readonly>
+																					</div>
+																				</div>
+																			
+																			</div>
+																			</div>
+
+																			<div style="width:50%; float:left;">
+																				<div class="well" style="width:100%; float:left;">
+																					<label for="SPO_IOL" style="width: 50%; float: left; ">Sponsored IOL</label>
+																					<div class="input-group money" style="width:150px; float:left;">
+																					<span class="input-group-addon"><strong>₱</strong></span>
+																					<input placeholder="Sponsored" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" readonly>
+																					</div>
+																				</div>
+																			</div>
+
+																			<div style="width:50%; float:left;">
+																			<div style="width:100%; float:left;">
+
+																				<div class="panel panel-default" style="padding-bottom:10px;">
+																					<div class="panel-heading" style="color:#337ab7;">LF</div>
+																					<div class="panel-body" style="margin:0px; padding:5px 10px;">	
+
+																						<div style="margin-bottom:10px;"></div>
+
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="LF_PF" style="width: 50%; float: left; ">Professional Fee</label>
+																							<div class="input-group money" style="width:150px; float:left;">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="PF" type="text" class="form-control" id="LF_PF" maxlength="'.$PC_MAX.'" name="LF_PF" value="'.$dataline["LF_PF"].'" readonly>
+																							</div>
+																						</div>		
+																						<div class="container-fluid" style="margin-bottom: 10px;">
+																							<label for="LF_CPC" style="width: 50%; float: left; ">CPC Fee</label>
+																							<div class="input-group money" style="width:150px; float:left;">
+																							<span class="input-group-addon"><strong>₱</strong></span>
+																							<input placeholder="CPC" type="text" class="form-control" id="LF_CPC" maxlength="'.$PC_MAX.'" name="LF_CPC" value="'.$dataline["LF_CPC"].'" readonly>
+																							</div>
+																						</div>
+																						
 																					</div>
 																				</div>
 																			</div>
@@ -1052,6 +1186,11 @@
 						          		 $("#CSF_HBILL").attr("readonly", false); 
 						          		 $("#CSF_SUPPLIES").attr("readonly", false); 
 						          		 $("#CSF_LAB").attr("readonly", false); 
+						          		 $("#NDDCH_RA").attr("readonly", false); 
+						          		 $("#NDDCH_ZEISS").attr("readonly", false); 
+						          		 $("#NDDCH_SUPPLIES").attr("readonly", false); 
+						          		 $("#LF_PF").attr("readonly", false); 
+						          		 $("#LF_CPC").attr("readonly", false); 
 						          	}
 						          	
 																</script>
@@ -1076,7 +1215,7 @@
 											}else if($DEFAULT==2){
 												//DELETE PAGE
 												//MYSQL SECTION
-												$del = "DELETE FROM SURGERY WHERE CASE_NUM = '$delete_p' ";
+												$del = "UPDATE SURGERY SET VISIBLE = 'N' WHERE CASE_NUM = '$delete_p' ";
 												if ($mydatabase->query($del) === TRUE) {
 													echo "Record deleted.";
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'surgery.php'.'">Back</a></div>';
@@ -1103,21 +1242,78 @@
 		</div>
 	</body>
 </html>
-<script type="text/javascript">
 
+<script >
+//ADD INTERNIST AND SURGEON
+
+
+
+$('.add_s1').hide();
+$('.add_s2').hide();
+$('.add_i1').hide();
+$('.add_i2').hide();
+$('#minus_surg').hide();
+$('#minus_inter').hide();
+
+$(document).ready(function(){
+ $("#add_surg").click(function(){
+  if($(".add_s1").is(':visible') === true){
+  	$(".add_s2").show();
+  	$("#add_surg").hide();
+  }else{
+  	$(".add_s1").show();
+  	$("#minus_surg").show();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#add_inter").click(function(){
+  if($(".add_i1").is(':visible') === true){
+  	$(".add_i2").show();
+  	$("#add_inter").hide();
+  }else{
+  	$(".add_i1").show();
+  	$("#minus_inter").show();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#minus_inter").click(function(){
+  if($(".add_i2").is(':visible') === true){
+  	$(".add_i2").hide();
+  	$("#add_inter").show();
+  }else{
+  	$(".add_i1").hide();
+  	$("#minus_inter").hide();
+  }
+ });
+});
+
+$(document).ready(function(){
+ $("#minus_surg").click(function(){
+  if($(".add_s2").is(':visible') === true){
+  	$(".add_s2").hide();
+  	$("#add_surg").show();
+  }else{
+  	$(".add_s1").hide();
+  	$("#minus_surg").hide();
+  }
+ });
+});
+
+</script>
+
+<script>
 	var myTable=$('#docdat').DataTable({
 			"search":false,
 			"sDom":"ltipr",
-			"columns": [
-			null,
-			null,
-			null,
-			null,
-			{ "orderable": false }
-  			],
+			"columns": [ null, null, null, null, { "orderable": false } ],
 		});
 
 	$('#dataseek').keyup(function(){
 		myTable.search($(this).val()).draw();
 	})
 </script>
+
