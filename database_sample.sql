@@ -1,8 +1,8 @@
 
 
-drop database lukedb
-create database lukedb
-use lukedb
+drop database lukedb;
+create database lukedb;
+use lukedb;
 
 
 create table patient(
