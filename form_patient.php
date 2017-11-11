@@ -266,7 +266,7 @@
 															<label class="control-label col-md-1" for="P_RDiag" style="float:left; width:40%; float:left;">Right Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 																<div style="max-width:300px;">
-																	<input type="text" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="<?php echo $REA_MAX; ?>" name="P_RDiag">
+																	<input type="text" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag">
 																</div>
 															</div>
 														</div>
@@ -277,7 +277,7 @@
 															<label class="control-label col-md-1" for="P_LDiag" style="float:left; width:40%; float:left;">Left Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_LDiag" placeholder="Left eye diagnosis" maxlength="<?php echo $LEA_MAX; ?>" name="P_LDiag">
+																<input type="text" class="form-control" id="P_LDiag" placeholder="Left eye diagnosis" maxlength="30" name="P_LDiag">
 															</div>
 															</div>
 														</div>

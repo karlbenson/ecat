@@ -100,11 +100,10 @@
 													$PRE_VA_NO_SPECT_RIGHT = rtrim($_POST["P_VAR1"], "'");
 													$POST_VA_NO_SPECT_RIGHT = rtrim($_POST["P_VAR2"], "'");
 													$VISUAL_DISABILITY = $_POST["P_VD"];
+													$RIGHT_DIAGNOSIS = $_POST["P_RDiag"];
+													$LEFT_DIAGNOSIS = $_POST["P_LDiag"];
 													$DISABILITY_CAUSE = $_POST["P_DC"];
-													$DIAGNOSIS = $_POST["P_DIAG"];
 													$PROCEDURE_TO_DO = $_POST["P_PROC"];
-													$RIGHT_EYE_AFFECTED = $_POST["P_REA"];
-													$LEFT_EYE_AFFECTED = $_POST["P_LEA"];
 
 													$P_update = "UPDATE EYEPATIENT SET
 													PAT_FNAME = '$PAT_FNAME',
@@ -124,10 +123,9 @@
 													POST_VA_NO_SPECT_RIGHT = '$POST_VA_NO_SPECT_RIGHT',
 													VISUAL_DISABILITY = '$VISUAL_DISABILITY',
 													DISABILITY_CAUSE = '$DISABILITY_CAUSE',
-													DIAGNOSIS = '$DIAGNOSIS',
-													PROCEDURE_TO_DO = '$PROCEDURE_TO_DO',
-													RIGHT_EYE_AFFECTED = '$RIGHT_EYE_AFFECTED',
-													LEFT_EYE_AFFECTED = '$LEFT_EYE_AFFECTED'
+													RIGHT_DIAGNOSIS = '$RIGHT_DIAGNOSIS',
+													LEFT_DIAGNOSIS = '$LEFT_DIAGNOSIS',
+													PROCEDURE_TO_DO = '$PROCEDURE_TO_DO'
 													WHERE PAT_ID_NUM = '$PAT_ID'
 													";
 											  
@@ -739,7 +737,7 @@
 																			<div class="form-group" style="width:100%; float:left;">
 																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Right Eye</label>
 																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="15" name="P_RDiag" value="'.$dataline["RIGHT_DIAGNOSIS"].'">
+																					<input class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag" value="'.$dataline["RIGHT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
 																			<!-- RIGHT EYE DIAGNOSIS END -->
@@ -748,7 +746,7 @@
 																			<div class="form-group" style="width:100%; float:left;">
 																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Left Eye</label>
 																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_LDiag" placeholder="Left eye diagnois" maxlength="15" name="P_LDiag" value="'.$dataline["LEFT_DIAGNOSIS"].'">
+																					<input class="form-control" id="P_LDiag" placeholder="Left eye diagnois" maxlength="30" name="P_LDiag" value="'.$dataline["LEFT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
 																			<!-- LEFT EYE DIAGNOSIS END -->
