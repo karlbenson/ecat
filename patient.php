@@ -78,19 +78,8 @@
 													$PAT_AGE = $_POST["P_AGE"];
 													$PAT_PH = $_POST["P_PH"];
 													$PAT_SEX = $_POST["P_SEX"];
-													$PHYSICIAN = $_POST["P_PHYLIC"];
-													$PHY_LIST = explode(" - ",$PHYSICIAN);
-													if(sizeof($PHY_LIST)==1){
-														$PHY_LICENSE_NUM = $PHY_LIST[0];	
-													}else{
-														$PHY_LICENSE_NUM = $PHY_LIST[1];
-													}
-													$STAFF_LIST = explode(" - ",$_POST["P_STAFFLIC"]);
-													if(sizeof($STAFF_LIST)==1){
-														$STAFF_LICENSE_NUM = $STAFF_LIST[0];
-													}else{
-														$STAFF_LICENSE_NUM = $STAFF_LIST[1];
-													}
+													$PHY_LICENSE_NUM = trim(explode(" - ",$_POST["P_PHYLIC"])[0]);
+													$STAFF_LICENSE_NUM = trim(explode(" - ",$_POST["P_STAFFLIC"])[0]);
 													$PRE_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL1"], "'");
 													$POST_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL2"], "'");
 													$PRE_VA_WITH_SPECT_RIGHT = rtrim($_POST["P_VASR1"], "'");
@@ -268,10 +257,10 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
 												$output1->execute();
-												$line = $output1->get_result();
-												$dataline = $line->fetch_assoc();
+												$line1 = $output1->get_result();
+												$dataline = $line1->fetch_assoc();
 												//MYSQL SECTION END
 
 												$VA_LABEL = array("Left Eye without Spectacles", "Right Eye without Spectacles", "Left Eye with Spectacles", "Right Eye with Spectacles");
@@ -356,7 +345,7 @@
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$P_SLN.'</span>'.$E_link.'</a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'</span>'.$E_link.'</a></div>
 																		</div>
 																	</div>
 																</div>
@@ -558,13 +547,13 @@
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">';
 
-																		echo '<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																		echo '<input title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 200px; float: left;">
-																				<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																				<input class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
 																			</div>
 																		</div>
 																	</div>

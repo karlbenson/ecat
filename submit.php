@@ -98,19 +98,8 @@
 										$P_AGE = $_POST["P_AGE"];
 										$P_PH = $_POST["P_PH"];
 										$P_SEX = $_POST["P_SEX"];
-										$PHYSICIAN = $_POST["P_PHYLIC"];
-										$PHY_LIST = explode("-",$PHYSICIAN);
-										if(sizeof($PHY_LIST)==1){
-											$P_PHYLIC = trim($PHY_LIST[0]);
-										}else{
-											$P_PHYLIC = trim($PHY_LIST[1]);
-										}
-										$STAFF_LIST = explode("-",$_POST["P_STAFFLIC"]);
-										if(sizeof($STAFF_LIST)==1){
-											$P_STAFFLIC = trim($STAFF_LIST[0]);
-										}else{
-											$P_STAFFLIC = trim($STAFF_LIST[1]);
-										}
+										$P_PHYLIC = trim(explode(" - ",$_POST["P_PHYLIC"])[0]);
+										$P_STAFFLIC = trim(explode(" - ",$_POST["P_STAFFLIC"])[0]);
 										$P_VASL1 = rtrim($_POST["P_VASL1"], "'");
 										$P_VASR1 = rtrim($_POST["P_VASR1"], "'");
 										$P_VAL1 = rtrim($_POST["P_VAL1"], "'");

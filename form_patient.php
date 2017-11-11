@@ -126,7 +126,7 @@
 												<label class="control-label" for="P_PHYLIC" style="float:left; width:30%; padding-left:15px;">Examined by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
+													<input class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
 													<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -137,7 +137,7 @@
 												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[-])*)(\d{7}$)" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<input class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
 													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -336,7 +336,7 @@
  $arr = array();
  
  while ($row = $phy->fetch_assoc()) {
-  $id = $row['FIRST_NAME']." ".$row['LAST_NAME']."-".$row['DOC_LICENSE_NUM'];
+  $id = $row['DOC_LICENSE_NUM']." - ".$row['FIRST_NAME']." ".$row['LAST_NAME'];
   array_push($arr, $id);
  }
  
@@ -345,8 +345,15 @@
  
  while ($row = $pat->fetch_assoc()) {
 	$patID = $row['patient_id']." - ".$row['patient_fname']." ".$row['patient_minitial'].". ".$row['patient_lname'];
-  
-  array_push($arr1, $patID);
+   array_push($arr1, $patID);
+ }
+ 
+ $staff = $mydatabase->query("SELECT * from staff");
+ $arr2 = array();
+ 
+ while ($row = $staff->fetch_assoc()) {
+	$staffID = $row['STAFF_LICENSE_NUM']." - ".$row['STAFF_FNAME']." ".$row['STAFF_LNAME'];
+   array_push($arr2, $staffID);
  }
  
 ?>
@@ -356,6 +363,7 @@
 		// Defining the local dataset
 		var arrs= <?php echo json_encode($arr);?>;
 		var arrs1= <?php echo json_encode($arr1);?>;
+		var arrs2= <?php echo json_encode($arr2);?>;
 		
 		// Constructing the suggestion engine
 		var arrs = new Bloodhound({
@@ -367,6 +375,11 @@
 			datumTokenizer: Bloodhound.tokenizers.whitespace,
 			queryTokenizer: Bloodhound.tokenizers.whitespace,
 			local: arrs1
+		});
+		var arrs2 = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			local: arrs2
 		});
 		
 		// Initializing the typeahead
@@ -387,6 +400,15 @@
 		{
 			name: 'arrs1',
 			source: arrs1
+		});
+		$('#P_STAFFLIC').typeahead({
+			hint: true,
+			highlight: true, /* Enable substring highlighting */
+			minLength: 1 /* Specify minimum characters required for showing result */
+		},
+		{
+			name: 'arrs2',
+			source: arrs2
 		});
 	});
 </script>
