@@ -437,6 +437,7 @@
 												$ANES_NAME = $dataline3["FIRST_NAME"].' '.$dataline3["LAST_NAME"];
 												$PATIENT_NAME = $dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"];
 
+												$DIFF = $dataline["NDDCH_SUPPLIES"]-$dataline["CSF_SUPPLIES"];
 												$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"];
 												$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"];
 												$NDDCH_SUM = $dataline["NDDCH_RA"]+$dataline["NDDCH_ZEISS"]+$dataline["PC_PF"];
