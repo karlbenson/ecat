@@ -32,10 +32,10 @@
 					$FN_LENG = 20;
 					$LN_LENG = 20;
 					$PHYL_LENG = 40;
-					$STAFFL_LENG = 7;
+					$STAFFL_LENG = 40;
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
-					$VA_choice = array("20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP", "U");
+					$VA_choice = array("U", "20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP");
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -68,18 +68,17 @@
 											} else { 
 												$current_p = 1; 
 											};
-											if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"]; $DEFAULT=1;
+											if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"];
+												$DEFAULT=1;
 												//RECEIVE UPDATE
 												if(isset($_POST['patients_update'])){
 													//var_dump($_POST);
-													$PAT_ID = $_GET["profilepage"];
+													$PAT_ID = $_POST['patients_update'];
 													$PAT_FNAME = $_POST["PAT_FNAME"];
 													$PAT_LNAME = $_POST["PAT_LNAME"];
 													$PAT_AGE = $_POST["P_AGE"];
 													$PAT_PH = $_POST["P_PH"];
 													$PAT_SEX = $_POST["P_SEX"];
-													$PHY_LICENSE_NUM = trim(explode(" - ",$_POST["P_PHYLIC"])[0]);
-													$STAFF_LICENSE_NUM = trim(explode(" - ",$_POST["P_STAFFLIC"])[0]);
 													$PRE_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL1"], "'");
 													$POST_VA_WITH_SPECT_LEFT = rtrim($_POST["P_VASL2"], "'");
 													$PRE_VA_WITH_SPECT_RIGHT = rtrim($_POST["P_VASR1"], "'");
@@ -94,29 +93,40 @@
 													$DISABILITY_CAUSE = $_POST["P_DC"];
 													$PROCEDURE_TO_DO = $_POST["P_PROC"];
 
+													$SS_LIST = explode(" - ",$_POST["P_PHYLIC"]);
+													if(sizeof($SS_LIST)==1){
+														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
+													}else{
+														$PHY_LICENSE_NUM = trim($SS_LIST[1]);
+													}
+													$SS_LIST1 = explode(" - ",$_POST["P_STAFFLIC"]);
+													if(sizeof($SS_LIST1)==1){
+														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
+													}else{
+														$STAFF_LICENSE_NUM = trim($SS_LIST1[1]);
+													}
+
 													$P_update = "UPDATE EYEPATIENT SET
-													PAT_FNAME = '$PAT_FNAME',
-													PAT_LNAME = '$PAT_LNAME',
-													PAT_AGE = '$PAT_AGE',
-													PAT_PH = '$PAT_PH',
-													PAT_SEX = '$PAT_SEX',
-													PHY_LICENSE_NUM = '$PHY_LICENSE_NUM',
-													STAFF_LICENSE_NUM = '$STAFF_LICENSE_NUM',
-													PRE_VA_WITH_SPECT_LEFT = '$PRE_VA_WITH_SPECT_LEFT',
-													POST_VA_WITH_SPECT_LEFT = '$POST_VA_WITH_SPECT_LEFT',
-													PRE_VA_WITH_SPECT_RIGHT = '$PRE_VA_WITH_SPECT_RIGHT',
-													POST_VA_WITH_SPECT_RIGHT = '$POST_VA_WITH_SPECT_RIGHT',
-													PRE_VA_NO_SPECT_LEFT = '$PRE_VA_NO_SPECT_LEFT',
-													POST_VA_NO_SPECT_LEFT = '$POST_VA_NO_SPECT_LEFT',
-													PRE_VA_NO_SPECT_RIGHT = '$PRE_VA_NO_SPECT_RIGHT',
-													POST_VA_NO_SPECT_RIGHT = '$POST_VA_NO_SPECT_RIGHT',
-													VISUAL_DISABILITY = '$VISUAL_DISABILITY',
-													DISABILITY_CAUSE = '$DISABILITY_CAUSE',
-													RIGHT_DIAGNOSIS = '$RIGHT_DIAGNOSIS',
-													LEFT_DIAGNOSIS = '$LEFT_DIAGNOSIS',
-													PROCEDURE_TO_DO = '$PROCEDURE_TO_DO'
-													WHERE PAT_ID_NUM = '$PAT_ID'
-													";
+														PAT_FNAME = '$PAT_FNAME',
+													 PAT_LNAME = '$PAT_LNAME',
+													 PAT_AGE = '$PAT_AGE',
+													 PAT_PH = '$PAT_PH',
+													 PAT_SEX = '$PAT_SEX',
+													 PHY_LICENSE_NUM = '$PHY_LICENSE_NUM',
+													 STAFF_LICENSE_NUM = '$STAFF_LICENSE_NUM',
+													 PRE_VA_WITH_SPECT_LEFT = '$PRE_VA_WITH_SPECT_LEFT',
+													 POST_VA_WITH_SPECT_LEFT = '$POST_VA_WITH_SPECT_LEFT',
+													 PRE_VA_WITH_SPECT_RIGHT = '$PRE_VA_WITH_SPECT_RIGHT',
+													 POST_VA_WITH_SPECT_RIGHT = '$POST_VA_WITH_SPECT_RIGHT',
+													 PRE_VA_NO_SPECT_LEFT = '$PRE_VA_NO_SPECT_LEFT',
+													 POST_VA_NO_SPECT_LEFT = '$POST_VA_NO_SPECT_LEFT',
+													 PRE_VA_NO_SPECT_RIGHT = '$PRE_VA_NO_SPECT_RIGHT',
+													 POST_VA_NO_SPECT_RIGHT = '$POST_VA_NO_SPECT_RIGHT',
+													 VISUAL_DISABILITY = '$VISUAL_DISABILITY',
+													 DISABILITY_CAUSE = '$DISABILITY_CAUSE',
+													 RIGHT_DIAGNOSIS = '$RIGHT_DIAGNOSIS',
+													 LEFT_DIAGNOSIS = '$LEFT_DIAGNOSIS',
+													 PROCEDURE_TO_DO = '$PROCEDURE_TO_DO' WHERE PAT_ID_NUM = '$PAT_ID' ";
 											  
 													if ($mydatabase->query($P_update) === TRUE) {
 														//echo "Record updated successfully";
@@ -287,13 +297,13 @@
 												$margin00 = "80%";
 												$margin000 = "50%";
 
-												$E_link = '<span class="fa fa-external-link"></span>';
+												$E_link = '<span class="fa fa-external-link" style="margin-right:5px; "></span>';
 												$PHY_link = "doctors.php?profilepage=".$P_LN;
 												$STAFF_link = "#";
 												
 												//CONTENT
 												echo '<div>
-														<div class="container-fluid">
+														<div class="container-fluid" style="padding:0px;">
 															<h3>'.$P_PPFN.' '.$P_PPLN.'</h3>
 																<div style="background-color: #bbb; margin-right:0px; width:100%;">
 																	<div style="width:45%; float: left; margin:0px;">
@@ -341,11 +351,11 @@
 																	<div class="well" style="width: 100%; float:left; margin:0px;">
 																		<div>
 																			<div style=" width:'.$margin000.'; float: left; font-weight:bold;">'.'Examined by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$PHY_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span>'.$E_link.'</a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$PHY_link.'">'.$E_link.'<span style="color:#000000; text-decoration:none;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span></a></div>
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'"><span style="color:#000000; float:left; margin-right:5px;">'.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'</span>'.$E_link.'</a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'">'.$E_link.'<span style="color:#000000; text-decoration:none;">'.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'</span></a></div>
 																		</div>
 																	</div>
 																</div>
@@ -378,8 +388,8 @@
 												$margin1 = "40%";
 												$margin11 = "60%";
 
-												echo 		'<div style="width:60%; float: left; margin:0px;">
-																<div class="panel panel-default" style="padding-bottom:10px;  margin-right:20px;">
+												echo 		'<div style="width:50%; float: left; margin:0px;">
+																<div class="panel panel-default" style="padding-bottom:10px;">
 																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Visual Problem</div>
 																	<div class="panel-body">
 																		<div class="row" style="margin:0px; padding:5px 10px;">
@@ -397,23 +407,75 @@
 																	</div>
 																</div>
 															</div>
-															<div style="width:40%; float: left; margin:0px;">
+
+															<div style="width:50%; float: left; margin:0px; padding-left:20px;">
 																<div class="panel panel-default" style="padding-bottom:10px;">
-																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Eye Dignosis</div>
-																	<div class="panel-body" style="margin:0px 50px; padding:0px;">
+																	<div class="panel-heading" style="border: 0px; color:#337ab7;">Eye Diagnosis</div>
+																	<div class="panel-body" style="padding:15px;">
 																		<div class="row" style="margin:0px; padding:5px 10px;">
-																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Right Eye'.'</div>
-																			<div style="width:'.$margin11.'; float: left;">'.$dataline["RIGHT_DIAGNOSIS"].'</div>
+																			<div style="width:30%; float:left; font-weight:bold;">'.'Right Eye'.'</div>
+																			<div style="width:70%; float: left;">'.$dataline["RIGHT_DIAGNOSIS"].'</div>
 																		</div>
 																		<div class="row" style="margin:0px; padding:5px 10px;">
-																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Left Eye'.'</div>
-																			<div style="width:'.$margin11.'; float: left;">'.$dataline["LEFT_DIAGNOSIS"].'</div>
+																			<div style="width:30%; float:left; font-weight:bold;">'.'Left Eye'.'</div>
+																			<div style="width:70%; float: left;">'.$dataline["LEFT_DIAGNOSIS"].'</div>
 																		</div>
 																	</div>
 																</div>
-															</div>
-														</div>
+															</div>';
+
+															$S_query = "SELECT * FROM SURGERY WHERE PAT_ID_NUM = '$P_ID' ORDER by SURG_DATE desc";
+															$outsurg = $mydatabase->query($S_query);
+															//echo $S_query;
+
+															if ($outsurg->num_rows>0) {
+
+																echo '<div class="row" style="margin:0px; padding: 0px 0px 20px 0px;"><hr style="border-color:#337ab7; float:left;"></div>';
+
+																echo '<div class="container-fluid" style="padding:0px; float:left; width:100%;">
+																<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center; margin-bottom:10px;">Surgery Transaction Record</div>
+
+																<div class="well" style="width:100%; background-color:#fefefe; float:left; ">
+																<div style="width:100%; float: left;">
+																		<table class="table table-condensed" style="float:left; width:100%; padding-bottom:0px; margin-bottom:0px;">
+															    <thead>
+															      <tr>
+															      		<th>Case Number</th>
+															        <th>IOL</th>
+															        <th>LAB</th>
+															        <th>PF (Others)</th>
+															        <th>Total</th>
+															      </tr>
+															    </thead>
+															    <tbody>';
+
+																		while($datasurg = $outsurg->fetch_assoc()) {
+
+																			$PC_IOL = $datasurg["PC_IOL"];
+																			$PC_LAB = $datasurg["PC_LAB"];
+																			$PC_PF = $datasurg["PC_PF"];
+																			$PC_TOTAL = $PC_IOL+$PC_LAB+$PC_PF;
+
+																		echo '<tr>
+												        <td><a href="surgery.php?profilepage='.$datasurg["CASE_NUM"].'" style="text-decoration:none;"><span class="fa fa-external-link"></span> <span style="color:#000000; margin-left:0px;">'.$datasurg["CASE_NUM"].'</span></a></td>
+												        <td>'."₱ ".number_format($PC_IOL, 2).'</td>
+												        <td>'."₱ ".number_format($PC_LAB, 2).'</td>
+												        <td>'."₱ ".number_format($PC_PF, 2).'</td>
+												        <td>'."₱ ".number_format($PC_TOTAL, 2).'</td>
+													      </tr>';
+																	}	    
+																
+																		echo '</tbody>
+																	  </table>
+																			
+																	</div>
+																</div>
+																</div>';
+															}
+												
+													echo	'</div>
 													</div>';
+
 													//CONTENT END
 
 												//BUTTONS AND LINKS
@@ -468,11 +530,11 @@
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 20px;">
 																					<label for="PAT_FNAME" style="width: 40%; float: left; ">First Name<span style="color: #d9534f">*</span> </label>
-																					<input placeholder="Patient Name" type="text" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 60%; float: left;" required >
+																					<input pattern="[a-zA-Z ]*" placeholder="Patient Name" class="form-control" id="PAT_FNAME" maxlength="'.$FN_LENG.'" name="PAT_FNAME" value="'.$dataline["PAT_FNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="PAT_LNAME" style="width: 40%; float: left; ">Last Name<span style="color: #d9534f">*</span> </label>
-																					<input placeholder="Patient Surname" type="text" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 60%; float: left;" required >
+																					<input pattern="[a-zA-Z ]*" placeholder="Patient Surname" class="form-control" id="PAT_LNAME" maxlength="'.$LN_LENG.'" name="PAT_LNAME" value="'.$dataline["PAT_LNAME"].'" style="width: 60%; float: left;" required >
 																				</div>
 																			</div>
 																		</div>
@@ -483,41 +545,23 @@
 																					<div class="well"  style="float:left; padding: 20px 20px 0px 20px; width:100%; margin-bottom:0px;">
 																					<div class="form-group" style="width:100%; float:left;">
 																						<label class="control-label" for="P_AGE" style="float:left; width:50%;">Age:<span style="color: #d9534f">*</span></label>
-																						<div  style="width: 40%; float: left;">
-																							<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" value="'.$dataline["PAT_AGE"].'" required>
+																						<div style="width: 40%; float: left;">
+																							<input pattern="[a-zA-Z0-9 +-,.]*" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" value="'.$dataline["PAT_AGE"].'" required>
 																						</div>
 																					</div>
 																					<div class="form-group" style="width:100%; float:left;">
 																						<label class="control-label" for="P_SEX" style="float:left; width:50%">Sex:<span style="color: #d9534f">*</span></label>
 																						<div style="width: 50%; float: left; ">';
-
-																							if($dataline["PAT_SEX"]=="M"){
-																								$S_M = "selected";
-																								$S_F = "";
-																							}else{
-																								$S_M = "";
-																								$S_F = "selected";
-																							}
-
-																							echo '<label class="radio-inline"><input id="MALE" name="P_SEX" type="radio" value="M" '.$S_M.' '.$S_F.'>Male</label>';
-																							echo '<label class="radio-inline"><input id="FEMALE" name="P_SEX" type="radio" value="F" '.$S_M.' '.$S_F.'>Female</label>';
+																							echo '<label class="radio-inline"><input id="MALE" name="P_SEX" type="radio" value="M" required>Male</label>';
+																							echo '<label class="radio-inline"><input id="FEMALE" name="P_SEX" type="radio" value="F" >Female</label>';
 
 																						echo '</div>
 																					</div>
 																					<div class="form-group" style="width:100%; float:left;">
 																						<label class="control-label" for="P_PH" style="float:left; width:50%;">Has PhilHealth?<span style="color: #d9534f">*</span></label>
 																						<div style="width: 50%; float: left;">';
-
-																							if($dataline["PAT_PH"]=="Y"){ 
-																								$P_Y = "selected";
-																								$P_N = "";
-																							}else{
-																								$P_Y = "";
-																								$P_N = "selected";
-																							}
-
-																							echo '<label class="radio-inline"><input id="P_PH_Y" name="P_PH" type="radio" value="Y" '.$P_Y.' '.$P_N.'>Yes</label>';
-																							echo '<label class="radio-inline"><input id="P_PH_N" name="P_PH" type="radio" value="N" '.$P_Y.' '.$P_N.'>No</label>';
+																							echo '<label class="radio-inline"><input id="P_PH_Y" name="P_PH" type="radio" value="Y" required>Yes</label>';
+																							echo '<label class="radio-inline"><input id="P_PH_N" name="P_PH" type="radio" value="N" >No</label>';
 
 																						echo '</div>
 																					</div>
@@ -542,26 +586,26 @@
 																	</div>
 																	<div class="container-fluid" style="float:left; width:100%; margin:0px; padding:10px 0px 0px 15px;">
 
-																	<div class="container-fluid well" style="margin:10px 0px 0px 0px; width:100%; float:left;  padding-bottom:5px; background-color:#f9f9f9; border-color:#f2f2f2;">
+																	<div class="container-fluid well" style="margin:10px 0px 0px 0px; width:100%; float:left; padding-bottom:5px; background-color:#f9f9f9;">
 																		<div class="form-group" style="width:100%; float:left;">
-																			<label class="control-label" for="P_PHYLIC" style="float:left; width:175px; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
-																			<div style="width: 200px; float: left;">';
-
-																		echo '<input title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" required>
+																			<label class="control-label" for="P_PHYLIC" style="float:left; width:40%; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
+																			<div style=" width:60%; float: left;">';
+																		echo '<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
-																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:175px; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
-																			<div style="width: 200px; float: left;">
-																				<input class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" required>
+																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:40%; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
+																			<div style="width: 60%; float: left;">
+																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																	</div>
 																</div>
-																<div class="container-fluid" style="float:left; width: 65%; margin: 20px 0px 10px 0px;">
-																	<div class="panel-group" style="margin:0px; margin-bottom:0px;">
-																		<div class="panel panel-default" style="">
-																			<div class="panel-heading" style="color:#999999;">Visual Acuity</div>
+
+																<div style="float:left; width: 100%; padding:20px 0px 10px 15px;">
+																	<div class="panel-group" style="margin:0px;">
+																		<div class="panel panel-default" style="margin:0px;">
+																			<div class="panel-heading" style="color:#337ab7;">Visual Acuity</div>
 																			<div class="panel-body" style="padding-top:0px; padding-bottom:5px;">
 																				<table class="table" style="margin-top:0px; ">
 																					<thead>
@@ -574,7 +618,7 @@
 																						<tr>
 																							<td><strong>Left Eye without Spectacles</strong></td>
 																							<td>
-																								<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -589,7 +633,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 100px;" >';
+																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 120px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -609,7 +653,7 @@
 																						<tr>
 																							<td><strong>Right Eye without Spectacles</strong></td>
 																							<td>
-																								<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -624,7 +668,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 100px;">';
+																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 120px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -645,7 +689,7 @@
 																						<tr>
 																							<td><strong>Left Eye with Spectacles</strong></td>
 																							<td>
-																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) {
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -660,7 +704,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 100px;">';
+																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 120px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -680,7 +724,7 @@
 																						<tr>
 																							<td><strong>Right Eye with Spectacles</strong></td>
 																							<td>
-																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 100px;" required>';
+																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -695,7 +739,7 @@
 																								echo '</select>
 																							</td>
 																							<td>
-																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 100px;" >';
+																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 120px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
 																									if($j==0){
 																										echo "<option>"."n/a"."</option>";
@@ -719,37 +763,44 @@
 																	<!-- VISUAL ACUITY END -->
 																</div>
 
-																<div class="container-fluid" style="width:35%; float:left; padding:0px;">
-																	<div class="panel panel-default" style="margin-top:20px; width:100%;">
-																		<div class="panel-heading" style="color:#999999;">Eye Diagnosis</div>
+
+																<div style="width:50%; float:left; padding-left:15px;">
+																	<div class="panel panel-default" style="margin-top:10px; width:100%;">
+
+																		<div class="panel-heading" style="color:#337ab7;">Eye Diagnosis</div>
 																		<div class="panel-body" style="">
 																			<!-- RIGHT EYE DIAGNOSIS -->
 																			<div class="form-group" style="width:100%; float:left;">
-																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Right Eye</label>
-																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag" value="'.$dataline["RIGHT_DIAGNOSIS"].'">
+																				<label class="control-label" for="P_RDiag" style="float:left; width:40%; padding-left:10px;">Right Eye</label>
+																				<div style="width: 60%; float:left; padding-right:10px;">
+																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag" value="'.$dataline["RIGHT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
 																			<!-- RIGHT EYE DIAGNOSIS END -->
 
 																			<!-- LEFT EYE DIAGNOSIS -->
 																			<div class="form-group" style="width:100%; float:left;">
-																				<label class="control-label" for="P_RDiag" style="float:left; width:40%;">Left Eye</label>
-																				<div style="width: 60%; float:left;">
-																					<input class="form-control" id="P_LDiag" placeholder="Left eye diagnois" maxlength="30" name="P_LDiag" value="'.$dataline["LEFT_DIAGNOSIS"].'">
+																				<label class="control-label" for="P_RDiag" style="float:left; width:40%; padding-left:10px;">Left Eye</label>
+																				<div style="width: 60%; float:left; padding-right:10px;">
+																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" class="form-control" id="P_LDiag" placeholder="Left eye diagnois" maxlength="30" name="P_LDiag" value="'.$dataline["LEFT_DIAGNOSIS"].'">
 																				</div>
 																			</div>
 																			<!-- LEFT EYE DIAGNOSIS END -->
 																		</div>
+
 																	</div>
 																</div>
-																<div class="container-fluid" style="float:left; width:100%; margin:0px; padding:10px 0px 0px 15px;">
-																	<div class="container-fluid well" style="margin:0px; width:100%; float:left;  padding-bottom:5px; background-color:#ffffff; border-color:#f2f2f2;">
+
+
+																<div style="width:50%; float: left; ">
+																<div class="container-fluid" style="float:left; width:100%; margin:0px; padding:10px 0px 0px 20px;">
+																	<div class="container-fluid well" style="margin:0px; width:100%; float:left;  padding-bottom:5px; background-color:#f9f9f9;">
+
 																		<!-- VISUAL DISABILITY -->
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_VD" style="float:left; width:170px;">Visual Disability </label>
 																			<div class="col-md-4" style="width: 200px;">
-																				<input type="text" class="form-control" id="P_VD" placeholder="Eye disability..." maxlength="15" name="P_VD" value="'.$dataline["VISUAL_DISABILITY"].'">
+																				<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" type="text" class="form-control" id="P_VD" placeholder="Eye disability..." maxlength="15" name="P_VD" value="'.$dataline["VISUAL_DISABILITY"].'">
 																			</div>
 																		</div>
 																		<!-- VISUAL DISABILITY -->
@@ -758,7 +809,7 @@
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_DC" style="float:left; width:170px;">Cause </label>
 																			<div class="col-md-6" style="width: 200px;">
-																				<input type="text" class="form-control" id="P_DC" placeholder="Cause of disability..." maxlength="30" name="P_DC" value="'.$dataline["DISABILITY_CAUSE"].'">
+																				<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" type="text" class="form-control" id="P_DC" placeholder="Cause of disability..." maxlength="30" name="P_DC" value="'.$dataline["DISABILITY_CAUSE"].'">
 																			</div>
 																		</div>
 																		<!-- CAUSE OF DISABILITY END -->
@@ -767,12 +818,16 @@
 																		<div class="form-group row">
 																			<label class="control-label col-md-2" for="P_PROC" style="float:left; width:170px;">Procedure </label>
 																			<div class="col-md-4" style="width: 200px;">
-																				<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do..." maxlength="15" name="P_PROC" value="'.$dataline["PROCEDURE_TO_DO"].'">
+																				<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" type="text" class="form-control" id="P_PROC" placeholder="Procedure to do..." maxlength="15" name="P_PROC" value="'.$dataline["PROCEDURE_TO_DO"].'">
 																			</div>
 																		</div>
 																		<!-- PROCEDURE END -->
+
 																	</div>
 																</div>
+																</div>
+
+
 															</div>';
 															//EDIT FORM END
 												echo 	'</div>
