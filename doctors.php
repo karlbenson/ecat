@@ -193,7 +193,7 @@
 															<div class="panel panel-default" style="padding-bottom:10px;">
 																<div class="panel-heading" id="tophead1">Surgeries Attended</div>
 																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																		<table id="docdat2" class="table table-striped row">
+																		<table class="table table-striped row">
 																		<thead>
 																			<tr id="tophead">
 																			<td style="color:#ffffff">'.'Date'.'</th>
@@ -341,16 +341,6 @@
 			"sDom":"ltipr",
 			"columns": [
 			null,
-		    null,
-		    null,
-		    null,
-		    { "orderable": false }
-  			],
-		});
-
-	var myTable=$('#docdat2').DataTable({
-			"search":false,
-			"columns": [
 		    null,
 		    null,
 		    null,
