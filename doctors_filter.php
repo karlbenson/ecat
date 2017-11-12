@@ -6,7 +6,7 @@
 	echo '<div class="row" id="criteria_buttons">';
 	
 	// DOWNLOAD
-	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
+	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" id="go" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
 
 	//REVERT
 	$where = "'doctors.php'";

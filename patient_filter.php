@@ -3,10 +3,13 @@
 
 	// BUTTION
 	echo '<div class="row" id="criteria_buttons">';
+	
+	// DOWNLOAD
+	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" id="go" name="downloadPatients" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
 
 	//REVERT
 	$where = "'patient.php'";
-	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
+	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
 
 	// FILTER
 	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" data-toggle="collapse" data-target="#upper" id="go"><span class="fa fa-filter" style="font-size:16px; margin-right:5px;"></span>New Filter</button></div>'; //FILTER END
