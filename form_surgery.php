@@ -434,7 +434,7 @@
 												<div style="float:left; width:50%; padding:0px 10px 0px 15px;">
 
 												<div class="well" style="background-color:#ffffff; padding-bottom:0px;">
-												<div style="margin-bottom:20px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
+												<div style="margin-bottom:50px; opacity: 0.7; font-weight:bold; color:#337ab7 ;">
 													Notre Dame de Chartres Hospital Accounts
 													<hr style="margin-top:0px;">
 												</div>
@@ -459,7 +459,7 @@
 
 												<!-- NDDCH SUPP -->
 												<div style="width:100%; float:left; padding:0px 15px;">
-												<div class="well" style="background-color:#f9f9f9; padding-bottom:0px;">
+												<div class="well" style="background-color:#f9f9f9; padding-bottom:10px;">
 												<div class="form-group row">
 														<div style="width:40%; float:left; font-weight:bold; padding-left:20px;">Supplies</div>
 														<div class="input-group money" style="width:60%; float:left; padding:5px;">
@@ -517,6 +517,12 @@
 													<div class="input-group money" style="width:50%; float:left; padding:5px;">
 														<span class="input-group-addon"><strong>₱</strong></span>
 														<input type="text" class="form-control numberOnly" id="SPOIOL" placeholder="Sponsored IOL" maxlength="<?php echo $PC_MAX; ?>" name="SPOIOL" style="width:130px;">
+													</div>
+
+													<div style="width:50%; float:left; font-weight:bold; padding-left:20px;">Others</div>
+													<div class="input-group money" style="width:50%; float:left; padding:5px;">
+														<span class="input-group-addon"><strong>₱</strong></span>
+														<input type="text" class="form-control numberOnly" id="SPOOTHERS" placeholder="Sponsored Misc." maxlength="<?php echo $PC_MAX; ?>" name="SPOOTHERS" style="width:130px;">
 													</div>
 													</div>
 												</div>
