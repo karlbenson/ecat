@@ -349,7 +349,7 @@
 		});
 
 	var myTable=$('#docdat2').DataTable({
-			"search":true,
+			"search":false,
 			"columns": [
 		    null,
 		    null,
@@ -362,8 +362,5 @@
 		myTable.search($(this).val()).draw();
 	})
 	
-	$("#download").click(function (e) {
-		window.open('data:application/vnd.ms-excel,' + $('#tableCon').html());
-		e.preventDefault();
-	});
+	
 </script>

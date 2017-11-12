@@ -4,10 +4,9 @@
 
 	// BUTTION
 	echo '<div class="row" id="criteria_buttons">';
-
 	
-	// print
-	echo '<div style="float: right; margin: 0px 30px 10px 0px;"><button type="button" class="btn" id="download" ><span class="fa fa-file-excel-o" style="font-size:16px; margin-right:5px;"></span>Download</button></div>'; //SEARCH END
+	// DOWNLOAD
+	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
 
 	//REVERT
 	$where = "'doctors.php'";
@@ -74,5 +73,8 @@
 			</form>
 		</div>';
 	// FILTER END
+	
 
 ?>
+
+
