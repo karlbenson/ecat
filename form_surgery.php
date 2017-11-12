@@ -235,7 +235,7 @@
 													<div class="col-md-7"  style="float:left; width:250px;">
 														<div class="form-group">
 															<div class='input-group date' id='datetimepicker'>
-																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY'>
+																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY' value= '<?php echo date("m/d/y"); ?>' >
 																<span class="input-group-addon">
 																	<span class="fa fa-calendar" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span>
 																</span>
