@@ -54,14 +54,14 @@
 											<!-- FIRST NAME -->
 											<div style="width: 175px; float: left; margin-right:10px;">
 												<label class="sr-only" for="F_NAME" required >First Name</label>
-												<input type="text" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" style="float: left;" required >
+												<input pattern="[a-zA-Z ]*" class="form-control" id="F_NAME" placeholder="First Name"  maxlength="<?php echo $FN_MAX; ?>" name="F_NAME" style="float: left;" required >
 											</div>
 											<!-- FIRST NAME END -->
 
 											<!-- LAST NAME -->
 											<div style="width: 175px; float: left; margin-right:10px;">
 												<label class="sr-only" for="L_NAME">Last Name</label>
-												<input type="text" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
+												<input pattern="[a-zA-Z ]*" class="form-control" id="L_NAME" placeholder="Last Name"  maxlength="<?php echo $LN_MAX; ?>" name="L_NAME" required>
 											</div>
 											<!-- LAST NAME END -->
 										</div>
@@ -72,7 +72,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number <span style="color: #d9534f">*</span></label>
 										<div class="col-md-2" style="width: 115px; float: left;">
-											<input pattern="\d{7}" title="License Number ranges from 0000000-9999999." class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
+											<input pattern="\d{5,7}" class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
 										</div>
 									</div>
 									<!-- LICENSE NUMBER END -->
@@ -81,7 +81,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="ADDRESS" style="float:left; width:170px;">Address</label>
 										<div class="col-md-6" style="width: 500px; float: left;">
-											<input type="text" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS">
+											<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" class="form-control" id="ADDRESS" placeholder="Enter Home or Work Address" maxlength="<?php echo $ADDR_MAX; ?>" name="ADDRESS">
 										</div>
 									</div>
 									<!-- ADDRESS END -->
