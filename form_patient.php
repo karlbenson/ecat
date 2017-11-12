@@ -80,11 +80,11 @@
 									<div class="form-group row">
 										<label class="control-label col-md-3" for="P_ID" style="float:left; width:170px;">Patient<span style="color: #d9534f">*</span> </label>
 										<div class="" style="width: 180px; float: left; margin-right:10px;">
-											<input type="text" class="form-control" id="P_ID" name="P_ID"  placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" value=<?php echo $NEXT_ID ?> required readonly>
+											<input pattern="^(\d{5,7})(([ ][-][ ][a-zA-Z ]*)*)$" class="form-control" id="P_ID" name="P_ID"  placeholder="Patient ID" maxlength="<?php echo $ID_LENG; ?>" value=<?php echo $NEXT_ID ?> required readonly>
 										</div>
 			  
 										<div class="" style="width: 300px; float: left; margin-right:10px;">
-											<input type="text" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
+											<input pattern="^(\d{5,7})(([ ][-][ ][a-zA-Z ]*)*)$" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
 										</div>
 									</div>
 									<!-- PATIENT END-->
@@ -105,7 +105,7 @@
 											<div class="form-group row">
 												<label class="control-label col-md-2" for="P_AGE" style="float:left; width:90px;">Age:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-3" style="width: 180px; float: left;">
-													<input type="text" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
+													<input pattern="[a-zA-Z0-9 +-,.]*" class="form-control" id="P_AGE" name="P_AGE" placeholder="Patient Age" maxlength="6" required>
 												</div>
 											</div>
 											<div class="form-group row" style="margin-bottom:6px;">
@@ -137,7 +137,7 @@
 												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:<span style="color: #d9534f">*</span> </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<input pattern="^(\d{5,7})(([ ][-][ ][a-zA-Z ]*)*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
 													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -223,7 +223,7 @@
 															<label class="control-label col-md-1" for="P_VD" style="float:left; width:35%; float:left;">Visual Disability </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_VD" placeholder="Patient's Visual Disability" maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
+																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_VD" placeholder="Patient's Visual Disability" maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
 															</div>
 														</div>
 														</div>
@@ -233,7 +233,7 @@
 															<label class="control-label col-md-1" for="P_DC" style="float:left; width:35%; float:left;">Cause </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_DC" placeholder="Cause of Disability" maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
+																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_DC" placeholder="Cause of Disability" maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
 															</div>
 															</div>
 														</div>
@@ -244,7 +244,7 @@
 															<label class="control-label col-md-1" for="P_PROC" style="float:left; width:35%;">Procedure </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 																<div style="max-width:300px;">
-																	<input type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
+																	<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
 																</div>
 															</div>
 														</div>
@@ -266,7 +266,7 @@
 															<label class="control-label col-md-1" for="P_RDiag" style="float:left; width:40%; float:left;">Right Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 																<div style="max-width:300px;">
-																	<input type="text" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag">
+																	<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_RDiag" placeholder="Right eye diagnosis" maxlength="30" name="P_RDiag">
 																</div>
 															</div>
 														</div>
@@ -277,7 +277,7 @@
 															<label class="control-label col-md-1" for="P_LDiag" style="float:left; width:40%; float:left;">Left Eye</label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input type="text" class="form-control" id="P_LDiag" placeholder="Left eye diagnosis" maxlength="30" name="P_LDiag">
+																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" class="form-control" id="P_LDiag" placeholder="Left eye diagnosis" maxlength="30" name="P_LDiag">
 															</div>
 															</div>
 														</div>
