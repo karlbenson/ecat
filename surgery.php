@@ -97,19 +97,20 @@
 													$S_DATE = $S_DATE1[2].'-'.$S_DATE1[0].'-'.$S_DATE1[1];
 													$S_R = $_POST["REM"];                                 
 													$S_TA = $_POST["TANES"];
-													$S_IOL = $_POST["IOLPOWER"];
-													$PC_IOL = $_POST["PC_IOL"];
-													$PC_L = $_POST["PC_LAB"];
-													$PC_PF = $_POST["PC_PF"];
-													$SP_IOL = $_POST["SPO_IOL"];
-													$C_HB = $_POST["CSF_HBILL"];
-													$C_S = $_POST["CSF_SUPPLIES"];
-													$C_L = $_POST["CSF_LAB"];
-													$N_RA = $_POST["NDDCH_RA"];
-													$N_ZEISS = $_POST["NDDCH_ZEISS"];
-													$N_SUPP = $_POST["NDDCH_SUPPLIES"];
-													$L_PF = $_POST["LF_PF"];
-													$L_CPC = $_POST["LF_CPC"];
+													$S_IOL = str_replace(",", "", $_POST["IOLPOWER"]);
+													$PC_IOL = str_replace(",", "", $_POST["PC_IOL"]);
+													$PC_L = str_replace(",", "", $_POST["PC_LAB"]);
+													$PC_PF = str_replace(",", "", $_POST["PC_PF"]);
+													$SP_IOL = str_replace(",", "", $_POST["SPO_IOL"]);
+													$SP_OTHERS = str_replace(",", "", $_POST["SPO_OTHERS"]);
+													$C_HB = str_replace(",", "", $_POST["CSF_HBILL"]);
+													$C_S = str_replace(",", "", $_POST["CSF_SUPPLIES"]);
+													$C_L = str_replace(",", "", $_POST["CSF_LAB"]);
+													$N_RA = str_replace(",", "", $_POST["NDDCH_RA"]);
+													$N_ZEISS = str_replace(",", "", $_POST["NDDCH_ZEISS"]);
+													$N_SUPP = str_replace(",", "", $_POST["NDDCH_SUPPLIES"]);
+													$L_PF = str_replace(",", "", $_POST["LF_PF"]);
+													$L_CPC = str_replace(",", "", $_POST["LF_CPC"]);
 
 													$SS_ID = $_POST["PAT_ID"];
 													$SP_LIST = explode(" - ",$SS_ID);
@@ -176,7 +177,7 @@
 													}
 
 													$toupdate = $_POST["surgery_update"];
-													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
+													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', SPO_OTHERS = '$SP_OTHERS', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
 													if ($mydatabase->query($S_update) === TRUE) {
 														//echo "Record updated successfully";
 													} else {
@@ -1138,11 +1139,23 @@
 
 																			<div style="width:50%; float:left;">
 																				<div class="well" style="width:100%; float:left;">
+
+																				<div style="float:left; width:100%; margin-bottom:10px;">
 																					<label for="SPO_IOL" style="width: 50%; float: left; ">Sponsored IOL</label>
 																					<div class="input-group money" style="width:150px; float:left;">
 																					<span class="input-group-addon"><strong>₱</strong></span>
 																					<input placeholder="Sponsored" type="text" class="form-control numberOnly" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" readonly>
 																					</div>
+																				</div>
+
+																				<div style="float:left; width:100%;">
+																					<label for="SPO_OTHERS" style="width: 50%; float: left; ">Others</label>
+																					<div class="input-group money" style="width:150px; float:left;">
+																					<span class="input-group-addon"><strong>₱</strong></span>
+																					<input placeholder="Sponsored" type="text" class="form-control numberOnly" id="SPO_OTHERS" maxlength="'.$PC_MAX.'" name="SPO_OTHERS" value="'.$dataline["SPO_OTHERS"].'" readonly>
+																					</div>
+																				</div>
+
 																				</div>
 																			</div>
 
@@ -1335,6 +1348,180 @@ $(document).ready(function(){
 	$('#dataseek').keyup(function(){
 		myTable.search($(this).val()).draw();
 	})
+</script>
+
+<script>
+
+	$(".money > div").click(function() {
+    $(".money > input:eq("+$(".money > div").index(this)+")").focus();
+});
+
+	$(".numberOnly").on("keydown", function(e) {
+		
+	  if (this.selectionStart || this.selectionStart == 0) {
+		// selectionStart wont work in IE < 9
+		
+		var key = e.which;
+		var prevDefault = true;
+		
+		var thouSep = ",";  // your seperator for thousands
+		var deciSep = ".";  // your seperator for decimals
+		var deciNumber = 2; // how many numbers after the comma
+		
+		var thouReg = new RegExp(thouSep,"g");
+		var deciReg = new RegExp(deciSep,"g");
+		
+		function spaceCaretPos(val, cPos) {
+			/// get the right caret position without the spaces
+			
+			if (cPos > 0 && val.substring((cPos-1),cPos) == thouSep)
+			  cPos = cPos-1;
+			
+			if (val.substring(0,cPos).indexOf(thouSep) >= 0) {
+			  cPos = cPos - val.substring(0,cPos).match(thouReg).length;
+			}
+			
+			return cPos;
+		}
+		
+		function spaceFormat(val, pos) {
+			/// add spaces for thousands
+			
+			if (val.indexOf(deciSep) >= 0) {
+				var comPos = val.indexOf(deciSep);
+				var int = val.substring(0,comPos);
+				var dec = val.substring(comPos);
+			} else{
+				var int = val;
+				var dec = "";
+			}
+			var ret = [val, pos];
+			
+			if (int.length > 3) {
+				
+				var newInt = "";
+				var spaceIndex = int.length;
+				
+				while (spaceIndex > 3) {
+					spaceIndex = spaceIndex - 3;
+					newInt = thouSep+int.substring(spaceIndex,spaceIndex+3)+newInt;
+					if (pos > spaceIndex) pos++;
+				}
+				ret = [int.substring(0,spaceIndex) + newInt + dec, pos];
+			}
+			return ret;
+		}
+		
+		$(this).on("keyup", function(ev) {
+			
+			if (ev.which == 8) {
+				// reformat the thousands after backspace keyup
+				
+				var value = this.value;
+				var caretPos = this.selectionStart;
+				
+				caretPos = spaceCaretPos(value, caretPos);
+				value = value.replace(thouReg, "");
+				
+				var newValues = spaceFormat(value, caretPos);
+				this.value = newValues[0];
+				this.selectionStart = newValues[1];
+				this.selectionEnd   = newValues[1];
+			}
+		});
+		
+		if ((e.ctrlKey && (key == 65 || key == 67 || key == 86 || key == 88 || key == 89 || key == 90)) ||
+		   (e.shiftKey && key == 9)) // You don"t want to disable your shortcuts!
+			prevDefault = false;
+		
+		if ((key < 37 || key > 40) && key != 8 && key != 9 && prevDefault) {
+			e.preventDefault();
+			
+			if (!e.altKey && !e.shiftKey && !e.ctrlKey) {
+			
+				var value = this.value;
+				if ((key > 95 && key < 106)||(key > 47 && key < 58) ||
+				  (deciNumber > 0 && (key == 110 || key == 188 || key == 190))) {
+					
+					var keys = { // reformat the keyCode
+			  48: 0, 49: 1, 50: 2, 51: 3,  52: 4,  53: 5,  54: 6,  55: 7,  56: 8,  57: 9,
+			  96: 0, 97: 1, 98: 2, 99: 3, 100: 4, 101: 5, 102: 6, 103: 7, 104: 8, 105: 9,
+			  110: deciSep, 188: deciSep, 190: deciSep
+					};
+					
+					var caretPos = this.selectionStart;
+					var caretEnd = this.selectionEnd;
+					
+					if (caretPos != caretEnd) // remove selected text
+					value = value.substring(0,caretPos) + value.substring(caretEnd);
+					
+					caretPos = spaceCaretPos(value, caretPos);
+					
+					value = value.replace(thouReg, "");
+					
+					var before = value.substring(0,caretPos);
+					var after = value.substring(caretPos);
+					var newPos = caretPos+1;
+					
+					if (keys[key] == deciSep && value.indexOf(deciSep) >= 0) {
+						if (before.indexOf(deciSep) >= 0) newPos--;
+						before = before.replace(deciReg, "");
+						after = after.replace(deciReg, "");
+					}
+					var newValue = before + keys[key] + after;
+					
+					if (newValue.substring(0,1) == deciSep) {
+						newValue = "0"+newValue;
+						newPos++;
+					}
+					
+					while (newValue.length > 1 && newValue.substring(0,1) == "0" && newValue.substring(1,2) != deciSep) {
+						newValue = newValue.substring(1);
+						newPos--;
+					}
+					
+					if (newValue.indexOf(deciSep) >= 0) {
+						var newLength = newValue.indexOf(deciSep)+deciNumber+1;
+						if (newValue.length > newLength) {
+						  newValue = newValue.substring(0,newLength);
+						}
+					}
+					
+					newValues = spaceFormat(newValue, newPos);
+					
+					this.value = newValues[0];
+					this.selectionStart = newValues[1];
+					this.selectionEnd   = newValues[1];
+				}
+			}
+		}
+		
+		$(this).on("blur", function(e) {
+			
+			if (deciNumber > 0) {
+				var value = this.value;
+				
+				var noDec = "";
+				for (var i = 0; i < deciNumber; i++) noDec += "0";
+				
+				if (value == "0" + deciSep + noDec) {
+			this.value = ""; //<-- put your default value here
+		  } else if(value.length > 0) {
+					if (value.indexOf(deciSep) >= 0) {
+						var newLength = value.indexOf(deciSep) + deciNumber + 1;
+						if (value.length < newLength) {
+						  while (value.length < newLength) value = value + "0";
+						  this.value = value.substring(0,newLength);
+						}
+					}
+					else this.value = value + deciSep + noDec;
+				}
+			}
+		});
+	  }
+	});
+
+	$(".price > input:eq(0)").focus();
 </script>
 
 <?php  ?>
