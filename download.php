@@ -220,7 +220,7 @@
 			csv.push(row.join(","));        
 		}
 		// Download CSV file
-		downloadCSV(csv.join("\n"), Math.floor((Math.random() * 9999999999) + 1000000000) + ".csv" );
+		downloadCSV(csv.join("\n"), "EYE-" + Math.floor((Math.random() * 9999999999) + 1000000000) + ".csv" );
 		window.history.back();
 </script> 
 
