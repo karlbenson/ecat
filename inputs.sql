@@ -163,34 +163,34 @@ INSERT INTO STAFF VALUES (4972283,'Riley','Hogan');
 
 
 
-INSERT INTO DOCTOR VALUES ('1135008','Nathaniel','Bell','318 S. Evergreen Ave. Carmel, NY 10512','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('5259438','Curtis','Weber','83 Wayne St. Winter Springs, FL 32708','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('8981370','Julius','Underwood','83 Wayne St. Winter Springs, FL 32708','Internist', '');
-INSERT INTO DOCTOR VALUES ('9566286','Jackie','Wendy','7404 Indian Summer Ave. Chelsea, MA 02150','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('6887802','Kelley','Kayla','8113 S. Augusta Court York, PA 17402','Internist', '');
-INSERT INTO DOCTOR VALUES ('1191176','Mccormick','Douglas','9762 N. East St. North Bergen, NJ 07047','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('9490075','Love','Martin','8113 S. Augusta Court York, PA 17402','Ophtalmologist', '');
-INSERT INTO DOCTOR VALUES ('3384344','Baldwin','Curtis','48 W. Shipley St. Downingtown, PA 19335','Ophtalmologist', '');
-INSERT INTO DOCTOR VALUES ('3907025','Baldwin','Wendy','91 East Longfellow St. Saint Cloud, MN 56301','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('1251107','Baldwin','Estelle','9195 S. Rockledge Street Spring Hill, FL 34608','Anesthesiologist', '');
-INSERT INTO DOCTOR VALUES ('6612465','Alvarado','Alvarado','9195 S. Rockledge Street Spring Hill, FL 34608','Anesthesiologist', '');
-INSERT INTO DOCTOR VALUES ('6651070','Brandi','Kayla','7677 Smoky Hollow Avenue Annapolis, MD 21401','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('5873227','Jackie','Derek','7645 Annadale Ave. Londonderry, NH 03053','Internist', '');
-INSERT INTO DOCTOR VALUES ('8102196','Lena','Bryan','468 Heather St. Suite 5 Desoto, TX 75115','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('6681511','Hamilton','Hamilton','7696 Arnold Dr. Richardson, TX 75080','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('5605387','Andrews','Sabrina','8906 North Drive Astoria, NY 11102','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('3857584','Bell','Homer','240 Lincoln Street Rochester, NY 14606','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('4253434','Bennie','Lamar','17 Beacon Drive Bethlehem, PA 18015','Surgeon', '');
-INSERT INTO DOCTOR VALUES ('1766540','Colleen','Nathaniel','7404 Indian Summer Ave. Chelsea, MA 02150','Ophtalmologist', '');
-INSERT INTO DOCTOR VALUES ('4524348','Gregory','Underwood','7214 Marsh St. Kernersville, NC 27284','Ophtalmologist', '');
-INSERT INTO DOCTOR VALUES ('5302785','Wood','Trevor','8625 Bellevue Ave. Canal Winchester, OH 43110','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('6429072','Alvarado','Gilbert','83 Wayne St. Winter Springs, FL 32708','Anesthesiologist', '');
-INSERT INTO DOCTOR VALUES ('4056963','Love','Joey','9762 N. East St. North Bergen, NJ 07047','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('8064432','Camille','Guerrero','468 Heather St. Suite 5 Desoto, TX 75115','Anesthesiologist', '');
-INSERT INTO DOCTOR VALUES ('5511434','Colleen','Camille','39 Catherine Street Pataskala, OH 43062','Ophtalmologist', '');
-INSERT INTO DOCTOR VALUES ('9709798','Angelina','Gross','83 Wayne St. Winter Springs, FL 32708','Anesthesiologist', '');
-INSERT INTO DOCTOR VALUES ('7173475','Bryan','Christie','7601 Piper Avenue Cordova, TN 38016','Pediatrician', '');
-INSERT INTO DOCTOR VALUES ('5927963','Jackie','Nathaniel','90 Beacon St. Buford, GA 30518','Surgeon', '');
+INSERT INTO DOCTOR VALUES ('1135008','Nathaniel','Bell','318 S. Evergreen Ave. Carmel, NY 10512','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('5259438','Curtis','Weber','83 Wayne St. Winter Springs, FL 32708','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('8981370','Julius','Underwood','83 Wayne St. Winter Springs, FL 32708','Internist', 'T');
+INSERT INTO DOCTOR VALUES ('9566286','Jackie','Wendy','7404 Indian Summer Ave. Chelsea, MA 02150','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('6887802','Kelley','Kayla','8113 S. Augusta Court York, PA 17402','Internist', 'T');
+INSERT INTO DOCTOR VALUES ('1191176','Mccormick','Douglas','9762 N. East St. North Bergen, NJ 07047','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('9490075','Love','Martin','8113 S. Augusta Court York, PA 17402','Ophtalmologist', 'T');
+INSERT INTO DOCTOR VALUES ('3384344','Baldwin','Curtis','48 W. Shipley St. Downingtown, PA 19335','Ophtalmologist', 'T');
+INSERT INTO DOCTOR VALUES ('3907025','Baldwin','Wendy','91 East Longfellow St. Saint Cloud, MN 56301','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('1251107','Baldwin','Estelle','9195 S. Rockledge Street Spring Hill, FL 34608','Anesthesiologist', 'T');
+INSERT INTO DOCTOR VALUES ('6612465','Alvarado','Alvarado','9195 S. Rockledge Street Spring Hill, FL 34608','Anesthesiologist', 'T');
+INSERT INTO DOCTOR VALUES ('6651070','Brandi','Kayla','7677 Smoky Hollow Avenue Annapolis, MD 21401','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('5873227','Jackie','Derek','7645 Annadale Ave. Londonderry, NH 03053','Internist', 'T');
+INSERT INTO DOCTOR VALUES ('8102196','Lena','Bryan','468 Heather St. Suite 5 Desoto, TX 75115','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('6681511','Hamilton','Hamilton','7696 Arnold Dr. Richardson, TX 75080','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('5605387','Andrews','Sabrina','8906 North Drive Astoria, NY 11102','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('3857584','Bell','Homer','240 Lincoln Street Rochester, NY 14606','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('4253434','Bennie','Lamar','17 Beacon Drive Bethlehem, PA 18015','Surgeon', 'T');
+INSERT INTO DOCTOR VALUES ('1766540','Colleen','Nathaniel','7404 Indian Summer Ave. Chelsea, MA 02150','Ophtalmologist', 'T');
+INSERT INTO DOCTOR VALUES ('4524348','Gregory','Underwood','7214 Marsh St. Kernersville, NC 27284','Ophtalmologist', 'T');
+INSERT INTO DOCTOR VALUES ('5302785','Wood','Trevor','8625 Bellevue Ave. Canal Winchester, OH 43110','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('6429072','Alvarado','Gilbert','83 Wayne St. Winter Springs, FL 32708','Anesthesiologist', 'T');
+INSERT INTO DOCTOR VALUES ('4056963','Love','Joey','9762 N. East St. North Bergen, NJ 07047','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('8064432','Camille','Guerrero','468 Heather St. Suite 5 Desoto, TX 75115','Anesthesiologist', 'T');
+INSERT INTO DOCTOR VALUES ('5511434','Colleen','Camille','39 Catherine Street Pataskala, OH 43062','Ophtalmologist', 'T');
+INSERT INTO DOCTOR VALUES ('9709798','Angelina','Gross','83 Wayne St. Winter Springs, FL 32708','Anesthesiologist', 'T');
+INSERT INTO DOCTOR VALUES ('7173475','Bryan','Christie','7601 Piper Avenue Cordova, TN 38016','Pediatrician', 'T');
+INSERT INTO DOCTOR VALUES ('5927963','Jackie','Nathaniel','90 Beacon St. Buford, GA 30518','Surgeon', 'T');
 
 
 

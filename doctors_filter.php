@@ -59,7 +59,7 @@
 									echo '<option value = "'.$SPEC_choice[$spec].'">'.$SPEC_choice[$spec].'</option>';
 								}
 							}
-	echo '</select>
+							echo '</select>
 						</div>
 						</div>
 					</div>';
