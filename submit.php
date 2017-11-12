@@ -34,7 +34,7 @@
 					//INSERT INTO DATABASE 
 					//(SAMPLE 1) STILL TO BE REVISED/TESTED....
 					function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR, $D_SP){
-						$D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."','".$D_SP."')";
+						$D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."','".$D_SP."', '')";
 						if ($GLOBALS['mydatabase']->query($D_query) === TRUE){
 							echo "<div class='alert alert-success'>New doctor record successfully created.</div>";
 							$GLOBALS['whereto'] = "doctors.php?profilepage=".$D_LICENSENUM;
