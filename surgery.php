@@ -712,7 +712,7 @@
 																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
 																	<div style="width:100%; float:left; padding:0px 0px;">
 
-																		<table class="table table-condensed" style="margin-bottom:0px;">
+																		<table class="table table-condensed" style="margin-bottom:10px;">
 																		<thead>
 																			<tr>
 																				<th>Comparison</th>
@@ -742,28 +742,31 @@
 																<div class="well" style="background-color:#fefefe; width:100%; float:left; padding:10px;">
 																	<div style="margin:0px; padding:0px 10px;">	
 																		
-																		<table class="table table-condensed" style="margin-bottom:0px;">
-																		<thead>
-																			<tr>
-																				<th>Sponsored</th>
-																				<th></th>
-																			</tr>
-																		</thead>
-																		<tbody>
-																			<tr>
-																				<td>IOL</td>
-																				<td>₱ '.number_format($dataline["SPO_IOL"], "2").'</td>
-																			</tr>
-																			<tr>
-																				<td>Others</td>
-																				<td>₱ '.number_format($dataline["SPO_OTHERS"], "2").'</td>
-																			</tr>
-																			<tr>
-																				<td>Total</td>
-																				<td>₱ '.number_format($SPO_SUM, "2").'</td>
-																			</tr>
-																		</tbody>
-																	</table>
+																		<div style="width:100%; float:left; padding:0px 0px;">
+																			<table class="table table-condensed" style="margin-bottom:0px;">
+																				<thead>
+																					<tr>
+																						<th>Sponsored</th>
+																						<th></th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr>
+																						<td>IOL</td>
+																						<td>₱ '.number_format($dataline["SPO_IOL"], "2").'</td>
+																					</tr>
+																					<tr>
+																						<td>Others</td>
+																						<td>₱ '.number_format($dataline["SPO_OTHERS"], "2").'</td>
+																					</tr>
+																					<tr>
+																						<td>Total</td>
+																						<td>₱ '.number_format($SPO_SUM, "2").'</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
+
 																	</div>
 																</div>
 
@@ -795,17 +798,17 @@
 
 																	</div>
 																</div>
+														
+														</div>
 
 																<div class="well" style=" float:left; padding:20px; width:100%;">
 																		<div style="width:100%; float:left; padding:4px 0px;">
 
-																			<div style="float:left; width:50%; font-weight:bold;">Grand Total:</div>
-																			<div style="float:left; width:50%;">₱ '.number_format($TOTAL_ALL, "2").'</div>
+																			<div style="float:left; width:40%; font-weight:bold;">Grand Total:</div>
+																			<div style="float:left; width:60%;">₱ '.number_format($TOTAL_ALL, "2").'</div>
 
 																		</div>
 																</div>
-														
-														</div>
 
 														</div>
 													</div>
@@ -835,7 +838,6 @@
 																<div class="modal-body">';
 
 												$leftmargin = 220;
-												$ANES_choice = array("n/a", "General", "Local");
 
 												//EDIT FORM
 												echo '<div class="container-fluid">
@@ -873,7 +875,7 @@
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ADDRESS" style="width: '.$leftmargin.'px; float: left; ">Surgery Address<span style="color: #d9534f">*</span> </label>
-																				<input placeholder="Enter address of where the sugery was conducted..." type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
+																				<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Enter address of where the sugery was conducted..." type="text" class="form-control" id="SURG_ADDRESS" maxlength="'.$SURGADD_MAX.'" name="SURG_ADDRESS" value="'.$S_A.'" style="max-width: 450px; float: left;">
 																			</div>
 
 																			</div>
@@ -945,11 +947,21 @@
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia<span style="color: #d9534f">*</span></label>
-																				<div style="width: 60%; float: left;" id="SURG_ANESTHESIA" name="SURG_ANESTHESIA">
-							              <label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="General" required>General</label>
-										<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="Local">Local</label>
+																				<div style="width: 60%; float: left;" id="SURG_ANESTHESIA" name="SURG_ANESTHESIA">';
+
+							             echo '<label class="radio-inline" id="TANES"><input id="ANES_GEN" name="TANES" type="radio" value="General" required>General</label>
+																					<label class="radio-inline" id="TANES"><input ID="ANES_LOC" name="TANES" type="radio" value="Local">Local</label>
 							             </div>
 																			</div>
+
+																			<script>
+																				var anes = "'.$dataline["SURG_ANESTHESIA"].'";
+																				if(anes=="General"){
+																					document.getElementById("ANES_GEN").checked = true;
+																				}else{
+																					document.getElementById("ANES_LOC").checked = true;
+																				}
+																			</script>
 
 																			</div>
 																			</div>
@@ -966,20 +978,20 @@
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="PAT_ID" style="width: 25%; float: left; ">Patient<span style="color: #d9534f">*</span></label>
 																						<div style="width: 250px; float: left;">
-																						<input class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
+																						<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(([C][A][T]\d{4}[-]\d{3})$)" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
 																						</div>
 																					</div>
 																							
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="VI" style="width: 25%; float: left; ">Visual Impairment<span style="color: #d9534f">*</span></label>
 																						<div style="width: 75%; padding-right:20px; float:left;">
-																						<input placeholder="Patient Visual Impairment..." type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="float: left;" rows="2" value="'.$S_VI.'" required>
+																						<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Patient Visual Impairment..." type="text" class="form-control" id="VI" maxlength="'.$VI_MAX.'" name="VI" style="float: left;" rows="2" value="'.$S_VI.'" required>
 																						</div>
 																					</div>
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="MED_HIST" style="width: 25%; float: left; ">Medical History </label>
 																						<div style="width: 75%; padding-right:20px; float:left;">
-																						<input placeholder="Patient Medical History..." type="text" class="form-control" id="MED_HIST" maxlength="'.$HIST_MAX.'" name="MED_HIST" style="float: left;" value="'.$S_MH.'">
+																						<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Patient Medical History..." type="text" class="form-control" id="MED_HIST" maxlength="'.$HIST_MAX.'" name="MED_HIST" style="float: left;" value="'.$S_MH.'">
 																						</div>
 																					</div>
 
@@ -991,16 +1003,16 @@
 																			<div class="well" style="width:100%; float: left;">
 																			
 																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="DIAG" style="width: 25%; float: left; ">Right Eye Diagnosis </label>
-																					<input placeholder="Right Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_RIGHT" style="width: 75%; float: left;" value="'.$S_RD.'" >
+																					<label for="DIAG_RIGHT" style="width: 25%; float: left; ">Right Eye Diagnosis </label>
+																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Right Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_RIGHT" style="width: 75%; float: left;" value="'.$S_RD.'" >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="DIAG" style="width: 25%; float: left; ">Left Eye Diagnosis </label>
-																					<input placeholder="Left Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_LEFT" style="width: 75%; float: left;" value="'.$S_LD.'" >
+																					<label for="DIAG_LEFT" style="width: 25%; float: left; ">Left Eye Diagnosis </label>
+																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Left Eye Surgery Diagnosis..." type="text" class="form-control" id="DIAG" maxlength="'.$DIAG_MAX.'" name="DIAG_LEFT" style="width: 75%; float: left;" value="'.$S_LD.'" >
 																				</div>
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="REM" style="width: 25%; float: left; ">Surgeon Remarks </label>
-																					<input placeholder="Remarks of Surgeon..." type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="width: 75%; float: left;" value="'.$S_R.'" >
+																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Remarks of Surgeon..." type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="width: 75%; float: left;" value="'.$S_R.'" >
 																				</div>
 																			
 																			</div>
@@ -1029,21 +1041,21 @@
 																							<label for="PC_IOL" style="width: 50%; float: left; ">IOL</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="IOL" type="text" class="form-control" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" readonly>
+																							<input placeholder="IOL" type="text" class="form-control numberOnly" id="PC_IOL" maxlength="'.$PC_MAX.'" name="PC_IOL" value="'.$dataline["PC_IOL"].'" readonly>
 																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_LAB" style="width: 50%; float: left; ">LAB</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="LAB" type="text" class="form-control" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" readonly>
+																							<input placeholder="LAB" type="text" class="form-control numberOnly" id="PC_LAB" maxlength="'.$PC_MAX.'" name="PC_LAB" value="'.$dataline["PC_LAB"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="PC_PF" style="width: 50%; float: left; ">PF(Others)</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="PF" type="text" class="form-control" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" readonly>
+																							<input placeholder="PF" type="text" class="form-control numberOnly" id="PC_PF" maxlength="'.$PC_MAX.'" name="PC_PF" value="'.$dataline["PC_PF"].'" readonly>
 																							</div>
 																						</div>
 
@@ -1064,21 +1076,21 @@
 																							<label for="CSF_HBILL" style="width: 50%; float: left; ">HBILL</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Hospital Bill" type="text" class="form-control" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" readonly>
+																							<input placeholder="Hospital Bill" type="text" class="form-control numberOnly" id="CSF_HBILL" maxlength="'.$PC_MAX.'" name="CSF_HBILL" value="'.$dataline["CSF_HBILL"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_SUPPLIES" style="width: 50%; float: left; ">SUPPLIES</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Supplies" type="text" class="form-control" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" readonly>
+																							<input placeholder="Supplies" type="text" class="form-control numberOnly" id="CSF_SUPPLIES" maxlength="'.$PC_MAX.'" name="CSF_SUPPLIES" value="'.$dataline["CSF_SUPPLIES"].'" readonly>
 																							</div>
 																						</div>
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="CSF_LAB" style="width: 50%; float: left; ">LAB</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="Laboratory" type="text" class="form-control" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" readonly>
+																							<input placeholder="Laboratory" type="text" class="form-control numberOnly" id="CSF_LAB" maxlength="'.$PC_MAX.'" name="CSF_LAB" value="'.$dataline["CSF_LAB"].'" readonly>
 																							</div>
 																						</div>
 
@@ -1099,14 +1111,14 @@
 																							<label for="NDDCH_RA" style="width: 50%; float: left; ">RA</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="RA" type="text" class="form-control" id="NDDCH_RA" maxlength="'.$PC_MAX.'" name="NDDCH_RA" value="'.$dataline["NDDCH_RA"].'" readonly>
+																							<input placeholder="RA" type="text" class="form-control numberOnly" id="NDDCH_RA" maxlength="'.$PC_MAX.'" name="NDDCH_RA" value="'.$dataline["NDDCH_RA"].'" readonly>
 																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="NDDCH_ZEISS" style="width: 50%; float: left; ">ZEISS</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="ZEISS" type="text" class="form-control" id="NDDCH_ZEISS" maxlength="'.$PC_MAX.'" name="NDDCH_ZEISS" value="'.$dataline["NDDCH_ZEISS"].'" readonly>
+																							<input placeholder="ZEISS" type="text" class="form-control numberOnly" id="NDDCH_ZEISS" maxlength="'.$PC_MAX.'" name="NDDCH_ZEISS" value="'.$dataline["NDDCH_ZEISS"].'" readonly>
 																							</div>
 																						</div>
 
@@ -1117,7 +1129,7 @@
 																					<label for="NDDCH_SUPPLIES" style="width: 50%; float: left; ">NDDCH SUPPLIES</label>
 																					<div class="input-group money" style="width:150px; float:left;">
 																					<span class="input-group-addon"><strong>₱</strong></span>
-																					<input placeholder="Supplies" type="text" class="form-control" id="NDDCH_SUPPLIES" maxlength="'.$PC_MAX.'" name="NDDCH_SUPPLIES" value="'.$dataline["NDDCH_SUPPLIES"].'" readonly>
+																					<input placeholder="Supplies" type="text" class="form-control numberOnly" id="NDDCH_SUPPLIES" maxlength="'.$PC_MAX.'" name="NDDCH_SUPPLIES" value="'.$dataline["NDDCH_SUPPLIES"].'" readonly>
 																					</div>
 																				</div>
 																			
@@ -1129,7 +1141,7 @@
 																					<label for="SPO_IOL" style="width: 50%; float: left; ">Sponsored IOL</label>
 																					<div class="input-group money" style="width:150px; float:left;">
 																					<span class="input-group-addon"><strong>₱</strong></span>
-																					<input placeholder="Sponsored" type="text" class="form-control" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" readonly>
+																					<input placeholder="Sponsored" type="text" class="form-control numberOnly" id="SPO_IOL" maxlength="'.$PC_MAX.'" name="SPO_IOL" value="'.$dataline["SPO_IOL"].'" readonly>
 																					</div>
 																				</div>
 																			</div>
@@ -1147,14 +1159,14 @@
 																							<label for="LF_PF" style="width: 50%; float: left; ">Professional Fee</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="PF" type="text" class="form-control" id="LF_PF" maxlength="'.$PC_MAX.'" name="LF_PF" value="'.$dataline["LF_PF"].'" readonly>
+																							<input placeholder="PF" type="text" class="form-control numberOnly" id="LF_PF" maxlength="'.$PC_MAX.'" name="LF_PF" value="'.$dataline["LF_PF"].'" readonly>
 																							</div>
 																						</div>		
 																						<div class="container-fluid" style="margin-bottom: 10px;">
 																							<label for="LF_CPC" style="width: 50%; float: left; ">CPC Fee</label>
 																							<div class="input-group money" style="width:150px; float:left;">
 																							<span class="input-group-addon"><strong>₱</strong></span>
-																							<input placeholder="CPC" type="text" class="form-control" id="LF_CPC" maxlength="'.$PC_MAX.'" name="LF_CPC" value="'.$dataline["LF_CPC"].'" readonly>
+																							<input placeholder="CPC" type="text" class="form-control numberOnly" id="LF_CPC" maxlength="'.$PC_MAX.'" name="LF_CPC" value="'.$dataline["LF_CPC"].'" readonly>
 																							</div>
 																						</div>
 																						
@@ -1325,3 +1337,4 @@ $(document).ready(function(){
 	})
 </script>
 
+<?php  ?>
