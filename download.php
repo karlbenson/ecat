@@ -2,11 +2,9 @@
 
 <html>
     <head>
-        <title>Download</title>
+        <title>Download File</title>
     </head>
     <body>
-        
-		
 		<?php
 			include("dbconnect.php");
 			
@@ -15,7 +13,7 @@
 				$columns = array("Licence", "First Name", "Last Name", "Address", "Specialization");
 				$output = $mydatabase->query($D_query);
 				if ($output->num_rows > 0) {
-					echo '<table><tr>';
+					echo '<table hidden><tr>';
 					
 					foreach($columns as $item){
 						echo '<th style="color:#ffffff">'.$item.'</th>';
@@ -24,7 +22,7 @@
 					
 					while($row = $output->fetch_assoc()) { 
 						echo 	'<tr>
-									<td>'.$row["DOC_LICENSE_NUM"].'</td>
+									// <td>'.$row["DOC_LICENSE_NUM"].'</td>
 									<td>'.$row["FIRST_NAME"].'</td>
 									<td>'.$row["LAST_NAME"].'</td>
 									<td>'.$row["ADDRESS"].'</td>
@@ -48,7 +46,7 @@
 					"Left Eye Diagnosis","Procedure To do");
 				$output = $mydatabase->query($D_query);
 				if ($output->num_rows > 0) {
-					echo '<table><tr>';
+					echo '<table hidden><tr>';
 					
 					foreach($columns as $item){
 						echo '<th style="color:#ffffff">'.$item.'</th>';
@@ -80,10 +78,10 @@
 					echo 	'</table>';
 				} else { echo "No Records."; }
 			}else if(isset($_POST["downloadSurgeries"])){
-				$D_query = "SELECT s.*, d.*, p.patient_fname, p.patient_lname
-							FROM SURGERY s, DOCTOR d, PATIENT p
-							WHERE p.patient_id = s.PAT_ID_NUM
-								
+				$D_query = "SELECT s.*, p.PAT_FNAME, p.PAT_LNAME, d.LAST_NAME AS ANES
+							FROM SURGERY s, EYEPATIENT p, DOCTOR d
+							WHERE p.PAT_ID_NUM = s.PAT_ID_NUM
+							AND s.ANESTHESIOLOGIST = d.DOC_LICENSE_NUM
 							ORDER BY CASE_NUM ASC";
 				$columns = array("Case No.", "Date", "Patient", "Surgeon", "Location", "Visual Imparity",
 					"Medical History", "Right Eye Diagnosis", "Left Eye Diagnosis", "Type of Anesthesia",
@@ -91,8 +89,10 @@
 					"SPONSORED IOL", "Other sponsor", "CSF Hospital Bill", "CSF Supplies", "CSF Lab",
 					"NDDCH RA", "NDDCH ZEISS", "NDDCH Supplies", "LF Patient Fee", "LF CPC Fee");
 				$output = $mydatabase->query($D_query);
+				
+			
 				if ($output->num_rows > 0) {
-					echo '<table><tr>';
+					echo '<table hidden><tr>';
 					
 					foreach($columns as $item){
 						echo '<th style="color:#ffffff">'.$item.'</th>';
@@ -103,22 +103,73 @@
 						echo 	'<tr>
 									<td>'.$row["CASE_NUM"].'</td>
 									<td>'.$row["SURG_DATE"].'</td>
-									<td>'.$row["PAT_AGE"].'</td>
-									<td>'.$row["PAT_PH"].'</td>
-									<td>'.$row["PAT_SEX"].'</td>
-									<td>'.$row["PRE_VA_NO_SPECT_RIGHT"].'</td>
-									<td>'.$row["PRE_VA_WITH_SPECT_RIGHT"].'</td>
-									<td>'.$row["PRE_VA_NO_SPECT_LEFT"].'</td>
-									<td>'.$row["PRE_VA_WITH_SPECT_LEFT"].'</td>
-									<td>'.$row["POST_VA_NO_SPECT_RIGHT"].'</td>
-									<td>'.$row["POST_VA_WITH_SPECT_RIGHT"].'</td>
-									<td>'.$row["POST_VA_NO_SPECT_LEFT"].'</td>
-									<td>'.$row["POST_VA_WITH_SPECT_LEFT"].'</td>
-									<td>'.$row["VISUAL_DISABILITY"].'</td>
-									<td>'.$row["DISABILITY_CAUSE"].'</td>
+									<td>'.$row["PAT_FNAME"].' '.$row["PAT_LNAME"].'</td>';
+									
+									$surg1 = $row["SURG_LICENSE_NUM"];
+									$surg2 = $row["SURG_LICENSE_NUM1"];
+									$surg3 = $row["SURG_LICENSE_NUM2"];
+									$output1 = $mydatabase->prepare("SELECT LAST_NAME FROM DOCTOR
+										WHERE DOC_LICENSE_NUM='$surg1'
+										OR DOC_LICENSE_NUM='$surg2'
+										OR DOC_LICENSE_NUM='$surg3'");
+									$output1->execute();
+									$line = $output1->get_result();
+									
+									echo '<td>';
+									$count = 0;
+									while($dataline = $line->fetch_assoc()){
+										if($count > 0){
+											echo '; ';
+										}
+										echo 'Dr. '.$dataline["LAST_NAME"];
+										$count += 1;
+									}
+									echo '</td>';
+									
+						echo		'<td>'.$row["SURG_ADDRESS"].'</td>
+									<td>'.$row["VISUAL_IMPARITY"].'</td>
+									<td>'.$row["MED_HISTORY"].'</td>
 									<td>'.$row["RIGHT_DIAGNOSIS"].'</td>
 									<td>'.$row["LEFT_DIAGNOSIS"].'</td>
-									<td>'.$row["PROCEDURE_TO_DO"].'</td>
+									<td>'.$row["SURG_ANESTHESIA"].'</td>
+									<td>'.$row["REMARKS"].'</td>
+									<td>Dr. '.$row["ANES"].'</td>';
+									
+									$inter1 = $row["INTERNIST"];
+									$inter2 = $row["INTERNIST1"];
+									$inter3 = $row["INTERNIST2"];
+									$output1 = $mydatabase->prepare("SELECT LAST_NAME FROM DOCTOR
+										WHERE DOC_LICENSE_NUM='$inter1'
+										OR DOC_LICENSE_NUM='$inter2'
+										OR DOC_LICENSE_NUM='$inter3'");
+									$output1->execute();
+									$line = $output1->get_result();
+									
+									echo '<td>';
+									$count = 0;
+									while($dataline = $line->fetch_assoc()){
+										if($count > 0){
+											echo '; ';
+										}
+										echo 'Dr. '.$dataline["LAST_NAME"];
+										$count += 1;
+									}
+									echo '</td>';
+									
+						echo		'<td>'.$row["IOLPOWER"].'</td>
+									<td>'.$row["PC_IOL"].'</td>
+									<td>'.$row["PC_LAB"].'</td>
+									<td>'.$row["PC_PF"].'</td>
+									<td>'.$row["SPO_IOL"].'</td>
+									<td>'.$row["SPO_OTHERS"].'</td>
+									<td>'.$row["CSF_HBILL"].'</td>
+									<td>'.$row["CSF_SUPPLIES"].'</td>
+									<td>'.$row["CSF_LAB"].'</td>
+									<td>'.$row["NDDCH_RA"].'</td>
+									<td>'.$row["NDDCH_ZEISS"].'</td>
+									<td>'.$row["NDDCH_SUPPLIES"].'</td>
+									<td>'.$row["LF_PF"].'</td>
+									<td>'.$row["LF_CPC"].'</td>
 								</tr>';
 					}				
 					echo 	'</table>';
