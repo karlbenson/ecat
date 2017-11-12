@@ -928,19 +928,8 @@
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;" id="SURG_ANESTHESIA" name="SURG_ANESTHESIA">
-							              <select class="form-control" id="TANES"  name="TANES" required>';
-							              for ($anes_count=0; $anes_count < sizeof($ANES_choice); $anes_count++) { 
-							              	if($anes_count==0){
-							              		echo '<option value="n/a" selected>--Select Type--</option>';
-							              	}else{
-							              		if($S_TA==$ANES_choice[$anes_count]){
-							              			echo '<option value="'.$ANES_choice[$anes_count].'" selected>'.$ANES_choice[$anes_count].'</option>';
-							              		}else{
-							              			echo '<option value="'.$ANES_choice[$anes_count].'">'.$ANES_choice[$anes_count].'</option>';
-							              		}
-							              	}
-							              }
-							             echo '</select>
+							              <label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="General" required>General</label>
+										<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="Local">Local</label>
 							             </div>
 																			</div>
 

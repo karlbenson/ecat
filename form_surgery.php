@@ -212,14 +212,11 @@
       
 												<!-- TYPE OF ANESTHESIA -->
 												<div class="form-group row">
-             <label class="control-label col-md-3" for="TANES" style="float:left; width:200px;">Type of Anesthesia<span style="color: #d9534f">*</span></label>
-             <div class="col-md-6" style="width: 150px; float: left;">
-              <select class="form-control" id="TANES"  name="TANES" required>
-               <option value="n/a" selected>--Select--</option>
-               <option>General</option>
-               <option>Local</option>
-              </select>
-             </div>
+             <label class="control-label col-md-3" for="TANES" style="float:left; width:215px;">Type of Anesthesia<span style="color: #d9534f">*</span></label>
+             
+				<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="General" required>General</label>
+				<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="Local">Local</label>
+             
            </div>
 												<!-- TYPE OF ANESTHESIA END -->
         
