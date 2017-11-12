@@ -72,7 +72,7 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number <span style="color: #d9534f">*</span></label>
 										<div class="col-md-2" style="width: 115px; float: left;">
-											<input pattern="\d{5,7}" class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
+											<input pattern="\d{7}" class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
 										</div>
 									</div>
 									<!-- LICENSE NUMBER END -->
