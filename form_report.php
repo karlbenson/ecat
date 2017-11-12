@@ -4,6 +4,7 @@
 		<title>Luke Foundation Eye Program: Doctor Form</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="refresh" content="100000" > 
 		<link rel="stylesheet" href="references/bootstrap.min.css">
 		<link rel="stylesheet" href="references/font-awesome.min.css">
 		<script src="references/jquery.min.js"></script>
@@ -21,7 +22,7 @@
 	</head>
 	<body style="justify-content: center;" onload="toggleYear()">
 		<!-- HEAD AND NAVIGATION -->
-		<?php include("nav.php"); ?>
+		<?php include("nav.php");?>
 		<!-- HEAD AND NAVIGATION END -->
 
 		<div id="body">
@@ -34,9 +35,26 @@
 				<!-- TITLE -->
 
 				<?php
-$year = array("2017","2016","2015","2014","2013","2012");
-$month = array("January","February","March","April","May","June","July","August","September","October","November","December");
-?>
+
+
+				include("dbconnect.php");	
+					//MYSQL SECTION
+				$S_query = "SELECT SURG_DATE FROM SURGERY order by SURG_DATE asc LIMIT 1";
+				$output = $mydatabase->query($S_query);	
+				$year= array();
+				$month = array("January","February","March","April","May","June","July","August","September","October","November","December");
+				$maxyear=0;
+				$minyear=1980;
+				$maxyear=date("Y");
+				while($dataline = $output->fetch_assoc()) {
+					$minyear = explode("-", $dataline["SURG_DATE"])[0];
+				}
+				echo $minyear;
+				while($minyear!=$maxyear){
+					array_push($year, $minyear);
+					$minyear++;
+				}
+				?>
 
 				<!-- DOCTORS FORM -->
 				<div class="container-fluid" id="basic" style="padding-top: 10px;">
@@ -68,7 +86,7 @@ $month = array("January","February","March","April","May","June","July","August"
 											<select type="text" name="Year" class="form-control" id="year" disabled>
 												<option value = "">Select Year</option>
 												<?php
-													for ($i=0; $i < 4; $i++){
+													for ($i=0; $i < sizeof($year); $i++){
 														echo '<option value="'.$year[$i].'">'.$year[$i].'</option>';
 													}
 												 ?>
@@ -88,26 +106,38 @@ $month = array("January","February","March","April","May","June","July","August"
 											</select>
 										</div>
 									</div>
-										
-										<select id="year" hidden>
-										 <?php
-											for ($i=0; $i < 4; $i++){
-												echo '<option value="'.$year[$i].'">'.$year[$i].'</option>';
-											}
-										 ?>
-										</select> 
-										
-										 <select id="month" hidden>
-										 <?php
-											for ($i=1; $i <= 12; $i++){
-												echo '<option value="'.$i.'">'.$month[$i-1].'</option>';
-											}
-										 ?>
-										</select> <br/>
+									
+									<div class="form-group row">
+										<label class="control-label col-md-2" style="float:left; width:170px;">Type of Anesthesia</label>
+										<div class="col-md-7" style="float: left">
+											<!-- YEARLY -->
+											<div style="width: 175px; float: left; margin-right:10px;">
+													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype"  value="Gen" style="float: left;"> 
+													General</label>
+													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype" value="Monthly" > 
+													Local</label><br>
+											</div>
+											<!-- YEARLY END -->
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="control-label col-md-2" style="float:left; width:170px;">Patient Philhealth</label>
+										<div class="col-md-7" style="float: left">
+											<!-- YEARLY -->
+											<div style="width: 500px; float: left; margin-right:10px;">
+													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype"  value="W" style="float: left;"> 
+													With Philhealth</label>
+													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype" value="WO"> 
+													Without Philhealth</label><br>
+											</div>
+											<!-- YEARLY END -->
+										</div>
+									</div>
 				 
 									<!-- ENTER -->
 									<div style="margin-bottom: 20px;">
-										<button type="submit" class="btn" id="go" name="doctors_info" onClick="toggleMonth()">Generate</button>
+										<button type="submit" class="btn" id="go" name="doctors_info" onClick="">Generate</button>
 									</div>
 									<!-- ENTER END -->
 								</form>
