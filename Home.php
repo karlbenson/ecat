@@ -21,7 +21,7 @@
 			<div class="container-fluid" id="outer">
 				<!-- TITLE -->
 				<div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff;padding-bottom:15px;">
-					<h4>Eye Program</h4> 
+					<h1>Welcome to Luke Foundation Eye Program</h1> 
 				</div>
 				<!-- TITLE END -->
 
@@ -72,145 +72,210 @@
 					//END COMMA
 				?>
 
+<script type="text/javascript">
+	$( document ).ready(function() {
+    $(".tile").height($("#tile1").width());
+    $(".carousel").height($("#tile1").width());
+     $(".item").height($("#tile1").width());
+     
+    $(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+	this.resizeTO = setTimeout(function() {
+		$(this).trigger('resizeEnd');
+	}, 10);
+    });
+    
+    $(window).bind('resizeEnd', function() {
+    	$(".tile").height($("#tile1").width());
+        $(".carousel").height($("#tile1").width());
+        $(".item").height($("#tile1").width());
+    });
 
-				<!-- HOME -->
-				<div class="container-fluid" id="basic" style=" background-color: rgba(74, 106, 21  ,0);">
-					<div id="inner" style="margin:0px; padding:0px;">
-						<!-- CONTENT -->
-						<div class="container-fluid" style="margin:0px; padding:0px;">
-							<div class="row" >
-								<!-- RIGHT COLUMN -->
-								<div class="container-fluid">
-									<div style="min-width: 70%; max-width: 100%; float:left; margin:auto;">	
-										<!-- CENTER SPACE: WHAT TO DO? -->
-										<!-- TO BE CONSTRUCTED -->
-										<div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%;">
-											<div>
+});
 
-												<div class="container-fluid" style="padding:20px 20px;">
-													<p>Space for Graphs, etc...</p>
-													<!-- TO BE CONSTRUCTED... FOR GRAPH... etc. -->
-												</div>
 
-												<div class="container-fluid" style="padding:20px 20px;">
 
-													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; "><strong>Financial Report</strong>
-														<h5>Running Total as of <?php echo date("M-Y"); ?></h5>
-													</div>
+</script>
+<div class="container dynamicTile">
+<div class="row ">
+    <div class="col-sm-2 col-xs-4">
+    	<a id="tile1" class="tile" href="surgery.php">
+         <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+               <img src="images/doctor2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+               <img src="images/doctor1.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+    	</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile2" class="tile" href="patient.php">
+    	 
+         <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/patient2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/patient1.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/patient2.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile3" class="tile" href="surgery.php">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+               <img src="images/surg2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+               <img src="images/surg1.png" class="img-responsive"/>
+            </div>
+            </div>
+         </div>
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile4" class="tile">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/green_blank.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile3" class="tile"  href="form_surgery.php">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+               <img src="images/surgg2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+               <img src="images/surgg1.png" class="img-responsive"/>
+            </div>
+            </div>
+         </div>
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile4" class="tile" href="form_patient.php">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/patientg2.png" class="img-responsive"/>
+            </div>
+             <div class="item">
+               <img src="images/patientg1.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+</div>
 
-													<div style="float:left; width:50%; padding-right:20px;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" style="color:#337ab7;">Patient Counterpart</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Misc. Expenses</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_PF_SUM; ?></div>
-														</div>
-														<div class="row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Laboratory</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_LAB_SUM; ?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">										<div style="width:50%; float:left; padding-left:10px;" >Intra Ocular Lens</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$PC_IOL_SUM; ?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" ><b>Total</b></div>
-															<div style="width:50%; float:left; padding-left:10px;"><b><?php echo ' '.$pesos.$PC_TOT; ?></b></div>
-														</div>
-													</div>
-													</div>
-
-													<div style="float:left; width:50%;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" style="color:#337ab7;">Luke Foundation Counterpart</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Hospital Bill</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_HBILL_SUM;?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Supplies</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_SUPP_SUM;?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Laboratory</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$CSF_LAB_SUM;?></div>
-														</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" ><b>Total</b></div>
-															<div style="width:50%; float:left; padding-left:10px;"><b><?php echo ' '.$pesos.$CSF_TOT;?></b></div>
-														</div>
-													</div>
-													</div>
-
-													<div style="float:left; width:40%; padding-right:20px;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" style="color:#337ab7;">Sponsored Payment</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<div style="width:50%; float:left; padding-left:10px;" >Intra Ocular Lens</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$SPO_IOL_SUM; ?></div>
-														</div>
-													</div>
-													</div>
-
-													<div class="well" style="float:left; width:60%; background:#f9f9f9;">
-														<div  style="float:left; width:100%; padding:10px; font-weight:bold;">
-															<div style="width:50%; float:left; padding-left:10px;">Grand Total</div>
-															<div style="width:50%; float:left; padding-left:10px;"><?php echo ' '.$pesos.$GRAND; ?></div>
-														</div>
-													</div>
-
-													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%;"><strong>Patient Information</strong>
-													</div>
-
-													<div style="float:left; width:100%;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading" style="color:#337ab7;">Pre-Surgery Visual Acuity</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<?php
-																$S_query = "SELECT PRE_VA_WITH_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT GROUP BY PRE_VA_WITH_SPECT_LEFT";
-																$output = $mydatabase->query($S_query);	
-																while($row = $output->fetch_row()){
-																	echo ' <div class="col-md-2" >'.$row[0].'</div>';
-																	echo ' <div class="col-md-2" >'.$row[1].'</div>';
-																}
-															?>
-														</div>
-													</div>
-													</div>
-
-													<div style="float:left; width:100%;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
-														<div class="panel-heading " style="color:#337ab7;">Post-Surgery Visual Acuity</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<?php
-																$S_query = "SELECT POST_VA_WITH_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT GROUP BY POST_VA_WITH_SPECT_LEFT";
-																$output = $mydatabase->query($S_query);	
-																while($row = $output->fetch_row()){
-																	echo ' <div class="col-md-2" >'.$row[0].'</div>';
-																	echo ' <div class="col-md-2" >'.$row[1].'</div>';
-																}
-															?>
-														</div>
-													</div>
-													</div>
-
-												</div>
-
-												<div class="container-fluid" style="padding:20px 20px;">
-													<p>Space for Graphs, etc...</p>
-													<!-- TO BE CONSTRUCTED... FOR GRAPH... etc. -->
-												</div>
-
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- RIGHT COLUMN END -->
-							</div>
-						</div>
-						<!-- CONTENT END -->
-					</div>
-				</div>
-				<!-- HOME END -->
+<div class="row">
+	<div class="col-sm-4 col-xs-8">
+		<a id="tile7" class="tile" href="form_doctor.php">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile8" class="tile" href="form_report.php">
+    	 
+         <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+               <img src="images/genrep1.png" class="img-responsive"/>
+            </div>
+             <div class="item">
+               <img src="images/genrep2.png" class="img-responsive"/>
+            </div>
+            </div>
+         </div>
+         
+		</a>
+	</div>
+	<div class="col-sm-4 col-xs-8">
+		<a id="tile7" class="tile">
+    	 
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/form1.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form1.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form1.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+	<div class="col-sm-2 col-xs-4">
+		<a id="tile9" class="tile" href="form_doctors.php">
+    	 
+          <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="images/doctor2g.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/doctor1g.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+		</a>
+	</div>
+  
+</div>
 			</div>
 			<!-- MAIN END -->
 		</div>
