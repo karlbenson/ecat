@@ -88,7 +88,7 @@
           Please do not leave the required<span style="color: #d9534f">*</span> fields blank. If there are no entries, use indicators (such as n/a or NA).
         </p>
 
-								<form method="post" action="submit.php" id="surg_form">
+								<form method="post" action="submit.php" id="surg_form" autocomplete="off">
 
 									<!-- CASE NUMBER-->
 									<div class="form-group row">

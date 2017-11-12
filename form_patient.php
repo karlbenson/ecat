@@ -75,7 +75,7 @@
 								<p style="margin-bottom: 20px; color:#666666;">
 									Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
 								</p>
-								<form method="post" action="submit.php">
+								<form method="post" action="submit.php" autocomplete="off">
 									<!-- PATIENT -->
 									<div class="form-group row">
 										<label class="control-label col-md-3" for="P_ID" style="float:left; width:170px;">Patient<span style="color: #d9534f">*</span> </label>
