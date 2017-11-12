@@ -442,6 +442,7 @@
 												$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"];
 												$NDDCH_SUM = $dataline["NDDCH_RA"]+$dataline["NDDCH_ZEISS"]+$dataline["PC_PF"];
 												$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
+												$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
 												$TOTAL_ALL = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+$dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+$dataline["SPO_IOL"];
 
 												$patient_link = "patient.php?profilepage=".$S_ID;
@@ -741,11 +742,28 @@
 																<div class="well" style="background-color:#fefefe; width:100%; float:left; padding:10px;">
 																	<div style="margin:0px; padding:0px 10px;">	
 																		
-																		<div style="width:100%; float:left; padding:0px 0px;">
-																			<div style="float:left; width:50%; font-weight:bold;">Sponsored IOL</div>
-																			<div style="float:left; width:50%;">₱ '.number_format($dataline["SPO_IOL"], "2").'</div>
-																		</div>
-
+																		<table class="table table-condensed" style="margin-bottom:0px;">
+																		<thead>
+																			<tr>
+																				<th>Sponsored</th>
+																				<th></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>IOL</td>
+																				<td>₱ '.number_format($dataline["SPO_IOL"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>Others</td>
+																				<td>₱ '.number_format($dataline["SPO_OTHERS"], "2").'</td>
+																			</tr>
+																			<tr>
+																				<td>Total</td>
+																				<td>₱ '.number_format($SPO_SUM, "2").'</td>
+																			</tr>
+																		</tbody>
+																	</table>
 																	</div>
 																</div>
 
