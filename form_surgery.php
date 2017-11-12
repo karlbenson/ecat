@@ -166,7 +166,7 @@
 	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
              <div class="col-md-7" style=" float: left;">
              	<div style="width: 320px; float: left; margin-right:5px;" >
-               <input type="text" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
+               <input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)([CAT]\d{4}[-]\d{3}$)" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
               </div>
               <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new patient"><span class="fa fa-id-card"></span></a>
 	            </div>
@@ -177,7 +177,7 @@
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="VI" style="float:left; width:200px;">Visual Impairment<span style="color: #d9534f">*</span></label>
 													<div class="col-md-6" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="VI" placeholder="Description of visual impairment..." maxlength="<?php echo $VI_MAX; ?>" name="VI" required>
+														<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="VI" placeholder="Description of visual impairment..." maxlength="<?php echo $VI_MAX; ?>" name="VI" required>
 													</div>
 												</div>
 												<!-- VISUAL IMPARITY END -->
@@ -186,7 +186,7 @@
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="MED_HIST" style="float:left; width:200px;">Medical History </label>
 													<div class="col-md-6" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="MED_HIST" placeholder="Patient medical history..." maxlength="<?php echo $HIST_MAX; ?>" name="MED_HIST">
+														<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="MED_HIST" placeholder="Patient medical history..." maxlength="<?php echo $HIST_MAX; ?>" name="MED_HIST">
 													</div>
 												</div>
 												<!-- MEDICAL HISTORY END -->
@@ -205,18 +205,18 @@
 												<div class="form-group row" >
              <label class="control-label col-md-3" for="IOL" style="float:left; width:200px;">IOL Power<span style="color: #d9534f">*</span></label>
              <div class="col-md-6" style="width: 150px; float: left;">
-              <input type="text" class="form-control" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL" required>
+              <input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL" required>
              </div>
            	</div>
 												<!-- IOL POWER END -->
       
 												<!-- TYPE OF ANESTHESIA -->
 												<div class="form-group row">
-             <label class="control-label col-md-3" for="TANES" style="float:left; width:215px;">Type of Anesthesia<span style="color: #d9534f">*</span></label>
-             
-				<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="General" required>General</label>
-				<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="Local">Local</label>
-             
+             <label class="control-label col-md-3" for="TANES" style="float:left; width:200px;">Type of Anesthesia<span style="color: #d9534f">*</span></label>
+             <div class="col-md-6" style="width: 250px; float: left;">
+															<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="General" required>General</label>
+															<label class="radio-inline" id="TANES"><input name="TANES" type="radio" value="Local">Local</label>
+             </div>
            </div>
 												<!-- TYPE OF ANESTHESIA END -->
         
@@ -224,7 +224,7 @@
 												<div class="form-group row">
              <label class="control-label col-md-3" for="SURG_ADD" style="float:left; width:200px;">Surgery Address<span style="color: #d9534f">*</span></label>
              <div class="col-md-6" style="width: 550px; float: left;">
-               <input type="text" class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD" required>
+               <input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="SURG_ADD" placeholder="Enter address of where the sugery was conducted..." maxlength="<?php echo $SURGADD_MAX; ?>" name="SURG_ADD" required>
              </div>
            	</div>
 												<!-- SURGERY ADDRESS END -->
@@ -232,7 +232,7 @@
 												<!-- DATE -->
 												<div class="form-group row">
 													<label class="control-label col-md-3" style="float:left; width:200px;">Date of Surgery </label>
-													<div class="col-md-7"  style="float:left; width:250px;">
+													<div  class="col-md-7"  style="float:left; width:250px;">
 														<div class="form-group">
 															<div class='input-group date' id='datetimepicker'>
 																<input type='text' class='form-control' pattern='^\d{1,2}\/\d{1,2}\/\d{4}$' id='DATE' name='DATE' placeholder='MM/DD/YYYY' value= '<?php echo date("m/d/y"); ?>' >
@@ -335,13 +335,13 @@
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="RDIAG" style="float:left; width:200px;">Right Eye Diagnosis </label>
 													<div class="col-md-7" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="RDIAG" placeholder="Right Eye Surgery Diagnosis" maxlength="30" name="RDIAG">
+														<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="RDIAG" placeholder="Right Eye Surgery Diagnosis" maxlength="30" name="RDIAG">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="control-label col-md-3" for="LDIAG" style="float:left; width:200px;">Left Eye Diagnosis </label>
 													<div class="col-md-7" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="LDIAG" placeholder="Left Eye Surgery Diagnosis" maxlength="30" name="LDIAG">
+														<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="LDIAG" placeholder="Left Eye Surgery Diagnosis" maxlength="30" name="LDIAG">
 													</div>
 												</div>
 												<!-- DIAGNOSIS END -->
@@ -350,7 +350,7 @@
 												<div class="form-group row">
 													<label class="control-label col-md-2" for="REM" style="float:left; width:200px;">Remarks</label>
 													<div class="col-md-7" style="width: 600px; float: left;">
-														<input type="text" class="form-control" id="REM" placeholder="Surgeon's Remarks" maxlength="<?php echo $REM_MAX; ?>" name="REM">
+														<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="REM" placeholder="Surgeon's Remarks" maxlength="<?php echo $REM_MAX; ?>" name="REM">
 													</div>
 												</div>
 												<!-- SURGERY REMARKS END -->
