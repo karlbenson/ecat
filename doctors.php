@@ -43,7 +43,7 @@
 						</div>
 						<!-- TITLE -->
 
-						<?php include("confirm.php"); ?>
+						<?php include("confirmdoc.php"); ?>
 
 						<!-- CONTENT -->
 						<div class="container-fluid" >
@@ -99,13 +99,13 @@
 													}
 													if(strlen($F_SC1)>1){
 														$F_SC = 'SPECIALIZATION="'.$F_SC1.'"';
-														$filter = " WHERE ".$F_SC;
+														$filter = " WHERE ".$F_SC." AND VISIBLE='T'";
 													}else {
-														$filter = "";
+														$filter = "WHERE VISIBLE='T'";
 													}
 												}
 											} else {
-												$filter = "";
+												$filter = "WHERE VISIBLE='T'";
 											}
 
 											//MYSQL SECTION
@@ -138,9 +138,15 @@
 																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
 																	<td>'.$row["SPECIALIZATION"].'</td>
 																	<td>
-																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
-																		<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
-																		<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>';
+
+																		if ($row["VISIBLE"]=='T') {
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Inactive"></span></a>';
+																		}else{
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Active"></span></a>';
+																		}
+																		
+														echo'				<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
 																</tr>';
 													} //CONTENT END
@@ -311,14 +317,15 @@
 												//SEE MORE PAGE END
 											}else if($DEFAULT==2){
 												//DELETE PAGE
-												$del = "DELETE FROM DOCTOR WHERE DOC_LICENSE_NUM = '$delete_p' ";
+												$vis='F';
+												$del = "UPDATE DOCTOR SET VISIBLE='$vis' WHERE DOC_LICENSE_NUM = '$delete_p' ";
 												if ($mydatabase->query($del) === TRUE) {
-													echo "Record deleted.";
+													echo "Record Inactivated.";
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'doctors.php'.'">Back</a></div>';
 												} else {
 													echo '<div style="margin-top:10px;" class="alert alert-danger alert-dismissable"><a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-														<p><strong>Cannot Delete Record</strong></p>
-														<p>Error deleting record: '.$mydatabase->error.'</p></div>'; 
+														<p><strong>Cannot Inactivate Record</strong></p>
+														<p>Error Inactivating record: '.$mydatabase->error.'</p></div>'; 
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'doctors.php'.'">Back</a></div>';
 												}
 												//DELETE PAGE END
