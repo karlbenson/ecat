@@ -3,12 +3,12 @@
 	<head>
 		<title>Luke Foundation Eye Program: Home</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="references/bootstrap.min.css">
-		<link rel="stylesheet" href="references/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="references/bootstrap.min.css"/>
+		<link rel="stylesheet" href="references/font-awesome.min.css"/>
 		<script src="references/jquery.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="theme2.css">
+		<link rel="stylesheet" type="text/css" href="theme2.css"/>
 	</head>
 	<body style="justify-content: center;">
 
@@ -25,52 +25,7 @@
 				</div>
 				<!-- TITLE END -->
 
-				<?php
-					include("dbconnect.php");	
-					//MYSQL SECTION
-					$currmonth = date("m");
-					$S_query = "SELECT * FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM order by s.SURG_DATE desc";
-					$output = $mydatabase->query($S_query);	
-					//MYSQL SECTION END
-					//CONTENT
-					$prearray = array();
-					$PC_PF_SUM=0;
-					$PC_LAB_SUM=0;
-					$PC_IOL_SUM=0;
-					$SPO_IOL_SUM=0;
-					$CSF_HBILL_SUM=0;
-					$CSF_SUPP_SUM=0;
-					$CSF_LAB_SUM=0;
-					while($dataline = $output->fetch_assoc()) {
-						
-						$PC_PF_SUM=$PC_PF_SUM+$dataline["PC_PF"];
-						$PC_LAB_SUM=$PC_LAB_SUM+$dataline["PC_LAB"];
-						$PC_IOL_SUM=$PC_IOL_SUM+$dataline["PC_IOL"];
-						$SPO_IOL_SUM=$SPO_IOL_SUM+$dataline["SPO_IOL"];
-						$CSF_HBILL_SUM=$CSF_HBILL_SUM+$dataline["CSF_HBILL"];
-						$CSF_SUPP_SUM=$CSF_SUPP_SUM+$dataline["CSF_SUPPLIES"];
-						$CSF_LAB_SUM=$CSF_LAB_SUM+$dataline["CSF_LAB"];
-					}
-					//CONTENT END
-					$PC_TOT=$PC_PF_SUM+$PC_LAB_SUM+$PC_IOL_SUM;
-					$CSF_TOT=$CSF_HBILL_SUM+$CSF_LAB_SUM+$CSF_SUPP_SUM;
-					$GRAND = $PC_TOT+$CSF_TOT+$SPO_IOL_SUM;
-					$pesos = "₱ ";
-
-					//COMMA PORTION
-					$PC_PF_SUM=number_format($PC_PF_SUM, 2, ".", ",");
-					$PC_LAB_SUM=number_format($PC_LAB_SUM, 2, ".", ",");
-					$PC_IOL_SUM=number_format($PC_IOL_SUM, 2, ".", ",");
-					$SPO_IOL_SUM=number_format($SPO_IOL_SUM, 2, ".", ",");
-					$CSF_HBILL_SUM=number_format($CSF_HBILL_SUM, 2, ".", ",");
-					$CSF_SUPP_SUM=number_format($CSF_SUPP_SUM, 2, ".", ",");
-					$CSF_LAB_SUM=number_format($CSF_LAB_SUM, 2, ".", ",");
-					$PC_TOT=number_format($PC_TOT, 2, ".", ",");
-					$CSF_TOT=number_format($CSF_TOT, 2, ".", ",");
-					$GRAND=number_format($GRAND, 2, ".", ",");
-
-					//END COMMA
-				?>
+			
 
 <script type="text/javascript">
 	$( document ).ready(function() {
@@ -116,7 +71,6 @@
 	</div>
 	<div class="col-sm-2 col-xs-4">
 		<a id="tile2" class="tile" href="patient.php">
-    	 
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -201,7 +155,7 @@
 
 <div class="row">
 	<div class="col-sm-4 col-xs-8">
-		<a id="tile7" class="tile" href="form_doctor.php">
+		<a id="tile7" class="tile" href="form_doctors.php">
     	 
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->

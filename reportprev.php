@@ -644,7 +644,7 @@
 												if($_POST["phtype"]=="W"){
 													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM  AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
 													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">With Philhealth(<a href="excel.php?ph=y&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
-												}else{
+												}else if($_POST["phtype"]=="WO"){
 													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
 													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth(<a href="excel.php?ph=n&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
 												}
