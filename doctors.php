@@ -54,9 +54,10 @@
 									<ul class="list-group">
 										<?php //CODE SECTION STARTS HERE
 											$DEFAULT = 0;
-											if (isset($_GET["currentpage"])) { 
-												$current_p  = $_GET["currentpage"];
-											} else {
+
+											if (isset($_GET["printpage"])) { $print_p = $_GET["printpage"]; $DEFAULT=4; }
+
+											if (isset($_GET["currentpage"])) {  $current_p  = $_GET["currentpage"]; } else {
 												$current_p=1; 
 											};
 											if (isset($_GET["profilepage"])) { 
@@ -191,14 +192,15 @@
 																	<div class="col-md-3" style="font-weight:bold;">Specialization</div>
 																	<div class="col-md-9">'.$D_SP.'</div>
 																</div>
-															</div>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" id="tophead1">Surgeries Attended</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">';
+															</div>';
+
 															if($output2->num_rows > 0){
-																echo		'<table class="table table-striped row">
+																	echo '<div class="" style="margin:10px 20px; padding: 0px 0px 10px 0px;"><hr style="border-color:#337ab7;"></div>
+
+																		<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Surgeries Attended</div>';
+																echo		'<table class="table table-striped ">
 																		<thead>
-																			<tr id="tophead">
+																			<tr id="tophead" style="background-color:#337ab7 ;">
 																			<td style="color:#ffffff">'.'Date'.'</th>
 																			<td style="color:#ffffff">'.'Patient'.'</th>
 																			<td style="color:#ffffff">'.'Address'.'</th>
@@ -208,7 +210,7 @@
 																		while($dataline2 = $output2->fetch_assoc()) { 
 																			echo 	'<tr>
 																						<td>'.$dataline2["SURG_DATE"].'</td>
-																						<td><a href="patient.php?profilepage='.$dataline2["PAT_ID_NUM"].'""><span class="fa fa-external-link" title="View patient"></span></a> '.$dataline2["PAT_FNAME"].' '.$dataline2["PAT_LNAME"].'</td>
+																						<td><a style="text-decoration:none;" href="patient.php?profilepage='.$dataline2["PAT_ID_NUM"].'""><span class="fa fa-external-link" title="View patient"></span> <span style="color:#000000;">'.$dataline2["PAT_FNAME"].' '.$dataline2["PAT_LNAME"].'</span></a></td>
 																						<td>'.$dataline2["SURG_ADDRESS"].'</td>
 																						<td>
 																							<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
@@ -218,8 +220,7 @@
 																					</tr>';
 																		}
 																		echo				'</table>
-																						</div>
-																					</div>
+																						
 																				</div>
 																			</div>';
 																		
@@ -323,6 +324,87 @@
 													echo '<div class="row" style="text-align:right;"><a role="btn" class="btn" id="go"  href="'.'doctors.php'.'">Back</a></div>';
 												}
 												//DELETE PAGE END
+											}else if($DEFAULT==4){
+												if(strlen($print_p)>1){
+													//PRINT PAGE
+
+													echo '<div style="margin-top:20px;"></div>';
+
+													//MYSQL SECTION
+													$outputpage = $mydatabase->prepare("SELECT * FROM DOCTOR WHERE DOC_LICENSE_NUM = '$print_p' ");
+
+													$outputpage -> execute();
+													$ppage = $outputpage->get_result();
+													$printline = $ppage->fetch_assoc();
+													//MYSQL SECTION END
+
+													echo '<div>
+
+													<div class="container-fluid" style="width:100%; float:left;">
+
+													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
+														<div style="width:100%; margin-bottom:10px;"><h4> Dr. '.$printline["FIRST_NAME"].' '.$printline["LAST_NAME"].'</h5></div>
+													</div>
+														<hr>
+													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
+														<div id="pr_label">License Number: </div>
+														<div id="pr_body" >'.$printline["DOC_LICENSE_NUM"].'</div>
+														<div id="pr_label">Specialization: </div>
+														<div id="pr_body" >'.$printline["SPECIALIZATION"].'</div>
+														<div id="pr_label">Address: </div>
+														<div id="pr_body" >'.$printline["ADDRESS"].'</div>
+													</div>
+													</div>';
+
+													$Print_query = "SELECT * FROM SURGERY s WHERE SURG_LICENSE_NUM = '$print_p' OR SURG_LICENSE_NUM1 = '$print_p' OR SURG_LICENSE_NUM2 = '$print_p' OR INTERNIST = '$print_p' OR INTERNIST1 = '$print_p' OR INTERNIST2 = '$print_p' OR ANESTHESIOLOGIST = '$print_p' ORDER by SURG_DATE desc";
+													$outprint = $mydatabase->query($Print_query);
+
+													//echo $Print_query;
+													if ($outprint->num_rows>0) {
+
+
+														echo '<div class="container-fluid" style="width:100%; float:left; margin:20px 0px;">
+															<table class="table table-condensed table-bordered">
+																	<thead>
+													      <tr style="background-color:#f9f9f9;">
+													    			<th colspan="5" style="text-align:center; padding:10px;">Surgeries Attended</th>
+													      </tr>
+													    </thead>
+													    <tbody>
+													      <tr >
+													      		<th>Date</th>
+													        <th>Case Number</th>
+													        <th>Patient</th>
+													        <th>Visual Impairment</th>
+													        <th>Address</th>
+													      </tr>';
+
+													      while($dataprint = $outprint->fetch_assoc()) {
+													      	echo '<tr>
+													      		<td>'.$dataprint["SURG_DATE"].'</td>
+													        <td>'.$dataprint["CASE_NUM"].'</td>';
+													        $PAT_ID_P = $dataprint["PAT_ID_NUM"];
+																					$PAT_GET = $mydatabase->prepare("SELECT PAT_FNAME, PAT_LNAME FROM EYEPATIENT WHERE PAT_ID_NUM='$PAT_ID_P'");
+																					$PAT_GET->execute();
+																					$PAT_TAKE = $PAT_GET->get_result();
+																					$PAT_P = $PAT_TAKE->fetch_assoc();
+													        echo '<td>'.$PAT_P["PAT_FNAME"].' '.$PAT_P["PAT_LNAME"].'</td>
+													        <td>'.$dataprint["VISUAL_IMPARITY"].'</td>
+													        <td>'.$dataprint["SURG_ADDRESS"].'</td>
+													      </tr>';
+													      }
+													    		
+													    echo '</tbody>
+													  </table>
+														</div>
+
+														<div style="float:left; width:100%; padding-bottom:20px;"></div>
+														</div>';
+												}
+													//PRINT PAGE END
+												}else{
+													echo 'No print page available.';
+												}
 											}
 											//CODE SECTION ENDS HERE
 										?>
