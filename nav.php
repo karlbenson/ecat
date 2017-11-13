@@ -89,7 +89,9 @@
 		}
 	</script>';
 	// SCRIPT END
-
+			$print_action = "";
+			$redirect_print = "";
+			
 		if(isset($_GET["profilepage"])){
 			$redirect_print = $_SERVER['PHP_SELF'].'?printpage='.$_GET["profilepage"];
 			$print_action = " Print Preview ";
