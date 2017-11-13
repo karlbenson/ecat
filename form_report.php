@@ -49,7 +49,7 @@
 				while($dataline = $output->fetch_assoc()) {
 					$minyear = explode("-", $dataline["SURG_DATE"])[0];
 				}
-				echo $minyear;
+				//echo $minyear;
 				while($minyear!=$maxyear){
 					array_push($year, $minyear);
 					$minyear++;
@@ -64,11 +64,11 @@
 							<!-- FORMS -->
 							<div class="container-fluid">
 								<h3>Report Information</h3>
-								<hr>
+								<hr style="">
 								<form method="post" action="reportprev.php" >
 									
-									<div class="form-group row">
-										<label class="control-label col-md-2" style="float:left; width:170px;">Type of Report</label>
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" style="float:left; width:250px;">Type of Report</label>
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 175px; float: left; margin-right:10px;">
@@ -80,8 +80,8 @@
 											<!-- YEARLY END -->
 										</div>
 									</div>
-									<div class="form-group row">
-										<label class="control-label col-md-2" for="Year" style="float:left; width:170px;">Year</label>
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" for="Year" style="float:left; width:250px;">Year</label>
 										<div class="col-md-4" style="width: 250px; float: left;">
 											<select type="text" name="Year" class="form-control" id="year" disabled>
 												<option value = "">Select Year</option>
@@ -93,8 +93,8 @@
 											</select>
 										</div>
 									</div>
-									<div class="form-group row">
-										<label class="control-label col-md-2" for="Month" style="float:left; width:170px;">Month</label>
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" for="Month" style="float:left; width:250px;">Month</label>
 										<div class="col-md-4" style="width: 250px; float: left;">
 											<select type="text" name="Month" class="form-control" id="month" disabled>
 												<option value = "">Select Month</option>
@@ -107,8 +107,8 @@
 										</div>
 									</div>
 									
-									<div class="form-group row">
-										<label class="control-label col-md-2" style="float:left; width:170px;">Type of Anesthesia</label>
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" style="float:left; width:250px;">Type of Anesthesia</label>
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 175px; float: left; margin-right:10px;">
@@ -121,8 +121,8 @@
 										</div>
 									</div>
 
-									<div class="form-group row">
-										<label class="control-label col-md-2" style="float:left; width:170px;">Patient Philhealth</label>
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" style="float:left; width:250px;">Patient Philhealth</label>
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 500px; float: left; margin-right:10px;">
@@ -136,8 +136,8 @@
 									</div>
 				 
 									<!-- ENTER -->
-									<div style="margin-bottom: 20px;">
-										<button type="submit" class="btn" id="go" name="doctors_info" onClick="">Generate</button>
+									<div style="padding:10px 20px 20px 20px; text-align:center; float:left; width:100%;">
+									<button type="submit" class="btn" id="go" name="doctors_info">Generate</button>
 									</div>
 									<!-- ENTER END -->
 								</form>
