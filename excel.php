@@ -29,7 +29,23 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 	if (!$mydatabase) {
 		die( '<div style="color: #ffffff; font-size: 12pt; text-align:center;">'.'Error: Unable to connect to database.'.'</div');
 	}//END
-$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+	if(isset($_GET["gen"])){
+		if($_GET["gen"]=="y"){
+			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
+		}else if($_GET["gen"]=="n"){
+			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
+		}
+	}else if(isset($_GET["ph"])){
+		if($_GET["ph"]=="y"){
+			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+		}else if($_GET["ph"]=="n"){
+			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
+		}
+
+	}
+	
+
+
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
@@ -48,15 +64,26 @@ $S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE
 												            ->setCellValue('I1', 'Supplies')
 												            ->setCellValue('J1', 'Lab');
 												    $i=2;
+												    $PC_COL_SUM = 0;
+													$CSF_COL_SUM = 0;
+													$ROW_COL_SUM = 0;
 													while($dataline = $output->fetch_assoc()) { 
+														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
+														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
+														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
+														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
+														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
+														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A'.$i, ''.$dataline["CASE_NUM"])
 												            ->setCellValue('B'.$i, ''.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"])	
 												            ->setCellValue('C'.$i, ''.$dataline["PC_IOL"])
 												            ->setCellValue('D'.$i, ''.$dataline["PC_LAB"])
 												            ->setCellValue('E'.$i, ''.$dataline["PC_PF"])
+												            ->setCellValue('E'.$i, ''.$PC_SUM)
 												            ->setCellValue('F'.$i, ''.$dataline["SPO_IOL"])
-												            ->setCellValue('G'.$i, 'Other Spons.')
+												            ->setCellValue('G'.$i, ''..$dataline["SPO_OTHERS"])
 												            ->setCellValue('H'.$i, ''.$dataline["CSF_HBILL"])
 												            ->setCellValue('I'.$i, ''.$dataline["CSF_SUPPLIES"])
 												            ->setCellValue('J'.$i, ''.$dataline["CSF_LAB"]);

@@ -521,15 +521,20 @@
 													
 											//GENERAL ANESTHESIA
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
+											if($_POST["anestype"]=="Gen"){
+												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
+												echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia(<a href="excel.php?gen=y">Download .xls</a>)</div>';
+											}else{
+												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
+												echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia(<a href="excel.php?gen=n">Download .xls</a>)</div>';
+											}
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+													echo '<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
 															<thead>
 																<tr id="tophead">
@@ -541,22 +546,30 @@
 																<td style="color:#ffffff">Total PC</td>
 																<td style="color:#ffffff">Spons. IOL</td>
 																<td style="color:#ffffff">Other Spons.</td>
-																<td style="color:#ffffff">Total Spons.</td>
+																<td style="color:#ffffff">Totals Spons.</td>
 																<td style="color:#ffffff">Hosp. Bill</td>
 																<td style="color:#ffffff">Suppl.</td>
 																<td style="color:#ffffff">Lab</td>
 																<td style="color:#ffffff">Total CSF</td>
+																<td style="color:#ffffff">NDDCH RA</td>
+																<td style="color:#ffffff">NDDCH ZEISS</td>
+																<td style="color:#ffffff">NDDCH Total</td>
 																<td style="color:#ffffff">Total</td>
 																</tr>
 															</thead>';
+													$PC_COL_SUM = 0;
+													$CSF_COL_SUM = 0;
+													$ROW_COL_SUM = 0;
 													while($dataline = $output->fetch_assoc()) { 
 														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
 														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
 														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
-														$PC_COL_SUM = 0;
-														$CSF_COL_SUM = 0;
-														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM+0.0;
-														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM+0.0;
+														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
+														$NDDCH_SUM = $dataline["NDDCH_ZEISS"]+$dataline["NDDCH_RA"];
+														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
+														$SPO_COL_SUM = $SPO_COL_SUM+$SPO_SUM;
+														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														echo 	'<tr>
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
@@ -565,92 +578,48 @@
 																	<td>'.$dataline["PC_PF"].'</td>
 																	<td>'.$PC_SUM.'</td>
 																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
+																	<td>'.$dataline["SPO_OTHERS"].'</td>
+																	<td>'.$SPO_SUM.'</td>
 																	<td>'.$dataline["CSF_HBILL"].'</td>
 																	<td>'.$dataline["CSF_SUPPLIES"].'</td>
 																	<td>'.$dataline["CSF_LAB"].'</td>
 																	<td>'.$CSF_SUM.'</td>
+																	<td>'.$dataline["NDDCH_RA"].'</td>
+																	<td>'.$dataline["NDDCH_ZEISS"].'</td>
+																	<td>'.$NDDCH_SUM.'</td>
 																	<td>'.$ROW_SUM.'</td>
 																</tr>';
 													}
+													echo 	'<tr>
+																<td colspan="5"><b>Total</b></td>
+																<td><b>'.$PC_COL_SUM.'</b></td>
+																<td><b>'.$dataline["SPO_IOL"].'</b></td>
+																<td><b>'.$dataline["SPO_OTHERS"].'</b></td>
+																<td><b>'.$SPO_COL_SUM.'</b></td>
+																<td><b>'.$dataline["CSF_HBILL"].'</b></td>
+																<td><b>'.$dataline["CSF_SUPPLIES"].'</b></td>
+																<td><b>'.$dataline["CSF_LAB"].'</b></td>
+																<td><b>'.$CSF_COL_SUM.'</b></td>
+																<td><b>'.$ROW_COL_SUM.'</b></td>
+															</tr>';
 													echo	'</tbody>
 														</table></div>
 													</div>';
 
-														echo '<button style="display:none;" id="del_button" value="surgery"></button>';
+													
 
 												} else {
 													echo "No Records.";
 												}
 												//MAIN PAGE END
 												
-												//LOCAL ANESTHESIA
-											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
-											$output = $mydatabase->query($S_query);
-											//MYSQL SECTION END
-        
-												//FILTER END
-												//MAIN PAGE
-												if ($output->num_rows>0) {
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
-															<thead>
-																<tr id="tophead">
-																<td style="color:#ffffff">Case No.</td>
-																<td style="color:#ffffff">Patient</td>
-																<td style="color:#ffffff">IOL</td>
-																<td style="color:#ffffff">Lab</td>
-																<td style="color:#ffffff">Prof. Fee</td>
-																<td style="color:#ffffff">Total PC</td>
-																<td style="color:#ffffff">Spons. IOL</td>
-																<td style="color:#ffffff">Other Spons.</td>
-																<td style="color:#ffffff">Total Spons.</td>
-																<td style="color:#ffffff">Hosp. Bill</td>
-																<td style="color:#ffffff">Suppl.</td>
-																<td style="color:#ffffff">Lab</td>
-																<td style="color:#ffffff">Total CSF</td>
-																<td style="color:#ffffff">Total</td>
-																</tr>
-															</thead>';
-													while($dataline = $output->fetch_assoc()) { 
-														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
-														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
-														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
-														$PC_COL_SUM = 0;
-														$CSF_COL_SUM = 0;
-														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM+0.0;
-														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM+0.0;
-														echo 	'<tr>
-																	<td>'.$dataline["CASE_NUM"].'</td>
-																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
-																	<td>'.$dataline["PC_IOL"].'</td>
-																	<td>'.$dataline["PC_LAB"].'</td>
-																	<td>'.$dataline["PC_PF"].'</td>
-																	<td>'.$PC_SUM.'</td>
-																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
-																	<td>'.$dataline["CSF_HBILL"].'</td>
-																	<td>'.$dataline["CSF_SUPPLIES"].'</td>
-																	<td>'.$dataline["CSF_LAB"].'</td>
-																	<td>'.$CSF_SUM.'</td>
-																	<td>'.$ROW_SUM.'</td>
-																</tr>';
-													}
-													echo	'</tbody>
-														</table></div>
-													</div></div>';
-
-														echo '<button style="display:none;" id="del_button" value="surgery"></button>';
-
-												} else {
-													echo "No Records.";
+												if($_POST["phtype"]=="W"){
+													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM  AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">With Philhealth(<a href="excel.php?ph=y">Download .xls</a>)</div>';
+												}else{
+													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
+													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth(<a href="excel.php?ph=n">Download .xls</a>)</div>';
 												}
-												//MAIN PAGE END
-
 
 												//WITH PHILHEALTH
 											//MYSQL SECTION
@@ -661,8 +630,7 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">With Philhealth</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
+													echo '<div class="panel-body row" style="margin:0px; padding:5px 10px;">
 														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
 															<thead>
 																<tr id="tophead">
@@ -682,16 +650,18 @@
 																<td style="color:#ffffff">Total</td>
 																</tr>
 															</thead>';
-															$PC_COL_SUM = 0.0;
-														$CSF_COL_SUM = 0.0;
-														$ROW_COL_SUM = 0.0;
+													$PC_COL_SUM = 0;
+													$CSF_COL_SUM = 0;
+													$ROW_COL_SUM = 0;
 													while($dataline = $output->fetch_assoc()) { 
 														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
 														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
 														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
-														
-														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM+0.0;
-														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM+0.0;
+														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
+														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
+														$SPO_COL_SUM = $SPO_COL_SUM+$SPO_SUM;
+														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														echo 	'<tr>
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
@@ -700,117 +670,38 @@
 																	<td>'.$dataline["PC_PF"].'</td>
 																	<td>'.$PC_SUM.'</td>
 																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
+																	<td>'.$dataline["SPO_OTHERS"].'</td>
+																	<td>'.$SPO_SUM.'</td>
 																	<td>'.$dataline["CSF_HBILL"].'</td>
 																	<td>'.$dataline["CSF_SUPPLIES"].'</td>
 																	<td>'.$dataline["CSF_LAB"].'</td>
 																	<td>'.$CSF_SUM.'</td>
 																	<td>'.$ROW_SUM.'</td>
 																</tr>';
-														
 													}
 													echo 	'<tr>
-																	<td colspan="5"></td>
-																	<td>'.$PC_COL_SUM.'</td>
-																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
-																	<td colspan="3"></td>
-																	<td>'.$CSF_COL_SUM.'</td>
-																	<td>'.$ROW_COL_SUM.'</td>
-																</tr>';
+																<td colspan="5"><b>Total</b></td>
+																<td><b>'.$PC_COL_SUM.'</b></td>
+																<td><b>'.$dataline["SPO_IOL"].'</b></td>
+																<td><b>'.$dataline["SPO_OTHERS"].'</b></td>
+																<td><b>'.$SPO_COL_SUM.'</b></td>
+																<td><b>'.$dataline["CSF_HBILL"].'</b></td>
+																<td><b>'.$dataline["CSF_SUPPLIES"].'</b></td>
+																<td><b>'.$dataline["CSF_LAB"].'</b></td>
+																<td><b>'.$CSF_COL_SUM.'</b></td>
+																<td><b>'.$ROW_COL_SUM.'</b></td>
+															</tr>';
 													echo	'</tbody>
 														</table></div>
-													</div></div>';
+													</div>';
 
-														echo '<button style="display:none;" id="del_button" value="surgery"></button>';
+													
 
 												} else {
 													echo "No Records.";
 												}
 												//MAIN PAGE END
 
-
-
-												//WITHOUT PHILHEALTH
-											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
-											$output = $mydatabase->query($S_query);
-											//MYSQL SECTION END
-        
-												//FILTER END
-												//MAIN PAGE
-												if ($output->num_rows>0) {
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">With Philhealth</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
-															<thead>
-																<tr id="tophead">
-																<td style="color:#ffffff">Case No.</td>
-																<td style="color:#ffffff">Patient</td>
-																<td style="color:#ffffff">IOL</td>
-																<td style="color:#ffffff">Lab</td>
-																<td style="color:#ffffff">Prof. Fee</td>
-																<td style="color:#ffffff">Total PC</td>
-																<td style="color:#ffffff">Spons. IOL</td>
-																<td style="color:#ffffff">Other Spons.</td>
-																<td style="color:#ffffff">Total Spons.</td>
-																<td style="color:#ffffff">Hosp. Bill</td>
-																<td style="color:#ffffff">Suppl.</td>
-																<td style="color:#ffffff">Lab</td>
-																<td style="color:#ffffff">Total CSF</td>
-																<td style="color:#ffffff">Total</td>
-																</tr>
-															</thead>';
-															$PC_COL_SUM = 0.0;
-														$CSF_COL_SUM = 0.0;
-														$ROW_COL_SUM = 0.0;
-													while($dataline = $output->fetch_assoc()) { 
-														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
-														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
-														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
-														
-														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM+0.0;
-														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM+0.0;
-														echo 	'<tr>
-																	<td>'.$dataline["CASE_NUM"].'</td>
-																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
-																	<td>'.$dataline["PC_IOL"].'</td>
-																	<td>'.$dataline["PC_LAB"].'</td>
-																	<td>'.$dataline["PC_PF"].'</td>
-																	<td>'.$PC_SUM.'</td>
-																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
-																	<td>'.$dataline["CSF_HBILL"].'</td>
-																	<td>'.$dataline["CSF_SUPPLIES"].'</td>
-																	<td>'.$dataline["CSF_LAB"].'</td>
-																	<td>'.$CSF_SUM.'</td>
-																	<td>'.$ROW_SUM.'</td>
-																</tr>';
-														
-													}
-													echo 	'<tr>
-																	<td colspan="5"></td>
-																	<td>'.$PC_COL_SUM.'</td>
-																	<td>'.$dataline["SPO_IOL"].'</td>
-																	<td>Others</td>
-																	<td>Spons. + Others</td>
-																	<td colspan="3"></td>
-																	<td>'.$CSF_COL_SUM.'</td>
-																	<td>'.$ROW_COL_SUM.'</td>
-																</tr>';
-													echo	'</tbody>
-														</table></div>
-													</div></div>';
-
-														echo '<button style="display:none;" id="del_button" value="surgery"></button>';
-
-												} else {
-													echo "No Records.";
-												}
-												//MAIN PAGE END
 													$mydatabase->close();
 													
 													?>
