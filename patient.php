@@ -267,7 +267,7 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '.$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
 												$dataline = $line1->fetch_assoc();

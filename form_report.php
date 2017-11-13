@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Luke Foundation Eye Program: Doctor Form</title>
+		<title>Luke Foundation Eye Program: Report Form</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="refresh" content="100000" > 
@@ -14,9 +14,12 @@
 			function toggleYear(){
 				document.getElementById("year").removeAttribute("disabled"); 
 				document.getElementById("month").setAttribute("disabled","");
+				document.getElementById("year").setAttribute("required","true");
+
 			}
 			function toggleMonth(){
 				document.getElementById("month").removeAttribute("disabled"); 
+				document.getElementById("month").setAttribute("required","true");
 			}
 		</script>
 	</head>
@@ -45,7 +48,7 @@
 				$month = array("January","February","March","April","May","June","July","August","September","October","November","December");
 				$maxyear=0;
 				$minyear=1980;
-				$maxyear=date("Y");
+				$maxyear=date("Y")+1;
 				while($dataline = $output->fetch_assoc()) {
 					$minyear = explode("-", $dataline["SURG_DATE"])[0];
 				}
@@ -72,9 +75,9 @@
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 175px; float: left; margin-right:10px;">
-													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype"  value="Yearly" onClick="toggleYear()" style="float: left;"> 
+													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype"  value="Yearly" onClick="toggleYear()" style="float: left;" required="true"> 
 													Yearly</label>
-													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype" value="Monthly" onClick="toggleYear();toggleMonth()"> 
+													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype" value="Monthly" onClick="toggleYear();toggleMonth()" required="true"> 
 													Monthly</label><br>
 											</div>
 											<!-- YEARLY END -->
@@ -112,9 +115,9 @@
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 175px; float: left; margin-right:10px;">
-													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype"  value="Gen" style="float: left;"> 
+													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype"  value="Gen" style="float: left;"  required="true"> 
 													General</label>
-													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype" value="Monthly" > 
+													<label  for="anestype" class="radio-inline" required ><input type="radio" name="anestype" value="Monthly"  required="true"> 
 													Local</label><br>
 											</div>
 											<!-- YEARLY END -->
@@ -126,9 +129,9 @@
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
 											<div style="width: 500px; float: left; margin-right:10px;">
-													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype"  value="W" style="float: left;"> 
+													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype"  value="W" style="float: left;"  required="true"> 
 													With Philhealth</label>
-													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype" value="WO"> 
+													<label  for="phtype" class="radio-inline" required ><input type="radio" name="phtype" value="WO"  required="true"> 
 													Without Philhealth</label><br>
 											</div>
 											<!-- YEARLY END -->

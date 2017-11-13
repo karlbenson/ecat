@@ -44,7 +44,6 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
 			$fname = "WOPhilHealth";
 		}
-
 	}
 	
 
@@ -117,10 +116,10 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 												            ->setCellValue('P'.$i, ''.$NDDCH_COL_SUM)
 												            ->setCellValue('Q'.$i, ''.$ROW_COL_SUM);
 												} else {
-													echo "No Records.";
+													$objPHPExcel->setActiveSheetIndex(0)
+												            ->setCellValue('A1', "No records");
 												}
-												//MAIN PAGE END
-													$mydatabase->close();
+												$mydatabase->close();
 // Rename worksheet
 $objPHPExcel->getActiveSheet()->setTitle('Table');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet

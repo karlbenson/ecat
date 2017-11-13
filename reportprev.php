@@ -102,7 +102,7 @@
 				
 				//PRELEFT
 				
-				$strQuery = "SELECT PRE_VA_NO_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT GROUP BY PRE_VA_NO_SPECT_LEFT";
+				$strQuery = "SELECT P.PRE_VA_NO_SPECT_LEFT, COUNT(*) AS freq FROM EYEPATIENT P,SURGERY S WHERE S.PAT_ID_NUM=P.PAT_ID_NUM AND YEAR(SURG_DATE)=".$curryear.$selector." MONTH(SURG_DATE)=".$currmonth." GROUP BY PRE_VA_NO_SPECT_LEFT";
 
 				// Execute the query, or else return the error message.
 				$result = $mydatabase->query($strQuery) or exit("Error code ({$mydatabase->errno}): {$mydatabase->error}");
@@ -633,9 +633,6 @@
 													echo	'</tbody>
 														</table></div>
 													</div>';
-
-													
-
 												} else {
 													echo "No Records.";
 												}
@@ -651,7 +648,6 @@
 
 												//WITH PHILHEALTH
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
