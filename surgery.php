@@ -70,10 +70,15 @@
 						<?php
 							include("confirm.php");
 							include("pass_verify.php");
+/*
+							echo $prili = $_SERVER['PHP_SELF'].'?printpage='.$_GET["profilepage"];
+							echo '<a href="'.$prili.'">link</a>'
+							*/
 						?>
 
 						<!-- CONTENT -->
 						<div class="container-fluid" >
+
 							<div>
 								<!-- MODIFIABLE CODE STARTS HERE -->
 								<!-- PROFILES -->
@@ -81,6 +86,8 @@
 									<ul class="list-group">
 										<?php //CODE SECTION STARTS HERE
 											$DEFAULT = 0;
+											if (isset($_GET["printpage"])) { $print_p = $_GET["printpage"]; $DEFAULT=4; }
+
 											if (isset($_GET["currentpage"])) { $current_p = $_GET["currentpage"]; } else { $current_p = 1; };
 											if (isset($_GET["profilepage"])) { 
 												$profile_p = $_GET["profilepage"]; $DEFAULT=1;
@@ -1244,6 +1251,7 @@
 
 													include("pass_verify.php");
 
+
 												//FULL DETAILS PAGE END
 											}else if($DEFAULT==2){
 												//DELETE PAGE
@@ -1260,6 +1268,273 @@
 												}
 												//MYSQL SECTION
 												//DELETE PAGE END
+											}else if($DEFAULT==4){
+												if(strlen($print_p)>1){
+													//PRINT PAGE
+
+													echo '<div style="margin-top:20px;"></div>';
+
+													//MYSQL SECTION
+													$outputpage = $mydatabase->prepare("SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND CASE_NUM = '$print_p' ");
+													$outputpage -> execute();
+													$ppage = $outputpage->get_result();
+													$printline = $ppage->fetch_assoc();
+													//MYSQL SECTION END
+
+													echo '<div>
+
+														<div class="container-fluid" style="width:45%; float:left; padding-right:0px;">
+
+														<div class="well" style="width:100%; float:left; padding-right:15px;">
+															<div id="pr_label">Case Number: </div>
+															<div id="pr_body" >'.$printline["CASE_NUM"].'</div>
+														</div>
+
+												  <div style="width:100%; float:left; padding-right:15px;">';
+												  	$date = explode("-", $printline["SURG_DATE"]);
+															echo '<div id="pr_label">Date: </div>
+															<div id="pr_body" >'.$MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0].'</div>
+															<div id="pr_label">Address: </div>
+															<div id="pr_body" >'.$printline["SURG_ADDRESS"].'</div>
+															<div id="pr_label">IOL Power: </div>
+															<div id="pr_body" >'.$printline["IOLPOWER"].'</div>
+															<div id="pr_label">Anesthesia: </div>
+															<div id="pr_body" >'.$printline["SURG_ANESTHESIA"].'</div>
+														</div>
+
+														<div style="width:100%; float:left; padding-right:15px;">
+															<div id="pr_label">Surgeon: </div>';
+															$SU = $printline["SURG_LICENSE_NUM"];
+															$SU1 = $printline["SURG_LICENSE_NUM1"];
+															$SU2 = $printline["SURG_LICENSE_NUM2"];
+															if(strlen($SU)==7){
+																$SU_GET = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$SU'");
+																$SU_GET->execute();
+																$SU_TAKE = $SU_GET->get_result();
+																$SU_P = $SU_TAKE->fetch_assoc();
+																$SUNAME = $SU_P["FIRST_NAME"]." ".$SU_P["LAST_NAME"];
+															}else{
+																$SUNAME = "n/a";
+															}
+															if(strlen($SU1)==7){
+																$SU_GET1 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$SU1'");
+																$SU_GET1->execute();
+																$SU_TAKE1 = $SU_GET1->get_result();
+																$SU_P1 = $SU_TAKE1->fetch_assoc();
+																$SUNAME1 = ",<br> ".$SU_P1["FIRST_NAME"]." ".$SU_P1["LAST_NAME"];
+															}else{
+																$SUNAME1 = "";
+															}
+															if(strlen($SU2)==7){
+																$SU_GET2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$SU2'");
+																$SU_GET2->execute();
+																$SU_TAKE2 = $SU_GET2->get_result();
+																$SU_P2 = $SU_TAKE2->fetch_assoc();
+																$SUNAME2 = ", ".$SU_P2["FIRST_NAME"]." ".$SU_P2["LAST_NAME"];
+															}else{
+																$SUNAME2 = "";
+															}
+
+															$print_surg = $SUNAME.$SUNAME1.$SUNAME2;
+
+															if(strlen($SU)>1){
+																echo '<div id="pr_body" >'.$print_surg.'</div>';
+															}
+
+															echo '<div id="pr_label">Internist: </div>';
+
+															$IN = $printline["INTERNIST"];
+															$IN1 = $printline["INTERNIST1"];
+															$IN2 = $printline["INTERNIST2"];
+
+															if(strlen($IN)==7){
+																$IN_GET = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$IN'");
+																$IN_GET->execute();
+																$IN_TAKE = $IN_GET->get_result();
+																$IN_P = $IN_TAKE->fetch_assoc();
+																$INNAME = $IN_P["FIRST_NAME"]." ".$IN_P["LAST_NAME"];
+															}else{
+																$INNAME = "n/a";
+															}
+															if(strlen($IN1)==7){
+																$IN_GET1 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$IN1'");
+																$IN_GET1->execute();
+																$IN_TAKE1 = $IN_GET1->get_result();
+																$IN_P1 = $IN_TAKE1->fetch_assoc();
+																$INNAME1 = ", ".$IN_P1["FIRST_NAME"]." ".$IN_P1["LAST_NAME"];
+															}else{
+																$INNAME1 = "";
+															}
+															if(strlen($IN2)==7){
+																$IN_GET2 = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$IN2'");
+																$IN_GET2->execute();
+																$IN_TAKE2 = $IN_GET2->get_result();
+																$IN_P2 = $IN_TAKE2->fetch_assoc();
+																$INNAME2 = ", ".$IN_P2["FIRST_NAME"]." ".$IN_P2["LAST_NAME"];
+															}else{
+																$INNAME2 = "";
+															}
+
+															$print_intern = $INNAME.$INNAME1.$INNAME2;
+
+															if(strlen($IN)>1){
+																echo '<div id="pr_body" >'.$print_intern.'</div>';
+															}
+
+															echo '<div id="pr_label">Anesthesiologist: </div>';
+															$AN = $printline["ANESTHESIOLOGIST"];
+															if(strlen($IN2)==7){
+																$AN_GET = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM='$AN'");
+																$AN_GET->execute();
+																$AN_TAKE = $AN_GET->get_result();
+																$AN_P = $AN_TAKE->fetch_assoc();
+																$print_anes = $AN_P["FIRST_NAME"]." ".$AN_P["LAST_NAME"];
+															}else{
+																$print_anes = "";
+															}
+
+															if(strlen($AN)>1){
+																echo '<div id="pr_body" >'.$print_anes.'</div>';
+															}
+
+														echo '</div>';
+												
+													echo '</div>
+
+													<div class="container-fluid" style="width:55%; float:left;">
+														<div class="panel panel-default" >
+											    <div class="panel-heading">Patient Information</div>
+											    <div class="panel-body">
+																<div id="pr_label1">ID Number: </div>
+																<div id="pr_body1" >'.$printline["PAT_ID_NUM"].'</div>
+																<div id="pr_label1">Name: </div>
+																<div id="pr_body1" >'.$printline["PAT_FNAME"].' '.$printline["PAT_LNAME"].'</div>
+																<div id="pr_label1">Age: </div>
+																<div id="pr_body1" >'.$printline["PAT_AGE"].'</div>
+																<div id="pr_label1">Sex: </div>';
+																if($printline["PAT_SEX"]=="M"){
+																	$print_sx = "Male";
+																}else{
+																	$print_sx = "Female";
+																}
+																echo '<div id="pr_body1" >'.$print_sx.'</div>
+																<div id="pr_label1">Has PhilHealth? </div>';
+																if($printline["PAT_PH"]=="Y"){
+																	$print_ph = "Yes";
+																}else{
+																	$print_ph = "No";
+																}
+																echo '<div id="pr_body1" >'.$print_ph.'</div>
+
+																<div><hr style="margin:10px 0px; float:left;"></div>
+
+																<div style="width:100%;">
+																	<div id="pr_label2">Visual Impairment: </div>
+																	<div id="pr_body2" >'.$printline["VISUAL_IMPARITY"].'</div>
+																	<div id="pr_label2">Medical History: </div>
+																	<div id="pr_body2" >'.$printline["MED_HISTORY"].'</div>
+																	<div id="pr_label2">Right Eye Diagnosis: </div>
+																	<div id="pr_body2" >'.$printline["RIGHT_DIAGNOSIS"].'</div>
+																	<div id="pr_label2">Left Eye Diagnosis: </div>
+																	<div id="pr_body2" >'.$printline["LEFT_DIAGNOSIS"].'</div>
+																	<div id="pr_label2">Procedure: </div>
+																	<div id="pr_body2" >'.$printline["PROCEDURE_TO_DO"].'</div>
+																	<div id="pr_label2">Remarks: </div>
+																	<div id="pr_body2" >'.$printline["REMARKS"].'</div>
+																</div>
+																';
+
+											    echo '</div>
+												  </div>
+												 </div>';
+
+												 $PC_SUMP = $printline["PC_IOL"]+$printline["PC_LAB"]+$printline["PC_PF"];
+													$CSF_SUMP = $printline["CSF_HBILL"]+$printline["CSF_SUPPLIES"]+$printline["CSF_LAB"];
+													$NDDCH_SUMP = $printline["NDDCH_RA"]+$printline["NDDCH_ZEISS"]+$printline["PC_PF"];
+													$LF_SUMP = $printline["LF_PF"]+$printline["LF_CPC"];
+													$SPO_SUMP = $printline["SPO_IOL"]+$printline["SPO_OTHERS"];
+													$TOTAL_ALLP = $PC_SUMP+$CSF_SUMP+$NDDCH_SUMP+$LF_SUMP+$SPO_SUMP;
+
+														echo '<div class="container-fluid" style="width:100%; float:left; margin:20px 0px;">
+															<table class="table table-condensed table-bordered">
+																<thead style="background-color:#f9f9f9;">
+																	<th colspan="7" style="text-align:center; padding:10px;">Transaction Record</th>
+																</thead>
+												    <tbody>
+												      <tr>
+												      		<th rowspan="2" colspan="2">PC</th>
+												        <th>Intraocular Lens</th>
+												        <th>Laboratory</th>
+												        <th>PF(Others)</th>
+												        <th colspan="2">Total</th>
+												      </tr>
+												      <tr>
+												        <td>₱ '.number_format($printline["PC_IOL"], "2").'</td>
+												        <td>₱ '.number_format($printline["PC_LAB"], "2").'</td>
+												        <td>₱ '.number_format($printline["PC_PF"], "2").'</td>
+												        <td colspan="2">'.number_format($PC_SUMP, "2").'</td>
+												      </tr>
+												      <tr>
+												      		<th rowspan="2" colspan="2">CSF</th>
+												        <th>Hospital Bill</th>
+												        <th>Supplies</th>
+												        <th>Laboratory</th>
+												        <th colspan="2">Total</th>
+												      </tr>
+												      <tr>
+												        <td>₱ '.number_format($printline["CSF_HBILL"], "2").'</td>
+												        <td>₱ '.number_format($printline["CSF_SUPPLIES"], "2").'</td>
+												        <td>₱ '.number_format($printline["CSF_LAB"], "2").'</td>
+												        <td colspan="2">'.number_format($CSF_SUMP, "2").'</td>
+												      </tr>
+												      <tr>
+												      		<th rowspan="2" colspan="2">Sponsored</th>
+												        <th>Intraocular Lens</th>
+												        <th colspan="2">Others</th>
+												        <th colspan="2">Total</th>
+												      </tr>
+												      <tr>
+												        <td>₱ '.number_format($printline["SPO_IOL"], "2").'</td>
+												        <td colspan="2">₱ '.number_format($printline["SPO_OTHERS"], "2").'</td>
+												        <td colspan="2">'.number_format($SPO_SUMP, "2").'</td>
+												      </tr>
+												      <tr>
+												      		<th rowspan="2" colspan="2">NDDCH</th>
+												        <th>RA</th>
+												        <th colspan="2">ZEISS</th>
+												        <th colspan="2">Total</th>
+												      </tr>
+												      <tr>
+												        <td>₱ '.number_format($printline["NDDCH_RA"], "2").'</td>
+												        <td colspan="2">₱ '.number_format($printline["NDDCH_ZEISS"], "2").'</td>
+												        <td colspan="2">'.number_format($NDDCH_SUMP, "2").'</td>
+												      </tr>
+												      <tr>
+												      		<th rowspan="2" colspan="2">LF</th>
+												        <th>Professional Fee</th>
+												        <th colspan="2">CPC Fee</th>
+												        <th colspan="2">Total</th>
+												      </tr>
+												      <tr>
+												        <td>₱ '.number_format($printline["LF_PF"], "2").'</td>
+												        <td colspan="2">₱ '.number_format($printline["LF_CPC"], "2").'</td>
+												        <td colspan="2">'.number_format($LF_SUMP, "2").'</td>
+												      </tr>
+												      <tr style="background-color:#f9f9f9;">
+												        <th colspan="5">Grand Total</th>
+												        <td colspan="2">'.number_format($TOTAL_ALLP, "2").'</td>
+												      </tr>
+												    </tbody>
+													  </table>
+														</div>
+
+														</div>
+													</div>';
+
+													//PRINT PAGE END
+												}else{
+													echo 'No print page available.';
+												}
 											}
 											//CODE SECTION ENDS HERE
 										?>
