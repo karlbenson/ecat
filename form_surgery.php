@@ -205,7 +205,7 @@
 												<div class="form-group row" >
              <label class="control-label col-md-3" for="IOL" style="float:left; width:200px;">IOL Power<span style="color: #d9534f">*</span></label>
              <div class="col-md-6" style="width: 150px; float: left;">
-              <input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL" required>
+              <input pattern="[a-zA-Z0-9 .,:;()*/-!_]*"  class="form-control numberOnly" id="IOL" placeholder="IOL" maxlength="<?php echo $IOL_MAX; ?>" name="IOL" required>
              </div>
            	</div>
 												<!-- IOL POWER END -->
