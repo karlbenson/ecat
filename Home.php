@@ -106,7 +106,7 @@
   <!-- GROUP 3: BOTTOM-LEFT -->
 <div style="width:100%; float:left; margin-top:20px;">
   <div style="width: calc(66% - 20px); float:left; margin-right:20px;">
-    <a id="tile7" class="tile" href="form_doctors.php">
+    <a id="tile7" class="tile">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
@@ -260,7 +260,7 @@
 <script type="text/javascript">
 window.onload = function() {
     if(!window.location.hash) {
-        window.location = window.location + '#loaded';
+        window.location = window.location + '#h';
         window.location.reload();
     }
 }
