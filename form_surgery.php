@@ -652,18 +652,16 @@ include("confirm.php");
     $arr = array();
     
     while ($row = $surgeon->fetch_assoc()) {
-        unset($id, $name1, $name2);
-        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']." - ".$row['DOC_LICENSE_NUM'];
-        array_push($arr, $id/*.", ".$name2." ".$name1*/);
+        $id = $row['DOC_LICENSE_NUM']." - ".$row['FIRST_NAME']." ".$row['LAST_NAME'];
+        array_push($arr, $id);
     }
 				
 	$patient = $mydatabase->query("SELECT PAT_FNAME,PAT_LNAME,PAT_ID_NUM from EYEPATIENT");
     $arr1 = array();
     
     while ($row = $patient->fetch_assoc()) {
-		unset($id, $name1, $name2);
-        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']." - ".$row['PAT_ID_NUM'];
-        array_push($arr1, $id/*.", ".$name2." ".$name1*/);    
+        $id = $row['PAT_ID_NUM']." - ".$row['PAT_FNAME']." ".$row['PAT_LNAME'];
+        array_push($arr1, $id);    
 	}
 ?>
 
@@ -717,8 +715,8 @@ include("confirm.php");
 	});  
 	
 	$('.money > div').click(function() {
-    $('.money > input:eq('+$('.money > div').index(this)+')').focus();
-});
+		$('.money > input:eq('+$('.money > div').index(this)+')').focus();
+	});
 
 	$('.numberOnly').on('keydown', function(e) {
 		

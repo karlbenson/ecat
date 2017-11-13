@@ -114,33 +114,10 @@
 									}else if (isset($_POST['surgery_info'])) {
 										//SURGERY INFORMATION FIELDS
 										$CASE_NUM = $_POST["CASE_NUM"];
-										$SURGEON = $_POST["SURG_NAME"];
-										$S_LIST = explode(" - ",$SURGEON);
-										if(sizeof($S_LIST)==1){
-											$SURG_LICENSE_NUM = trim($S_LIST[0]);
-										}else{
-											$SURG_LICENSE_NUM = trim($S_LIST[1]);
-										}
-										$SURGEON1 = $_POST["SURG_NAME1"];
-										$S_LIST1 = explode(" - ",$SURGEON1);
-										if(sizeof($S_LIST1)==1){
-											$SURG_LICENSE_NUM1 = trim($S_LIST1[0]);
-										}else{
-											$SURG_LICENSE_NUM1 = trim($S_LIST1[1]);
-										}
-										$SURGEON2 = $_POST["SURG_NAME2"];
-										$S_LIST2 = explode(" - ",$SURGEON2);
-										if(sizeof($S_LIST2)==1){
-											$SURG_LICENSE_NUM2 = trim($S_LIST2[0]);
-										}else{
-											$SURG_LICENSE_NUM2 = trim($S_LIST2[1]);
-										}
-										$P_LIST = explode(" - ",$_POST["PAT_NAME"]);
-										if(sizeof($P_LIST)==1){
-											$PAT_ID_NUM2 = trim($P_LIST[0]);
-										}else{
-											$PAT_ID_NUM2 = trim($P_LIST[1]);
-										}
+										$SURG_LICENSE_NUM = trim(explode(" - ",$_POST["SURG_NAME"])[0]);
+										$SURG_LICENSE_NUM1 = trim(explode(" - ", $_POST["SURG_NAME1"])[0]);
+										$SURG_LICENSE_NUM2 = trim(explode(" - ", $_POST["SURG_NAME2"])[0]);
+										$PAT_ID_NUM2 = trim(explode(" - ", $_POST["PAT_NAME"])[0]);
 										$VISUAL_IMPARITY = $_POST["VI"];         
 										$MED_HISTORY = $_POST["MED_HIST"];       
 										$RDIAGNOSIS = $_POST["RDIAG"];           
