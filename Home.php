@@ -1,60 +1,74 @@
 <!DOCTYPE html>
+
+<!--UPDATE AND DELETE STILL TO BE FIXED-->
+
 <html>
 	<head>
-		<title>Luke Foundation Eye Program: Home</title>
+		<title>Luke Foundation Eye Program: Surgery</title>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel="stylesheet" href="references/bootstrap.min.css"/>
-		<link rel="stylesheet" href="references/font-awesome.min.css"/>
-		<script src="references/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="references/bootstrap.min.css">
+		<link rel="stylesheet" href="references/typeahead.css">
+		<link rel="stylesheet" href="references/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="theme2.css">
+		<link rel="stylesheet" href="references/bootstrap-datetimepicker.css">
+		<link rel="stylesheet" href="references/dataTables.bootstrap4.min.css"/>
+		<script src="references/jquery-2.1.1.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="theme2.css"/>
+		<script src="references/moment-with-locales.js"></script>
+		<script src="references/bootstrap-datetimepicker.js"></script>
+		<script src="references/typeahead.bundle.js"></script>
+		<script src="references/jquery.dataTables.min.js"></script>
+		<script src="references/dataTables.bootstrap.min.js"></script>
 	</head>
 	<body style="justify-content: center;">
-
 		<!-- HEAD AND NAVIGATION -->
 		<?php include("nav.php"); ?>
 		<!-- HEAD AND NAVIGATION END -->
-
 		<div id="body">
 			<!-- MAIN -->
 			<div class="container-fluid" id="outer">
-				<!-- TITLE -->
-				<div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff;padding-bottom:15px;">
-					<h1>Welcome to Luke Foundation Eye Program</h1> 
-				</div>
-				<!-- TITLE END -->
+				<?php //CODE SECTION STARTS HERE
+					//ESTABLISHING MYSQL LINK (1)
+					include("dbconnect.php");
+					//ESTABLISHING MYSQL LINK END (1)
 
-			
+					//MAX VAUES
+					$CASE_LENG = 10;
+					$SURG_LENG = 50;
+					$ID_LENG = 50;
+					$VI_MAX = 100;
+					$HIST_MAX = 100;
+					$TANES_MAX = 25;
+					$DIAG_MAX = 100;
+					$SURGADD_MAX = 50;
+					$SURG_DATE_YY = 4; 
+					$SURG_DATE_DD = 2;
+					$REM_MAX = 100;
+					$INTER_MAX = 50;
+					$ANEST_MAX = 50;
+					$IOL_MAX = 20;
+					$PC_MAX = 10;
+					$MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
+					//MAX VALUES END
 
-<script type="text/javascript">
-	$( document ).ready(function() {
-    $(".tile").height($("#tile1").width());
-    $(".carousel").height($("#tile1").width());
-     $(".item").height($("#tile1").width());
-     
-    $(window).resize(function() {
-    if(this.resizeTO) clearTimeout(this.resizeTO);
-	this.resizeTO = setTimeout(function() {
-		$(this).trigger('resizeEnd');
-	}, 10);
-    });
-    
-    $(window).bind('resizeEnd', function() {
-    	$(".tile").height($("#tile1").width());
-        $(".carousel").height($("#tile1").width());
-        $(".item").height($("#tile1").width());
-    });
+					include("auto_doc.php");
 
-});
+					//CODE SECTION ENDS HERE
+				?>
 
-
-
-</script>
+				<!-- SURGERIES -->
+				<div class="container-fluid" id="basic" >
+					<div id="inner">
+						<!-- TITLE -->
+            <div class="container-fluid" >
+              <h2 style="color:#337ab7;">Welcome to Luke Foundation Eye Program Database</h2>
+            </div>
+						
 <div class="container dynamicTile">
 <div class="row ">
     <div class="col-sm-2 col-xs-4">
-    	<a id="tile1" class="tile" href="surgery.php">
+      <a id="tile1" class="tile" href="surgery.php">
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -67,10 +81,10 @@
           </div>
         </div>
          
-    	</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile2" class="tile" href="patient.php">
+      </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile2" class="tile" href="patient.php">
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -86,11 +100,11 @@
           </div>
         </div>
          
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile3" class="tile" href="surgery.php">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile3" class="tile" href="surgery.php">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -102,11 +116,11 @@
             </div>
             </div>
          </div>
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile4" class="tile">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile4" class="tile">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -116,11 +130,11 @@
           </div>
         </div>
          
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile3" class="tile"  href="form_surgery.php">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile3" class="tile"  href="form_surgery.php">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -132,11 +146,11 @@
             </div>
             </div>
          </div>
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile4" class="tile" href="form_patient.php">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile4" class="tile" href="form_patient.php">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -149,14 +163,14 @@
           </div>
         </div>
          
-		</a>
-	</div>
+    </a>
+  </div>
 </div>
 
 <div class="row">
-	<div class="col-sm-4 col-xs-8">
-		<a id="tile7" class="tile" href="form_doctors.php">
-    	 
+  <div class="col-sm-4 col-xs-8">
+    <a id="tile7" class="tile" href="form_doctors.php">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -172,11 +186,11 @@
           </div>
         </div>
          
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile8" class="tile" href="form_report.php">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile8" class="tile" href="form_report.php">
+       
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -189,11 +203,11 @@
             </div>
          </div>
          
-		</a>
-	</div>
-	<div class="col-sm-4 col-xs-8">
-		<a id="tile7" class="tile">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-4 col-xs-8">
+    <a id="tile7" class="tile">
+       
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -209,11 +223,11 @@
           </div>
         </div>
          
-		</a>
-	</div>
-	<div class="col-sm-2 col-xs-4">
-		<a id="tile9" class="tile" href="form_doctors.php">
-    	 
+    </a>
+  </div>
+  <div class="col-sm-2 col-xs-4">
+    <a id="tile9" class="tile" href="form_doctors.php">
+       
           <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
@@ -226,12 +240,16 @@
           </div>
         </div>
          
-		</a>
-	</div>
-  
-</div>
+    </a>
+  </div>
+
+            
+					</div>
+					<!-- CONTENT END -->
+					<?php $mydatabase->close(); ?>
+				</div>
 			</div>
-			<!-- MAIN END -->
+			<!-- SURGERIES END -->
 		</div>
 	</body>
 </html>
