@@ -160,12 +160,10 @@
 											}else if ($DEFAULT==1) {
 												//SEE MORE PAGE
 												//MYSQL SECTION
-												$query = "SELECT s.CASE_NUM, s.SURG_DATE, s.SURG_ADDRESS, p.PAT_ID_NUM, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, EYEPATIENT p WHERE s.PAT_ID_NUM=p.PAT_ID_NUM ORDER BY SURG_DATE DESC";
 												$output1 = $mydatabase->prepare("SELECT * FROM DOCTOR where DOC_LICENSE_NUM = '$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
 												$dataline = $line1->fetch_assoc();
-												$output2 = $mydatabase->query($query);
 												//MYSQL SECTION END
 
 												//VALUES
@@ -198,40 +196,7 @@
 																</div>
 															</div>';
 
-															if($output2->num_rows > 0){
-																	echo '<div class="" style="margin:10px 20px; padding: 0px 0px 10px 0px;"><hr style="border-color:#337ab7;"></div>
-
-																		<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Surgeries Attended</div>';
-																echo		'<table class="table table-striped ">
-																		<thead>
-																			<tr id="tophead" style="background-color:#337ab7 ;">
-																			<td style="color:#ffffff">'.'Date'.'</th>
-																			<td style="color:#ffffff">'.'Patient'.'</th>
-																			<td style="color:#ffffff">'.'Address'.'</th>
-																			<td style="color:#ffffff">'.'Action'.'</th>
-																			</tr>
-																		</thead>';
-																		while($dataline2 = $output2->fetch_assoc()) { 
-																			echo 	'<tr>
-																						<td>'.$dataline2["SURG_DATE"].'</td>
-																						<td><a style="text-decoration:none;" href="patient.php?profilepage='.$dataline2["PAT_ID_NUM"].'""><span class="fa fa-external-link" title="View patient"></span> <span style="color:#000000;">'.$dataline2["PAT_FNAME"].' '.$dataline2["PAT_LNAME"].'</span></a></td>
-																						<td>'.$dataline2["SURG_ADDRESS"].'</td>
-																						<td>
-																							<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
-																							<a href=""><span class="fa fa-trash" title="Delete"></span></a>
-																							<a href="'.'surgery.php'.'?profilepage='.$dataline2["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
-																						</td>
-																					</tr>';
-																		}
-																		echo				'</table>
-																						
-																				</div>
-																			</div>';
-																		
-
-															}else{
-																echo "<div style='text-align:center; padding: 20px;'> No Records. </div>";
-															}//CONTENT END
+															//CONTENT END
 															
 
 												//BUTTONS AND LINKS

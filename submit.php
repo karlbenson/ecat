@@ -28,28 +28,32 @@
 					//ESTABLISHING MYSQL LINK END (1)
 
 					//FUNCTIONS (2)
-					$error = "Error. ";
-					$whereto = "#";
 
 					//INSERT INTO DATABASE 
 					//(SAMPLE 1) STILL TO BE REVISED/TESTED....
 					function SUBMIT_DOCTOR($D_FNAME, $D_LNAME, $D_LICENSENUM, $D_ADDR, $D_SP){
 						$D_query = "INSERT INTO DOCTOR VALUES ('".$D_LICENSENUM."','".$D_LNAME."','".$D_FNAME."','".$D_ADDR."','".$D_SP."', '')";
 						if ($GLOBALS['mydatabase']->query($D_query) === TRUE){
+							$where = "'Home.php'";
 							echo "<div class='alert alert-success'>New doctor record successfully created.</div>";
-							$GLOBALS['whereto'] = "doctors.php?profilepage=".$D_LICENSENUM;
+							$whereto = "doctors.php?profilepage=".$D_LICENSENUM;
+							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
+							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						} else {
-							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; 
+							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
 					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC){
 						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag."','".$P_PROC."')";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
+							$where = "'Home.php'";
 							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
-							$GLOBALS['whereto'] = "patient.php?profilepage=".$P_ID;
+							$whereto = "patient.php?profilepage=".$P_ID;
+							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
+							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						} else { 
-							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>";
+							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>";
 						}
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
@@ -58,11 +62,14 @@
 						$S_query2 = "UPDATE EYEPATIENT SET POST_VA_WITH_SPECT_LEFT = '".$P_VASL2."', POST_VA_WITH_SPECT_RIGHT = '".$P_VASR2."', POST_VA_NO_SPECT_LEFT = '".$P_VAL2."', POST_VA_NO_SPECT_RIGHT = '".$P_VAR2."' WHERE EYEPATIENT.PAT_ID_NUM = '".$S_PATID."';";
 						if ($GLOBALS['mydatabase']->query($S_query1) === TRUE) { 
 							if ($GLOBALS['mydatabase']->query($S_query2) === TRUE) {
+								$where = "'Home.php'";
 								echo "<div class='alert alert-success'>New surgery record successfully created.</div>";
-								$GLOBALS['whereto'] = "surgery.php?profilepage=".$S_CASENUM;
+								$whereto = "surgery.php?profilepage=".$S_CASENUM;
+								echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
+								echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 							}
 						}else { 
-							echo "<div class='alert alert-danger'> <strong>".$GLOBALS['error']."</strong>" . $GLOBALS['mydatabase']->error .".</div>"; 
+							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
 						}
 						
 					}//END
@@ -155,9 +162,6 @@
 										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $SURG_LICENSE_NUM1, $SURG_LICENSE_NUM2, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $INTERNIST1, $INTERNIST2, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL,$SPO_OTHERS, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC);
 									}
 									$mydatabase->close();
-									$where = "'Home.php'";
-									echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
-									echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 								?>
 						</div>
 						<!-- CONTENT END -->
