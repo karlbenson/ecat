@@ -930,7 +930,7 @@
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="PAT_ID" style="width: 25%; float: left; ">Patient<span style="color: #d9534f">*</span></label>
 																						<div style="width: 250px; float: left;">
-																						<input pattern="^([C][A][T]\d{4}[-]\d{3})([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
+																						<input pattern="^([C][A][T]\d{4}[-]\d{3})([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.' - '.$PATIENT_NAME.'" style="width:100%;" required>
 																						</div>
 																					</div>
 																							
