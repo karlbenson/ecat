@@ -59,11 +59,13 @@
 					$NDDCH_SUM=0;
 					$LF_PF_SUM=0;
 					$LF_CPC_SUM=0;
+					$SPO_OTHERS_SUM=0;
 					while($dataline = $output->fetch_assoc()) {
 						$PC_PF_SUM=$PC_PF_SUM+$dataline["PC_PF"];
 						$PC_LAB_SUM=$PC_LAB_SUM+$dataline["PC_LAB"];
 						$PC_IOL_SUM=$PC_IOL_SUM+$dataline["PC_IOL"];
 						$SPO_IOL_SUM=$SPO_IOL_SUM+$dataline["SPO_IOL"];
+						$SPO_OTHERS_SUM=$SPO_OTHERS_SUM+$dataline["SPO_OTHERS"];
 						$CSF_HBILL_SUM=$CSF_HBILL_SUM+$dataline["CSF_HBILL"];
 						$CSF_SUPP_SUM=$CSF_SUPP_SUM+$dataline["CSF_SUPPLIES"];
 						$CSF_LAB_SUM=$CSF_LAB_SUM+$dataline["CSF_LAB"];
@@ -77,6 +79,7 @@
 					$PC_TOT=$PC_PF_SUM+$PC_LAB_SUM+$PC_IOL_SUM;
 					$CSF_TOT=$CSF_HBILL_SUM+$CSF_LAB_SUM+$CSF_SUPP_SUM;
 					$NDDCH_SUM = $NDDCH_RA_SUM+$NDDCH_ZEISS_SUM;
+					$SPO_SUM = $SPO_IOL_SUM+$SPO_OTHERS_SUM;
 					$GRAND = $PC_TOT+$CSF_TOT+$SPO_IOL_SUM;
 					$pesos = "₱ ";
 					$LF_SUM = $LF_CPC_SUM+$LF_PF_SUM;
@@ -428,8 +431,28 @@
 																	<div style="margin:0px; padding:0px 10px;">	
 																		
 																		<div style="width:100%; float:left; padding:0px 0px;">
-																			<div style="float:left; width:50%; font-weight:bold;">Sponsored IOL</div>
-																			<div style="float:left; width:50%;">₱ '.number_format($dataline["SPO_IOL"], "2").'</div>
+																			<table class="table table-condensed" style="margin-bottom:0px;">
+																				<thead>
+																					<tr>
+																						<th>Sponsored</th>
+																						<th></th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr>
+																						<td>IOL</td>
+																						<td>₱ '.number_format($SPO_IOL_SUM, "2").'</td>
+																					</tr>
+																					<tr>
+																						<td>Others</td>
+																						<td>₱ '.number_format($SPO_OTHERS_SUM, "2").'</td>
+																					</tr>
+																					<tr>
+																						<td>Total</td>
+																						<td>₱ '.number_format($SPO_SUM, "2").'</td>
+																					</tr>
+																				</tbody>
+																			</table>
 																		</div>
 
 																	</div>
@@ -513,8 +536,8 @@
 													</div>
 													</div>
 
-													
-													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%;"><strong>Financial Information by Type of Anesthesia</strong>
+													<div id="hidethis">
+													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%;"><strong>Financial Information by Type of Anesthesia and Philhealth</strong>
 													</div>
 													
 													<?php
@@ -722,7 +745,7 @@
 													$mydatabase->close();
 													
 													?>
-													
+												</div>
 												</div>
 
 											</div>
