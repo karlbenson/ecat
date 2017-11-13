@@ -36,36 +36,6 @@
    </div>
 
 			<div class="container-fluid" id="outer" style="width:100%; padding:50px 0px;">
-				<?php //CODE SECTION STARTS HERE
-					//ESTABLISHING MYSQL LINK (1)
-					include("dbconnect.php");
-					//ESTABLISHING MYSQL LINK END (1)
-
-					//MAX VAUES
-					$CASE_LENG = 10;
-					$SURG_LENG = 50;
-					$ID_LENG = 50;
-					$VI_MAX = 100;
-					$HIST_MAX = 100;
-					$TANES_MAX = 25;
-					$DIAG_MAX = 100;
-					$SURGADD_MAX = 50;
-					$SURG_DATE_YY = 4; 
-					$SURG_DATE_DD = 2;
-					$REM_MAX = 100;
-					$INTER_MAX = 50;
-					$ANEST_MAX = 50;
-					$IOL_MAX = 20;
-					$PC_MAX = 10;
-					$MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
-					//MAX VALUES END
-
-					include("auto_doc.php");
-
-					//CODE SECTION ENDS HERE
-				?>
-
-
 				<!-- SURGERIES -->
 				<div class="container-fluid" id="basic" style="background-color:transparent;">
 					<div id="">
@@ -280,7 +250,6 @@
 </div>
 
 					<!-- CONTENT END -->
-					<?php $mydatabase->close(); ?>
 				</div>
 			</div>
 			<!-- SURGERIES END -->
@@ -288,8 +257,13 @@
 	</body>
 </html>
 
-<script>
-
+<script type="text/javascript">
+window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
 $('#box_contain').each(function(){
     var inner = $(this).find('p');
     $(this).height(inner.outerHeight(true));
