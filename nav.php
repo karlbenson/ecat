@@ -3,8 +3,8 @@
 	$page = array(" Home ", " Doctors ", " Patient ", " Surgery ");
 	$link = array("Home.php", "doctors.php", "patient.php", "surgery.php");
 	$link_sym = array("home", "stethoscope", "id-card", "bed");
-	$link1 = array("form_doctors.php","form_patient.php", "form_surgery.php");
-	$link1_label = array("Doctor Form", "Patient Form", "Surgery Form");
+	$link1 = array("form_doctors.php","form_patient.php", "form_surgery.php", "form_report.php");
+	$link1_label = array("Doctor Form", "Patient Form", "Surgery Form", "Report Form");
 	$doctor = array("Physicians", "Surgeons");
 	$i = 0;
 	$s=0;
