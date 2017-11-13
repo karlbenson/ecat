@@ -63,11 +63,11 @@
 									<ul class="list-group">
 										<?php //CODE SECTION STARTS HERE
 											$DEFAULT = 0;
+											if (isset($_GET["printpage"])) { $print_p = $_GET["printpage"]; $DEFAULT=4; }
+
 											if (isset($_GET["currentpage"])) { 
 												$current_p = $_GET["currentpage"]; 
-											} else { 
-												$current_p = 1; 
-											};
+											} else { $current_p = 1; };
 											if (isset($_GET["profilepage"])) { $profile_p = $_GET["profilepage"];
 												$DEFAULT=1;
 												//RECEIVE UPDATE
@@ -93,8 +93,18 @@
 													$DISABILITY_CAUSE = $_POST["P_DC"];
 													$PROCEDURE_TO_DO = $_POST["P_PROC"];
 
-													$PHY_LICENSE_NUM = trim(explode(" - ",$_POST["P_PHYLIC"])[0]);
-													$STAFF_LICENSE_NUM = trim(explode(" - ",$_POST["P_STAFFLIC"])[0]);
+													$SS_LIST = explode(" - ",$_POST["P_PHYLIC"]);
+													if(sizeof($SS_LIST)==1){
+														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
+													}else{
+														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
+													}
+													$SS_LIST1 = explode(" - ",$_POST["P_STAFFLIC"]);
+													if(sizeof($SS_LIST1)==1){
+														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
+													}else{
+														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
+													}
 
 													$P_update = "UPDATE EYEPATIENT SET
 														PAT_FNAME = '$PAT_FNAME',
@@ -257,11 +267,7 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.*
-																				FROM DOCTOR d, STAFF t, EYEPATIENT p
-																				where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM
-																				and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM
-																				and PAT_ID_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
 												$dataline = $line1->fetch_assoc();
@@ -584,13 +590,13 @@
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:40%; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style=" width:60%; float: left;">';
-																		echo '<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.' - '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'" style="width: 320px;" required>
+																		echo '<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:40%; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 60%; float: left;">
-																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.' - '.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'" style="width: 320px;" required>
+																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																	</div>
@@ -855,6 +861,125 @@
 												}
 												//MYSQL SECTION END
 												//DELETE PAGE END
+											}else if($DEFAULT==4){
+												if(strlen($print_p)>1){
+													//PRINT PAGE
+
+													echo '<div style="margin-top:20px;"></div>';
+
+													//MYSQL SECTION
+													$outputpage = $mydatabase->prepare("SELECT * FROM EYEPATIENT WHERE PAT_ID_NUM = '$print_p' ");
+													$outputpage -> execute();
+													$ppage = $outputpage->get_result();
+													$printline = $ppage->fetch_assoc();
+													//MYSQL SECTION END
+
+													echo '<div>
+													<div class="container-fluid" style="width:100%; float:left;">
+
+													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
+														<div style="width:100%; margin-bottom:10px;"><h4>'.$printline["PAT_FNAME"].' '.$printline["PAT_LNAME"].'</h5></div>
+													</div>
+														<hr>
+													<div class="container-fluid" style="width: 50%; float:left; padding-right:20px;">
+														<div id="pr_label3">ID Number: </div>
+														<div id="pr_body3" >'.$printline["PAT_ID_NUM"].'</div>
+														<div id="pr_label3">Age: </div>
+														<div id="pr_body3" >'.$printline["PAT_AGE"].'</div>
+														<div id="pr_label3">Sex: </div>';
+														if($printline["PAT_SEX"]=="M"){
+															$print_sx = "Male";
+														}else{
+															$print_sx = "Female";
+														}
+														echo '<div id="pr_body3" >'.$print_sx.'</div>
+														<div id="pr_label3">Has PhilHealth? </div>';
+														if($printline["PAT_PH"]=="Y"){
+															$print_ph = "Yes";
+														}else{
+															$print_ph = "No";
+														}
+														echo '<div id="pr_body3" >'.$print_ph.'</div>
+													</div>';
+
+													$PHYS_P = $printline["PHY_LICENSE_NUM"];
+													$STAFF_P = $printline["STAFF_LICENSE_NUM"];
+
+
+													$DOC_GET = $mydatabase->prepare("SELECT LAST_NAME, FIRST_NAME FROM DOCTOR WHERE DOC_LICENSE_NUM = '$PHYS_P'");
+																$DOC_GET->execute();
+																$DOC_TAKE = $DOC_GET->get_result();
+																$DOC_P = $DOC_TAKE->fetch_assoc();
+																$DOC_NAME= $DOC_P["FIRST_NAME"]." ".$DOC_P["LAST_NAME"];
+
+													$STAFF_GET = $mydatabase->prepare("SELECT STAFF_FNAME, STAFF_LNAME FROM STAFF WHERE STAFF_LICENSE_NUM = '$STAFF_P'");
+																$STAFF_GET->execute();
+																$STAFF_TAKE = $STAFF_GET->get_result();
+																$STAFF_P = $STAFF_TAKE->fetch_assoc();
+																$STAFF_NAME= $STAFF_P["STAFF_FNAME"]." ".$STAFF_P["STAFF_LNAME"];
+
+													echo '<div class="container-fluid well" style="float:left; width:50%">
+														<div id="pr_label">Examined by: </div>
+														<div id="pr_body">'.$DOC_NAME.'</div>
+														<div id="pr_label">Screened by: </div>
+														<div id="pr_body" >'.$STAFF_NAME.'</div>
+													</div>';
+												
+													echo '<div class="container-fluid" style="width:100%; float:left; padding:20px;">
+														<div class="panel panel-default" >
+											    <div class="panel-heading">Visual Condition</div>
+											    <div class="panel-body">
+														<div id="pr_label">Visual Disability</div>
+														<div id="pr_body" >'.$printline["VISUAL_DISABILITY"].'</div>
+														<div id="pr_label">Cause of Visual Disability</div>
+														<div id="pr_body" >'.$printline["DISABILITY_CAUSE"].'</div>
+														<div id="pr_label">Right Eye Diagnosis</div>
+														<div id="pr_body" >'.$printline["RIGHT_DIAGNOSIS"].'</div>
+														<div id="pr_label">Left Eye Diagnosis</div>
+														<div id="pr_body" >'.$printline["LEFT_DIAGNOSIS"].'</div>
+														<div></div></div><div>
+													</div>';
+													echo '</div>';
+
+													echo '<div>
+													<table class="table table-condensed table-bordered">
+										    <thead style="background-color:#f0f0f0;">
+										      <tr>
+										      	<th colspan="5" style="text-align:center; padding:10px;">Visual Acuity</th>
+										      </tr>
+										    </thead>
+										    <tbody>
+										    		<tr>
+										        <th></th>
+										        <th>Right Eye w/o Spec</th>
+										        <th>Left Eye w/o Spec</th>
+										        <th>Right Eye w/ Spec</th>
+										        <th>Left Eye w/ Spec</th>
+										      </tr>
+										      <tr>
+										        <th>Pre Surgery</th>
+										        <td>'.$printline["PRE_VA_NO_SPECT_RIGHT"].'</td>
+										        <td>'.$printline["PRE_VA_NO_SPECT_LEFT"].'</td>
+										        <td>'.$printline["PRE_VA_WITH_SPECT_RIGHT"].'</td>
+										        <td>'.$printline["PRE_VA_WITH_SPECT_LEFT"].'</td>
+										      </tr>
+										      <tr>
+										        <th>Post Surgery</th>
+										        <td>'.$printline["POST_VA_NO_SPECT_RIGHT"].'</td>
+										        <td>'.$printline["POST_VA_NO_SPECT_LEFT"].'</td>
+										        <td>'.$printline["POST_VA_WITH_SPECT_RIGHT"].'</td>
+										        <td>'.$printline["POST_VA_WITH_SPECT_LEFT"].'</td>
+										      </tr>
+										    </tbody>
+										  </table>
+													</div>';
+
+													echo '</div>';
+
+													//PRINT PAGE END
+												}else{
+													echo 'No print page available.';
+												}
 											}
 											//CODE SECTION ENDS HERE 
 										?>
