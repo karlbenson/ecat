@@ -93,18 +93,8 @@
 													$DISABILITY_CAUSE = $_POST["P_DC"];
 													$PROCEDURE_TO_DO = $_POST["P_PROC"];
 
-													$SS_LIST = explode(" - ",$_POST["P_PHYLIC"]);
-													if(sizeof($SS_LIST)==1){
-														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
-													}else{
-														$PHY_LICENSE_NUM = trim($SS_LIST[1]);
-													}
-													$SS_LIST1 = explode(" - ",$_POST["P_STAFFLIC"]);
-													if(sizeof($SS_LIST1)==1){
-														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
-													}else{
-														$STAFF_LICENSE_NUM = trim($SS_LIST1[1]);
-													}
+													$PHY_LICENSE_NUM = trim(explode(" - ",$_POST["P_PHYLIC"])[0]);
+													$STAFF_LICENSE_NUM = trim(explode(" - ",$_POST["P_STAFFLIC"])[0]);
 
 													$P_update = "UPDATE EYEPATIENT SET
 														PAT_FNAME = '$PAT_FNAME',
@@ -267,7 +257,11 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.*
+																				FROM DOCTOR d, STAFF t, EYEPATIENT p
+																				where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM
+																				and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM
+																				and PAT_ID_NUM = '$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
 												$dataline = $line1->fetch_assoc();
@@ -590,13 +584,13 @@
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:40%; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style=" width:60%; float: left;">';
-																		echo '<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" style="width: 320px;" required>
+																		echo '<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.' - '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:40%; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" style="width: 320px;" required>
+																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.' - '.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																	</div>

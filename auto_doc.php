@@ -5,7 +5,7 @@
     
     while ($row = $surgeon->fetch_assoc()) {
         unset($id, $name1, $name2);
-        $id = $row['FIRST_NAME']." ".$row['LAST_NAME']." - ".$row['DOC_LICENSE_NUM'];
+        $id = $row['DOC_LICENSE_NUM']." - ".$row['FIRST_NAME']." ".$row['LAST_NAME'];
         array_push($arr, $id);
     }
 				
@@ -14,7 +14,7 @@
     
     while ($row = $patient->fetch_assoc()) {
 		unset($id, $name1, $name2);
-        $id = $row['PAT_FNAME']." ".$row['PAT_LNAME']." - ".$row['PAT_ID_NUM'];
+        $id = $row['PAT_ID_NUM']." - ".$row['PAT_FNAME']." ".$row['PAT_LNAME'];
         array_push($arr1, $id);    
 	}
 
@@ -22,7 +22,7 @@
     $arr2 = array();
     
     while ($row = $staff->fetch_assoc()) {
-        $id = $row['STAFF_FNAME']." ".$row['STAFF_LNAME']." - ".$row["STAFF_LICENSE_NUM"];
+        $id = $row["STAFF_LICENSE_NUM"]." - ".$row['STAFF_FNAME']." ".$row['STAFF_LNAME'];
         array_push($arr2, $id);    
 	}
 

@@ -126,35 +126,11 @@
 										$SURG_ADDRESS = $_POST["SURG_ADD"];                      
 										$SURG_DATE1 = explode("/",$_POST["DATE"]);
 										$SURG_DATE = $SURG_DATE1[2].'-'.$SURG_DATE1[0].'-'.$SURG_DATE1[1];
-										$REMARKS = $_POST["REM"];  
-										$INTER = $_POST["INTER"];
-										$I_LIST = explode(" - ",$INTER);
-										if(sizeof($I_LIST)==1){
-											$INTERNIST = trim($I_LIST[0]);
-										}else{
-											$INTERNIST = trim($I_LIST[1]);
-										}
-										$INTER1 = $_POST["INTER1"];
-										$I_LIST1 = explode(" - ",$INTER1);
-										if(sizeof($I_LIST1)==1){
-											$INTERNIST1 = trim($I_LIST1[0]);
-										}else{
-											$INTERNIST1 = trim($I_LIST1[1]);
-										}
-										$INTER2 = $_POST["INTER2"];
-										$I_LIST2 = explode(" - ",$INTER2);
-										if(sizeof($I_LIST2)==1){
-											$INTERNIST2 = trim($I_LIST2[0]);
-										}else{
-											$INTERNIST2 = trim($I_LIST2[1]);
-										}
-										$ANEST = $_POST["ANEST"];
-										$A_LIST = explode(" - ",$ANEST);
-										if(sizeof($I_LIST)==1){
-											$ANESTHESIOLOGIST = trim($A_LIST[0]);
-										}else{
-											$ANESTHESIOLOGIST = trim($A_LIST[1]);
-										}
+										$REMARKS = $_POST["REM"];
+										$INTERNIST = trim(explode(" - ", $_POST["INTER"])[0]);
+										$INTERNIST1 = trim(explode(" - ", $_POST["INTER1"])[0]);
+										$INTERNIST2 = trim(explode(" - ", $_POST["INTER2"])[0]);
+										$ANESTHESIOLOGIST = trim(explode(" - ", $_POST["ANEST"])[0]);
 										$IOLPOWER = $_POST["IOL"];
 										$PC_IOL = str_replace(",", "", $_POST["PCIOL"]);
 										$PC_LAB = str_replace(",", "", $_POST["PCLAB"]);
