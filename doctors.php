@@ -126,7 +126,6 @@
 																<td style="color:#ffffff">'.'License No.'.'</th>
 																<td style="color:#ffffff">'.'Specialization'.'</th>
 																<td style="color:#ffffff">'.'Action'.'</th>
-																<td></td>
 																</tr>
 															</thead>';
 													//HEADER END
@@ -143,7 +142,6 @@
 																		<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
-																	<td><input type="checkbox" name="id[]" class="muldel" value="'.$row["DOC_LICENSE_NUM"].'"></input></td>
 																</tr>';
 													} //CONTENT END
 													
@@ -434,41 +432,12 @@
 			null,
 		    null,
 		    null,
-		    { "orderable": false },
 		    { "orderable": false }
   			],
 		});
 
 	$('#dataseek').keyup(function(){
 		myTable.search($(this).val()).draw();
-	})
-	
-	$('#btn_delete').click(function(){
-		if(confirm("Are you sure you want to delete these?")){
-			var id=[];
-			$(':checkbox:checked').each(function(i){
-				id[i]=$(this).val();
-			});
-
-			if(id.length===0){
-				alert("Please select at least two checkboxes");
-			}else{
-				$.ajax({
-					url:'muldel.php',
-					method: 'POST',
-					data: {id:id},
-					success: function(){
-						for (var i=0; i<id.length; i++){
-							$('tr#'+id[i]+'').css('background-color', '#ccc');
-							$('tr#'+id[i]+'').fadeOut('slow');
-						}
-					}
-
-				});
-			}
-		}else{
-			return false;
-		}
 	});
 	
 </script>

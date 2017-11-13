@@ -8,9 +8,6 @@
 	// DOWNLOAD
 	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" id="go" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
 
-	// DELETE MULTIPLE
-	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" name="btn_delete" class="btn" id="btn_delete" ><span class="fa fa-trash" style="font-size:16px; margin-right:5px;"></span>Delete Multiple</button></div>'; //DELETE MULTIPLE END
-
 	//REVERT
 	$where = "'doctors.php'";
 	echo '<div style="float: right; margin: 0px 10px 10px 0px;"><button type="button" class="btn" id="go" onclick="location.href='.$where.'" ><span class="fa fa-reply" style="font-size:16px; margin-right:5px;"></span>Revert</button></div>'; //REVERT END
