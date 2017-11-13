@@ -16,11 +16,13 @@
 #pr_label{
 	font-weight: bold;
 	float:left;
+	margin-bottom: 5px;
 	width: 40%;
 }
 
 #pr_body{
 	float:left;
+	margin-bottom: 5px;
 	width: 60%;
 }
 
