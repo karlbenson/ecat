@@ -584,13 +584,13 @@
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:40%; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style=" width:60%; float: left;">';
-																		echo '<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.' - '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'" style="width: 320px;" required>
+																		echo '<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.' - '.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:40%; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 60%; float: left;">
-																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.' - '.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'" style="width: 320px;" required>
+																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.' - '.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																	</div>

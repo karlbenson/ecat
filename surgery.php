@@ -841,13 +841,13 @@
 																				<label for="SURG_LIC" style="float:left; width:40%;">Surgeon<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																					<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.' - '.$SURG_NAME.'" required>
+																					<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC" maxlength="'.$SURG_LENG.'" name="SURG_LIC" placeholder="Surgeon Name or License" value="'.$S_LN.' - '.$SURG_NAME.'" required>
 																				</div>
 																				<div class="add_s1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																					<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC1" maxlength="'.$SURG_LENG.'" name="SURG_LIC1" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN1.' - '.$SURG_NAME1.'">
+																					<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC1" maxlength="'.$SURG_LENG.'" name="SURG_LIC1" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN1.' - '.$SURG_NAME1.'">
 																				</div>
 																				<div class="add_s2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																					<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC2" maxlength="'.$SURG_LENG.'" name="SURG_LIC2" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN2.' - '.$SURG_NAME2.'">
+																					<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_LIC2" maxlength="'.$SURG_LENG.'" name="SURG_LIC2" placeholder="Surgeon Name or License (Optional)" value="'.$S_LN2.' - '.$SURG_NAME2.'">
 																				</div>
 																				<a role="button" id="add_surg" class="btn btn-default" title="Add another surgeon" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
 																				<a role="button" id="minus_surg" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
@@ -858,13 +858,13 @@
 																				<label for="INTERNIST" style="width: 40%; float: left; ">Internist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																					<input  title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.' - '.$INTER_NAME.'" required>
+																					<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST" maxlength="'.$INTER_MAX.'" name="INTERNIST" placeholder="Internist Name or License" value="'.$S_I.' - '.$INTER_NAME.'" required>
 																				</div>
 																				<div class="add_i1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST1" maxlength="'.$INTER_MAX.'" name="INTERNIST1" placeholder="Internist Name or License (Optional)" value="'.$S_I1.' - '.$INTER_NAME1.'">
+																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST1" maxlength="'.$INTER_MAX.'" name="INTERNIST1" placeholder="Internist Name or License (Optional)" value="'.$S_I1.' - '.$INTER_NAME1.'">
 																				</div>
 																				<div class="add_i2" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																				<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST2" maxlength="'.$INTER_MAX.'" name="INTERNIST2" placeholder="Internist Name or License (Optional)" value="'.$S_I2.' - '.$INTER_NAME2.'">
+																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTERNIST2" maxlength="'.$INTER_MAX.'" name="INTERNIST2" placeholder="Internist Name or License (Optional)" value="'.$S_I2.' - '.$INTER_NAME2.'">
 																				</div>
 																				<a role="button" id="add_inter" class="btn btn-default" title="Add another internist" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-plus"></span></a>
 																				<a role="button" id="minus_inter" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left; margin:5px 5px 5px 0px;"><span class="fa fa-minus"></span></a>
@@ -875,7 +875,7 @@
 																				<label for="ANESTHESIOLOGIST" style="width: 40%; float: left; ">Anesthesiologist<span style="color: #d9534f">*</span></label>
 																				<div style="width: 60%; float: left;">
 																				<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-																					<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(\d{7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.' - '.$ANES_NAME.'" required>
+																					<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="ANESTHESIOLOGIST" maxlength="'.$ANEST_MAX.'" name="ANESTHESIOLOGIST" placeholder="Anesthesiologist Name or License" value="'.$S_AN.' - '.$ANES_NAME.'" required>
 																				</div>
 																				</div>
 																			</div>
@@ -930,7 +930,7 @@
 																					<div class="container-fluid" style="margin-bottom: 10px;">
 																						<label for="PAT_ID" style="width: 25%; float: left; ">Patient<span style="color: #d9534f">*</span></label>
 																						<div style="width: 250px; float: left;">
-																						<input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(([C][A][T]\d{4}[-]\d{3})$)" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
+																						<input pattern="^([C][A][T]\d{4}[-]\d{3})([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_ID" placeholder="Patient Name or ID number" maxlength="'.$ID_LENG.'" name="PAT_ID" value="'.$S_ID.'" style="width:100%;" required>
 																						</div>
 																					</div>
 																							
