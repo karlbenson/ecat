@@ -118,71 +118,15 @@
 													$N_SUPP = str_replace(",", "", $_POST["NDDCH_SUPPLIES"]);
 													$L_PF = str_replace(",", "", $_POST["LF_PF"]);
 													$L_CPC = str_replace(",", "", $_POST["LF_CPC"]);
-
-													$SS_ID = $_POST["PAT_ID"];
-													$SP_LIST = explode(" - ",$SS_ID);
-													if(sizeof($SP_LIST)==1){
-														$S_ID = trim($SP_LIST[0]);
-													}else{
-														$S_ID = trim($SP_LIST[1]);
-													}
+													$S_ID = trim(explode(" - ", $_POST["PAT_ID"])[0]);
+													$S_LN = trim(explode(" - ", $_POST["SURG_LIC"])[0]);
+													$S_LN1 = trim(explode(" - ", $_POST["SURG_LIC1"])[0]);
+													$S_LN2 = trim(explode(" - ", $_POST["SURG_LIC2"])[0]);
+													$S_I = trim(explode(" - ", $_POST["INTERNIST"])[0]);
+													$S_I1 = trim(explode(" - ", $_POST["INTERNIST1"])[0]);
+													$S_I2 = trim(explode(" - ", $_POST["INTERNIST2"])[0]);
+													$S_AN = trim(explode(" - ", $_POST["ANESTHESIOLOGIST"])[0]);
 													
-													$SS_SURG = $_POST["SURG_LIC"];
-													$SS_LIST = explode("-",$SS_SURG);
-													if(sizeof($SS_LIST)==1){
-														$S_LN = trim($SS_LIST[0]);
-													}else{
-														$S_LN = trim($SS_LIST[1]);
-													}
-
-													$SS_SURG1 = $_POST["SURG_LIC1"];
-													$SS_LIST1 = explode("-",$SS_SURG1);
-													if(sizeof($SS_LIST1)==1){
-														$S_LN1 = trim($SS_LIST1[0]);
-													}else{
-														$S_LN1 = trim($SS_LIST1[1]);
-													}
-
-													$SS_SURG2 = $_POST["SURG_LIC2"];
-													$SS_LIST2 = explode("-",$SS_SURG2);
-													if(sizeof($SS_LIST2)==1){
-														$S_LN2 = trim($SS_LIST2[0]);
-													}else{
-														$S_LN2 = trim($SS_LIST2[1]);
-													}
-
-													$SS_INTER = $_POST["INTERNIST"];
-													$SI_LIST = explode("-",$SS_INTER);
-													if(sizeof($SI_LIST)==1){
-														$S_I = trim($SI_LIST[0]);
-													}else{
-														$S_I = trim($SI_LIST[1]);
-													}
-
-													$SS_INTER1 = $_POST["INTERNIST1"];
-													$SI_LIST1 = explode("-",$SS_INTER1);
-													if(sizeof($SI_LIST1)==1){
-														$S_I1 = trim($SI_LIST1[0]);
-													}else{
-														$S_I1 = trim($SI_LIST1[1]);
-													}
-
-													$SS_INTER2 = $_POST["INTERNIST2"];
-													$SI_LIST2 = explode("-",$SS_INTER2);
-													if(sizeof($SI_LIST2)==1){
-														$S_I2 = trim($SI_LIST2[0]);
-													}else{
-														$S_I2 = trim($SI_LIST2[1]);
-													}
-
-													$SS_ANES = $_POST["ANESTHESIOLOGIST"];
-													$SA_LIST = explode("-",$SS_ANES);
-													if(sizeof($SA_LIST)==1){
-														$S_AN = trim($SA_LIST[0]);
-													}else{
-														$S_AN = trim($SA_LIST[1]);
-													}
-
 													$toupdate = $_POST["surgery_update"];
 													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', SPO_OTHERS = '$SP_OTHERS', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
 													if ($mydatabase->query($S_update) === TRUE) {
