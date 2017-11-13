@@ -447,4 +447,5 @@
 		myTable.search($(this).val()).draw();
 	});
 	
+	document.getElementById("modal").click();
 </script>

@@ -250,7 +250,7 @@
 														}
 														echo		'<td>'.$dataline["PAT_AGE"].'</td>
 																	<td>
-																		<a href="'.'patient2.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'"><span class="fa fa-pencil" title="Edit"></span></a>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
 																		<a role="button" id="'.$dataline["PAT_ID_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'"><span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>
@@ -482,7 +482,7 @@
 												$back = "'patient.php'";
 												echo '<div id="link_buttons" style="margin:20px 0px;">';
 												echo '<button class="btn btn-default" id="del_button" value="patient" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
-												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+												echo '<button type="button" id="modal" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
 												echo '</div>';
 												//BUTTONS AND LINKS END
@@ -1016,4 +1016,6 @@
 	$('#dataseek').keyup(function(){
 		myTable.search($(this).val()).draw();
 	})
+
+	document.getElementById("modal").click();
 </script>

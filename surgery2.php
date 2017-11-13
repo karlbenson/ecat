@@ -282,7 +282,7 @@
 																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="text-decoration:none;"><span class="fa fa-external-link"></span><span style="color:#000000; margin-left:5px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</span></a></td>
 																	<td>
 
-																		<a href="'.'surgery2.php'.'?profilepage='.$dataline["CASE_NUM"].'"><span class="fa fa-pencil" title="Edit"></span></a>
+																		<a href=""><span class="fa fa-pencil" title="Edit"></span></a>
 
 																		<a role="button" id="del_out" onclick="'.'" ><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full details"></span></a>
@@ -771,7 +771,7 @@
 												$back = "'surgery.php'";
 												echo '<div id="link_buttons" style="margin:20px 0px;">';
 												echo '<button class="btn btn-default" id="del_button" value="surgery" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;" disabled> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>';
-												echo '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
+												echo '<button type="button" id="modal" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>';
 												echo '<button type="button" class="btn btn-default" id="enable_disable" style="margin-left:10px;" onclick="pass()" title="Authorize delete and editing of accounts"><span class="fa fa-check" style="font-size:15px; margin-right:5px;"></span>Enable</button>';
 												echo '<div style="text-align:right;"><button class="btn" id="go" style="margin-right:15px;" onclick="window.location.href='.$back.'">Back</button></div>';
 												echo '</div>';
@@ -1741,6 +1741,8 @@ $(document).ready(function(){
 	});
 
 	$(".price > input:eq(0)").focus();
+
+	document.getElementById("modal").click();
 </script>
 
 <?php  ?>
