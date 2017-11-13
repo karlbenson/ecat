@@ -125,6 +125,7 @@
 																<td style="color:#ffffff">'.'First Name'.'</th>
 																<td style="color:#ffffff">'.'License No.'.'</th>
 																<td style="color:#ffffff">'.'Specialization'.'</th>
+																<td style="color:#ffffff">'.'Address'.'</th>
 																<td style="color:#ffffff">'.'Action'.'</th>
 																</tr>
 															</thead>';
@@ -137,17 +138,16 @@
 																	<td>'.$row["FIRST_NAME"].'</td>
 																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
 																	<td>'.$row["SPECIALIZATION"].'</td>
+																	<td>'.$row["ADDRESS"].'</td>
 																	<td>
-																		<a href="'.'doctors2.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-pencil" title="Edit"></span></a>';
+																		<a href="'.'doctors2.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-pencil" title="Edit"> </span></a>';
 
 																		if ($row["VISIBLE"]=='T') {
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Inactive"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Inactive"></span></a>';
 																		}else{
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Active"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Active"></span></a>';
 																		}
-																		
-														echo'				<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'">'.'<span class="fa fa-eye" title="See full detail"></span></a>
-																	</td>
+														echo 		'</td>
 																</tr>';
 													} //CONTENT END
 													
@@ -157,129 +157,6 @@
 													
 												} else { echo "No Records."; }
 												//MAIN PAGE END
-											}else if ($DEFAULT==1) {
-												//SEE MORE PAGE
-												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT * FROM DOCTOR where DOC_LICENSE_NUM = '$profile_p' ");      
-												$output1->execute();
-												$line1 = $output1->get_result();
-												$dataline = $line1->fetch_assoc();
-												//MYSQL SECTION END
-
-												//VALUES
-												$D_NAME = $dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"];
-												$D_DLN = $dataline["DOC_LICENSE_NUM"];
-												$D_LN = $dataline["LAST_NAME"];
-												$D_FN = $dataline["FIRST_NAME"];
-												$D_A = $dataline["ADDRESS"];
-												$D_SP = $dataline["SPECIALIZATION"];
-												$SPEC_choice = array('Select specialization', 'Pediatrician','Ophthalmologist','Anesthesiologist','Surgeon','Internist');
-												//VALUES END
-
-												//CONTENT
-												echo '<div>
-														<div class="container-fluid">
-															<h3>Dr. '.$D_NAME.'</h3>
-															<div class="panel panel-default" style="padding-bottom:10px;">
-																<div class="panel-heading" id="tophead1">Doctor Information</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" style="font-weight:bold;">License Number</div>
-																	<div class="col-md-9">'.$D_DLN.'</div>
-																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" style="font-weight:bold;">Address</div>
-																	<div class="col-md-9">'.$D_A.'</div>
-																</div>
-																<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-																	<div class="col-md-3" style="font-weight:bold;">Specialization</div>
-																	<div class="col-md-9">'.$D_SP.'</div>
-																</div>
-															</div>';
-
-															//CONTENT END
-															
-
-												//BUTTONS AND LINKS
-												echo '<div id="link_buttons">
-														<button class="btn btn-default" id="del_button" value="doctors" data-toggle="modal" data-target="#confirm_this" style="margin-left:15px;"> <span class="fa fa-trash" style="font-size:15px;"></span> Delete </button>
-														<button type="button" id="modal" class="btn btn-default" data-toggle="modal" data-target="#EditBox" style="margin-left:10px;"><span class="fa fa-edit" style="font-size:15px;"></span> Edit</button>
-														<div style="text-align:right;"><a role="button" class="btn" id="go" style="margin-right:15px;" href="doctors.php">Back</a></div>
-													</div>';
-												//BUTTONS AND LINKS END
-
-												// POP-UP ALERT
-												echo '<div class="modal fade" id="EditBox" role="dialog" style="top:50px;">
-														<div class="modal-dialog modal-lg">';
-															//POP-UP CONTENT
-												echo 		'<div class="modal-content">
-																<div class="modal-header">
-																	<button type="button" class="close" data-dismiss="modal">&times;</button>
-																	<h4 class="modal-title">Edit Record</h4>
-																</div>
-																<div class="modal-body">';
-																	//EDIT FORM
-												echo 				'<div class="container-fluid">
-																		<form method="post" id="updating">
-
-																			<p style="margin-bottom: 20px; color:#666666;">
-																				Please do not leave the required<span style="color: #d9534f">*</span> fields blank.
-																			</p>
-
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="F_NAME" style="width: 175px; float: left; ">First Name<span style="color: #d9534f">*</span> </label>
-																				<input type="text" class="form-control" id="F_NAME" maxlength="'.$FN_MAX.'" name="F_NAME" value="'.$D_FN.'" style="width: 150px; float: left;" required >
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="L_NAME" style="width: 175px; float: left; ">Last Name<span style="color: #d9534f">*</span> </label>
-																				<input type="text" class="form-control" id="L_NAME" maxlength="'.$LN_MAX.'" name="L_NAME" value="'.$D_LN.'" style="width: 150px; float: left;" required >
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="LICENSE_NUM" style="width: 175px; float: left; ">License Number<span style="color: #d9534f">*</span> </label>
-																				<input pattern="\d{5,7}" type="text" class="form-control" id="LICENSE_NUM" maxlength="'.$LIC_LENG.'" name="LICENSE_NUM" value="'.$D_DLN.'" style="width: 90px; float: left;" required >
-																			</div>
-																			<div class="container-fluid" style="margin-bottom: 10px;">
-																				<label for="ADDRESS" style="width: 175px; float: left; ">Address </label>
-																				<input type="text" class="form-control" id="ADDRESS" maxlength="'.$ADDR_MAX.'" name="ADDRESS" value="'.$D_A.'" style="max-width: 450px; float: left;">
-																			</div>
-																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="SPECIALIZATION" style="width: 175px; float: left; ">Specialization</label>
-																					<select class="form-control" id="SPECIALIZATION" name="SPECIALIZATION" style="max-width: 250px; float: left;">';
-																					
-																					for ($spec=0; $spec < sizeof($SPEC_choice); $spec++) { 
-																						if($spec==0){
-																							echo '<option value = "">-Select specialization-</option>';
-																						}else{
-																							if($D_SP==$SPEC_choice[$spec]){
-																								echo '<option value = "'.$SPEC_choice[$spec].'" selected>'.$SPEC_choice[$spec].'</option>';
-																							}else{
-																								echo '<option value = "'.$SPEC_choice[$spec].'">'.$SPEC_choice[$spec].'</option>';
-																							}
-																						}
-																					}
-																					echo '</select>
-																			</div>
-																				<div class="text-center" style="margin-top: 20px;">
-																				<button type="submit" onclick="update()" class="btn btn-default" value="'.$D_DLN.'" name="doctors_update">Update</button>
-																			</div>
-																		</form>
-																	</div>';
-																	//EDIT FORM END
-												echo 			'</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
-																	</div>
-																</div>';
-																//POP-UP CONTENT END
-												echo 			'<script>
-																	function update() {
-																		var license = document.getElementById("LICENSE_NUM").value;
-																		document.getElementById("updating").action = "doctors.php?profilepage="+license;
-																	}
-																</script>
-															</div>
-														</div>';
-													//POP-UP ALERT END
-												//SEE MORE PAGE END
 											}else if($DEFAULT==2){
 												//DELETE PAGE
 												$vis='F';
