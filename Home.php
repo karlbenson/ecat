@@ -27,7 +27,15 @@
 		<!-- HEAD AND NAVIGATION END -->
 		<div id="body">
 			<!-- MAIN -->
-			<div class="container-fluid" id="outer">
+
+   <div class="container-fluid" id="outer" style="margin-bottom:20px;">
+
+            <div class="container-fluid" style="text-align:center;">
+              <h2 style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff; margin-bottom: 10px;">Welcome to Luke Foundation Eye Program Database</h2>
+            </div>
+   </div>
+
+			<div class="container-fluid" id="outer" style="width:100%; padding:50px 0px;">
 				<?php //CODE SECTION STARTS HERE
 					//ESTABLISHING MYSQL LINK (1)
 					include("dbconnect.php");
@@ -57,21 +65,25 @@
 					//CODE SECTION ENDS HERE
 				?>
 
+
 				<!-- SURGERIES -->
-				<div class="container-fluid" id="basic" >
-					<div id="inner">
+				<div class="container-fluid" id="basic" style="background-color:transparent;">
+					<div id="">
 						<!-- TITLE -->
-            <div class="container-fluid" >
-              <h2 style="color:#337ab7;">Welcome to Luke Foundation Eye Program Database</h2>
-            </div>
+            
 						
-<div class="container dynamicTile">
-<div class="row ">
-    <div class="col-sm-2 col-xs-4">
+<div class="container dynamicTile " style="">
+<div class="container-fluid" style="float:left; width:100%; padding-left:30px;" id="box_contain">
+
+<!-- GROUP 1: TOP LEFT -->
+<div style="width:50%; float:left;">
+<div style="width:100%; float:left;">
+    <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
       <a id="tile1" class="tile" href="surgery.php">
+
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
                <img src="images/doctor2.png" class="img-responsive"/>
             </div>
@@ -82,12 +94,13 @@
         </div>
          
       </a>
-  </div>
-  <div class="col-sm-2 col-xs-4">
+    </div>
+
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile2" class="tile" href="patient.php">
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
               <img src="images/patient2.png" class="img-responsive"/>
             </div>
@@ -102,12 +115,12 @@
          
     </a>
   </div>
-  <div class="col-sm-2 col-xs-4">
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile3" class="tile" href="surgery.php">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
                <img src="images/surg2.png" class="img-responsive"/>
             </div>
@@ -118,12 +131,63 @@
          </div>
     </a>
   </div>
-  <div class="col-sm-2 col-xs-4">
+  </div>
+
+  <!-- GROUP 3: BOTTOM-LEFT -->
+<div style="width:100%; float:left; margin-top:20px;">
+  <div style="width: calc(66% - 20px); float:left; margin-right:20px;">
+    <a id="tile7" class="tile" href="form_doctors.php">
+       
+        <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" id="carousel1">
+            <div class="item active">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img src="images/form2.png" class="img-responsive"/>
+            </div>
+          </div>
+        </div>
+         
+    </a>
+  </div>
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
+    <a id="tile8" class="tile" href="form_report.php">
+       
+         <div class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" id="carousel2">
+            <div class="item active">
+               <img src="images/genrep1.png" class="img-responsive"/>
+            </div>
+             <div class="item">
+               <img src="images/genrep2.png" class="img-responsive"/>
+            </div>
+            </div>
+         </div>
+         
+    </a>
+  </div>
+  </div>
+<!-- GROUP 3: BOTTOM-LEFT END -->
+
+
+ </div>
+<!-- GROUP 1: TOP-LEFT END -->
+
+<!-- GROUP 2: TOP-RIGHT -->
+<div style="width:50%; float:left;">
+<div style="width:100%; float:left;">
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile4" class="tile">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
               <img src="images/green_blank.png" class="img-responsive"/>
             </div>
@@ -132,12 +196,12 @@
          
     </a>
   </div>
-  <div class="col-sm-2 col-xs-4">
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile3" class="tile"  href="form_surgery.php">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
                <img src="images/surgg2.png" class="img-responsive"/>
             </div>
@@ -148,12 +212,12 @@
          </div>
     </a>
   </div>
-  <div class="col-sm-2 col-xs-4">
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile4" class="tile" href="form_patient.php">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel">
             <div class="item active">
               <img src="images/patientg2.png" class="img-responsive"/>
             </div>
@@ -167,50 +231,14 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-4 col-xs-8">
-    <a id="tile7" class="tile" href="form_doctors.php">
-       
-        <div class="carousel slide" data-ride="carousel">
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-            <div class="item active">
-              <img src="images/form2.png" class="img-responsive"/>
-            </div>
-            <div class="item">
-              <img src="images/form2.png" class="img-responsive"/>
-            </div>
-            <div class="item">
-              <img src="images/form2.png" class="img-responsive"/>
-            </div>
-          </div>
-        </div>
-         
-    </a>
-  </div>
-  <div class="col-sm-2 col-xs-4">
-    <a id="tile8" class="tile" href="form_report.php">
-       
-         <div class="carousel slide" data-ride="carousel">
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">
-            <div class="item active">
-               <img src="images/genrep1.png" class="img-responsive"/>
-            </div>
-             <div class="item">
-               <img src="images/genrep2.png" class="img-responsive"/>
-            </div>
-            </div>
-         </div>
-         
-    </a>
-  </div>
-  <div class="col-sm-4 col-xs-8">
+<!-- GROUP 4: BOTTOM-RIGHT -->
+<div style="width:100%; float:left; margin-top:20px;">
+  <div style="width: calc(66% - 20px); float:left; margin-right:20px;">
     <a id="tile7" class="tile">
        
         <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel3">
             <div class="item active">
               <img src="images/form1.png" class="img-responsive"/>
             </div>
@@ -225,12 +253,13 @@
          
     </a>
   </div>
-  <div class="col-sm-2 col-xs-4">
+
+  <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
     <a id="tile9" class="tile" href="form_doctors.php">
        
           <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->
-          <div class="carousel-inner">
+          <div class="carousel-inner" id="carousel4">
             <div class="item active">
               <img src="images/doctor2g.png" class="img-responsive"/>
             </div>
@@ -242,9 +271,14 @@
          
     </a>
   </div>
+</div>
+<!-- GROUP 4: BOTTOM-RIGHT END -->
 
-            
-					</div>
+</div>
+<!-- GROUP 2: TOP-RIGHT END -->
+
+</div>
+
 					<!-- CONTENT END -->
 					<?php $mydatabase->close(); ?>
 				</div>
@@ -253,3 +287,20 @@
 		</div>
 	</body>
 </html>
+
+<script>
+
+$('#box_contain').each(function(){
+    var inner = $(this).find('p');
+    $(this).height(inner.outerHeight(true));
+    $(this).width(inner.outerWidth(true)); 
+});
+
+$(document).ready(function(){
+ var height1 = $("#carousel4").height();
+ $("#carousel3").height(height1);
+ var height1 = $("#carousel2").height();
+ $("#carousel1").height(height1);
+});
+
+</script>
