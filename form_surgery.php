@@ -166,7 +166,7 @@
 	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
              <div class="col-md-7" style=" float: left;">
              	<div style="width: 320px; float: left; margin-right:5px;" >
-               <input pattern="^(([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)[ ][-][ ])*)(([C][A][T]\d{4}[-]\d{3})$)" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
+               <input pattern="^([C][A][T]\d{4}[-]\d{3})([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
               </div>
               <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new patient"><span class="fa fa-id-card"></span></a>
 	            </div>
