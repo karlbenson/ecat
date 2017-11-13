@@ -89,7 +89,23 @@
 		}
 	</script>';
 	// SCRIPT END
-	
+
+		if(isset($_GET["profilepage"])){
+			$redirect_print = $_SERVER['PHP_SELF'].'?printpage='.$_GET["profilepage"];
+			$print_action = " Print Preview ";
+			echo '<script>
+						$("#go_print").click(function() {
+	   		 document.location.href= "'.$redirect_print.'";
+						}); </script>';
+		}else if(isset($_GET["printpage"])){
+			$print_action = " Print ";
+		}else {
+			echo '<script>
+			 $(document).ready(function () {
+        $("#go_print").hide();
+    }); </script>';
+		}
+
 	// HEADER
 	echo
 	'<div class="container" id="headlogo" style="transition: 0.5s; background: linear-gradient(to bottom right, rgba(92, 184, 92, 0.9) 40%, rgba(92, 184, 92, 0) 110%); padding: 10px; width: calc(100% - 100px); height:60px; margin-left:100px; margin-bottom: 10px; min-width: 950px;">
@@ -99,18 +115,18 @@
 			<p style="float:left; font-size:16pt; color:#ffffff; margin: 5px 20px;"> LUKE FOUNDATION, INC. </p>
 		</div>
 		</a>
-		<div style="float:right;">
-			<button class="btn" onclick="page_print()" style="margin-right:10px; border: none;"><span class="fa fa-print" style="font-size:20px;"></span> </button>
-		</div>
+		<div style="float:right;">';
+
+			echo'<button role="button" class="btn btn-default" id="go_print" style="margin-right:10px; border: none;"><span class="fa fa-print" style="font-size:20px;"></span>'.$print_action.'</button>';
+		echo '</div>
 	</div>';
 	// HEADER END
-	
-	// HEADER SCRIPT
-	echo '<script>
-		function page_print() {
-			window.print();
+
+	if(isset($_GET["printpage"])){
+			echo '<script>
+						$("#go_print").click(function() {
+	   		 window.print();
+						}); </script>';
 		}
-	</script>';
-	// HEADER SCRIPT END
 
 ?>
