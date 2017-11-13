@@ -93,13 +93,9 @@
 		if(isset($_GET["profilepage"])){
 			$redirect_print = $_SERVER['PHP_SELF'].'?printpage='.$_GET["profilepage"];
 			$print_action = " Print Preview ";
-			echo '<script>
-						$("#go_print").click(function() {
-	   		 document.location.href= "'.$redirect_print.'";
-						}); </script>';
 		}else if(isset($_GET["printpage"])){
 			$print_action = " Print ";
-		}else {
+		}else{
 			echo '<script>
 			 $(document).ready(function () {
         $("#go_print").hide();
@@ -122,7 +118,12 @@
 	</div>';
 	// HEADER END
 
-	if(isset($_GET["printpage"])){
+	if(isset($_GET["profilepage"])){
+			echo '<script>
+						$("#go_print").click(function() {
+	   		 document.location.href= "'.$redirect_print.'";
+						}); </script>';
+		}else	if(isset($_GET["printpage"])){
 			echo '<script>
 						$("#go_print").click(function() {
 	   		 window.print();
