@@ -189,10 +189,13 @@
 
 													<div class="container-fluid" style="width:100%; float:left;">
 
-													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
+													<div class="container-fluid" style="width: 100%; float:left; margin:0px;">
 														<div style="width:100%; margin-bottom:10px;"><h4> Dr. '.$printline["FIRST_NAME"].' '.$printline["LAST_NAME"].'</h5></div>
+														<hr style="width:100%;">
 													</div>
-														<hr class="row">
+													
+														
+														
 													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
 														<div id="pr_label">License Number: </div>
 														<div id="pr_body" >'.$printline["DOC_LICENSE_NUM"].'</div>
