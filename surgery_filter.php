@@ -114,7 +114,6 @@
 									echo '<option value = "">-Select Anesthesia-</option>';
 									echo '<option value = "General">General</option>';
 									echo '<option value = "Local">Local</option>';
-									echo '<option value = "Topical">Topical</option>';
 					echo '</select>
 						</div>
 						</div>
