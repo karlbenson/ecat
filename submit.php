@@ -40,7 +40,7 @@
 							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
 							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						} else {
-							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
+							echo "<div class='alert alert-danger'> <strong>Unable to add doctor. A doctor with license number ".$D_LICENSENUM." already exists</strong></div>"; 
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
@@ -53,7 +53,8 @@
 							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
 							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						} else { 
-							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>";
+							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again. </strong></div>";
+							echo $GLOBALS['mydatabase']->error;
 						}
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
