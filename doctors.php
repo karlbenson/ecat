@@ -140,12 +140,12 @@
 																	<td>'.$row["SPECIALIZATION"].'</td>
 																	<td>'.$row["ADDRESS"].'</td>
 																	<td>
-																		<a href="'.'doctors2.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-pencil" title="Edit"> </span></a>';
-
+																		<a href="'.'doctors2.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-pencil" title="Edit" > </span></a>
+																		<a href="'.'doctors.php'.'?printpage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-print" title="Print Preview"> </span></a>';
 																		if ($row["VISIBLE"]=='T') {
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Inactive"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:5px;" class="fa fa-trash" title="Make Inactive"></span></a>';
 																		}else{
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Active"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:5px;" class="fa fa-trash" title="Make Active"></span></a>';
 																		}
 														echo 		'</td>
 																</tr>';
