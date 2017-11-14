@@ -414,12 +414,12 @@
 																<td style="color:#ffffff">'.'Address'.'</th>
 																<td style="color:#ffffff">'.'Action'.'</th>
 																</tr>
-															</thead>';
+															</thead><tbody>';
 													//HEADER END
 
 													//CONTENT
 													while($row = $output->fetch_assoc()) { 
-														echo 	'<tr id='.$row["DOC_LICENSE_NUM"].'>
+														echo 	'><tr id='.$row["DOC_LICENSE_NUM"].'>
 																	<td>'.$row["LAST_NAME"].'</td>
 																	<td>'.$row["FIRST_NAME"].'</td>
 																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
@@ -437,7 +437,7 @@
 																</tr>';
 													} //CONTENT END
 													
-													echo 	'</table></div>';
+													echo 	'</tbody></table></div>';
 
 													echo '<button style="display:none;" id="del_button" value="doctors"></button>';
 													
