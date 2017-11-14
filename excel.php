@@ -35,7 +35,7 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 			$fname = "General";
 		}else if($_GET["gen"]=="n"){
 			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
-			$fname = "Local";		}
+			$fname = "Local";}
 	}else if(isset($_GET["ph"])){
 		if($_GET["ph"]=="y"){
 			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
@@ -43,6 +43,12 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 		}else if($_GET["ph"]=="n"){
 			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
 			$fname = "WOPhilHealth";
+		}
+	}else if(isset($_GET["table"])){
+		if($_GET["table"]=="doctor"){
+			$S_query = "SELECT * FROM DOCTORS";
+		}ELSE IF($_GET["table"]=="patient"){
+			$S_query = "SELECT * FROM DOCTOR d, EYEPATIENT p, STAFF f WHERE p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.STAFF_LICENSE_NUM = f.STAFF_LICENSE_NUM ORDER by p.PAT_LNAME desc";
 		}
 	}
 	
@@ -53,7 +59,7 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
         
 												//FILTER END
 												//MAIN PAGE
-												if ($output->num_rows>0) {
+												if ($output->num_rows>0 && !isset($_GET["table"])) {
 													$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A1', 'Case No.')
 												            ->setCellValue('B1', 'Patient')
@@ -115,6 +121,76 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 												            ->setCellValue('M'.$i, ''.$CSF_COL_SUM)
 												            ->setCellValue('P'.$i, ''.$NDDCH_COL_SUM)
 												            ->setCellValue('Q'.$i, ''.$ROW_COL_SUM);
+												}else if(isset($_GET["table"])){
+													if($_GET["table"]=="doctor"){
+														$objPHPExcel->setActiveSheetIndex(0)
+												            ->setCellValue('A1', 'License Number')
+												            ->setCellValue('B1', 'First Name')
+												            ->setCellValue('C1', 'Last Name')
+												            ->setCellValue('D1', 'Address')
+												            ->setCellValue('E1', 'Specialization');
+													    $i=2;
+														while($dataline = $output->fetch_assoc()) { 
+															$objPHPExcel->setActiveSheetIndex(0)
+													            ->setCellValue('A'.$i, ''.$dataline["DOC_LICENSE_NUM"])
+													            ->setCellValue('B'.$i, ''.$dataline["FIRST_NAME"])	
+													            ->setCellValue('C'.$i, ''.$dataline["LAST_NAME"])
+													            ->setCellValue('D'.$i, ''.$dataline["ADDRESS"])
+													            ->setCellValue('E'.$i, ''.$dataline["SPECIALIZATION"]);
+												        	$i++;
+														}
+
+													}else if($_GET["table"]=="patient"){
+														$objPHPExcel->setActiveSheetIndex(0)
+												            ->setCellValue('A1', 'ID Number')
+												            ->setCellValue('B1', 'First Name')
+												            ->setCellValue('C1', 'Last Name')
+												            ->setCellValue('D1', 'Age')
+												            ->setCellValue('E1', 'Has Philhealth')
+												            ->setCellValue('F1', 'Sex')
+												            ->setCellValue('G1', 'Examined by')
+												            ->setCellValue('H1', 'Screened')
+												            ->setCellValue('I1', 'Left Pre VA with Spectacles')
+												            ->setCellValue('J1', 'Right Pre VA with Spectacles')
+												            ->setCellValue('K1', 'Left Pre VA without Spectacles')
+												            ->setCellValue('L1', 'Right Pre VA without Spectacles')
+												            ->setCellValue('M1', 'Left Post VA with Spectacles')
+												            ->setCellValue('N1', 'Right Post VA with Spectacles')
+												            ->setCellValue('O1', 'Left Post VA without Spectacles')
+												            ->setCellValue('P1', 'Right Post VA without Spectacles')
+												            ->setCellValue('Q1', 'Visual Impairment')
+												            ->setCellValue('R1', 'Impairment Cause')
+												            ->setCellValue('S1', 'Right Eye Diagnosis')
+												            ->setCellValue('T1', 'Left Eye Diagnosis')
+												            ->setCellValue('U1', 'Procedure to do');
+													    $i=2;
+														while($dataline = $output->fetch_assoc()) { 
+															$objPHPExcel->setActiveSheetIndex(0)
+													            ->setCellValue('A'.$i, ''.$dataline["PAT_ID_NUM"])
+													            ->setCellValue('B'.$i, ''.$dataline["PAT_FNAME"])	
+													            ->setCellValue('C'.$i, ''.$dataline["PAT_LNAME"])
+													            ->setCellValue('D'.$i, ''.$dataline["PAT_AGE"])
+													            ->setCellValue('E'.$i, ''.$dataline["PAT_PH"])
+													            ->setCellValue('E'.$i, ''.$dataline["PAT_SEX"])
+													            ->setCellValue('E'.$i, ''.$dataline["FIRST_NAME"].$dataline["LAST_NAME"])
+													            ->setCellValue('E'.$i, ''.$dataline["STAFF_FNAME"].$dataline["STAFF_LNAME"])
+													            ->setCellValue('E'.$i, ''.$dataline["PRE_VA_WITH_SPECT_LEFT"])
+													            ->setCellValue('E'.$i, ''.$dataline["PRE_VA_WITH_SPECT_RIGHT"])
+													            ->setCellValue('E'.$i, ''.$dataline["PRE_VA_NO_SPECT_LEFT"])
+													            ->setCellValue('E'.$i, ''.$dataline["PRE_VA_NO_SPECT_RIGHT"])
+													            ->setCellValue('E'.$i, ''.$dataline["POST_VA_WITH_SPECT_LEFT"])
+													            ->setCellValue('E'.$i, ''.$dataline["POST_VA_WITH_SPECT_RIGHT"])
+													            ->setCellValue('E'.$i, ''.$dataline["POST_VA_NO_SPECT_LEFT"])
+													            ->setCellValue('E'.$i, ''.$dataline["POST_VA_NO_SPECT_RIGHT"])
+													            ->setCellValue('E'.$i, ''.$dataline["SVISUAL_DISABILITY"])
+													            ->setCellValue('E'.$i, ''.$dataline["DISABILITY_CAUSE"])
+													            ->setCellValue('E'.$i, ''.$dataline["RIGHT_DIAGNOSIS"])
+													            ->setCellValue('E'.$i, ''.$dataline["LEFT_DIAGNOSIS"])
+													            ->setCellValue('E'.$i, ''.$dataline["PROCEDURE_TO_DO"]);
+												        		$i++;
+														}
+													}
+													
 												} else {
 													$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A1', "No records");
