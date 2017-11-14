@@ -279,7 +279,6 @@
 											<div>
 											<?php
 												echo '<div class="container-fluid" style="padding:20px 20px;">
-													<div class="row" style="margin:0px; padding: 10px 0px 20px 0px;"><hr style="border-color:#337ab7;"></div>
 
 														<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Financial Report as of ';
 														 
@@ -486,6 +485,7 @@
 
 																	</div>
 																</div>
+																</div>
 
 																<div class="well" style=" float:left; padding:20px; width:100%;">
 																		<div style="width:100%; float:left; padding:4px 0px;">
@@ -494,62 +494,68 @@
 																			<div style="float:left; width:50%;">₱ '.number_format($GRAND, "2").'</div>
 
 																		</div>
-																		</div>
-																</div>';
+																</div>
+																';
 													?>
 
 													
 
-													<div style="float:left; width:100%;">
-													<div class="panel panel-default" style="padding-bottom:10px;">
+													<div  style="float:left; width:100%;">
+													<div class="panel panel-default" style="padding-bottom:10px; ">
 														<div class="panel-heading" style="color:#337ab7;">Pre-Surgery Visual Acuity</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<table>
-																<tr>
-																	<td>
-																	<div id="leftpre" style="float:left;"></div>
-																	</td>
-																	<td>
-																	<div id="rightpre" style="margin:10px;float:right;"></div>
-																	</td>
-																</tr>
-															 </table>
+														<div class="panel-body" style="margin:0px; padding:5px 10px; width:100%;">
+															
+															<div style="width:50%; float:left; text-align:center;">
+															<div class="container-fluid" style="min-width: 500px;">
+																	<div id="leftpre" style="width:100%"></div>
+															</div>
+															</div>
+															<div style="width:50%; float:left; text-align:center;">
+															<div class="container-fluid" style="min-width: 500px; ">
+																	<div id="rightpre" style="width:100%"></div>
+															</div>
+															</div>
+																	
 														</div>
 													</div>
 													</div>
 
-													<div style="float:left; width:100%;">
+													<div  style="float:left; width:100%;">
 													<div class="panel panel-default" style="padding-bottom:10px;">
 														<div class="panel-heading " style="color:#337ab7;">Post-Surgery Visual Acuity</div>
-														<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-															<table>
-															<tr>
-																<td>
-																<div id="leftpost"></div>
-																</td>
-																<td>
-																<div id="rightpost"></div>
-																</td>
-															</tr>
-														  </table>
+														<div class="panel-body" style="margin:0px; padding:5px 10px; width:100%;">
+															
+															<div style="width:50%; float:left; text-align:center;">
+															<div class="container-fluid" style=" min-width: 500px; ">
+																<div id="leftpost" style="width:100%"></div>
+															</div>
+															</div>
+															<div style="width:50%; float:left;  text-align:center;">
+															<div class="container-fluid" style=" min-width: 500px; ">
+																<div id="rightpost" style="width:100%"></div>
+															</div>
+															</div>
+
 														</div>
 													</div>
 													</div>
 
-													<div id="hidethis">
-													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%;"><strong>Financial Information by Type of Anesthesia and Philhealth</strong>
+													<div style="float:left; width:100%; padding-top:10px;" id="hidethis">
+													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%; margin:0px;"><strong>Financial Information by Type of Anesthesia and Philhealth</strong>
 													</div>
 													
+													<div style="float:left; width:100%;">
 													<?php
 													
 											//GENERAL ANESTHESIA
 											//MYSQL SECTION
+													echo '<div style="width:100%;">';
 											if($_POST["anestype"]=="Gen"){
 												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
-												echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia(<a href="excel.php?gen=y&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
+												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia (<a href="excel.php?gen=y&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
 											}else{
 												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
-												echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia(<a href="excel.php?gen=n&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
+												echo '<br/><div class="panel panel-default" style="margin-top:0px; width:100%;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia (<a href="excel.php?gen=n&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
 											}
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
@@ -557,8 +563,8 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
+													echo '<div class="panel-body" style="margin:0px; padding:0px;">
+														<table id="docdat" class="table table-striped row" style="float:left; width:100%;padding:0px;margin:0px;">
 															<thead>
 																<tr id="tophead">
 																<td style="color:#ffffff">Case No.</td>
@@ -632,18 +638,19 @@
 															</tr>';
 													echo	'</tbody>
 														</table></div>
-													</div>';
+													</div></div>';
 												} else {
-													echo "No Records.";
+													echo '<div class="container-fluid" style="padding:20px;">No Records.</div></div>';
 												}
 												//MAIN PAGE END
+
 												
 												if($_POST["phtype"]=="W"){
-													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM  AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">With Philhealth(<a href="excel.php?ph=y&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
+													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">With Philhealth (<a href="excel.php?ph=y&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
 												}else if($_POST["phtype"]=="WO"){
 													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
-													echo '<br/><div class="panel panel-default" style="padding-bottom:10px;margin-top:10px;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth(<a href="excel.php?ph=n&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
+													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth (<a href="excel.php?ph=n&curryear='.$curryear.'&currmonth='.$currmonth.'">Download .xls</a>)</div>';
 												}
 
 												//WITH PHILHEALTH
@@ -654,8 +661,8 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<div class="panel-body row" style="margin:0px; padding:5px 10px;">
-														<table id="docdat" class="table table-striped row" style="float:left;width:100%;padding-bottom:10px;margin-left:0px;">
+													echo '<div class="panel-body" style="margin:0px; padding:0px;">
+														<table id="docdat" class="table table-striped" style="float:left;width:100%;padding:0px; margin:0px;">
 															<thead>
 																<tr id="tophead">
 																<td style="color:#ffffff">Case No.</td>
@@ -734,13 +741,14 @@
 													
 
 												} else {
-													echo "No Records.";
+													echo '<div class="container-fluid" style="padding:20px;">No Records.</div>';
 												}
 												//MAIN PAGE END
 
 													$mydatabase->close();
 													
 													?>
+												</div>
 												</div>
 												</div>
 

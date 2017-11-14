@@ -40,7 +40,7 @@
 							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
 							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						} else {
-							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
+							echo "<div class='alert alert-danger'> <strong>Unable to add doctor. A doctor with license number ".$D_LICENSENUM." already exists</strong></div>"; 
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
@@ -52,8 +52,15 @@
 							$whereto = "patient.php?profilepage=".$P_ID;
 							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
 							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
-						} else { 
-							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>";
+						} else {
+							if(explode(" ", $GLOBALS['mydatabase']->error)[5] == "'PAT_UNIV_ID'"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add patient. ".$P_FNAME." ".$P_LNAME." already have a record in the Eye Cataract Program. </strong></div>";
+							}else if(explode(" ", $GLOBALS['mydatabase']->error)[0] == "Cannot" and explode(" ", explode("FOREIGN KEY ", $GLOBALS['mydatabase']->error)[1])[0] == "(`PHY_LICENSE_NUM`)"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add patient. Physician with license number ".$P_PHYLIC." does not exist.
+									Add a new doctor <a href='form_doctors.php'>here</a> </strong></div>";
+							}else if(explode(" ", $GLOBALS['mydatabase']->error)[0] == "Cannot" and explode(" ", explode("FOREIGN KEY ", $GLOBALS['mydatabase']->error)[1])[0] == "(`STAFF_LICENSE_NUM`)"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add patient. Staff with license number ".$P_STAFFLIC." does not exist. </strong></div>";
+							}
 						}
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
@@ -70,6 +77,8 @@
 							}
 						}else { 
 							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
+						
+							echo $GLOBALS['mydatabase']->error;
 						}
 						
 					}//END
