@@ -84,7 +84,7 @@
 										</div>
 			  
 										<div class="" style="width: 300px; float: left; margin-right:10px;">
-											<input pattern="^(\d)(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
+											<input pattern="^(\d)([ ][-][ ]([a-zA-Z]([a-zA-Z .]*))*)$" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
 										</div>
 									</div>
 									<!-- PATIENT END-->
