@@ -419,7 +419,7 @@
 
 													//CONTENT
 													while($row = $output->fetch_assoc()) { 
-														echo 	'><tr id='.$row["DOC_LICENSE_NUM"].'>
+														echo 	'<tr id='.$row["DOC_LICENSE_NUM"].'>
 																	<td>'.$row["LAST_NAME"].'</td>
 																	<td>'.$row["FIRST_NAME"].'</td>
 																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
@@ -571,16 +571,6 @@
 		    null,
 		    null,
 		    { "orderable": false },
-		    { "orderable": false }
-  			],
-		});
-
-	$('#dataseek').keyup(function(){
-		myTable.search($(this).val()).draw();
-	});
-	
-</script>
-
 		    { "orderable": false }
   			],
 		});
