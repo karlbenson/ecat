@@ -76,9 +76,16 @@
 								echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 							}
 						}else { 
-							echo "<div class='alert alert-danger'> <strong>Oh no! Looks like something is wrong. Please check all inputs and try again.</strong></div>"; 
-						
-							echo $GLOBALS['mydatabase']->error;
+							if(explode(" ", $GLOBALS['mydatabase']->error)[5] == "'CASE_NUM'"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add surgery record. Surgery with ".$S_CASENUM." already have a record in the Eye Cataract Program. 
+									Do not go back, add a new surgery record through <a = href='form_surgery.php'>here</a>.</strong></div>";
+							}else if(explode(" ", $GLOBALS['mydatabase']->error)[0] == "Cannot" and explode(" ", explode("FOREIGN KEY ", $GLOBALS['mydatabase']->error)[1])[0] == "(`PAT_ID_NUM`)"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add surgery record. Patient with ID number ".$S_PATID." does not exist.
+									Add a new patient <a href='form_patient.php'>here</a> </strong></div>";
+							}else if(explode(" ", $GLOBALS['mydatabase']->error)[0] == "Cannot"){
+								echo "<div class='alert alert-danger'> <strong>Unable to add surgery record. An input doctor does not exist.
+									Add a new doctor <a href='form_doctors.php'>here</a>. </strong></div>";
+							}
 						}
 						
 					}//END
