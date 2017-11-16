@@ -49,7 +49,7 @@
 <div style="width:50%; float:left;">
 <div style="width:100%; float:left;">
     <div style="width: calc(33% - 20px); float:left; margin-right:20px;">
-      <a id="tile1" class="tile" href="surgery.php">
+      <a id="tile1" class="tile" href="doctors.php">
 
          <div class="carousel slide" data-ride="carousel">
           <!-- Wrapper for slides -->

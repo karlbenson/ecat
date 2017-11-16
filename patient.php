@@ -250,7 +250,7 @@
 														}
 														echo		'<td>'.$dataline["PAT_AGE"].'</td>
 																	<td>
-																		<a href="'.'patient2.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'"><span class="fa fa-pencil" title="Edit"></span></a>
+																		
 																		<a role="button" id="'.$dataline["PAT_ID_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'patient.php'.'?profilepage='.$dataline["PAT_ID_NUM"].'"><span class="fa fa-eye" title="See full detail"></span></a>
 																	</td>

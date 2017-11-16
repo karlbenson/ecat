@@ -282,9 +282,9 @@
 																	<td><a href="doctors.php?profilepage='.$dataline["DOC_LICENSE_NUM"].'" style="text-decoration:none;"><span class="fa fa-external-link"></span><span style="color:#000000; margin-left:5px;">'.$dataline["LAST_NAME"].' '.$dataline["FIRST_NAME"].'</span></a></td>
 																	<td>
 
-																		<a href="'.'surgery2.php'.'?profilepage='.$dataline["CASE_NUM"].'"><span class="fa fa-pencil" title="Edit"></span></a>
+																		
 
-																		<a role="button" id="del_out" onclick="'.'" ><span class="fa fa-trash" title="Delete"></span></a>
+																		<a role="button" id="'.$dataline["CASE_NUM"].'" href="surgery.php?profilepage='.$dataline["CASE_NUM"].'&delete=p" ><span class="fa fa-trash" title="Delete"></span></a>
 																		<a href="'.'surgery.php'.'?profilepage='.$dataline["CASE_NUM"].'">'.'<span class="fa fa-eye" title="See full details"></span></a>
 																	</td>
 																</tr>';

@@ -6,7 +6,7 @@
 	echo '<div class="row" id="criteria_buttons">';
 	
 	// DOWNLOAD
-	echo '<form method="post" action="download.php"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" id="go" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
+	echo '<form method="post" action="excel.php?table=doctor"><div style="float: right; margin: 0px 10px 10px 0px;"><button type="submit" class="btn" id="go" name="downloadDoctors" ><span class="fa fa-download" style="font-size:16px;"></span></button></div></form>'; //DOWNLOAD END
 
 	//REVERT
 	$where = "'doctors.php'";
@@ -59,10 +59,7 @@
 									echo '<option value = "'.$SPEC_choice[$spec].'">'.$SPEC_choice[$spec].'</option>';
 								}
 							}
-							echo '</select>
-						</div>
-						</div>
-					</div>';
+							echo '</select></div></div>	</div>';
 				// DOCTOR LICENSE FILTER END	
 
 	echo		 	'</div>

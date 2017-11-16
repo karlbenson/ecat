@@ -97,6 +97,8 @@
 			$print_action = " Print Preview ";
 		}else if(isset($_GET["printpage"])){
 			$print_action = " Print ";
+		}else if(isset($_POST['reptype'])){
+				$print_action = " Print ";
 		}else{
 			echo '<script>
 			 $(document).ready(function () {
@@ -117,7 +119,12 @@
 
 			echo'<button role="button" class="btn btn-default" id="go_print" style="margin-right:10px; border: none;"><span class="fa fa-print" style="font-size:20px;"></span>'.$print_action.'</button>';
 		echo '</div>
-	</div>';
+	</div>
+
+	<script type="text/javascript">
+						$("#go_print").click(function() {
+	   		 				window.print();
+						}); </script>';
 	// HEADER END
 
 	if(isset($_GET["profilepage"])){
@@ -125,11 +132,14 @@
 						$("#go_print").click(function() {
 	   		 document.location.href= "'.$redirect_print.'";
 						}); </script>';
-		}else	if(isset($_GET["printpage"])){
+		}else if(isset($_GET["printpage"])){
 			echo '<script>
 						$("#go_print").click(function() {
 	   		 window.print();
 						}); </script>';
+		}else if(isset($_POST['reptype'])){
+			echo '';
 		}
+
 
 ?>

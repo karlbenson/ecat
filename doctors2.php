@@ -75,7 +75,7 @@
 													$toupdate = $_POST['doctors_update'];
 													$D_update = "UPDATE DOCTOR SET DOC_LICENSE_NUM = '$D_DLN', LAST_NAME = '$D_LN', FIRST_NAME = '$D_FN', ADDRESS ='$D_A', SPECIALIZATION = '$D_S'  WHERE DOC_LICENSE_NUM = '$toupdate' ";
 													if ($mydatabase->query($D_update) === TRUE) {
-														//echo "Record updated successfully";
+														echo "Record updated successfully";
 													} else {
 														// echo '<script> window.location = "doctors.php?profilepage='.$_POST['doctors_update'].'"; </script>';
 														echo '<div class="alert alert-danger alert-dismissable">
@@ -85,6 +85,7 @@
 														//echo "Error updating record: " . $mydatabase->error;
 													}
 												}//RECIEVE UPDATE END
+												header("doctors.php");
 											} else {};
 											if (isset($_GET["delete"])) { 
 												$delete_p =$_GET["delete"]; $DEFAULT=2; 
