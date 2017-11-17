@@ -18,18 +18,18 @@
 	echo 	'</a>';
 	for ($i=0; $i < sizeof($link); $i++) { 
 		echo '<a  href="'.$link[$i].'">
-				<button class="btn" id="OSB" style="float:right;">
-					<span class=" fa fa-'.$link_sym[$i].'" style="float: left;"></span>';
-		echo		'<p class="collapse peeklabel" id="nav-label" style="font-size: 12pt; float:left; padding-top:5px; padding-left: 20px;">'.$page[$i].'</p>';
+				<button class="btn" id="OSB" style="float:right; padding-bottom:0px;">
+					<p style="float: left; width: 28px;"><span class=" fa fa-'.$link_sym[$i].'"></span></p>';
+		echo		'<p class="collapse peeklabel" id="nav-label" style="font-size: 12pt; float:left; padding:5px 10px 0px 30px;">'.$page[$i].'</p>';
 		echo 	'</button>
 			</a>';
 	}
 
 	$forms = " Forms ";
 
-	echo '<button class="btn" id="FSB" onclick="FSB()" style="float:right;">
-			<span class=" fa fa-pencil" value="0" style="float: left;"></span>
-			<p class="collapse peeklabel" id="nav-label" style="font-size: 12pt; float:left; padding-top:5px; padding-left: 20px;">'.$forms.'</p>
+	echo '<button class="btn" id="FSB" onclick="FSB()" style="float:right; padding-bottom:0px;">
+			<p style="float: left; width: 28px;"><span class=" fa fa-pencil"></span></p>
+			<p class="collapse peeklabel" id="nav-label" style="font-size: 12pt; float:left; padding:5px 10px 0px 30px;">'.$forms.'</p>
 		</button>
 
 		<div id="subform">';
