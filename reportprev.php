@@ -26,12 +26,50 @@
 				<!-- TITLE -->
 				<div class="container-fluid" style="color: #337ab7; text-shadow: 0px 0px 10px #ffffff;padding-bottom:15px;">
 					<h4>Eye Program</h4> 
+
+					<div style="display:none;">
+						<form method="post" action="reportprev.php?printpage=print" id="reprep">
+							<div class="form-group">
+							<?php
+							$reptype = $_POST['reptype'];
+							$anestype = $_POST['anestype'];
+							$phtype = $_POST['phtype'];
+							$Year = $_POST['Year']
+							?>
+							
+								<input name="reptype" value="<?php echo $reptype; ?>">
+								<input name="anestype" value="<?php echo $anestype; ?>">
+								<input name="phtype" value="<?php echo $phtype; ?>">
+								<input name="Year" value="<?php echo $Year; ?>">
+								<?php if(isset($_POST["Month"])){
+									$Month_opt = $_POST['Month'];
+									?>
+									<input name="Month" value="<?php echo $Month_opt; ?>">
+								<?php }
+								if(isset($_POST["WO"])){
+									$WO_opt = $_POST['WO'];
+									?>
+									<input name="WO" value="<?php echo $WO_opt; ?>">
+								<?php }else{
+									$W_opt = $_POST['W'];
+									?>
+									<input name="W" value="<?php echo $W_opt; ?>">
+								<?php }
+							?>
+							</div>
+						</form>
+					</div>
+
+
+
 				</div>
 				<!-- TITLE END -->
 
 				<?php
+				
 					include("dbconnect.php");	
 					//MYSQL SECTION
+
 					$curryear = $_POST['Year'];
 					if($_POST['reptype']=="Yearly"){
 						$selector=" OR";
@@ -42,6 +80,9 @@
 						$currmonth = $_POST['Month'];
 						$S_query = "SELECT * FROM SURGERY s, DOCTOR d where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM  AND YEAR(SURG_DATE)=".$curryear.$selector." MONTH(SURG_DATE)=".$currmonth." order by s.SURG_DATE desc";
 					}
+
+					//var_dump($_POST);
+
 					$output = $mydatabase->query($S_query);	
 					//MYSQL SECTION END
 					//CONTENT
@@ -84,8 +125,110 @@
 					$pesos = "₱ ";
 					$LF_SUM = $LF_CPC_SUM+$LF_PF_SUM;
 					$DIFF =$NDDCH_SUPPLIES_SUM-$CSF_SUPP_SUM;
+?>
+					<div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%;">
+						<?php
+					if(isset($_GET["printpage"])){
+						echo '<div class="container-fluid" style="width:100%; float:left; margin:20px 0px 10px 0px;">
+	<table class="table table-condensed table-bordered">
+		<thead style="background-color:#f9f9f9;">
+			<th colspan="7" style="text-align:center; padding:10px;">Financial Report</th>
+		</thead>
+  <tbody>
+    <tr>
+    		<th rowspan="2" colspan="2">PC</th>
+      <th>Intraocular Lens</th>
+      <th>Laboratory</th>
+      <th>PF(Others)</th>
+      <th colspan="2">Total</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($PC_IOL_SUM, "2").'</td>
+      <td>₱ '.number_format($PC_LAB_SUM, "2").'</td>
+      <td>₱ '.number_format($PC_PF_SUM, "2").'</td>
+      <td colspan="2">'.number_format($PC_TOT, "2").'</td>
+    </tr>
+    <tr>
+    		<th rowspan="2" colspan="2">CSF</th>
+      <th>Hospital Bill</th>
+      <th>Supplies</th>
+      <th>Laboratory</th>
+      <th colspan="2">Total</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($CSF_HBILL_SUM, "2").'</td>
+      <td>₱ '.number_format($CSF_SUPP_SUM, "2").'</td>
+      <td>₱ '.number_format($CSF_LAB_SUM, "2").'</td>
+      <td colspan="2">'.number_format($CSF_TOT, "2").'</td>
+    </tr>
+    <tr>
+    		<th rowspan="2" colspan="2">Sponsored</th>
+      <th>Intraocular Lens</th>
+      <th colspan="2">Others</th>
+      <th colspan="2">Total</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($SPO_IOL_SUM, "2").'</td>
+      <td colspan="2">₱ '.number_format($SPO_OTHERS_SUM, "2").'</td>
+      <td colspan="2">'.number_format($SPO_SUM, "2").'</td>
+    </tr>
+    <tr>
+    		<th rowspan="2" colspan="2">NDDCH</th>
+      <th>RA</th>
+      <th colspan="2">ZEISS</th>
+      <th colspan="2">Total</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($NDDCH_RA_SUM, "2").'</td>
+      <td colspan="2">₱ '.number_format($NDDCH_ZEISS_SUM, "2").'</td>
+      <td colspan="2">'.number_format($NDDCH_SUM, "2").'</td>
+    </tr>
+    <tr>
+    		<th rowspan="2" colspan="2">LF</th>
+      <th>Professional Fee</th>
+      <th colspan="2">CPC Fee</th>
+      <th colspan="2">Total</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($LF_PF_SUM, "2").'</td>
+      <td colspan="2">₱ '.number_format($LF_CPC_SUM, "2").'</td>
+      <td colspan="2">'.number_format($LF_SUM, "2").'</td>
+    </tr>
+    <tr style="background-color:#f9f9f9;">
+      <th colspan="5">Grand Total</th>
+      <td colspan="2">'.number_format($GRAND, "2").'</td>
+    </tr>
+  </tbody>
+ </table>
+</div>
 
-					//COMMA PORTION
+<div class="container-fluid" style="width:100%; float:left; margin:0px;">
+	<table class="table table-condensed table-bordered">
+		<thead style="background-color:#f9f9f9;">
+			<th colspan="2" style="text-align:center; padding:10px;">Comparison</th>
+		</thead>
+  <tbody>
+    <tr>
+    		<th >NDDCH Supplies</th>
+      <th >Difference</th>
+    </tr>
+    <tr>
+      <td>₱ '.number_format($NDDCH_SUPPLIES_SUM, "2").'</td>
+      <td>₱ '.number_format($DIFF, "2").'</td>
+
+    </tr>
+  </tbody>
+ </table>
+</div>
+
+
+';
+
+					}
+					?>
+						
+
+<?php					//COMMA PORTION
 					// $PC_PF_SUM=number_format($PC_PF_SUM, 2, ".", ",");
 					// $PC_LAB_SUM=number_format($PC_LAB_SUM, 2, ".", ",");
 					// $PC_IOL_SUM=number_format($PC_IOL_SUM, 2, ".", ",");
@@ -261,6 +404,59 @@
 					
 				}
 
+				if(isset($_GET["printpage"])){
+				?>
+						
+						<div  style="float:left; width:100%;">
+							
+							<div style="padding:20px;">
+								<div><strong>I. </strong> Pre-Surgery Visual Acuity</div>
+							</div>
+								
+									<div style="width:100%; float:left; text-align:center;">
+									<div class="container-fluid" style="min-width: 750px;">
+											<div id="leftpre" style="width:100%;"></div>
+									</div>
+									</div>
+
+									<div class="page-break"></div>
+
+									<div style="width:100%; float:left; text-align:center;">
+									<div class="container-fluid" style="min-width: 750px; ">
+											<div id="rightpre" style="width:100%;"></div>
+									</div>
+									</div>
+
+							</div>
+
+
+
+							<div  style="float:left; width:100%;">
+
+							<div style="padding:20px;">
+								<div><strong>II. </strong> Post-Surgery Visual Acuity</div>
+							</div>
+							
+									
+									<div style="width:100%; float:left; text-align:center;">
+									<div class="container-fluid" style=" min-width: 750px; ">
+										<div id="leftpost" style="width:100%;"></div>
+									</div>
+									</div>
+
+									<div style="width:100%; float:left;  text-align:center;">
+									<div class="container-fluid" style=" min-width: 750px; ">
+										<div id="rightpost" style="width:100%;"></div>
+									</div>
+									</div>
+
+							</div>
+							
+							
+
+<?php
+						echo '</div>';
+				} else {
 				?>
 
 
@@ -268,6 +464,7 @@
 				<div class="container-fluid" id="basic" style=" background-color: rgba(74, 106, 21  ,0);">
 					<div id="inner" style="margin:0px; padding:0px;">
 						<!-- CONTENT -->
+
 						<div class="container-fluid" style="margin:0px; padding:0px;">
 							<div class="row" >
 								<!-- RIGHT COLUMN -->
@@ -277,7 +474,11 @@
 										<!-- TO BE CONSTRUCTED -->
 										<div id="box" style="min-height:0px; margin:0px; background-color:#ffffff; float:left; width:100%;">
 											<div>
+
 											<?php
+
+											
+
 												echo '<div class="container-fluid" style="padding:20px 20px;">
 
 														<div class="well" style="width: 100%; float: left; color:#337ab7; font-weight:bold; text-align:center;">Financial Report as of ';
@@ -288,10 +489,12 @@
 															$dateName = date('M-Y', mktime(0, 0, 0, $currmonth,1, $curryear));
 														}
 														
-														echo $dateName; 
+														echo $dateName;
+												echo 	'</div>';
 
-												echo 	'</div>
-														<div style="width:100%;">
+											
+
+												echo '<div style="width:100%;">
 															<div style="width:50%; padding-right:20px; float:left;">
 																<div class="well" style="background-color:#fefefe; float:left; padding:20px; width:100%;">
 																	<div style="width:100%; float:left; padding:0px 0px;">
@@ -470,11 +673,11 @@
 																		<tbody>
 																			<tr>
 																				<td>Professional Fee</td>
-																				<td>₱ '.number_format($dataline["LF_PF"], "2").'</td>
+																				<td>₱ '.number_format($LF_PF_SUM, "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>CPC Fee</td>
-																				<td>₱ '.number_format($dataline["LF_CPC"], "2").'</td>
+																				<td>₱ '.number_format($LF_CPC_SUM, "2").'</td>
 																			</tr>
 																			<tr>
 																				<td>Total</td>
@@ -494,25 +697,27 @@
 																			<div style="float:left; width:50%;">₱ '.number_format($GRAND, "2").'</div>
 
 																		</div>
-																</div>
-																';
+																</div>';
+													
+
+
 													?>
 
-													
 
 													<div  style="float:left; width:100%;">
 													<div class="panel panel-default" style="padding-bottom:10px; ">
 														<div class="panel-heading" style="color:#337ab7;">Pre-Surgery Visual Acuity</div>
 														<div class="panel-body" style="margin:0px; padding:5px 10px; width:100%;">
 															
-															<div style="width:50%; float:left; text-align:center;">
-															<div class="container-fluid" style="min-width: 500px;">
-																	<div id="leftpre" style="width:100%"></div>
+															<div style="padding-right:20px; float:left; text-align:center;">
+															<div class="container-fluid" style="width: 450px;">
+																	<div id="leftpre" style="width:100%;"></div>
 															</div>
 															</div>
-															<div style="width:50%; float:left; text-align:center;">
-															<div class="container-fluid" style="min-width: 500px; ">
-																	<div id="rightpre" style="width:100%"></div>
+
+															<div style="padding-right:10px; float:left; text-align:center; width:50%;">
+															<div class="container-fluid" style="width: 450px; ">
+																	<div id="rightpre" style="width:100%;"></div>
 															</div>
 															</div>
 																	
@@ -525,20 +730,23 @@
 														<div class="panel-heading " style="color:#337ab7;">Post-Surgery Visual Acuity</div>
 														<div class="panel-body" style="margin:0px; padding:5px 10px; width:100%;">
 															
-															<div style="width:50%; float:left; text-align:center;">
-															<div class="container-fluid" style=" min-width: 500px; ">
-																<div id="leftpost" style="width:100%"></div>
+															<div style="padding-right:20px; float:left; text-align:center;">
+															<div class="container-fluid" style="width: 450px; ">
+																<div id="leftpost" style="width:100%;"></div>
 															</div>
 															</div>
-															<div style="width:50%; float:left;  text-align:center;">
-															<div class="container-fluid" style=" min-width: 500px; ">
-																<div id="rightpost" style="width:100%"></div>
+
+															<div style="padding-right:10px; float:left;  text-align:center; width:50%;">
+															<div class="container-fluid" style="width: 450px; ">
+																<div id="rightpost" style="width:100%;"></div>
 															</div>
 															</div>
 
 														</div>
 													</div>
 													</div>
+
+													
 
 													<div style="float:left; width:100%; padding-top:10px;" id="hidethis">
 													<div class="well" style="padding:15px; background-color:#337ab7; color:#ffffff; float:left; width:100%; margin:0px;"><strong>Financial Information by Type of Anesthesia and Philhealth</strong>
@@ -745,11 +953,15 @@
 												}
 												//MAIN PAGE END
 
+												
+
 													$mydatabase->close();
 													
 													?>
 												</div>
 												</div>
+
+												
 												</div>
 
 											</div>
@@ -761,6 +973,7 @@
 						</div>
 						<!-- CONTENT END -->
 					</div>
+					<?php } ?>
 				</div>
 				<!-- HOME END -->
 			</div>
