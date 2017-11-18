@@ -105,7 +105,7 @@
 			 $(document).ready(function () {
         $("#go_print").hide();
     }); </script>';
-		}
+  }
 
 	// HEADER
 	echo
@@ -136,7 +136,8 @@
 		}else if(isset($_POST['reptype'])){
 			echo '<script>
 						$("#go_print").click(function() {
-	   		 document.location.href= "'.$redirect_print.'";
+	   		 //document.location.href= "'.$redirect_print.'";
+	   		 $("#reprep").submit();
 						}); </script>';
 		}
 
