@@ -882,24 +882,24 @@
 													</div>
 														<hr>
 													<div class="container-fluid" style="width: 50%; float:left; padding-right:20px;">
-														<div id="pr_label3">ID Number: </div>
-														<div id="pr_body3" >'.$printline["PAT_ID_NUM"].'</div>
-														<div id="pr_label3">Age: </div>
-														<div id="pr_body3" >'.$printline["PAT_AGE"].'</div>
-														<div id="pr_label3">Sex: </div>';
+														<div id="pr_label">ID Number: </div>
+														<div id="pr_body" >'.$printline["PAT_ID_NUM"].'</div>
+														<div id="pr_label">Age: </div>
+														<div id="pr_body" >'.$printline["PAT_AGE"].'</div>
+														<div id="pr_label">Sex: </div>';
 														if($printline["PAT_SEX"]=="M"){
 															$print_sx = "Male";
 														}else{
 															$print_sx = "Female";
 														}
-														echo '<div id="pr_body3" >'.$print_sx.'</div>
-														<div id="pr_label3">Has PhilHealth? </div>';
+														echo '<div id="pr_body" >'.$print_sx.'</div>
+														<div id="pr_label">Has PhilHealth? </div>';
 														if($printline["PAT_PH"]=="Y"){
 															$print_ph = "Yes";
 														}else{
 															$print_ph = "No";
 														}
-														echo '<div id="pr_body3" >'.$print_ph.'</div>
+														echo '<div id="pr_body" >'.$print_ph.'</div>
 													</div>';
 
 													$PHYS_P = $printline["PHY_LICENSE_NUM"];
