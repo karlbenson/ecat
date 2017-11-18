@@ -121,11 +121,11 @@
               
 									<!-- INTERNIST NAME -->
 									<div class="form-group row" style="margin:0px;">
-										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist<span style="color: #d9534f">*</span></label>
+										<label class="control-label col-md-2" for="INTER" style="float:left; width:170px;">Internist</label>
 										<div class="col-md-8" style=" float: left;">
 
 										<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
-											<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER" required>
+											<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License" maxlength="<?php echo $INTER_MAX; ?>" name="INTER">
 										</div>
 										<div class="add_i1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
 											<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="INTER" placeholder="Internist Name or License (Optional)" maxlength="<?php echo $INTER_MAX; ?>" name="INTER1">
