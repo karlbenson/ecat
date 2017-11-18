@@ -100,6 +100,11 @@
 		}else if(isset($_POST['reptype'])){
 			$redirect_print = $_SERVER['PHP_SELF'].'?printpage=report';
 			$print_action = " Print Preview ";
+		}else{
+			echo '<script>
+			 $(document).ready(function () {
+        $("#go_print").hide();
+    }); </script>';
 		}
 
 	// HEADER
