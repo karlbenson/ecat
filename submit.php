@@ -65,7 +65,14 @@
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
 					function SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $S_CASENUM, $S_SURGLIC, $S_SURGLIC1, $S_SURGLIC2, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_RDIAG, $S_LDIAG, $S_TANEST, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_INTERN, $S_INTERN1, $S_INTERN2, $S_ANESTHE, $S_IOLP, $SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL,$SP_OTHERS, $CSF_HB, $CSF_SUPP, $CSF_L, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC){
-						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_SURGLIC1."','".$S_SURGLIC2."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_RDIAG."','".$S_LDIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."','".$S_INTERN1."','".$S_INTERN2."','".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$SP_OTHERS."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."', '".$NDDCH_RA."','".$NDDCH_ZEISS."','".$NDDCH_SUPPLIES."','".$LF_PF."','".$LF_CPC."' ,'')";
+
+						if(strlen($S_SURGLIC1)<1){ $S_SURGLIC1 = "NULL"; } else {$S_SURGLIC1 = "'".$S_SURGLIC1."'"; }
+						if(strlen($S_SURGLIC2)<1){ $S_SURGLIC2 = "NULL"; } else {$S_SURGLIC2 = "'".$S_SURGLIC2."'"; }
+						if(strlen($S_INTERN1)<1){ $S_INTERN1 = "NULL"; } else {$S_INTERN1 = "'".$S_INTERN1."'"; }
+						if(strlen($S_INTERN2)<1){ $S_INTERN2 = "NULL"; } else {$S_INTERN2 = "'".$S_INTERN2."'"; }
+
+
+						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."',".$S_SURGLIC1.",".$S_SURGLIC2.",'".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_RDIAG."','".$S_LDIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."',".$S_INTERN1.",".$S_INTERN2.",'".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$SP_OTHERS."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."', '".$NDDCH_RA."','".$NDDCH_ZEISS."','".$NDDCH_SUPPLIES."','".$LF_PF."','".$LF_CPC."' ,'')";
 						$S_query2 = "UPDATE EYEPATIENT SET POST_VA_WITH_SPECT_LEFT = '".$P_VASL2."', POST_VA_WITH_SPECT_RIGHT = '".$P_VASR2."', POST_VA_NO_SPECT_LEFT = '".$P_VAL2."', POST_VA_NO_SPECT_RIGHT = '".$P_VAR2."' WHERE EYEPATIENT.PAT_ID_NUM = '".$S_PATID."';";
 						if ($GLOBALS['mydatabase']->query($S_query1) === TRUE) { 
 							if ($GLOBALS['mydatabase']->query($S_query2) === TRUE) {
@@ -173,6 +180,7 @@
 										$P_VASR2 = rtrim($_POST["P_VASR2"], "'");
 										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
 										$P_VAR2 = rtrim($_POST["P_VAR2"], "'");
+
 										
 										//SURGERY INFORMATION FIELDS END
 										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $SURG_LICENSE_NUM1, $SURG_LICENSE_NUM2, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $INTERNIST1, $INTERNIST2, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL,$SPO_OTHERS, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC);
