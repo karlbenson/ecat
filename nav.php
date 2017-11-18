@@ -91,12 +91,21 @@
 	// SCRIPT END
 			$print_action = "";
 			$redirect_print = "";
+
+				echo '<script>
+			 $(document).ready(function () {
+        $("#back_print").hide();
+    }); </script>';
 			
 		if(isset($_GET["profilepage"])){
 			$redirect_print = $_SERVER['PHP_SELF'].'?printpage='.$_GET["profilepage"];
 			$print_action = " Print Preview ";
 		}else if(isset($_GET["printpage"])){
 			$print_action = " Print ";
+				echo '<script>
+			 $(document).ready(function () {
+        $("#back_print").show();
+    }); </script>';
 		}else if(isset($_POST['reptype'])){
 			$redirect_print = $_SERVER['PHP_SELF'].'?printpage=report';
 			$print_action = " Print Preview ";
@@ -118,9 +127,10 @@
 		</a>
 		<div style="float:right;">';
 
-			echo'<button role="button" class="btn btn-default" id="go_print" style="margin-right:10px; border: none;"><span class="fa fa-print" style="font-size:20px;"></span>'.$print_action.'</button>';
+			echo'<button role="button" class="btn btn-default" id="back_print" style="margin-right:10px; border: none;"><span class="fa fa-arrow-left" style="font-size:20px;"></span></button>
+			<button role="button" class="btn btn-default" id="go_print" style="margin-right:10px; border: none;"><span class="fa fa-print" style="font-size:20px;"></span>'.$print_action.'</button>';
 		echo '</div>
-	</div>';
+		</div>';
 	// HEADER END
 
 	if(isset($_GET["profilepage"])){
@@ -136,10 +146,13 @@
 		}else if(isset($_POST['reptype'])){
 			echo '<script>
 						$("#go_print").click(function() {
-	   		 //document.location.href= "'.$redirect_print.'";
 	   		 $("#reprep").submit();
 						}); </script>';
 		}
 
+echo '<script>
+	$("#back_print").click(function() {
+	 window.history.back();
+	}); </script>';
 
 ?>
