@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 	<head>
 		<title>Luke Foundation Eye Program: Home</title>
@@ -420,7 +420,7 @@
 
 				//PROCEDURE
 				
-				$strQuery = "SELECT P.PROCEDURE_TO_DO, COUNT(*) AS freq FROM EYEPATIENT P,SURGERY S WHERE S.PAT_ID_NUM=P.PAT_ID_NUM AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' GROUP BY POST_VA_NO_SPECT_RIGHT";
+				$strQuery = "SELECT S.PROCEDURE_TO_DO, COUNT(*) AS freq FROM EYEPATIENT P,SURGERY S WHERE S.PAT_ID_NUM=P.PAT_ID_NUM AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' GROUP BY POST_VA_NO_SPECT_RIGHT";
 
 				// Execute the query, or else return the error message.
 				$result = $mydatabase->query($strQuery) or exit("Error code ({$mydatabase->errno}): {$mydatabase->error}");
@@ -946,7 +946,7 @@
 												//PROCEDURE
 											//MYSQL SECTION
 													echo '<div style="width:100%;">';
-												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PROCEDURE_TO_DO='".$_POST["Procedure"]."' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
+												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.PROCEDURE_TO_DO='".$_POST["Procedure"]."' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
 												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">Procedure type (<a href="excel.php?gen=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
 											
 											$output = $mydatabase->query($S_query);
@@ -1038,10 +1038,10 @@
 
 												
 												if($_POST["phtype"]=="W"){
-													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
 													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">With Philhealth (<a href="excel.php?ph=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
 												}else if($_POST["phtype"]=="WO"){
-													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
+													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N'  AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
 													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth (<a href="excel.php?ph=n&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
 												}
 
