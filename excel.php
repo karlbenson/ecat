@@ -45,7 +45,7 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 		}else if($_GET["table"]=="patient"){
 			$S_query = "SELECT * FROM DOCTOR d, EYEPATIENT p, STAFF f WHERE p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.STAFF_LICENSE_NUM = f.STAFF_LICENSE_NUM ORDER by p.PAT_LNAME desc";
 		}else if($_GET["table"]=="surgery"){
-			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND ORDER by s.SURG_DATE desc";
+			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM ORDER by s.SURG_DATE desc";
 															
 		}
 	}
@@ -189,9 +189,7 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 													            ->setCellValue('U'.$i, ''.$dataline["PROCEDURE_TO_DO"]);
 												        		$i++;
 														}
-													}
-													
-												}else if($_GET["table"]=="surgery"){
+													}else if($_GET["table"]=="surgery"){
 														$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A1', 'Case Number')
 												            ->setCellValue('B1', 'Surgeon 1 Name')
@@ -309,8 +307,6 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 
 
 															$objPHPExcel->setActiveSheetIndex(0)
-															
-															
 													            ->setCellValue('A'.$i, ''.$dataline["CASE_NUM"])
 													            ->setCellValue('B'.$i, ''.$SUNAME)	
 													            ->setCellValue('C'.$i, ''.$SUNAME1)
@@ -347,7 +343,7 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 													
 
 
-													
+												}
 												} else {
 													$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A1', "No records");
