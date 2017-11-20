@@ -100,8 +100,9 @@
 											</select>
 										</div>
 									</div>
+
 									<!-- SPECIALIZATION END -->
-				 
+				 					
 									<!-- ENTER -->
 									<div class="text-center" style="margin-bottom: 20px;">
 										<button type="submit" class="btn" id="go" name="doctors_info">Submit</button>

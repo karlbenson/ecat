@@ -254,7 +254,7 @@
 											//FILTER ADD END
 
 											//MYSQL SECTION
-											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.VISIBLE != 'N' $filter ORDER by s.SURG_DATE desc";
+											$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM $filter ORDER by s.SURG_DATE desc";
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
         
