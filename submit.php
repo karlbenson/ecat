@@ -44,8 +44,8 @@
 						}
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
-					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC){
-						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag."','".$P_PROC."')";
+					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag){
+						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag.";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
 							$where = "'Home.php'";
 							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
@@ -138,7 +138,7 @@
 										$P_DC = $_POST["P_DC"];          
 										$P_RDiag = $_POST["P_RDiag"];           
 										$P_LDiag = $_POST["P_LDiag"];       
-										$P_PROC = $_POST["P_PROC"];     
+										    
 										//PATIENT INFORMATION FIELDS END
 										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC);
 									}else if (isset($_POST['surgery_info'])) {
@@ -180,7 +180,7 @@
 										$P_VASR2 = rtrim($_POST["P_VASR2"], "'");
 										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
 										$P_VAR2 = rtrim($_POST["P_VAR2"], "'");
-
+										$P_PROC = $_POST["PROC"]; 
 										
 										//SURGERY INFORMATION FIELDS END
 										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $SURG_LICENSE_NUM1, $SURG_LICENSE_NUM2, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $INTERNIST1, $INTERNIST2, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL,$SPO_OTHERS, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC);

@@ -44,6 +44,8 @@
 					$ANEST_MAX = 50;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
+					$proc = array("ECCE","Phacoemulsification","Implantation of Lens","Trabeculectomy with Iridectomy", "Deferred Case","Others");
+					$eye = array("Left","Right","Both");
 					//SURGERY INFORMATION FIELDS END
 					
 					//DETERMINE NEXT CASE_NUM
@@ -200,6 +202,42 @@
 										<div class="panel panel-default" style="">
 											<div class="panel-heading" id="panelh">Surgery Details</div>
 											<div class="panel-body">
+
+
+														<!--Select Procedure -->
+														<div class="form-group row">
+															<label class="control-label col-md-3" for="PROC" style="float:left;width:200px;">Procedure<span style="color: #d9534f">*</span></label>
+															<div class="col-md-6" style="width: 300px; float: left;">
+																<select type="text" name="PROC" id="procedure" class="form-control" required="true">
+																	<option value = "">Select Procedure</option>
+																	<?php
+																		for ($i=0; $i < sizeof($proc); $i++){
+																			echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
+																		}
+																	 ?>
+																</select>
+															
+															</div>
+														</div>
+														<!-- PROCEDURE END -->
+
+														<!--Eye Operated-->
+														<div class="form-group row">
+															<label class="control-label col-md-3" for="eyeop" style="float:left;width:200px;">Eye Operated<span style="color: #d9534f">*</span></label>
+															<div class="col-md-6" style="width: 300px; float: left;">
+																<select type="text" name="eyeop" id="eyeop" class="form-control" required="true">
+																	<option value = "">Select Eye</option>
+																	<?php
+																		for ($i=0; $i < sizeof($eye); $i++){
+																			echo '<option value="'.$eye[$i].'">'.$eye[$i].'</option>';
+																		}
+																	 ?>
+																</select>
+															
+															</div>
+														</div>
+														<!-- PROCEDURE END -->
+        
         
 												<!-- IOL POWER -->
 												<div class="form-group row" >

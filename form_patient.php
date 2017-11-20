@@ -240,23 +240,6 @@
 														</div>
 														<!-- CAUSE OF DISABILITY END -->
 						  
-														<!--Select Procedure -->
-														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_PROC" style="float:left;width:35%;">Procedure</label>
-															<div class="col-md-4" style="width: 60%; float: left;">
-																<div style="max-width:300px;">
-																<select type="text" name="P_PROC" id="procedure" class="form-control" required="true">
-																	<option value = "">Select Procedure</option>
-																	<?php
-																		for ($i=0; $i < sizeof($proc); $i++){
-																			echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
-																		}
-																	 ?>
-																</select>
-															</div>
-															</div>
-														</div>
-														<!-- PROCEDURE END -->
 													</div>
 												</div>
 											</div>
