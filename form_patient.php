@@ -124,10 +124,10 @@
 										<div class="container-fluid well" style="margin: 0px 15px;">
 											<!-- PHYSICIAN LICENSE NUMBER -->
 											<div class="form-group row">
-												<label class="control-label" for="P_PHYLIC" style="float:left; width:30%; padding-left:15px;">Examined by:<span style="color: #d9534f">*</span> </label>
+												<label class="control-label" for="P_PHYLIC" style="float:left; width:30%; padding-left:15px;">Examined by: </label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" required>
+													<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="<? echo $PHYL_LENG ?>" name="P_PHYLIC" >
 													<span class="input-group-addon" role="button" id="add_doctor" onclick="add_on_d()" data-toggle="modal" data-target="#add_new" ><span class="fa fa-stethoscope" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -135,10 +135,10 @@
 											<!-- PHYSICIAN LICENSE NUMBER END -->
 											<!-- STAFF LICENSE NUMBER -->
 											<div class="form-group row" style="margin-bottom:0px;">
-												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:<span style="color: #d9534f">*</span> </label>
+												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:</label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC" required>
+													<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC">
 													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>

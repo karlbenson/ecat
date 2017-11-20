@@ -208,7 +208,7 @@
 														<div class="form-group row">
 															<label class="control-label col-md-3" for="PROC" style="float:left;width:200px;">Procedure<span style="color: #d9534f">*</span></label>
 															<div class="col-md-6" style="width: 300px; float: left;">
-																<select type="text" name="PROC" id="procedure" class="form-control" required="true">
+																<select type="text" name="PROC" id="PROC" class="form-control" required="true">
 																	<option value = "">Select Procedure</option>
 																	<?php
 																		for ($i=0; $i < sizeof($proc); $i++){
@@ -223,9 +223,9 @@
 
 														<!--Eye Operated-->
 														<div class="form-group row">
-															<label class="control-label col-md-3" for="eyeop" style="float:left;width:200px;">Eye Operated<span style="color: #d9534f">*</span></label>
+															<label class="control-label col-md-3" for="EYE_OP" style="float:left;width:200px;">Eye Operated<span style="color: #d9534f">*</span></label>
 															<div class="col-md-6" style="width: 300px; float: left;">
-																<select type="text" name="eyeop" id="eyeop" class="form-control" required="true">
+																<select type="text" name="EYE_OP" id="EYE_OP" class="form-control" required="true">
 																	<option value = "">Select Eye</option>
 																	<?php
 																		for ($i=0; $i < sizeof($eye); $i++){

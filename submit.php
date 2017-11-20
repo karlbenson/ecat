@@ -45,7 +45,7 @@
 					}//END
 					//(SAMPLE 2) STILL TO BE REVISED/TESTED....
 					function SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag){
-						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag.";
+						$P_query = "INSERT INTO EYEPATIENT VALUES ('".$P_ID."',".$P_UNIVID.",'".$P_FNAME."','".$P_LNAME."','".$P_AGE."','".$P_PH."','".$P_SEX."','".$P_PHYLIC."','".$P_STAFFLIC."','".$P_VASL1."','".''."','".$P_VASR1."','".''."','".$P_VAL1."','".''."','".$P_VAR1."','".''."','".$P_VD."','".$P_DC."','".$P_RDiag."','".$P_LDiag."')";
 						if ($GLOBALS['mydatabase']->query($P_query) === TRUE) { 
 							$where = "'Home.php'";
 							echo "<div class='alert alert-success'>New patient record successfully created.</div>";
@@ -64,7 +64,7 @@
 						}
 					}//END
 					//(SAMPLE 3) STILL TO BE REVISED/TESTED....
-					function SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $S_CASENUM, $S_SURGLIC, $S_SURGLIC1, $S_SURGLIC2, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_RDIAG, $S_LDIAG, $S_TANEST, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_INTERN, $S_INTERN1, $S_INTERN2, $S_ANESTHE, $S_IOLP, $SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL,$SP_OTHERS, $CSF_HB, $CSF_SUPP, $CSF_L, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC){
+					function SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $S_CASENUM, $S_SURGLIC, $S_SURGLIC1, $S_SURGLIC2, $S_PATID, $S_VISUALIM, $S_MEDHIST, $S_RDIAG, $S_LDIAG, $S_TANEST, $S_SURGADDR, $S_SURGDATE, $S_REMARK, $S_INTERN, $S_INTERN1, $S_INTERN2, $S_ANESTHE, $S_PROC, $S_EYE_OP, $S_IOLP, $SPC_IOL, $SPC_LAB, $SPC_PF, $SP_IOL,$SP_OTHERS, $CSF_HB, $CSF_SUPP, $CSF_L, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC){
 
 						if(strlen($S_SURGLIC1)<1){ $S_SURGLIC1 = "NULL"; } else {$S_SURGLIC1 = "'".$S_SURGLIC1."'"; }
 						if(strlen($S_SURGLIC2)<1){ $S_SURGLIC2 = "NULL"; } else {$S_SURGLIC2 = "'".$S_SURGLIC2."'"; }
@@ -72,16 +72,15 @@
 						if(strlen($S_INTERN2)<1){ $S_INTERN2 = "NULL"; } else {$S_INTERN2 = "'".$S_INTERN2."'"; }
 
 
-						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."',".$S_SURGLIC1.",".$S_SURGLIC2.",'".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_RDIAG."','".$S_LDIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."',".$S_INTERN1.",".$S_INTERN2.",'".$S_ANESTHE."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$SP_OTHERS."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."', '".$NDDCH_RA."','".$NDDCH_ZEISS."','".$NDDCH_SUPPLIES."','".$LF_PF."','".$LF_CPC."' ,'')";
+						$S_query1 = "INSERT INTO SURGERY VALUES ('".$S_CASENUM."','".$S_SURGLIC."','".$S_SURGLIC1."','".$S_SURGLIC2."','".$S_PATID."','".$S_VISUALIM."','".$S_MEDHIST."','".$S_RDIAG."','".$S_LDIAG."','".$S_TANEST."','".$S_SURGADDR."','".$S_SURGDATE."','".$S_REMARK."','".$S_INTERN."','".$S_INTERN1."','".$S_INTERN2."','".$S_ANESTHE."','".$S_PROC."','".$S_EYE_OP."','".$S_IOLP."','".$SPC_IOL."','".$SPC_LAB."','".$SPC_PF."','".$SP_IOL."','".$SP_OTHERS."','".$CSF_HB."','".$CSF_SUPP."','".$CSF_L."', '".$NDDCH_RA."','".$NDDCH_ZEISS."','".$NDDCH_SUPPLIES."','".$LF_PF."','".$LF_CPC."')";
 						$S_query2 = "UPDATE EYEPATIENT SET POST_VA_WITH_SPECT_LEFT = '".$P_VASL2."', POST_VA_WITH_SPECT_RIGHT = '".$P_VASR2."', POST_VA_NO_SPECT_LEFT = '".$P_VAL2."', POST_VA_NO_SPECT_RIGHT = '".$P_VAR2."' WHERE EYEPATIENT.PAT_ID_NUM = '".$S_PATID."';";
-						if ($GLOBALS['mydatabase']->query($S_query1) === TRUE) { 
-							if ($GLOBALS['mydatabase']->query($S_query2) === TRUE) {
-								$where = "'Home.php'";
-								echo "<div class='alert alert-success'>New surgery record successfully created.</div>";
-								$whereto = "surgery.php?profilepage=".$S_CASENUM;
-								echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
-								echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
-							}
+						echo $S_query1;
+						if ($GLOBALS['mydatabase']->query($S_query1) === TRUE && $GLOBALS['mydatabase']->query($S_query2) === TRUE) { 
+							$where = "'Home.php'";
+							echo "<div class='alert alert-success'>New surgery record successfully created.</div>";
+							$whereto = "surgery.php?profilepage=".$S_CASENUM;
+							echo '<div><button class="btn" id="go" onclick="location.href='.$where.'" style="float:right; margin-left:10px;" > Back-to-Home </button></div>';
+							echo '<div><a role="button" class="btn" id="go" href="'.$whereto.'" style="float:right; margin-left:10px;" > View Information </a></div>';
 						}else { 
 							if(explode(" ", $GLOBALS['mydatabase']->error)[5] == "'CASE_NUM'"){
 								echo "<div class='alert alert-danger'> <strong>Unable to add surgery record. Surgery with ".$S_CASENUM." already have a record in the Eye Cataract Program. 
@@ -140,8 +139,9 @@
 										$P_LDiag = $_POST["P_LDiag"];       
 										    
 										//PATIENT INFORMATION FIELDS END
-										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag, $P_PROC);
+										SUBMIT_EYEPATIENT($P_ID, $P_UNIVID, $P_FNAME, $P_LNAME, $P_AGE, $P_PH, $P_SEX, $P_PHYLIC, $P_STAFFLIC, $P_VASL1, $P_VASR1, $P_VAL1, $P_VAR1, $P_VD, $P_DC, $P_RDiag, $P_LDiag);
 									}else if (isset($_POST['surgery_info'])) {
+										echo "Good";
 										//SURGERY INFORMATION FIELDS
 										$CASE_NUM = $_POST["CASE_NUM"];
 										$SURG_LICENSE_NUM = trim(explode(" - ",$_POST["SURG_NAME"])[0]);
@@ -180,10 +180,11 @@
 										$P_VASR2 = rtrim($_POST["P_VASR2"], "'");
 										$P_VAL2 = rtrim($_POST["P_VAL2"], "'");
 										$P_VAR2 = rtrim($_POST["P_VAR2"], "'");
-										$P_PROC = $_POST["PROC"]; 
+										$PROC = $_POST["PROC"]; 
+										$EYE_OP = $_POST["EYE_OP"];
 										
 										//SURGERY INFORMATION FIELDS END
-										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $SURG_LICENSE_NUM1, $SURG_LICENSE_NUM2, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $INTERNIST1, $INTERNIST2, $ANESTHESIOLOGIST, $IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL,$SPO_OTHERS, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC);
+										SUBMIT_SURGERY($P_VASL2, $P_VASR2, $P_VAL2, $P_VAR2, $CASE_NUM, $SURG_LICENSE_NUM, $SURG_LICENSE_NUM1, $SURG_LICENSE_NUM2, $PAT_ID_NUM2, $VISUAL_IMPARITY, $MED_HISTORY, $RDIAGNOSIS, $LDIAGNOSIS, $SURG_ANESTHESIA, $SURG_ADDRESS, $SURG_DATE, $REMARKS, $INTERNIST, $INTERNIST1, $INTERNIST2, $ANESTHESIOLOGIST, $PROC, $EYE_OP,$IOLPOWER, $PC_IOL, $PC_LAB, $PC_PF, $SPO_IOL,$SPO_OTHERS, $CSF_HBILL, $CSF_SUPPLIES, $CSF_LAB, $NDDCH_RA, $NDDCH_ZEISS, $NDDCH_SUPPLIES, $LF_PF, $LF_CPC);
 									}
 									$mydatabase->close();
 								?>
