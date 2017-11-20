@@ -36,6 +36,7 @@
 					$REA_MAX = 12;
 					$LEA_MAX = 12;
 					$VA_choice = array("U", "20/10", "20/12.5", "20/16", "20/20", "20/25", "20/32", "20/40", "20/50", "20/63","20/70", "20/80", "20/100", "20/120", "20/160", "20/200", "CF 1'", "CF 2'", "CF 3'", "CF 4'", "CF 5'", "CF 6'", "CF 7'", "CF 8'", "CF 9'", "CF 10'", "CF 11'", "CF 12'", "CF 13'", "CF 14'", "CF 15'", "CF 16'", "CF 17'", "CF 18'", "CF 19'", "CF 20'", "HM", "+LP", "-LP");
+					$proc = array("ECCE","Phacoemulsification","Implantation of Lens","Trabeculectomy with Iridectomy", "Deferred Case","Others");
 					//PATIENT INFORMATION FIELDS END
 					
 					//DETERMINE NEXT PAT_ID
@@ -220,32 +221,39 @@
 													<div class="panel-body">
 														<!-- VISUAL DISABILITY -->
 														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_VD" style="float:left; width:35%; float:left;">Visual Disability </label>
+															<label class="control-label col-md-1" for="P_VD" style="float:left; width:35%;">Visual Impairment </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_VD" placeholder="Patient's Visual Disability" maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
+																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_VD" placeholder="Patient's Visual Impairment" maxlength="<?php echo $VD_MAX; ?>" name="P_VD">
 															</div>
 														</div>
 														</div>
 														<!-- VISUAL DISABILITY -->
 														<!-- CAUSE OF DISABILITY -->
 														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_DC" style="float:left; width:35%; float:left;">Cause </label>
+															<label class="control-label col-md-1" for="P_DC" style="float:left; width:35%;">Cause </label>
 															<div class="col-md-4" style="width: 60%; float:left;">
 															<div style="max-width:300px;">
-																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_DC" placeholder="Cause of Disability" maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
+																<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_DC" placeholder="Cause of Impairment" maxlength="<?php echo $DC_MAX; ?>" name="P_DC">
 															</div>
 															</div>
 														</div>
 														<!-- CAUSE OF DISABILITY END -->
 						  
-														<!-- PROCEDURE -->
+														<!--Select Procedure -->
 														<div class="form-group row">
-															<label class="control-label col-md-1" for="P_PROC" style="float:left; width:35%;">Procedure </label>
-															<div class="col-md-4" style="width: 60%; float:left;">
+															<label class="control-label col-md-1" for="P_PROC" style="float:left;width:35%;">Procedure</label>
+															<div class="col-md-4" style="width: 60%; float: left;">
 																<div style="max-width:300px;">
-																	<input pattern="[a-zA-Z0-9 .,:;()\*/-!_#]*" type="text" class="form-control" id="P_PROC" placeholder="Procedure to do" maxlength="15" name="P_PROC">
-																</div>
+																<select type="text" name="P_PROC" id="procedure" class="form-control" required="true">
+																	<option value = "">Select Procedure</option>
+																	<?php
+																		for ($i=0; $i < sizeof($proc); $i++){
+																			echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
+																		}
+																	 ?>
+																</select>
+															</div>
 															</div>
 														</div>
 														<!-- PROCEDURE END -->
