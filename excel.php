@@ -19,20 +19,25 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 							 ->setCategory("Test result file");
 // Add some data
 	include("dbconnect.php");
-	if(isset($_GET["gen"])){
-		if($_GET["gen"]=="y"){
-			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
-			$fname = "General";
-		}else if($_GET["gen"]=="n"){
-			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
-			$fname = "Local";}
-	}else if(isset($_GET["ph"])){
-		if($_GET["ph"]=="y"){
-			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
-			$fname = "WPhilHealth";
-		}else if($_GET["ph"]=="n"){
-			$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
-			$fname = "WOPhilHealth";
+	if(isset($_GET["startdate"])&&isset($_GET["enddate"])){
+		if(isset($_GET["gen"])){
+			if($_GET["gen"]=="y"){
+				$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' ORDER by s.SURG_DATE desc";
+				$fname = "General";
+			}else if($_GET["gen"]=="n"){
+				$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' ORDER by s.SURG_DATE desc";
+				$fname = "Local";}
+		}else if(isset($_GET["ph"])){
+			if($_GET["ph"]=="y"){
+				$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' ORDER by s.SURG_DATE desc";
+				$fname = "WPhilHealth";
+			}else if($_GET["ph"]=="n"){
+				$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N' ORDER by s.SURG_DATE desc";
+				$fname = "WOPhilHealth";
+			}
+		}else if(isset($_GET["proc"])){
+				$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p..PROCEDURE_TO_DO='".$_GET["proc"]."' ORDER by s.SURG_DATE desc";
+				$fname = "WPhilHealth";
 		}
 	}else if(isset($_GET["table"])){
 		if($_GET["table"]=="doctor"){
@@ -91,29 +96,29 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 														$objPHPExcel->setActiveSheetIndex(0)
 												            ->setCellValue('A'.$i, ''.$dataline["CASE_NUM"])
 												            ->setCellValue('B'.$i, ''.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"])	
-												            ->setCellValue('C'.$i, ''.$dataline["PC_IOL"])
-												            ->setCellValue('D'.$i, ''.$dataline["PC_LAB"])
-												            ->setCellValue('E'.$i, ''.$dataline["PC_PF"])
-												            ->setCellValue('F'.$i, ''.$PC_SUM)
-												            ->setCellValue('G'.$i, ''.$dataline["SPO_IOL"])
-												            ->setCellValue('H'.$i, ''.$dataline["SPO_OTHERS"])
-												            ->setCellValue('I'.$i, ''.$SPO_SUM)
-												            ->setCellValue('J'.$i, ''.$dataline["CSF_HBILL"])
-												            ->setCellValue('K'.$i, ''.$dataline["CSF_SUPPLIES"])
-												            ->setCellValue('L'.$i, ''.$dataline["CSF_LAB"])
-												            ->setCellValue('M'.$i, ''.$CSF_SUM)
-												            ->setCellValue('N'.$i, ''.$dataline["NDDCH_RA"])
-												            ->setCellValue('O'.$i, ''.$dataline["NDDCH_ZEISS"])
-												            ->setCellValue('P'.$i, ''.$NDDCH_SUM)
-												            ->setCellValue('Q'.$i, ''.$ROW_SUM);
+												            ->setCellValue('C'.$i, ''.number_format($dataline["PC_IOL"], "2"))
+												            ->setCellValue('D'.$i, ''.number_format($dataline["PC_LAB"], "2"))
+												            ->setCellValue('E'.$i, ''.number_format($dataline["PC_PF"], "2"))
+												            ->setCellValue('F'.$i, ''.number_format($PC_SUM, "2"))
+												            ->setCellValue('G'.$i, ''.number_format($dataline["SPO_IOL"], "2"))
+												            ->setCellValue('H'.$i, ''.number_format($dataline["SPO_OTHERS"], "2"))
+												            ->setCellValue('I'.$i, ''.number_format($SPO_SUM, "2"))
+												            ->setCellValue('J'.$i, ''.number_format($dataline["CSF_HBILL"], "2"))
+												            ->setCellValue('K'.$i, ''.number_format($dataline["CSF_SUPPLIES"], "2"))
+												            ->setCellValue('L'.$i, ''.number_format($dataline["CSF_LAB"], "2"))
+												            ->setCellValue('M'.$i, ''.number_format($CSF_SUM, "2"))
+												            ->setCellValue('N'.$i, ''.number_format($dataline["NDDCH_RA"], "2"))
+												            ->setCellValue('O'.$i, ''.number_format($dataline["NDDCH_ZEISS"], "2"))
+												            ->setCellValue('P'.$i, ''.number_format($NDDCH_SUM, "2"))
+												            ->setCellValue('Q'.$i, ''.number_format($ROW_SUM, "2"));
 												        $i++;
 													}
 													$objPHPExcel->setActiveSheetIndex(0)
-												            ->setCellValue('F'.$i, ''.$PC_COL_SUM)
-												            ->setCellValue('I'.$i, ''.$SPO_COL_SUM)
-												            ->setCellValue('M'.$i, ''.$CSF_COL_SUM)
-												            ->setCellValue('P'.$i, ''.$NDDCH_COL_SUM)
-												            ->setCellValue('Q'.$i, ''.$ROW_COL_SUM);
+												            ->setCellValue('F'.$i, ''.number_format($PC_COL_SUM, "2"))
+												            ->setCellValue('I'.$i, ''.number_format($SPO_COL_SUM, "2"))
+												            ->setCellValue('M'.$i, ''.number_format($CSF_COL_SUM, "2"))
+												            ->setCellValue('P'.$i, ''.number_format($NDDCH_COL_SUM, "2"))
+												            ->setCellValue('Q'.$i, ''.number_format($ROW_COL_SUM, "2"));
 												}else if(isset($_GET["table"])){
 													if($_GET["table"]=="doctor"){
 														$objPHPExcel->setActiveSheetIndex(0)
@@ -324,16 +329,16 @@ $objPHPExcel->getProperties()->setCreator("Luke Foundation Inc.")
 													            ->setCellValue('P'.$i, ''.$INNAME2)
 													            ->setCellValue('Q'.$i, ''.$ANNAME)
 													            ->setCellValue('R'.$i, ''.$dataline["IOLPOWER"])
-													            ->setCellValue('S'.$i, ''.$dataline["PC_IOL"])
-													            ->setCellValue('T'.$i, ''.$dataline["PC_LAB"])
-													            ->setCellValue('L'.$i, ''.$dataline["PC_PF"])
-													            ->setCellValue('M'.$i, ''.$dataline["SPO_IOL"])
-													            ->setCellValue('N'.$i, ''.$dataline["SPO_OTHERS"])
-													            ->setCellValue('O'.$i, ''.$dataline["CSF_HBILL"])
-													            ->setCellValue('P'.$i, ''.$dataline["CSF_SUPPLIES"])
-													            ->setCellValue('Q'.$i, ''.$dataline["CSF_LAB"])
-													            ->setCellValue('R'.$i, ''.$dataline["NDDCH_RA"])
-													            ->setCellValue('S'.$i, ''.$dataline["NDDCH_ZEISS"])
+													            ->setCellValue('S'.$i, ''.number_format($dataline["PC_IOL"], "2"))
+													            ->setCellValue('T'.$i, ''.number_format($dataline["PC_LAB"], "2"))
+													            ->setCellValue('L'.$i, ''.number_format($dataline["PC_PF"], "2"))
+													            ->setCellValue('M'.$i, ''.number_format($dataline["SPO_IOL"], "2"))
+													            ->setCellValue('N'.$i, ''.number_format($dataline["SPO_OTHERS"], "2"))
+													            ->setCellValue('O'.$i, ''.number_format($dataline["CSF_HBILL"], "2"))
+													            ->setCellValue('P'.$i, ''.number_format($dataline["CSF_SUPPLIES"], "2"))
+													            ->setCellValue('Q'.$i, ''.number_format($dataline["CSF_LAB"], "2"))
+													            ->setCellValue('R'.$i, ''.number_format($dataline["NDDCH_RA"], "2"))
+													            ->setCellValue('S'.$i, ''.number_format($dataline["NDDCH_ZEISS"], "2"))
 													            ->setCellValue('T'.$i, ''.$dataline["LF_PC"])
 													            ->setCellValue('U'.$i, ''.$dataline["LF_CPC"]);
 												        		$i++;
@@ -357,7 +362,7 @@ header('Content-Type: application/vnd.ms-excel');
 if(isset($_GET["table"])){
 	header('Content-Disposition: attachment;filename="'.$_GET["table"].'_'.date("Y_M_d").'.xls"');
 }else{
-	header('Content-Disposition: attachment;filename="'.$_GET["curryear"]."_".$_GET["currmonth"].'_'.$fname.'.xls"');
+	header('Content-Disposition: attachment;filename="'.$_GET["startdate"]."_".$_GET["enddate"].'_'.$fname.'.xls"');
 }
 
 header('Cache-Control: max-age=0');
