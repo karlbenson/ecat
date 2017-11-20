@@ -11,19 +11,44 @@
 		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
 		<script type="text/javascript">
+			$("#year").val("A dynamically set text");
+
+			window.onload = function() {
+			    if(!window.location.hash) {
+			        document.getElementById("year").setAttribute("disabled","");
+			        document.getElementById("quarter").setAttribute("disabled","");
+			        document.getElementById("month").setAttribute("disabled","");
+			    }
+			}
 			function toggleYear(){
 				document.getElementById("year").removeAttribute("disabled"); 
 				document.getElementById("month").setAttribute("disabled","");
+				document.getElementById("quarter").setAttribute("disabled","");
 				document.getElementById("year").setAttribute("required","true");
-
+				document.getElementById("quarter").removeAttribute("required"); 
+				document.getElementById("month").removeAttribute("required"); 
+				$("#quarter").val("Q0");
+				$("#month").val("0");
+			}
+			function toggleQuarter(){
+				document.getElementById("year").removeAttribute("disabled");
+				document.getElementById("quarter").removeAttribute("disabled"); 
+				document.getElementById("quarter").setAttribute("required","true");
+				document.getElementById("year").setAttribute("required","true");
+				document.getElementById("month").removeAttribute("required"); 
+				document.getElementById("month").setAttribute("disabled","");
 			}
 			function toggleMonth(){
+				document.getElementById("year").removeAttribute("disabled");
 				document.getElementById("month").removeAttribute("disabled"); 
 				document.getElementById("month").setAttribute("required","true");
+				document.getElementById("year").setAttribute("required","true");
+				document.getElementById("quarter").removeAttribute("required"); 
+				document.getElementById("quarter").setAttribute("disabled","");
 			}
 		</script>
 	</head>
-	<body style="justify-content: center;" onload="toggleYear()">
+	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
 		<?php include("nav.php");?>
 		<!-- HEAD AND NAVIGATION END -->
@@ -46,6 +71,8 @@
 				$output = $mydatabase->query($S_query);	
 				$year= array();
 				$month = array("January","February","March","April","May","June","July","August","September","October","November","December");
+				$quarter = array("Q1","Q2","Q3","Q4");
+				$proc = array("ECCE","Phacoemulsification","Implantation of Lens","Trabeculectomy with Iridectomy", "Deferred Case","Others");
 				$maxyear=0;
 				$minyear=1980;
 				$maxyear=date("Y")+1;
@@ -68,21 +95,25 @@
 							<div class="container-fluid">
 								<h3>Report Information</h3>
 								<hr style="">
-								<form method="post" action="reportprev.php" >
+								<form method="post" action="reportprev.php" onsubmit="">
 									
 									<div class="form-group row" style="width:100%; float:left; margin:5px;">
 										<label class="control-label col-md-3" style="float:left; width:250px;">Type of Report</label>
 										<div class="col-md-7" style="float: left">
 											<!-- YEARLY -->
-											<div style="width: 175px; float: left; margin-right:10px;">
-													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype"  value="Yearly" onClick="toggleYear()" style="float: left;" required="true"> 
+											<div style="width: 500px; float: left; margin-right:10px;">
+													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype"  value="Yearly" onChange="toggleYear();" style="float: left;"/> 
 													Yearly</label>
-													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype" value="Monthly" onClick="toggleYear();toggleMonth()" required="true"> 
-													Monthly</label><br>
+													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype" value="Quarterly" onChange="toggleQuarter();"/> 
+													Quarterly</label>
+													<label  for="reptype" class="radio-inline" required ><input type="radio" name="reptype" value="Monthly" onChange="toggleMonth();"/> 
+													Monthly</label>
+													<br>
 											</div>
 											<!-- YEARLY END -->
 										</div>
 									</div>
+									<!--Select Year -->
 									<div class="form-group row" style="width:100%; float:left; margin:5px;">
 										<label class="control-label col-md-3" for="Year" style="float:left; width:250px;">Year</label>
 										<div class="col-md-4" style="width: 250px; float: left;">
@@ -96,6 +127,23 @@
 											</select>
 										</div>
 									</div>
+
+									<!--Select Quarter -->
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" for="Quarter" style="float:left; width:250px;">Quarter</label>
+										<div class="col-md-4" style="width: 250px; float: left;">
+											<select type="text" name="Quarter" id="quarter" class="form-control" id="year" disabled>
+												<option value = "">Select Quarter</option>
+												<?php
+													for ($i=0; $i < sizeof($quarter); $i++){
+														echo '<option value="'.$quarter[$i].'">'.$quarter[$i].'</option>';
+													}
+												 ?>
+											</select>
+										</div>
+									</div>
+
+									<!--Select Month -->
 									<div class="form-group row" style="width:100%; float:left; margin:5px;">
 										<label class="control-label col-md-3" for="Month" style="float:left; width:250px;">Month</label>
 										<div class="col-md-4" style="width: 250px; float: left;">
@@ -110,6 +158,21 @@
 										</div>
 									</div>
 									
+									<!--Select Procedure -->
+									<div class="form-group row" style="width:100%; float:left; margin:5px;">
+										<label class="control-label col-md-3" for="Procedure" style="float:left; width:250px;">Procedure</label>
+										<div class="col-md-4" style="width: 250px; float: left;">
+											<select type="text" name="Procedure" id="procedure" class="form-control" required="true">
+												<option value = "">Select Procedure</option>
+												<?php
+													for ($i=0; $i < sizeof($proc); $i++){
+														echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
+													}
+												 ?>
+											</select>
+										</div>
+									</div>
+
 									<div class="form-group row" style="width:100%; float:left; margin:5px;">
 										<label class="control-label col-md-3" style="float:left; width:250px;">Type of Anesthesia</label>
 										<div class="col-md-7" style="float: left">
@@ -140,7 +203,7 @@
 				 
 									<!-- ENTER -->
 									<div style="padding:10px 20px 20px 20px; text-align:center; float:left; width:100%;">
-									<button type="submit" class="btn" id="go" name="doctors_info">Generate</button>
+									<button type="submit" class="btn" id="go" name="report_info">Generate</button>
 									</div>
 									<!-- ENTER END -->
 								</form>
