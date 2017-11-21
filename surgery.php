@@ -49,7 +49,12 @@
 					$ANEST_MAX = 50;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
+					$PROC_MAX = 30;
+					$EO_MAX = 10;
 					$MONTH_choice = array("January","Febuary","March","April","May","June","July","August","September","October","November","December");
+					$proc = array("ECCE","Phacoemulsification","Implantation of Lens","Trabeculectomy with Iridectomy", "Deferred Case","Others");
+					$eye = array("Left","Right","Both");
+
 					//MAX VALUES END
 
 					include("auto_doc.php");
@@ -102,7 +107,9 @@
 													$S_A = $_POST["SURG_ADDRESS"];                      
 													$S_DATE1 = explode("/",$_POST["DATE"]);
 													$S_DATE = $S_DATE1[2].'-'.$S_DATE1[0].'-'.$S_DATE1[1];
-													$S_R = $_POST["REM"];                                 
+													$S_R = $_POST["REM"];  
+													$S_P = $_POST["PROC"];
+													$S_EO = $_POST["EO"];                           
 													$S_TA = $_POST["TANES"];
 													$S_IOL = str_replace(",", "", $_POST["IOLPOWER"]);
 													$PC_IOL = str_replace(",", "", $_POST["PC_IOL"]);
@@ -128,7 +135,7 @@
 													$S_AN = trim(explode(" - ", $_POST["ANESTHESIOLOGIST"])[0]);
 													
 													$toupdate = $_POST["surgery_update"];
-													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', SPO_OTHERS = '$SP_OTHERS', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
+													$S_update = "UPDATE SURGERY SET CASE_NUM = '$S_CN', SURG_LICENSE_NUM = '$S_LN', SURG_LICENSE_NUM1 = '$S_LN1', SURG_LICENSE_NUM2 = '$S_LN2', PAT_ID_NUM = '$S_ID', VISUAL_IMPARITY = '$S_VI', MED_HISTORY = '$S_MH', RIGHT_DIAGNOSIS = '$S_RD', LEFT_DIAGNOSIS = '$S_LD', SURG_ANESTHESIA = '$S_TA', SURG_ADDRESS ='$S_A', SURG_DATE ='$S_DATE', REMARKS ='$S_R', INTERNIST = '$S_I', INTERNIST1 = '$S_I1', INTERNIST2 = '$S_I2', ANESTHESIOLOGIST = '$S_AN', PROCEDURE_TO_DO = '$S_P', EYE_OPERATED = '$S_EO', IOLPOWER = '$S_IOL', PC_IOL = '$PC_IOL', PC_LAB = '$PC_L', PC_PF = '$PC_PF', SPO_IOL = '$SP_IOL', SPO_OTHERS = '$SP_OTHERS', CSF_HBILL = '$C_HB', CSF_SUPPLIES = '$C_S', CSF_LAB = '$C_L', NDDCH_RA = '$N_RA', NDDCH_ZEISS = '$N_ZEISS', NDDCH_SUPPLIES = '$N_SUPP', LF_PF = '$L_PF', LF_CPC = '$L_CPC' WHERE CASE_NUM = '$toupdate' ";
 													if ($mydatabase->query($S_update) === TRUE) {
 														//echo "Record updated successfully";
 													} else {
@@ -301,7 +308,7 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT s.*, d.LAST_NAME, d.FIRST_NAME, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, DOCTOR d, EYEPATIENT p where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM and p.PAT_ID_NUM = s.PAT_ID_NUM and CASE_NUM ='$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT s.*, d.LAST_NAME, d.FIRST_NAME, p.PAT_FNAME, p.PAT_LNAME FROM SURGERY s, DOCTOR d, EYEPATIENT p where s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM and p.PAT_ID_NUM = s.PAT_ID_NUM and CASE_NUM ='".$profile_p."' LIMIT 1");      
 												$output1->execute();
 												$line = $output1->get_result();
 												$dataline = $line->fetch_assoc();
@@ -327,6 +334,8 @@
 												$S_RD = $dataline["RIGHT_DIAGNOSIS"];
 												$S_LD = $dataline["LEFT_DIAGNOSIS"];
 												$S_R = $dataline["REMARKS"];
+												$S_P = $dataline["PROCEDURE_TO_DO"];
+												$S_EO = $dataline["EYE_OPERATED"];
 
 												$S_TA = $dataline["SURG_ANESTHESIA"];
 												$S_IOL = $dataline["IOLPOWER"];
@@ -395,7 +404,7 @@
 												$NDDCH_SUM = $dataline["NDDCH_RA"]+$dataline["NDDCH_ZEISS"]+$dataline["PC_PF"];
 												$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
 												$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
-												$TOTAL_ALL = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+$dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+$dataline["SPO_IOL"];
+												$TOTAL_ALL = $PC_SUM+$CSF_SUM+$NDDCH_SUM+$LF_SUM+$SPO_SUM;
 
 												$patient_link = "patient.php?profilepage=".$S_ID;
 												$placeholder = "placeholder";
@@ -545,6 +554,14 @@
 																<div class="row" style="margin:0px; padding:5px 10px;">
 																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Remarks'.'</div>
 																	<div style="width:'.$margin00.'; float: left;">'.$S_R.'</div>
+																</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Type of Procedure'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_P.'</div>
+																</div>
+																<div class="row" style="margin:0px; padding:5px 10px;">
+																	<div style="font-weight:bold; width:'.$margin0.'; float: left;">'.'Eye Operated'.'</div>
+																	<div style="width:'.$margin00.'; float: left;">'.$S_EO.'</div>
 																</div>
 
 															</div>
@@ -966,6 +983,32 @@
 																					<label for="REM" style="width: 25%; float: left; ">Surgeon Remarks </label>
 																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Remarks of Surgeon..." type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="width: 75%; float: left;" value="'.$S_R.'" >
 																				</div>
+
+																				<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="REM" style="width: 25%; float: left; ">Procedure<span style="color: #d9534f">*</span></label>
+																					<select type="text" name="PROC" id="PROC" class="form-control" required="true"  style="width: 75%; float: left;">
+																							<option value = "'.$S_P.'">'.$S_P.'</option>';
+																							
+																								for ($i=0; $i < sizeof($proc); $i++){
+																									echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
+																								}
+																							 
+																				echo		'</select></div>';
+
+																				echo '<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="REM" style="width: 25%; float: left; ">Eye Operated<span style="color: #d9534f">*</span></label>
+																					<select type="text" name="EYE_OP" id="EYE_OP" class="form-control" required="true" style="width: 75%; float: left;">
+																							<option value="'.$S_EO.'">'.$S_EO.'</option>';
+																							
+																								for ($i=0; $i < sizeof($eye); $i++){
+																									echo '<option value="'.$eye[$i].'">'.$eye[$i].'</option>';
+																								}
+																							 
+																				echo		'</select></div>';
+																							
+
+																							 
+																				echo		'
 																			
 																			</div>
 																			</div>
