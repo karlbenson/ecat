@@ -135,7 +135,8 @@
 					$CSF_TOT=$CSF_HBILL_SUM+$CSF_LAB_SUM+$CSF_SUPP_SUM;
 					$NDDCH_SUM = $NDDCH_RA_SUM+$NDDCH_ZEISS_SUM;
 					$SPO_SUM = $SPO_IOL_SUM+$SPO_OTHERS_SUM;
-					$GRAND = $PC_TOT+$CSF_TOT+$SPO_IOL_SUM;
+					$LF_SUM= $LF_PF_SUM+$LF_CPC_SUM;
+					$GRAND = $PC_TOT+$CSF_TOT+$SPO_SUM+$NDDCH_SUM+$LF_SUM;
 					$pesos = "₱ ";
 					$LF_SUM = $LF_CPC_SUM+$LF_PF_SUM;
 					$DIFF =$NDDCH_SUPPLIES_SUM-$CSF_SUPP_SUM;
@@ -420,7 +421,7 @@
 
 				//PROCEDURE
 				
-				$strQuery = "SELECT S.PROCEDURE_TO_DO, COUNT(*) AS freq FROM EYEPATIENT P,SURGERY S WHERE S.PAT_ID_NUM=P.PAT_ID_NUM AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' GROUP BY POST_VA_NO_SPECT_RIGHT";
+				$strQuery = "SELECT S.PROCEDURE_TO_DO, COUNT(*) AS freq FROM EYEPATIENT P,SURGERY S WHERE S.PAT_ID_NUM=P.PAT_ID_NUM AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31'";
 
 				// Execute the query, or else return the error message.
 				$result = $mydatabase->query($strQuery) or exit("Error code ({$mydatabase->errno}): {$mydatabase->error}");
@@ -850,10 +851,10 @@
 													echo '<div style="width:100%;">';
 											if($_POST["anestype"]=="Gen"){
 												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='General' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by  s.SURG_DATE desc";
-												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia (<a href="excel.php?gen=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
+												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">General Anesthesia (<a href="excel.php?gen=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-31">Download .xls</a>)</div>';
 											}else{
 												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.SURG_ANESTHESIA='Local' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
-												echo '<br/><div class="panel panel-default" style="margin-top:0px; width:100%;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia (<a href="excel.php?gen=n&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
+												echo '<br/><div class="panel panel-default" style="margin-top:0px; width:100%;"><div class="panel-heading " style="color:#337ab7;">Local Anesthesia (<a href="excel.php?gen=n&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-31">Download .xls</a>)</div>';
 											}
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
@@ -881,6 +882,9 @@
 																<td style="color:#ffffff">NDDCH RA</td>
 																<td style="color:#ffffff">NDDCH ZEISS</td>
 																<td style="color:#ffffff">NDDCH Total</td>
+																<td style="color:#ffffff">LF Prof. Fee</td>
+																<td style="color:#ffffff">LF CFC</td>
+																<td style="color:#ffffff">LF Total</td>
 																<td style="color:#ffffff">Total</td>
 																</tr>
 															</thead>';
@@ -889,17 +893,21 @@
 													$ROW_COL_SUM = 0;
 													$SPO_COL_SUM = 0;
 													$NDDCH_COL_SUM = 0;
+													$LF_COL_SUM=0;
 													while($dataline = $output->fetch_assoc()) { 
 														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
 														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
-														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
+														
 														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
 														$NDDCH_SUM = $dataline["NDDCH_ZEISS"]+$dataline["NDDCH_RA"];
+														$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
+														$ROW_SUM = $CSF_SUM+$PC_SUM+$SPO_SUM+$NDDCH_SUM+$LF_SUM+0.0;
 														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
 														$SPO_COL_SUM = $SPO_COL_SUM+$SPO_SUM;
 														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
-														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														$NDDCH_COL_SUM = $NDDCH_COL_SUM+$NDDCH_SUM;
+														$LF_COL_SUM = $LF_COL_SUM+$LF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														echo 	'<tr>
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
@@ -917,6 +925,9 @@
 																	<td>'.$dataline["NDDCH_RA"].'</td>
 																	<td>'.$dataline["NDDCH_ZEISS"].'</td>
 																	<td>'.number_format($NDDCH_SUM, "2").'</td>
+																	<td>'.$dataline["LF_PF"].'</td>
+																	<td>'.$dataline["LF_CPC"].'</td>
+																	<td>'.number_format($LF_SUM, "2").'</td>
 																	<td>'.number_format($ROW_SUM, "2").'</td>
 																</tr>';
 													}
@@ -932,6 +943,8 @@
 																<td><b>'.number_format($CSF_COL_SUM, "2").'</b></td>
 																<td colspan="2"></td>
 																<td>'.number_format($NDDCH_COL_SUM, "2").'</td>
+																<td colspan="2"></td>
+																<td>'.number_format($LF_COL_SUM, "2").'</td>
 																<td><b>'.number_format($ROW_COL_SUM, "2").'</b></td>
 															</tr>';
 													echo	'</tbody>
@@ -947,7 +960,7 @@
 											//MYSQL SECTION
 													echo '<div style="width:100%;">';
 												$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND s.PROCEDURE_TO_DO='".$_POST["Procedure"]."' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
-												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">Procedure type (<a href="excel.php?gen=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
+												echo '<br/><div class="panel panel-default" style="margin-top:0px width:100%;"><div class="panel-heading " style="color:#337ab7;">Procedure type: '.$_POST["Procedure"].' (<a href="excel.php?proc='.$_POST["Procedure"].'&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-31">Download .xls</a>)</div>';
 											
 											$output = $mydatabase->query($S_query);
 											//MYSQL SECTION END
@@ -975,6 +988,9 @@
 																<td style="color:#ffffff">NDDCH RA</td>
 																<td style="color:#ffffff">NDDCH ZEISS</td>
 																<td style="color:#ffffff">NDDCH Total</td>
+																<td style="color:#ffffff">LF Prof. Fee</td>
+																<td style="color:#ffffff">LF CFC</td>
+																<td style="color:#ffffff">LF Total</td>
 																<td style="color:#ffffff">Total</td>
 																</tr>
 															</thead>';
@@ -983,17 +999,21 @@
 													$ROW_COL_SUM = 0;
 													$SPO_COL_SUM = 0;
 													$NDDCH_COL_SUM = 0;
+													$LF_COL_SUM=0;
 													while($dataline = $output->fetch_assoc()) { 
 														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
 														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
-														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
+														
 														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
 														$NDDCH_SUM = $dataline["NDDCH_ZEISS"]+$dataline["NDDCH_RA"];
+														$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
+														$ROW_SUM = $CSF_SUM+$PC_SUM+$SPO_SUM+$NDDCH_SUM+$LF_SUM+0.0;
 														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
 														$SPO_COL_SUM = $SPO_COL_SUM+$SPO_SUM;
 														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
-														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														$NDDCH_COL_SUM = $NDDCH_COL_SUM+$NDDCH_SUM;
+														$LF_COL_SUM = $LF_COL_SUM+$LF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														echo 	'<tr>
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
@@ -1011,6 +1031,9 @@
 																	<td>'.$dataline["NDDCH_RA"].'</td>
 																	<td>'.$dataline["NDDCH_ZEISS"].'</td>
 																	<td>'.number_format($NDDCH_SUM, "2").'</td>
+																	<td>'.$dataline["LF_PF"].'</td>
+																	<td>'.$dataline["LF_CPC"].'</td>
+																	<td>'.number_format($LF_SUM, "2").'</td>
 																	<td>'.number_format($ROW_SUM, "2").'</td>
 																</tr>';
 													}
@@ -1026,6 +1049,8 @@
 																<td><b>'.number_format($CSF_COL_SUM, "2").'</b></td>
 																<td colspan="2"></td>
 																<td>'.number_format($NDDCH_COL_SUM, "2").'</td>
+																<td colspan="2"></td>
+																<td>'.number_format($LF_COL_SUM, "2").'</td>
 																<td><b>'.number_format($ROW_COL_SUM, "2").'</b></td>
 															</tr>';
 													echo	'</tbody>
@@ -1039,10 +1064,10 @@
 												
 												if($_POST["phtype"]=="W"){
 													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='Y' AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
-													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">With Philhealth (<a href="excel.php?ph=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
+													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">With Philhealth (<a href="excel.php?ph=y&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-31">Download .xls</a>)</div>';
 												}else if($_POST["phtype"]=="WO"){
 													$S_query = "SELECT * FROM SURGERY s, DOCTOR d, EYEPATIENT p WHERE s.SURG_LICENSE_NUM = d.DOC_LICENSE_NUM AND p.PAT_ID_NUM = s.PAT_ID_NUM AND p.PAT_PH='N'  AND SURG_DATE BETWEEN '".$curryear."-".$prevmonth."-1' AND '".$curryear."-".$currmonth."-31' ORDER by s.SURG_DATE desc";
-													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth (<a href="excel.php?ph=n&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-1">Download .xls</a>)</div>';
+													echo '<div class="panel panel-default" style="width:100%;"><div class="panel-heading " style="color:#337ab7;">Without Philhealth (<a href="excel.php?ph=n&startdate='.$curryear.'-'.$prevmonth.'-1&enddate='.$curryear.'-'.$currmonth.'-31">Download .xls</a>)</div>';
 												}
 
 												//WITH PHILHEALTH
@@ -1054,7 +1079,7 @@
 												//MAIN PAGE
 												if ($output->num_rows>0) {
 													echo '<div class="panel-body" style="margin:0px; padding:0px;">
-														<table id="docdat" class="table table-striped" style="float:left;width:100%;padding:0px; margin:0px;">
+														<table id="docdat" class="table table-striped row" style="float:left; width:100%;padding:0px;margin:0px;">
 															<thead>
 																<tr id="tophead">
 																<td style="color:#ffffff">Case No.</td>
@@ -1073,6 +1098,9 @@
 																<td style="color:#ffffff">NDDCH RA</td>
 																<td style="color:#ffffff">NDDCH ZEISS</td>
 																<td style="color:#ffffff">NDDCH Total</td>
+																<td style="color:#ffffff">LF Prof. Fee</td>
+																<td style="color:#ffffff">LF CFC</td>
+																<td style="color:#ffffff">LF Total</td>
 																<td style="color:#ffffff">Total</td>
 																</tr>
 															</thead>';
@@ -1081,17 +1109,21 @@
 													$ROW_COL_SUM = 0;
 													$SPO_COL_SUM = 0;
 													$NDDCH_COL_SUM = 0;
+													$LF_COL_SUM=0;
 													while($dataline = $output->fetch_assoc()) { 
 														$PC_SUM = $dataline["PC_IOL"]+$dataline["PC_LAB"]+$dataline["PC_PF"]+0.0;
 														$CSF_SUM = $dataline["CSF_HBILL"]+$dataline["CSF_SUPPLIES"]+$dataline["CSF_LAB"]+0.0;
-														$ROW_SUM = $CSF_SUM+$PC_SUM+$dataline["SPO_IOL"]+0.0;
+														
 														$SPO_SUM = $dataline["SPO_IOL"]+$dataline["SPO_OTHERS"];
 														$NDDCH_SUM = $dataline["NDDCH_ZEISS"]+$dataline["NDDCH_RA"];
+														$LF_SUM = $dataline["LF_PF"]+$dataline["LF_CPC"];
+														$ROW_SUM = $CSF_SUM+$PC_SUM+$SPO_SUM+$NDDCH_SUM+$LF_SUM+0.0;
 														$PC_COL_SUM = $PC_COL_SUM+$PC_SUM;
 														$SPO_COL_SUM = $SPO_COL_SUM+$SPO_SUM;
 														$CSF_COL_SUM = $CSF_COL_SUM+$CSF_SUM;
-														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														$NDDCH_COL_SUM = $NDDCH_COL_SUM+$NDDCH_SUM;
+														$LF_COL_SUM = $LF_COL_SUM+$LF_SUM;
+														$ROW_COL_SUM = $ROW_COL_SUM+$ROW_SUM;
 														echo 	'<tr>
 																	<td>'.$dataline["CASE_NUM"].'</td>
 																	<td>'.$dataline["PAT_FNAME"].' '.$dataline["PAT_LNAME"].'</td>
@@ -1109,6 +1141,9 @@
 																	<td>'.$dataline["NDDCH_RA"].'</td>
 																	<td>'.$dataline["NDDCH_ZEISS"].'</td>
 																	<td>'.number_format($NDDCH_SUM, "2").'</td>
+																	<td>'.$dataline["LF_PF"].'</td>
+																	<td>'.$dataline["LF_CPC"].'</td>
+																	<td>'.number_format($LF_SUM, "2").'</td>
 																	<td>'.number_format($ROW_SUM, "2").'</td>
 																</tr>';
 													}
@@ -1124,16 +1159,15 @@
 																<td><b>'.number_format($CSF_COL_SUM, "2").'</b></td>
 																<td colspan="2"></td>
 																<td>'.number_format($NDDCH_COL_SUM, "2").'</td>
+																<td colspan="2"></td>
+																<td>'.number_format($LF_COL_SUM, "2").'</td>
 																<td><b>'.number_format($ROW_COL_SUM, "2").'</b></td>
 															</tr>';
 													echo	'</tbody>
 														</table></div>
-													</div>';
-
-													
-
+													</div></div>';
 												} else {
-													echo '<div class="container-fluid" style="padding:20px;">No Records.</div>';
+													echo '<div class="container-fluid" style="padding:20px;">No Records.</div></div>';
 												}
 												//MAIN PAGE END
 
