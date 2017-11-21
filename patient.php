@@ -107,7 +107,7 @@
 													}
 
 													$P_update = "UPDATE EYEPATIENT SET
-														PAT_FNAME = '$PAT_FNAME',
+													PAT_FNAME = '$PAT_FNAME',
 													 PAT_LNAME = '$PAT_LNAME',
 													 PAT_AGE = '$PAT_AGE',
 													 PAT_PH = '$PAT_PH',
@@ -125,8 +125,7 @@
 													 VISUAL_DISABILITY = '$VISUAL_DISABILITY',
 													 DISABILITY_CAUSE = '$DISABILITY_CAUSE',
 													 RIGHT_DIAGNOSIS = '$RIGHT_DIAGNOSIS',
-													 LEFT_DIAGNOSIS = '$LEFT_DIAGNOSIS',
-													 PROCEDURE_TO_DO = '$PROCEDURE_TO_DO' WHERE PAT_ID_NUM = '$PAT_ID' ";
+													 LEFT_DIAGNOSIS = '$LEFT_DIAGNOSIS' WHERE PAT_ID_NUM = '$PAT_ID' ";
 											  
 													if ($mydatabase->query($P_update) === TRUE) {
 														//echo "Record updated successfully";
@@ -211,7 +210,7 @@
 											//SEARCH END
 
 											//MYSQL SECTION
-											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM $filter $search order by p.PAT_LNAME";
+											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM=d.DOC_LICENSE_NUM $filter $search order by p.PAT_LNAME";
 											$output = $mydatabase->query($P_query);
 											//MYSQL SECTION END
 
@@ -399,10 +398,6 @@
 																		<div class="row" style="margin:0px; padding:5px 10px;">
 																			<div style="width:'.$margin1.'; float:left; font-weight:bold;">'.'Cause'.'</div>
 																			<div style="width:'.$margin11.'; float: left;">'.$P_DC.'</div>
-																		</div>
-																		<div class="row" style="margin:0px; padding:5px 10px;">
-																			<div style="width:'.$margin1.'; float:left;font-weight:bold;">'.'Procedure'.'</div>
-																			<div style="width:'.$margin11.'; float: left;">'.$dataline["PROCEDURE_TO_DO"].'</div>
 																		</div>
 																	</div>
 																</div>
@@ -620,30 +615,25 @@
 																							<td>
 																								<select class="form-control" id="P_VAL1"  name="P_VAL1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
 																										if($PRE_VA_NO_SPECT_LEFT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
 																							<td>
 																								<select class="form-control" id="P_VAL2"  name="P_VAL2" style="width: 120px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($POST_VA_NO_SPECT_LEFT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							 </td>
@@ -655,30 +645,26 @@
 																							<td>
 																								<select class="form-control" id="P_VAR1"  name="P_VAR1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($PRE_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
 																							<td>
 																								<select class="form-control" id="P_VAR2"  name="P_VAR2" style="width: 120px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																								
 																										if($POST_VA_NO_SPECT_RIGHT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
@@ -691,30 +677,26 @@
 																							<td>
 																								<select class="form-control" id="P_VASL1"  name="P_VASL1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) {
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($PRE_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
 																							<td>
 																								<select class="form-control" id="P_VASL2"  name="P_VASL2" style="width: 120px;">';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($POST_VA_WITH_SPECT_LEFT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
@@ -726,30 +708,26 @@
 																							<td>
 																								<select class="form-control" id="P_VASR1"  name="P_VASR1" style="width: 120px;" required>';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($PRE_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																								echo '</select>
 																							</td>
 																							<td>
 																								<select class="form-control" id="P_VASR2"  name="P_VASR2" style="width: 120px;" >';
 																								for ($j=0; $j < count($VA_choice); $j++) { 
-																									if($j==0){
-																										echo "<option>"."n/a"."</option>";
-																									}else{
+																									
 																										if($POST_VA_WITH_SPECT_RIGHT==$VA_choice[$j]){
 																											echo "<option selected>".$VA_choice[$j]."</option>";    
 																										}else{
 																											echo "<option>".$VA_choice[$j]."</option>";
 																										}
-																									}
+																									
 																								}
 																							echo '</select>
 																							</td>
