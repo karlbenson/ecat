@@ -44,6 +44,8 @@
 					$ANEST_MAX = 50;
 					$IOL_MAX = 20;
 					$PC_MAX = 10;
+					$PROC_MAX = 30;
+					$EO_MAX = 10;
 					$proc = array("ECCE","Phacoemulsification","Implantation of Lens","Trabeculectomy with Iridectomy", "Deferred Case","Others");
 					$eye = array("Left","Right","Both");
 					//SURGERY INFORMATION FIELDS END
