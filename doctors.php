@@ -130,14 +130,14 @@
 																	<td>'.$row["DOC_LICENSE_NUM"].'</td>
 																	<td>'.$row["SPECIALIZATION"].'</td>
 																	<td>'.$row["ADDRESS"].'</td>
-																	<td>
-																		<a href="'.'doctors2.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-pencil" title="Edit"> </span></a>';
+																	<td>';
 																		if ($row["VISIBLE"]=='T') {
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Inactive"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Inactive"></span></a>';
 																		}else{
-																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span style="padding-left:25px;" class="fa fa-trash" title="Make Active"></span></a>';
+																			echo '<a role="button" id="'.$row["DOC_LICENSE_NUM"].'" onclick="outer_close(this.id)"><span class="fa fa-trash" title="Make Active"></span></a>';
 																		}
-														echo 		'</td>
+														echo 		'<a href="'.'doctors.php'.'?profilepage='.$row["DOC_LICENSE_NUM"].'"><span class="fa fa-eye" style="padding-left:5px;" title="Edit Page"> </span></a>
+														</td>
 																</tr>';
 													} //CONTENT END
 													
@@ -291,7 +291,10 @@
 													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
 														<div style="width:100%; margin-bottom:10px;"><h4> Dr. '.$printline["FIRST_NAME"].' '.$printline["LAST_NAME"].'</h5></div>
 													</div>
-														<hr>
+
+													<div class="container-fluid" style="width: 100%; float:left; margin:0px;">
+														<hr style="margin-top:0px;">
+													</div>
 													<div class="container-fluid" style="width: 70%; float:left; margin:0px;">
 														<div id="pr_label">License Number: </div>
 														<div id="pr_body" >'.$printline["DOC_LICENSE_NUM"].'</div>
@@ -301,6 +304,7 @@
 														<div id="pr_body" >'.$printline["ADDRESS"].'</div>
 													</div>
 													</div>';
+
 													$Print_query = "SELECT * FROM SURGERY s WHERE SURG_LICENSE_NUM = '$print_p' OR SURG_LICENSE_NUM1 = '$print_p' OR SURG_LICENSE_NUM2 = '$print_p' OR INTERNIST = '$print_p' OR INTERNIST1 = '$print_p' OR INTERNIST2 = '$print_p' OR ANESTHESIOLOGIST = '$print_p' ORDER by SURG_DATE desc";
 													$outprint = $mydatabase->query($Print_query);
 													//echo $Print_query;
