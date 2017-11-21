@@ -335,7 +335,7 @@
  $arr1 = array();
  
  while ($row = $pat->fetch_assoc()) {
-	$patID = $row['patient_id']." - ".$row['patient_fname']." ".$row['patient_minitial'].". ".$row['patient_lname'];
+	$patID = $row['patient_id']." - ".$row['patient_fname']." ".$row['patient_minitial']." ".$row['patient_lname'];
    array_push($arr1, $patID);
  }
  
