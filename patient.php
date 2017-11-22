@@ -93,17 +93,9 @@
 													$DISABILITY_CAUSE = $_POST["P_DC"];
 
 													$SS_LIST = explode(" - ",$_POST["P_PHYLIC"]);
-													if(sizeof($SS_LIST)==1){
-														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
-													}else{
-														$PHY_LICENSE_NUM = trim($SS_LIST[0]);
-													}
+													$PHY_LICENSE_NUM = trim($SS_LIST[0]);
 													$SS_LIST1 = explode(" - ",$_POST["P_STAFFLIC"]);
-													if(sizeof($SS_LIST1)==1){
-														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
-													}else{
-														$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
-													}
+													$STAFF_LICENSE_NUM = trim($SS_LIST1[0]);
 
 													$P_update = "UPDATE EYEPATIENT SET
 													PAT_FNAME = '$PAT_FNAME',
@@ -152,11 +144,7 @@
 													if(strlen($_POST["FPL"])>0){
 																$FIL_DOC = $_POST["FPL"];
 																$FD_LIST = explode(" - ",$FIL_DOC);
-																if(sizeof($FD_LIST)==1){
-																	$doc_lic = trim($FD_LIST[0]);
-																}else{
-																	$doc_lic = trim($FD_LIST[1]);
-																}
+																$doc_lic = trim($FD_LIST[0]);
 																$F_LN = ' AND p.PHY_LICENSE_NUM='.$doc_lic.' ';
 															}
 												}
@@ -165,11 +153,7 @@
 													if(strlen($_POST["FSI"])>0){
 																$FIL_STA = $_POST["FSI"];
 																$FS_LIST = explode(" - ",$FIL_STA);
-																if(sizeof($FS_LIST)==1){
-																	$sta_lic = trim($FS_LIST[0]);
-																}else{
-																	$sta_lic = trim($FS_LIST[1]);
-																}
+																$sta_lic = trim($FS_LIST[0]);
 																$F_SI = ' AND p.STAFF_LICENSE_NUM='.$sta_lic.' ';
 															}
 												}
@@ -196,20 +180,8 @@
 											}
 											//FILTER ADD END
 
-											//SEARCH
-											if(isset($_GET["search_record"])){
-												$search = "";
-												$key = trim($_GET["search_record"]);
-												if(strlen($key)>0){
-													$search = '';
-												}
-											}else{
-												$search = "";
-											}
-											//SEARCH END
-
 											//MYSQL SECTION
-											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM=d.DOC_LICENSE_NUM $filter $search order by p.PAT_LNAME";
+											$P_query = "SELECT * FROM EYEPATIENT p, DOCTOR d where p.PHY_LICENSE_NUM=d.DOC_LICENSE_NUM $filter order by p.PAT_LNAME";
 											$output = $mydatabase->query($P_query);
 											//MYSQL SECTION END
 
@@ -584,13 +556,13 @@
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_PHYLIC" style="float:left; width:40%; font-weight:bold;">Examined by:<span style="color: #d9534f">*</span></label>
 																			<div style=" width:60%; float: left;">';
-																		echo '<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" style="width: 320px;" required>
+																		echo '<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (License no. - Firstname Surname)" class="form-control typeahead tt-query" autocomplete="off" id="P_PHYLIC" placeholder="Physician Name or License" maxlength="'.$PHYL_LENG.'" name="P_PHYLIC" value="'.$P_LN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																		<div class="form-group" style="width:100%; float:left;">
 																			<label class="control-label" for="P_STAFFLIC" style="float:left; width:40%; font-weight:bold;">Screened by:<span style="color: #d9534f">*</span></label>
 																			<div style="width: 60%; float: left;">
-																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" style="width: 320px;" required>
+																				<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (License no. - Firstname Surname)" class="form-control typeahead2 tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="'.$STAFFL_LENG.'" name="P_STAFFLIC" value="'.$P_SLN.'" style="width: 320px;" required>
 																			</div>
 																		</div>
 																	</div>
