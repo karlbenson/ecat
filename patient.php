@@ -91,7 +91,6 @@
 													$RIGHT_DIAGNOSIS = $_POST["P_RDiag"];
 													$LEFT_DIAGNOSIS = $_POST["P_LDiag"];
 													$DISABILITY_CAUSE = $_POST["P_DC"];
-													$PROCEDURE_TO_DO = $_POST["P_PROC"];
 
 													$SS_LIST = explode(" - ",$_POST["P_PHYLIC"]);
 													if(sizeof($SS_LIST)==1){
@@ -791,15 +790,6 @@
 																			</div>
 																		</div>
 																		<!-- CAUSE OF DISABILITY END -->
-					  
-																		<!-- PROCEDURE -->
-																		<div class="form-group row">
-																			<label class="control-label col-md-2" for="P_PROC" style="float:left; width:170px;">Procedure </label>
-																			<div class="col-md-4" style="width: 200px;">
-																				<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" type="text" class="form-control" id="P_PROC" placeholder="Procedure to do..." maxlength="15" name="P_PROC" value="'.$dataline["PROCEDURE_TO_DO"].'">
-																			</div>
-																		</div>
-																		<!-- PROCEDURE END -->
 
 																	</div>
 																</div>
