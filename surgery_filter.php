@@ -77,7 +77,7 @@
 						<label for="FSL" style="float:left; width:20%;">Doctor </label>
 						<div>
 							<div style="width: 225px; float: left; margin-right:10px;">
-							<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="FSL" maxlength="50" name="FSL" placeholder="Doctor Name or License">
+							<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (License no. - Firstname Surname)" class="form-control typeahead tt-query" autocomplete="off" id="FSL" maxlength="50" name="FSL" placeholder="Doctor Name or License">
 							</div>
 							<div style="width: 20px; float: left; margin-right:10px;"><span> as </span></div>
 							<div style="width:150px; float: left;">
@@ -98,7 +98,7 @@
 						<label for="FCI" style="float:left; width:20%;">Patient </label>
 						<div>
 							<div style="width: 225px; float: left; margin-right:10px;">
-								<input class="form-control typeahead1 tt-query" autocomplete="off" id="FCI" maxlength="50" name="FCI" placeholder="Patient Name or ID">
+								<input pattern="^([C][A][T]\d{4}[-]\d{3})(([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)))*)$" title="PLease use the ID format: CATxxxx-xxx or full format: ID - Patient Name." class="form-control typeahead1 tt-query" autocomplete="off" id="FCI" maxlength="50" name="FCI" placeholder="Patient Name or ID">
 							</div>
 						</div>
 					</div>';
