@@ -109,7 +109,7 @@
 													$S_DATE = $S_DATE1[2].'-'.$S_DATE1[0].'-'.$S_DATE1[1];
 													$S_R = $_POST["REM"];  
 													$S_P = $_POST["PROC"];
-													$S_EO = $_POST["EO"];                           
+													$S_EO = $_POST["EYE_OP"];                           
 													$S_TA = $_POST["TANES"];
 													$S_IOL = str_replace(",", "", $_POST["IOLPOWER"]);
 													$PC_IOL = str_replace(",", "", $_POST["PC_IOL"]);
@@ -898,21 +898,43 @@
 																			</div>
 
 																			</div>
-																			</div>
+																			</div>';
 
-																			<div style="width:50%; float:left; padding-right: 20px;">
-																			<div class="well" style="width:100%; float: left;  padding-left:10px;">
+																			echo '<div style="width:100%; float:left;">
+																			<div class="well" style="width:100%; float: left;  padding-left:10px; padding-bottom:0px;">';
+
+																			echo '<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="PROC" style="width: 40%; float: left; ">Procedure<span style="color: #d9534f">*</span></label>
+																					<div style="width:60%; float:left;">
+																					<select type="text" name="PROC" id="PROC" class="form-control" required="true"  style="width: 75%; float: left; width: 320px;">';
+																								for ($i=0; $i < sizeof($proc); $i++){
+																									if($S_P==$proc[$i]){
+																										echo '<option value="'.$proc[$i].'" selected>'.$proc[$i].'</option>';
+																									}else{
+																										echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
+																									}
+																								}
+																				echo		'</select></div></div>';
+
+																				echo '<div class="container-fluid" style="margin-bottom: 10px;">
+																					<label for="EYE_OP" style="width: 40%; float: left; ">Eye Operated<span style="color: #d9534f">*</span></label>
+																					<div style="width:60%; float:left;">
+																					<select type="text" name="EYE_OP" id="EYE_OP" class="form-control" required="true" style=" float: left; width: 320px;">';
+																								for ($i=0; $i < sizeof($eye); $i++){
+																									if($S_EO==$eye[$i]){
+																										echo '<option value="'.$eye[$i].'" selected>'.$eye[$i].'</option>';
+																									}else{
+																										echo '<option value="'.$eye[$i].'">'.$eye[$i].'</option>';
+																									}
+																								}
+																				echo		'</select></div></div>';
 																			
-																			<div class="container-fluid" style="margin-bottom: 10px;">
+																			echo '<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="IOLPOWER" style="width: 40%; float: left; ">IOL Power<span style="color: #d9534f">*</span></label>
-																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 60%; float: left;" required>
+																				<div style="width:60%; float:left;">
+																				<input placeholder="IOL" type="text" class="form-control" id="IOLPOWER" maxlength="'.$IOL_MAX.'" name="IOLPOWER" value="'.$S_IOL.'" style="width: 150px; float: left; " required>
+																				</div>
 																			</div>
-
-																			</div>
-																			</div>
-
-																			<div style="width:50%; float:left;">
-																			<div class="well" style="width:100%; float: left;  padding-left:10px;">
 
 																			<div class="container-fluid" style="margin-bottom: 10px;">
 																				<label for="SURG_ANESTHESIA" style="width:40%; float: left; ">Anesthesia<span style="color: #d9534f">*</span></label>
@@ -982,31 +1004,7 @@
 																				<div class="container-fluid" style="margin-bottom: 10px;">
 																					<label for="REM" style="width: 25%; float: left; ">Surgeon Remarks </label>
 																					<input pattern="[a-zA-Z0-9 .,:;()*/-!_]*" placeholder="Remarks of Surgeon..." type="text" class="form-control" id="REM" maxlength="'.$REM_MAX.'" name="REM" style="width: 75%; float: left;" value="'.$S_R.'" >
-																				</div>
-
-																				<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="REM" style="width: 25%; float: left; ">Procedure<span style="color: #d9534f">*</span></label>
-																					<select type="text" name="PROC" id="PROC" class="form-control" required="true"  style="width: 75%; float: left;">
-																							<option value = "'.$S_P.'">'.$S_P.'</option>';
-																							
-																								for ($i=0; $i < sizeof($proc); $i++){
-																									echo '<option value="'.$proc[$i].'">'.$proc[$i].'</option>';
-																								}
-																							 
-																				echo		'</select></div>';
-
-																				echo '<div class="container-fluid" style="margin-bottom: 10px;">
-																					<label for="REM" style="width: 25%; float: left; ">Eye Operated<span style="color: #d9534f">*</span></label>
-																					<select type="text" name="EYE_OP" id="EYE_OP" class="form-control" required="true" style="width: 75%; float: left;">
-																							<option value="'.$S_EO.'">'.$S_EO.'</option>';
-																							
-																								for ($i=0; $i < sizeof($eye); $i++){
-																									echo '<option value="'.$eye[$i].'">'.$eye[$i].'</option>';
-																								}
-																							 
-																				echo		'</select></div>';
-																							
-
+																				</div>';
 																							 
 																				echo		'
 																			
@@ -1283,6 +1281,10 @@
 															<div id="pr_body" >'.$MONTH_choice[$date[1]-1].' '.$date[2].', '.$date[0].'</div>
 															<div id="pr_label">Address: </div>
 															<div id="pr_body" >'.$printline["SURG_ADDRESS"].'</div>
+															<div id="pr_label">Eye Operated: </div>
+															<div id="pr_body" >'.$printline["EYE_OPERATED"].'</div>
+															<div id="pr_label">Procedure: </div>
+															<div id="pr_body" >'.$printline["PROCEDURE_TO_DO"].'</div>
 															<div id="pr_label">IOL Power: </div>
 															<div id="pr_body" >'.$printline["IOLPOWER"].'</div>
 															<div id="pr_label">Anesthesia: </div>
@@ -1424,8 +1426,6 @@
 																	<div id="pr_body2" >'.$printline["RIGHT_DIAGNOSIS"].'</div>
 																	<div id="pr_label2">Left Eye Diagnosis: </div>
 																	<div id="pr_body2" >'.$printline["LEFT_DIAGNOSIS"].'</div>
-																	<div id="pr_label2">Procedure: </div>
-																	<div id="pr_body2" >'.$printline["PROCEDURE_TO_DO"].'</div>
 																	<div id="pr_label2">Remarks: </div>
 																	<div id="pr_body2" >'.$printline["REMARKS"].'</div>
 																</div>
