@@ -108,7 +108,7 @@
 									<div class="form-group row" style="margin:0px;">
 										<label class="control-label col-md-2" for="SURG_LIC" style="float:left; width:170px;">Surgeon<span style="color: #d9534f">*</span></label>
 										<div class="col-md-8" style=" float:left;">
-											<div style="margin:5px 5px 5px 0px; width: 320px; float:left;">
+											<div  style="margin:5px 5px 5px 0px; width: 320px; float:left;">
 												<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="SURG_NAME" placeholder="Surgeon Name or License" maxlength="50" name="SURG_NAME" required>
 											</div>
 											<div class="add_s1" style="margin:5px 5px 5px 0px; width: 320px; float:left;">
@@ -170,7 +170,7 @@
 	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
              <div class="col-md-7" style=" float: left;">
              	<div style="width: 320px; float: left; margin-right:5px;" >
-               <input pattern="^([C][A][T]\d{4}[-]\d{3})([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
+               <input pattern="^([C][A][T]\d{4}[-]\d{3})(([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)))*)$" title="PLease use the ID format: CATxxxx-xxx or full format: ID - Patient Name." class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
               </div>
               <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new patient"><span class="fa fa-id-card"></span></a>
 	            </div>
