@@ -51,7 +51,7 @@
 							<label for="FPL" style="float:left; width:35%; ">Examined by: </label>
 							<div>
 							 <div style="width: 225px; float: left; margin-right:10px;">
-								<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" title="License No. (0000000-9999999) or Name and License (Firstname Surname - License no.)" class="form-control typeahead tt-query" autocomplete="off" id="FPL" maxlength="50" name="FPL" placeholder="Physician Name or License">
+								<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (License no. - Firstname Surname)" class="form-control typeahead tt-query" autocomplete="off" id="FPL" maxlength="50" name="FPL" placeholder="Physician Name or License">
 								</div>
 							</div>
 						</div>';
@@ -62,7 +62,7 @@
 							<label for="FSI" style="float:left; width:35%;">Screened by: </label>
 							<div>
 							 <div style="width: 225px; float: left; margin-right:10px;">
-								<input pattern="^(([a-zA-Z](\w*)[ ][a-zA-Z](\w*)[ ][-][ ])*)(\d{5,7}$)" class="form-control" autocomplete="off" id="FSI" maxlength="50" name="FSI" placeholder="Staff Name or License/ID">
+								<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" title="License No. (0000000-9999999) or Name and License (License no. - Firstname Surname)" class="form-control typeahead2 tt-query" autocomplete="off" id="FSI" maxlength="50" name="FSI" placeholder="Staff Name or License/ID">
 								</div>
 							</div>
 						</div>';
