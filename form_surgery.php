@@ -167,14 +167,14 @@
 
 												<!-- PATIENT ID -->
 												<div class="form-group row">
-	            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
-             <div class="col-md-7" style=" float: left;">
-             	<div style="width: 320px; float: left; margin-right:5px;" >
-               <input pattern="^([C][A][T]\d{4}[-]\d{3})(([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)))*)$" title="PLease use the ID format: CATxxxx-xxx or full format: ID - Patient Name." class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
-              </div>
-              <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new patient"><span class="fa fa-id-card"></span></a>
-	            </div>
-	           </div>
+										            <label class="control-label col-md-3" for="PAT_NAME" style="float:left; width:200px;">Patient Name<span style="color: #d9534f">*</span></label>
+									             <div class="col-md-7" style=" float: left;">
+									             	<div style="width: 320px; float: left; margin-right:5px;" >
+									               <input pattern="^([C][A][T]\d{4}[-]\d{3})(([ ][-][ ]([a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*)))*)$" title="PLease use the ID format: CATxxxx-xxx or full format: ID - Patient Name." class="form-control typeahead1 tt-query" autocomplete="off" id="PAT_NAME" placeholder="Patient Name" maxlength="<?php echo $MAX_NAME; ?>" name="PAT_NAME" required>
+									              </div>
+									              <a role="button" id="add_patient" onclick="add_on_p()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new Eye Patient"><span class="fa fa-id-card"></span></a>
+										            </div>
+										           </div>
 												<!-- PATIENT ID END -->
 
 												<!-- VISUAL IMPARITY -->
@@ -682,8 +682,8 @@ include("confirm.php");
 		document.getElementById("add_para").innerHTML = "doctor";
 	}
 	function add_on_p(){
-		document.getElementById("add_head").innerHTML = "Add New Patient";
-		document.getElementById("add_para").innerHTML = "patient";
+		document.getElementById("add_head").innerHTML = "Add New Eye Patient";
+		document.getElementById("add_para").innerHTML = "eye patient";
 	}
 </script>
 

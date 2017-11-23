@@ -237,7 +237,7 @@
 											}else if ($DEFAULT==1) {
 												//FULL DETAILS PAGE
 												//MYSQL SECTION
-												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.STAFF_LICENSE_NUM = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
+												$output1 = $mydatabase->prepare("SELECT p.*, d.LAST_NAME, d.FIRST_NAME, t.* FROM DOCTOR d, STAFF t, EYEPATIENT p where p.PHY_LICENSE_NUM = d.DOC_LICENSE_NUM and t.staff_id = p.STAFF_LICENSE_NUM and PAT_ID_NUM = '$profile_p' ");      
 												$output1->execute();
 												$line1 = $output1->get_result();
 												$dataline = $line1->fetch_assoc();
@@ -278,7 +278,7 @@
 																<div style="background-color: #bbb; margin-right:0px; width:100%;">
 																	<div style="width:45%; float: left; margin:0px;">
 																		<div class="panel panel-default"  style="padding-bottom:0px; margin-right:20px;">
-																			<a href="../pat/LukePatient/pages/records.php">
+																			<a href="../patient/pages/viewmore.php?pid='. $dataline["PAT_UNIV_ID"].'">
 																				<div class="panel-heading" id="tophead1">Patient Record<span class="pull-right fa fa-arrow-circle-right"></span></div>
 																			</a>
 																			<div class="panel-body">
@@ -325,7 +325,7 @@
 																		</div>
 																		<div >
 																			<div style="width:'.$margin000.'; float: left; font-weight:bold;">'.'Screened by: '.'</div>
-																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'">'.$E_link.'<span style="color:#000000; text-decoration:none;">'.$dataline["STAFF_FNAME"].' '.$dataline["STAFF_LNAME"].'</span></a></div>
+																			<div style="width:'.$margin000.'; float: left;"><a href="'.$STAFF_link.'">'.$E_link.'<span style="color:#000000; text-decoration:none;">'.$dataline["FIRST_NAME"].' '.$dataline["LAST_NAME"].'</span></a></div>
 																		</div>
 																	</div>
 																</div>

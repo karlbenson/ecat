@@ -81,9 +81,11 @@
 				if(to=="doctor"){
 					link_there = "form_doctors.php";
 				}else if(to=="staff"){
-					link_there = "#";
-				}else if(to=="patient"){
+					link_there = "http://localhost/Luke/hr/pages/Add%20Personnel.php";
+				}else if(to=="eye patient"){
 					link_there = "form_patient.php";
+				}else if(to=="patient"){
+					link_there = "http://localhost/Luke/patient/pages/new.php";
 				}
 				window.location = link_there;
 			}

@@ -87,6 +87,7 @@
 										<div class="" style="width: 300px; float: left; margin-right:10px;">
 											<input pattern="^(\d*)([ ][-][ ]([a-zA-Z]([a-zA-Z .]*))*)$" class="form-control typeahead tt-query" id="P_NAME" name="P_NAME" autocomplete="off" placeholder="Enter Patient ID or Patient Name" required>
 										</div>
+										<a role="button" id="add_patient" onclick="add_on_pout()" data-toggle="modal" data-target="#add_new" class="btn btn-default" style="font-size:14px; color:#337ab7; float:left;" title="Add new Patient"><span class="fa fa-id-card"></span></a>
 									</div>
 									<!-- PATIENT END-->
 									<!-- PHIL HEALTH -->
@@ -138,7 +139,7 @@
 												<label class="control-label" for="P_STAFFLIC" style="float:left; width:30%; padding-left:15px;">Screened by:</label>
 												<div class="col-md-2" style="width: 70%; float: left; ">
 												<div class="input-group">
-													<input pattern="^(\d{7})(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC">
+													<input pattern="^(\d\d*)(([ ][-][ ][a-zA-Z]([a-zA-Z ]*)[ ][a-zA-Z]([a-zA-Z]*))*)$" class="form-control typeahead tt-query" autocomplete="off" id="P_STAFFLIC" placeholder="Staff Name or License" maxlength="<?php echo $STAFFL_LENG; ?>" name="P_STAFFLIC">
 													<span class="input-group-addon" role="button" id="add_staff" onclick="add_on_s()" data-toggle="modal" data-target="#add_new"><span class="fa fa-user" style="padding:0px; margin:0px; font-size:16px; color:#337ab7;"></span></span>
 												</div>
 												</div>
@@ -315,6 +316,10 @@
 		document.getElementById("add_head").innerHTML = "Add New Staff";
 		document.getElementById("add_para").innerHTML = "staff";
 	}
+	function add_on_pout(){
+		document.getElementById("add_head").innerHTML = "Add New Patient";
+		document.getElementById("add_para").innerHTML = "patient";
+	}
 </script>
 
 <!--GO TO SECTION END-->
@@ -343,7 +348,7 @@
  $arr2 = array();
  
  while ($row = $staff->fetch_assoc()) {
-	$staffID = $row['STAFF_LICENSE_NUM']." - ".$row['STAFF_FNAME']." ".$row['STAFF_LNAME'];
+	$staffID = $row['staff_id']." - ".$row['first_name']." ".$row['last_name'];
    array_push($arr2, $staffID);
  }
  

@@ -9,6 +9,23 @@
 		<script src="references/jquery.min.js"></script>
 		<script src="references/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="theme2.css">
+		<script type="text/javascript">
+			$(document).ready(function () {
+  //called when key is pressed in textbox
+  $(".namber").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+               return false;
+    }
+   });
+  $(".form-control").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which == 39 || e.which == 34) {
+               return false;
+    }
+   });
+});
+		</script>
 	</head>
 	<body style="justify-content: center;">
 		<!-- HEAD AND NAVIGATION -->
@@ -72,7 +89,8 @@
 									<div class="form-group row">
 										<label class="control-label col-md-2" for="LICENSE_NUM" style="float:left; width:170px;">License Number <span style="color: #d9534f">*</span></label>
 										<div class="col-md-2" style="width: 115px; float: left;">
-											<input pattern="\d{7}" class="form-control" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
+											<input type="text" pattern="\d{7}" class="form-control namber"  onchange="numberOnly()" id="LICENSE_NUM" placeholder="Lic. No." maxlength="<?php echo $LIC_LENG; ?>" name="LICENSE_NUM" required>
+											
 										</div>
 									</div>
 									<!-- LICENSE NUMBER END -->

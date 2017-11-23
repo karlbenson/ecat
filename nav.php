@@ -119,7 +119,7 @@
 	// HEADER
 	echo
 	'<div class="container" id="headlogo" style="transition: 0.5s; background: linear-gradient(to bottom right, rgba(92, 184, 92, 0.9) 40%, rgba(92, 184, 92, 0) 110%); padding: 10px; width: calc(100% - 100px); height:60px; margin-left:100px; margin-bottom: 10px; min-width: 950px;">
-		<a href="Home.php">
+		<a href="http://localhost/Luke">
 		<div >
 			<img style="float:left; height:40px; margin-left:15px; opacity:0.9;" src="images/luke_logo.bmp">
 			<p style="float:left; font-size:16pt; color:#ffffff; margin: 5px 20px;"> LUKE FOUNDATION, INC. </p>

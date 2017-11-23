@@ -22,7 +22,7 @@
     $arr2 = array();
     
     while ($row = $staff->fetch_assoc()) {
-        $id = $row["STAFF_LICENSE_NUM"]." - ".$row['STAFF_FNAME']." ".$row['STAFF_LNAME'];
+        $id = $row['staff_id']." - ".$row['first_name']." ".$row['last_name'];
         array_push($arr2, $id);    
 	}
 
