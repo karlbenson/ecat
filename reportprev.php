@@ -862,7 +862,7 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<div class="panel-body" style="margin:0px; padding:0px;">
+													echo '<div class="panel-body" style="margin:0px; padding:0px;overflow:scroll;">
 														<table id="docdat" class="table table-striped row" style="float:left; width:100%;padding:0px;margin:0px;">
 															<thead>
 																<tr id="tophead">
@@ -968,7 +968,7 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<div class="panel-body" style="margin:0px; padding:0px;">
+													echo '<div class="panel-body" style="margin:0px; padding:0px;overflow:scroll;">
 														<table id="docdat" class="table table-striped row" style="float:left; width:100%;padding:0px;margin:0px;">
 															<thead>
 																<tr id="tophead">
@@ -1078,7 +1078,7 @@
 												//FILTER END
 												//MAIN PAGE
 												if ($output->num_rows>0) {
-													echo '<div class="panel-body" style="margin:0px; padding:0px;">
+													echo '<div class="panel-body" style="margin:0px; padding:0px;overflow:scroll;">
 														<table id="docdat" class="table table-striped row" style="float:left; width:100%;padding:0px;margin:0px;">
 															<thead>
 																<tr id="tophead">
