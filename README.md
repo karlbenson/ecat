@@ -1,5 +1,1 @@
-new file, new life.
-karl was here
-jl was here
-POGI NI MASTER JL WOOOH!!
-POGI TALAGA NI JL
+An in-kind web-based project for Luke Foundation that used HTML, Bootstrap and MySQL as bases. Our group were tasked to make the forms section for patients with eye cataract and lists of doctors. It is a batch-wide project intended to digitize the former in-paper process of the foundation.
